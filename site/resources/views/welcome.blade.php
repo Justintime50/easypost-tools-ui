@@ -80,18 +80,44 @@
             @endif
 
             <div class="content">
+
+            <!-- LARAVEL ERRORS -->
+            <div class="container-fluid" style="padding:0px;">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                @if(session()->has('message'))
+                    <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+                @endif
+
+                @if(session()->has('error'))
+                    <p class="alert alert-danger {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('error') }}</p>
+                @endif
+            </div>
+
+
                 <div class="title m-b-md">
                     {{ config('app.name') }}
                 </div>
 
                 <div class="links">
-                    <a href="/">Addresses</a>
+                    <form action="/create-to-address" method="POST">
+                    @csrf
+                    <button type="submit">Addresses</button>
+                    </form>
                     <a href="/">Parcels</a>
                     <a href="/">Shipments</a>
                     <a href="/">Insurance</a>
                     <a href="/">Tracking</a>
-                    <a href="https://www.easypost.com/docs/api">API Docs</a>
-                    <a href="https://github.com/Justintime50/easypost-ui">GitHub</a>
+                    <a href="https://www.easypost.com/docs/api" target="_blank">API Docs</a>
+                    <a href="https://github.com/Justintime50/easypost-ui" target="_blank">GitHub</a>
                 </div>
             </div>
         </div>
