@@ -4,13 +4,15 @@ Easily interact with the EasyPost API to order one-off packages and labels via a
 
 ## Setup
 
+This project requires [Docker](https://www.docker.com/products/docker-desktop). After installing and logging in, follow the instructions below:
+
 ### Laravel
 
 Navigate to the `site` directory of the project and run:
 ```bash
 php composer.phar install
 
-> OR 
+// OR 
 
 composer install
 ```
@@ -30,7 +32,7 @@ Start up docker containers in project root directory:
 ```bash
 docker-compose up -d
 
-> OR
+// OR
 
 php artisan serve
 ```

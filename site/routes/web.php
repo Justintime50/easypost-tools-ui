@@ -21,3 +21,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/create-address', 'AddressController@createAddress');
 Route::post('/retrieve-address', 'AddressController@retrieveAddress');
+
+Route::post('/create-parcel', 'ParcelController@createParcel');
+Route::post('/retrieve-parcel', 'ParcelController@retrieveParcel');
+
+Route::post('/create-shipment', 'ShipmentController@createShipment');
+Route::post('/retrieve-shipments', 'ShipmentController@retrieveShipments');

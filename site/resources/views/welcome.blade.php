@@ -67,11 +67,17 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+            h3 {
+                padding-top: 30px;
+            }
         </style>
     </head>
 
     @include('modals.create-address')
     @include('modals.retrieve-address')
+    @include('modals.create-parcel')
+    @include('modals.retrieve-parcel')
+    @include('modals.create-shipment')
 
     <body>
         <div class="flex-center position-ref full-height">
@@ -96,36 +102,42 @@
 
             <div class="content">
 
-            <!-- LARAVEL ERRORS -->
-            <div class="container-fluid" style="padding:0px;">
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-
-                @if(session()->has('message'))
-                    <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
-                @endif
-
-                @if(session()->has('error'))
-                    <p class="alert alert-danger {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('error') }}</p>
-                @endif
-            </div>
-
                 <div class="title m-b-md">
                     {{ config('app.name') }}
                 </div>
 
+                <!-- LARAVEL ERRORS -->
+                <div class="container-fluid" style="padding:0px;">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+    
+                    @if(session()->has('message'))
+                        <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+                    @endif
+    
+                    @if(session()->has('error'))
+                        <p class="alert alert-danger {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('error') }}</p>
+                    @endif
+                </div>
+
                 <div class="links">
-                    <a href="#" data-toggle="modal" data-target="#createToAddress">Create Address</a>
+                    <h3>Create</h3>
+                    <a href="#" data-toggle="modal" data-target="#createAddress">Create Address</a>
+                    <a href="#" data-toggle="modal" data-target="#createParcel">Create Parcel</a>
+                    <a href="#" data-toggle="modal" data-target="#createShipment">Create Shipment</a>
+
+                    <h3>Read</h3>
                     <a href="#" data-toggle="modal" data-target="#retrieveAddress">Retrieve Address</a>
-                    <a href="/">Parcels</a>
-                    <a href="/">Shipments</a>
+                    <a href="#" data-toggle="modal" data-target="#retrieveParcel">Retrieve Parcel</a>
+
+                    <h3>TODO</h3>
                     <a href="/">Insurance</a>
                     <a href="/">Tracking</a>
                 </div>
