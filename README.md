@@ -1,14 +1,12 @@
 # EasyPost UI
 
-This project allows someone to easily interact with the EasyPost API to order one-off packages/labels.
+Easily interact with the EasyPost API to order one-off packages and labels via a simple UI.
 
 ## Setup
 
 ### Laravel
 
-Setup your .env variables. Use the .env.example template file for the basic setup. These are found in the laravel folder. NOTE: The DB host must be the DB Docker container name.
-
-Install project dependencies. Navigate to the directory of the project and run:
+Navigate to the `site` directory of the project and run:
 ```bash
 php composer.phar install
 
@@ -25,14 +23,18 @@ cp .env.example .env
 php artisan key:generate
 ```
 
-Ensure you have added your EasyPost API key to the .env file.
+**Ensure you have added your EasyPost API key to the .env file.**
 
-Start up docker containers:
+Start up docker containers in project root directory:
 
 ```bash
 docker-compose up -d
 
-> OR (will require separate DB hosting)
+> OR
 
 php artisan serve
 ```
+
+## Usage
+
+Navigate to `localhost:8000` and you'll arrive at the app. Use the various links to interact with the API via a UI.
