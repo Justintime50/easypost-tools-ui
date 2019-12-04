@@ -20,8 +20,12 @@ composer install
 Generate a Laravel key:
 
 ```bash
+cp .env.example .env
+
 php artisan key:generate
 ```
+
+Ensure you have added your EasyPost API key to the .env file.
 
 Start up docker containers:
 
@@ -31,10 +35,4 @@ docker-compose up -d
 > OR (will require separate DB hosting)
 
 php artisan serve
-```
-
-Migrate and create the database (do so inside the Docker container):
-
-```bash
-php artisan migrate
 ```

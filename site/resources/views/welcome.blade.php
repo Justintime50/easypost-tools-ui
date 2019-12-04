@@ -4,6 +4,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <!-- Scripts -->
+        <script src="{{ asset('js/app.js') }}" defer></script>
+
+        <!-- Styles -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
         <title>{{ config('app.name') }}</title>
 
         <!-- Fonts -->
@@ -63,13 +69,22 @@
             }
         </style>
     </head>
+
+    @include('modals.create-address')
+    @include('modals.retrieve-address')
+
     <body>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
+                        <a href="https://www.easypost.com/docs/api" target="_blank">API Docs</a>
+                        <a class="nav-link" href="https://github.com/Justintime50/easypost-ui" target="_blank">GitHub</a>
                     @else
+                        <a href="https://www.easypost.com/docs/api" target="_blank">API Docs</a>
+                        <a href="https://github.com/Justintime50/easypost-ui" target="_blank">GitHub</a>
+
                         <a href="{{ route('login') }}">Login</a>
 
                         @if (Route::has('register'))
@@ -102,22 +117,17 @@
                 @endif
             </div>
 
-
                 <div class="title m-b-md">
                     {{ config('app.name') }}
                 </div>
 
                 <div class="links">
-                    <form action="/create-to-address" method="POST">
-                    @csrf
-                    <button type="submit">Addresses</button>
-                    </form>
+                    <a href="#" data-toggle="modal" data-target="#createToAddress">Create Address</a>
+                    <a href="#" data-toggle="modal" data-target="#retrieveAddress">Retrieve Address</a>
                     <a href="/">Parcels</a>
                     <a href="/">Shipments</a>
                     <a href="/">Insurance</a>
                     <a href="/">Tracking</a>
-                    <a href="https://www.easypost.com/docs/api" target="_blank">API Docs</a>
-                    <a href="https://github.com/Justintime50/easypost-ui" target="_blank">GitHub</a>
                 </div>
             </div>
         </div>
