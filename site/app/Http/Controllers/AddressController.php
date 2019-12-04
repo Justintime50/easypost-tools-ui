@@ -4,39 +4,35 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \EasyPost\EasyPost;
-EasyPost::setApiKey(''); # TODO: Make this an env variable or plug it into the form everytime.
+EasyPost::setApiKey(env('EASYPOST_API_KEY')); # TODO: Make this an env variable or plug it into the form everytime.
+
 
 class AddressController extends Controller
 {
-    public function createFromAddress (Request $request) {
+    public function createAddress (Request $request) {
 
-    }
-
-
-    public function createToAddress (Request $request) {
         $to_address = \EasyPost\Address::create(
             array(
-                "name"    => "Dr. Steve Brule",
-                "street1" => "179 N Harbor Dr",
-                "city"    => "Redondo Beach",
-                "state"   => "CA",
-                "zip"     => "90277",
-                "phone"   => "310-808-5243"
+                "street1" => request()->get('street1'),
+                "street2" => request()->get('street2'),
+                "city"    => request()->get('city'),
+                "state"   => request()->get('state'),
+                "zip"     => request()->get('zip'),
+                "country" => request()->get('country'),
+                "company" => request()->get('company'),
+                "phone"   => request()->get('phone'),
             )
         );
 
-
-        session()->flash("message", "To Address created: $to_address->id");
+        session()->flash("message", "TO ADDRESS CREATED: $to_address");
         return redirect('/');
     }
 
 
-    public function readFromAddress (Request $request) {
+    public function retrieveAddress (Request $request) {
+        $retrieved_address = \EasyPost\Address::retrieve(request()->get('id'));
 
-    }
-
-
-    public function readToAddress (Request $request) {
-
+        session()->flash("message", "ADDRESS RETRIEVED: $retrieved_address");
+        return redirect('/');
     }
 }

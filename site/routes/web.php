@@ -19,4 +19,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('/create-to-address', 'AddressController@createToAddress');
+Route::post('/create-address', 'AddressController@createAddress');
+Route::post('/retrieve-address', 'AddressController@retrieveAddress');
