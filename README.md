@@ -4,11 +4,11 @@ Easily interact with the EasyPost API to order one-off packages and labels via a
 
 ## Setup
 
+**EasyPost API:** You'll need a test or production API key from [EasyPost's website](https://easypost.com). Create an account and grab the API key you'd like to use.
+
 This project requires [Docker](https://www.docker.com/products/docker-desktop), PHP, and Composer.
 
 **Run Script:** To setup EasyPost UI, simply open `setup.command` and it will setup everything for you! All you'll need to do is add your API key to the `.env` file.
-
-**EasyPost API:** You'll need a test or production API key from [EasyPost's website](https://easypost.com). Create an account and grab the API key you'd like to use.
 
 If you want manual setup instructions, see our [SETUP.md](/SETUP.md) file.
 
