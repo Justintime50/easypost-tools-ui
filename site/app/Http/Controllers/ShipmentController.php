@@ -57,7 +57,9 @@ class ShipmentController extends Controller
             echo $rate;
         }*/
 
-        session()->flash("message", "SHIPMENT CREATED: $shipment");
+        $shipment->buy($shipment->lowest_rate(array('USPS'), array('First')));
+        $label = $shipment->postage_label->label_url;
+        session()->flash("message", "SHIPMENT CREATED: $label");
         return redirect('/');
     }
 
