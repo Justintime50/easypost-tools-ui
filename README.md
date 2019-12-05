@@ -4,15 +4,17 @@ Easily interact with the EasyPost API to order one-off packages and labels via a
 
 ## Setup
 
-This project requires [Docker](https://www.docker.com/products/docker-desktop), PHP, and Composer. 
+This project requires [Docker](https://www.docker.com/products/docker-desktop), PHP, and Composer.
 
 **Run Script:** To setup EasyPost UI, simply open `setup.command` and it will setup everything for you! All you'll need to do is add your API key to the `.env` file.
+
+**EasyPost API:** You'll need a test or production API key from [EasyPost's website](https://easypost.com). Create an account and grab the API key you'd like to use.
 
 If you want manual setup instructions, see our [SETUP.md](/SETUP.md) file.
 
 ## Usage
 
-One the project is setup, navigate to `localhost:8000` and you'll arrive at the app. Use the various links to interact with the API via a UI.
+Once the project is setup, navigate to `localhost:8000` and you'll arrive at the app. Use the various links to interact with the API via a UI.
 
 Simply run `docker-compose up -d` in the project root directory for future deployments.
 
