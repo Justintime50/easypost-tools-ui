@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/welcome', function () {
+    return view('welcome');
+});
 
 Auth::routes();
 
@@ -26,4 +29,4 @@ Route::post('/create-parcel', 'ParcelController@createParcel');
 Route::post('/retrieve-parcel', 'ParcelController@retrieveParcel');
 
 Route::post('/create-shipment', 'ShipmentController@createShipment');
-Route::post('/retrieve-shipments', 'ShipmentController@retrieveShipments');
+Route::post('/retrieve-shipment', 'ShipmentController@retrieveShipment');

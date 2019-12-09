@@ -6,7 +6,7 @@ services:
         restart: always
         container_name: easypost-ui-nginx
         volumes:
-            - ./site:/var/www/html
+            - ./laravel:/var/www/html
             - ./nginx.conf:/etc/nginx/conf.d/default.conf
         ports:
             - "8000:80"
@@ -14,11 +14,11 @@ services:
             - easypost-ui
 
     php:
-        image: php:fpm
+        build: .
         restart: always
         container_name: easypost-ui-php
         volumes:
-            - ./site:/var/www/html
+            - ./laravel:/var/www/html
         networks:
             - easypost-ui
 
