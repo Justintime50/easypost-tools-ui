@@ -11,7 +11,7 @@ Easily interact with the EasyPost API to order one-off packages and labels via a
 3) Run `cp .env.example .env` to create the file.
 4) Run `docker-compose up -d` in the project's root directory and you'll be all set!
 
-<i>Alternatively to setting up via Docker, you can install PHP and run `php artisan serve` in the `/laravel` directory to srtart up the web server.</i>
+<i>Alternatively to setting up via Docker, you can install PHP and run `php artisan serve` in the `/laravel` directory to start up the web server.</i>
 
 ## Usage
 
