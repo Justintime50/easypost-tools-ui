@@ -90,8 +90,8 @@ class ShipmentController extends Controller
         $shipment->buy($shipment->lowest_rate(array('USPS'), array('First')));
         $label = $shipment->postage_label->label_url;
 
-        session()->flash("message", "SHIPMENT CREATED. LABEL URL: $label");
-        return redirect()->back()->with(['response' => $response]);
+        session()->flash("message", "SHIPMENT CREATED");
+        return redirect()->back()->with(['response' => $response, 'label' => $label]);
     }
 
     /**
@@ -122,7 +122,7 @@ class ShipmentController extends Controller
                 # "page_size" => 2,
                 # 'purchased' => false,
                 # "start_datetime" => "2016-01-02T08:50:00Z"
-              ));
+            ));
         } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
@@ -130,6 +130,26 @@ class ShipmentController extends Controller
         $response = $shipments;
 
         session()->flash("message", "SHIPMENTS RETRIEVED");
+        return redirect()->back()->with(['response' => $response]);
+    }
+
+    /**
+     * createRefund
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function createRefund (Request $request) {
+        try {
+            $shipment = \EasyPost\Shipment::create(request()->get('id'));
+            $shipment->refund();
+        } catch (\EasyPost\Error $exception) {
+            return back()->withError($exception->getMessage())->withInput();
+        }
+
+        $response = $shipment;
+
+        session()->flash("message", "SHIPMENT REFUNDED");
         return redirect()->back()->with(['response' => $response]);
     }
 }
