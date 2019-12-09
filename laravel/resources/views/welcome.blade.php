@@ -23,6 +23,9 @@
     @include('modals.retrieve-parcel')
     @include('modals.create-shipment')
     @include('modals.retrieve-shipment')
+    @include('modals.create-tracker')
+    @include('modals.retrieve-tracker')
+    @include('modals.retrieve-insurance')
 
     <body>
         <div class="flex-center position-ref">
@@ -39,9 +42,7 @@
                         <a href="#" data-toggle="modal" data-target="#createAddress">Address</a>
                         <a href="#" data-toggle="modal" data-target="#createParcel">Parcel</a>
                         <a href="#" data-toggle="modal" data-target="#createShipment">Shipment</a>
-                        <a href="#" data-toggle="modal" data-target="#createInsurance"><s>Insurance</s></a>
-                        <a href="#" data-toggle="modal" data-target="#createTracking"><s>Tracking</s></a>
-
+                        <a href="#" data-toggle="modal" data-target="#createTracker">Tracking</a>
                     </div>
 
                     <div class="box">
@@ -49,27 +50,29 @@
                         <a href="#" data-toggle="modal" data-target="#retrieveAddress">Address</a>
                         <a href="#" data-toggle="modal" data-target="#retrieveParcel">Parcel</a>
                         <a href="#" data-toggle="modal" data-target="#retrieveShipment">Shipment</a>
-                        <a href="#" data-toggle="modal" data-target="#retrieveInsurance"><s>Insurance</s></a>
-                        <a href="#" data-toggle="modal" data-target="#retrieveTracking"><s>Tracking</s></a>
+                        <a href="#" data-toggle="modal" data-target="#retrieveInsurance">Insurance</a>
+                        <a href="#" data-toggle="modal" data-target="#retrieveTracker">Tracking</a>
                     </div>
 
                     <div class="box">
                         <h3>View All</h3>
+                        <p>Care should be taken when retrieving all, performance issues could arise with the current configuration.</p>
                         <form action="/retrieve-addresses" method="POST" id="retrieveAddresses">
                             @csrf
                             <a href="#" onclick="document.getElementById('retrieveAddresses').submit();">Addresses</a>
-                        </form>
-                        <form action="" method="POST" id="retrieveParcels">
-                            @csrf
-                            <a href="#"><s>Parcels</s></a>
-                        </form>                        
+                        </form>                      
                         <form action="/retrieve-shipments" method="POST" id="retrieveShipments">
                             @csrf
                             <a href="#" onclick="document.getElementById('retrieveShipments').submit();">Shipments</a>
                         </form>                        
-                        <a href="#" data-toggle="modal" data-target="#retrieveAllInsurance"><s>Insurance</s></a>
-                        <a href="#" data-toggle="modal" data-target="#retrieveAllTracking"><s>Tracking</s></a>
-                    </div>
+                        <form action="/retrieve-insurances" method="POST" id="retrieveInsurances">
+                            @csrf
+                            <a href="#" onclick="document.getElementById('retrieveInsurances').submit();">Insurances</a>
+                        </form>                        
+                        <form action="/retrieve-trackers" method="POST" id="retrieveTrackers">
+                            @csrf
+                            <a href="#" onclick="document.getElementById('retrieveTrackers').submit();">Trackers</a>
+                        </form>                    </div>
                 </div>
 
                 <hr>

@@ -11,6 +11,8 @@
             <form action="/create-address" method="POST">
                 @csrf
 
+                <p>Create a one-off address, save the returned ID for future use.</p>
+
                 <label for="street1">Street 1*</label>
                 <input class="form-control" name="street1" value="{{old('street1')}}">
 
@@ -35,7 +37,7 @@
                 <label for="phone">Phone</label>
                 <input class="form-control" name="phone" value="{{old('phone')}}">
 
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary">Create Address</button>
 
             </form>
       </div>

@@ -119,9 +119,9 @@ class ShipmentController extends Controller
     public function retrieveShipments (Request $request) {
         try {
             $shipments = \EasyPost\Shipment::all(array(
-                "page_size" => 2,
-                'purchased' => false,
-                "start_datetime" => "2016-01-02T08:50:00Z"
+                # "page_size" => 2,
+                # 'purchased' => false,
+                # "start_datetime" => "2016-01-02T08:50:00Z"
               ));
         } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();

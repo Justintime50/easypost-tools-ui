@@ -11,7 +11,7 @@
             <form action="/create-parcel" method="POST">
                 @csrf
 
-                <p>Input access decimals, conveyed in inches and pounds.</p>
+                <p>Create a one-off parcel. Input accepts decimals, conveyed in inches and ounces.</p>
                 
                 <label for="length">Length*</label>
                 <input class="form-control" name="length" value="{{old('length')}}">
@@ -25,7 +25,7 @@
                 <label for="weight">Weight*</label>
                 <input class="form-control" name="weight" value="{{old('weight')}}">
 
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary">Create Parcel</button>
 
             </form>
       </div>
