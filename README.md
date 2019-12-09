@@ -2,6 +2,18 @@
 
 Easily interact with the EasyPost API to order one-off packages and labels via a simple UI.
 
+## What Can it Do?
+
+- Create shipments with carrier labels for you to print
+- Create addresses, parcels, and trackers independantly
+- Track a package
+- Refund a shipment
+- Retrieve addresses, parcels, shipments, insurance, and trackers from the EasyPost DB
+
+## How it Works
+
+The EasyPost API creates a label once it receives a `from_address`, `to_address`, and `parcel`. We verify the addresses and select the cheapest rate from USPS and return a label URL. Print the label, slap it on your package, and drop it off at a USPS location. That's it!
+
 ## Setup
 
 **EasyPost API:** You'll need a test or production API key from [EasyPost's website](https://easypost.com). Create an account and grab the API key you'd like to use. If using your production API key, make sure to setup billing info on your EasyPost account.
@@ -19,16 +31,13 @@ Once the project is setup, navigate to `localhost:8000` in a browser and you'll 
 
 Simply run `docker-compose up -d` in the project root directory for future deployments.
 
-## How it Works
-
-The EasyPost API creates a label once it receives a `from_address`, `to_address`, and `parcel`. We verify the addresses and select the cheapest rate from USPS and return a label URL. Print the label, slap it on your package, and drop it off at a USPS location. That's it!
-
 ## Roadmap
 
 The following are future features planned to be incorproated:
 - Support multiple carriers
 - Support multiple rates/shipping speeds
 - Create Insurance
+- USPS/Fedex/UPS predefined packages
 
 ## Disclaimer
 

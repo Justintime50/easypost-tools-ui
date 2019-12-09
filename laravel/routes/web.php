@@ -41,3 +41,5 @@ Route::post('/retrieve-trackers', 'TrackerController@retrieveTrackers');
 Route::post('/create-insurance', 'InsuranceController@createInsurance');
 Route::post('/retrieve-insurance', 'InsuranceController@retrieveInsurance');
 Route::post('/retrieve-insurances', 'InsuranceController@retrieveInsurances');
+
+Route::post('/create-refund', 'ShipmentController@createRefund');
