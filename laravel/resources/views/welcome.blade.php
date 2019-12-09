@@ -25,26 +25,50 @@
     @include('modals.retrieve-shipment')
 
     <body>
-        <div class="flex-center position-ref full-height">
+        <div class="flex-center position-ref">
         @include('partials.nav')
 
             <div class="content">
 
                 <div class="links actions">
                     <h1>API Actions</h1>
+                    <p class="links"><a href="/">Clear Page</a></p>
 
                     <div class="box">
                         <h3>Create</h3>
-                        <a href="#" data-toggle="modal" data-target="#createAddress">Create Address</a>
-                        <a href="#" data-toggle="modal" data-target="#createParcel">Create Parcel</a>
-                        <a href="#" data-toggle="modal" data-target="#createShipment">Create Shipment</a>
+                        <a href="#" data-toggle="modal" data-target="#createAddress">Address</a>
+                        <a href="#" data-toggle="modal" data-target="#createParcel">Parcel</a>
+                        <a href="#" data-toggle="modal" data-target="#createShipment">Shipment</a>
+                        <a href="#" data-toggle="modal" data-target="#createInsurance"><s>Insurance</s></a>
+                        <a href="#" data-toggle="modal" data-target="#createTracking"><s>Tracking</s></a>
+
                     </div>
 
                     <div class="box">
-                        <h3>Read</h3>
-                        <a href="#" data-toggle="modal" data-target="#retrieveAddress">Retrieve Address</a>
-                        <a href="#" data-toggle="modal" data-target="#retrieveParcel">Retrieve Parcel</a>
-                        <a href="#" data-toggle="modal" data-target="#retrieveShipment">Retrieve Shipment</a>
+                        <h3>Retrieve</h3>
+                        <a href="#" data-toggle="modal" data-target="#retrieveAddress">Address</a>
+                        <a href="#" data-toggle="modal" data-target="#retrieveParcel">Parcel</a>
+                        <a href="#" data-toggle="modal" data-target="#retrieveShipment">Shipment</a>
+                        <a href="#" data-toggle="modal" data-target="#retrieveInsurance"><s>Insurance</s></a>
+                        <a href="#" data-toggle="modal" data-target="#retrieveTracking"><s>Tracking</s></a>
+                    </div>
+
+                    <div class="box">
+                        <h3>View All</h3>
+                        <form action="/retrieve-addresses" method="POST" id="retrieveAddresses">
+                            @csrf
+                            <a href="#" onclick="document.getElementById('retrieveAddresses').submit();">Addresses</a>
+                        </form>
+                        <form action="" method="POST" id="retrieveParcels">
+                            @csrf
+                            <a href="#"><s>Parcels</s></a>
+                        </form>                        
+                        <form action="/retrieve-shipments" method="POST" id="retrieveShipments">
+                            @csrf
+                            <a href="#" onclick="document.getElementById('retrieveShipments').submit();">Shipments</a>
+                        </form>                        
+                        <a href="#" data-toggle="modal" data-target="#retrieveAllInsurance"><s>Insurance</s></a>
+                        <a href="#" data-toggle="modal" data-target="#retrieveAllTracking"><s>Tracking</s></a>
                     </div>
                 </div>
 
@@ -73,9 +97,11 @@
 
                 <pre>
                 <h2>API Response</h2>
-                    <?php if (!isset($response))
+                    <?php
+                    $response = session()->get( 'response' );
+                    if (!isset($response))
                         {
-                            echo "Run an action to return a response.";
+                            echo "<p>Run an action to return a response.</p>";
                         } else {
                             $json = json_decode($response);
                             header('Content-type: text/javascript');

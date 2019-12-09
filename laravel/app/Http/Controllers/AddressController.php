@@ -44,15 +44,15 @@ class AddressController extends Controller
             return back()->withError($exception->getMessage())->withInput();
         }
 
-        if ($address->verifications->delivery->success == false) {
-            session()->flash("error", "ADDRESS ENTERED IS NOT A VERIFIED ADDRESS BUT THE RECORD WAS CREATED ANYWAY");
-            return view('/welcome', compact('response'));
-        }
-
         $response = $address;
 
+        if ($address->verifications->delivery->success == false) {
+            session()->flash("error", "ADDRESS ENTERED IS NOT A VERIFIED ADDRESS BUT THE RECORD WAS CREATED ANYWAY.");
+            return redirect()->back()->with(['response' => $response]);
+        }
+
         session()->flash("message", "ADDRESS CREATED");
-        return view('/welcome', compact('response'));
+        return redirect()->back()->with(['response' => $response]);
     }
 
     /**
@@ -70,7 +70,29 @@ class AddressController extends Controller
 
         $response = $address;
 
-        session()->flash("message", "ADDRESS RETRIEVED: $response");
-        return view('/welcome', compact('response'));
+        session()->flash("message", "ADDRESS RETRIEVED");
+        return redirect()->back()->with(['response' => $response]);
+    }
+
+    /**
+     * retrieveAddresses
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function retrieveAddresses (Request $request) {
+        try {
+            $addresses = \EasyPost\Address::all(array(
+                # "page_size" => 2,
+                "start_datetime" => "2016-01-02T08:50:00Z"
+              ));
+        } catch (\EasyPost\Error $exception) {
+            return back()->withError($exception->getMessage())->withInput();
+        }
+
+        $response = $addresses;
+
+        session()->flash("message", "ADDRESSES RETRIEVED");
+        return redirect()->back()->with(['response' => $response]);
     }
 }

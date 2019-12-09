@@ -8,6 +8,9 @@ EasyPost::setApiKey(env('EASYPOST_API_KEY'));
 
 class ShipmentController extends Controller
 {
+    /**
+     * createShipment
+     */
     public function createShipment(Request $request) {
         request()->validate([
             'to_street1'   => 'required|string',
@@ -73,6 +76,8 @@ class ShipmentController extends Controller
             return back()->withError($exception->getMessage())->withInput();
         }
 
+        $response = $shipment;
+
         /*if ($shipment->to_address->verifications->delivery->success == false || $shipment->from_address->verifications->delivery->success == false) {
             session()->flash("error", "ERRORS: $shipment");
             return redirect('/');
@@ -85,13 +90,13 @@ class ShipmentController extends Controller
         $shipment->buy($shipment->lowest_rate(array('USPS'), array('First')));
         $label = $shipment->postage_label->label_url;
 
-        $response = $shipment;
-
         session()->flash("message", "SHIPMENT CREATED. LABEL URL: $label");
-        return view('/welcome', compact('response'));
+        return redirect()->back()->with(['response' => $response]);
     }
 
-
+    /**
+     * retrieveShipment
+     */
     public function retrieveShipment(Request $request) {
         try {
             $shipment = \EasyPost\Shipment::retrieve(request()->get('id'));
@@ -102,6 +107,29 @@ class ShipmentController extends Controller
         $response = $shipment;
 
         session()->flash("message", "SHIPMENT RETRIEVED");
-        return view('/welcome', compact('response'));
+        return redirect()->back()->with(['response' => $response]);
+    }
+
+    /**
+     * retrieveShipments
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function retrieveShipments (Request $request) {
+        try {
+            $shipments = \EasyPost\Shipment::all(array(
+                "page_size" => 2,
+                'purchased' => false,
+                "start_datetime" => "2016-01-02T08:50:00Z"
+              ));
+        } catch (\EasyPost\Error $exception) {
+            return back()->withError($exception->getMessage())->withInput();
+        }
+
+        $response = $shipments;
+
+        session()->flash("message", "SHIPMENTS RETRIEVED");
+        return redirect()->back()->with(['response' => $response]);
     }
 }
