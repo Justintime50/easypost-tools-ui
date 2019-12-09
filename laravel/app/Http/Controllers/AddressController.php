@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \EasyPost\EasyPost;
-EasyPost::setApiKey(env('EASYPOST_API_KEY')); # TODO: Make this an env variable or plug it into the form everytime.
+EasyPost::setApiKey(env('EASYPOST_API_KEY'));
 
 class AddressController extends Controller
 {
@@ -15,6 +15,17 @@ class AddressController extends Controller
      * @return void
      */
     public function createAddress (Request $request) {
+        request()->validate([
+            'street1'   => 'required|string',
+            'street2'   => 'nullable|string',
+            'city'      => 'required|string',
+            'state'     => 'required|string',
+            'zip'       => 'required|string',
+            'country'   => 'nullable|string',
+            'company'   => 'nullable|string',
+            'phone'     => 'nullable',
+        ]);
+
         try {
             $address = \EasyPost\Address::create(
                 array(
@@ -34,12 +45,14 @@ class AddressController extends Controller
         }
 
         if ($address->verifications->delivery->success == false) {
-            session()->flash("error", "ADDRESS ENTERED IS NOT A VERIFIED ADDRESS BUT THE RECORD WAS CREATED ANYWAY: $address");
-            return redirect('/');
+            session()->flash("error", "ADDRESS ENTERED IS NOT A VERIFIED ADDRESS BUT THE RECORD WAS CREATED ANYWAY");
+            return view('/welcome', compact('response'));
         }
 
-        session()->flash("message", "ADDRESS CREATED: $address");
-        return redirect('/');
+        $response = $address;
+
+        session()->flash("message", "ADDRESS CREATED");
+        return view('/welcome', compact('response'));
     }
 
     /**
@@ -55,7 +68,9 @@ class AddressController extends Controller
             return back()->withError($exception->getMessage())->withInput();
         }
 
-        session()->flash("message", "ADDRESS RETRIEVED: $address");
-        return redirect('/');
+        $response = $address;
+
+        session()->flash("message", "ADDRESS RETRIEVED: $response");
+        return view('/welcome', compact('response'));
     }
 }

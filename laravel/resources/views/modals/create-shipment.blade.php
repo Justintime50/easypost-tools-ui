@@ -66,7 +66,7 @@
 
                 
                 <h3>Parcel</h3>
-                <p>Input access decimals, conveyed in inches and pounds.</p>
+                <p>Input accepts decimals, conveyed in inches and ounces.</p>
                 
                 <label for="length">Length*</label>
                 <input class="form-control" name="length" value="{{old('length')}}">

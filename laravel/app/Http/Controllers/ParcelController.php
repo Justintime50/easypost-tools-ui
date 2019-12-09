@@ -4,11 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \EasyPost\EasyPost;
-EasyPost::setApiKey(env('EASYPOST_API_KEY')); # TODO: Make this an env variable or plug it into the form everytime.
+EasyPost::setApiKey(env('EASYPOST_API_KEY'));
 
 class ParcelController extends Controller
 {
     public function createParcel(Request $request) {
+        request()->validate([
+            'length'    => 'required|string',
+            'width'     => 'required|string',
+            'height'    => 'required|string',
+            'weight'    => 'required|string',
+        ]);
+
         try {
             $parcel = \EasyPost\Parcel::create(
                 array(
@@ -22,8 +29,10 @@ class ParcelController extends Controller
             return back()->withError($exception->getMessage())->withInput();
         }
 
-        session()->flash("message", "PARCEL CREATED: $parcel");
-        return redirect('/');
+        $response = $parcel;
+
+        session()->flash("message", "PARCEL CREATED");
+        return view('/welcome', compact('response'));
     }
 
 
@@ -34,7 +43,9 @@ class ParcelController extends Controller
             return back()->withError($exception->getMessage())->withInput();
         }
 
-        session()->flash("message", "PARCEL RETRIEVED: $parcel");
-        return redirect('/');
+        $response = $parcel;
+
+        session()->flash("message", "PARCEL RETRIEVED");
+        return view('/welcome', compact('response'));
     }
 }

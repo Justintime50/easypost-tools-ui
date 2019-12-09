@@ -4,11 +4,36 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \EasyPost\EasyPost;
-EasyPost::setApiKey(env('EASYPOST_API_KEY')); # TODO: Make this an env variable or plug it into the form everytime.
+EasyPost::setApiKey(env('EASYPOST_API_KEY'));
 
 class ShipmentController extends Controller
 {
     public function createShipment(Request $request) {
+        request()->validate([
+            'to_street1'   => 'required|string',
+            'to_street2'   => 'nullable|string',
+            'to_city'      => 'required|string',
+            'to_state'     => 'required|string',
+            'to_zip'       => 'required|string',
+            'to_country'   => 'nullable|string',
+            'to_company'   => 'nullable|string',
+            'to_phone'     => 'nullable',
+
+            'from_street1'   => 'required|string',
+            'from_street2'   => 'nullable|string',
+            'from_city'      => 'required|string',
+            'from_state'     => 'required|string',
+            'from_zip'       => 'required|string',
+            'from_country'   => 'nullable|string',
+            'from_company'   => 'nullable|string',
+            'from_phone'     => 'nullable',
+
+            'length'    => 'required|string',
+            'width'     => 'required|string',
+            'height'    => 'required|string',
+            'weight'    => 'required|string',
+        ]);
+
         try {
             $shipment = \EasyPost\Shipment::create(
                 array(
@@ -59,21 +84,24 @@ class ShipmentController extends Controller
 
         $shipment->buy($shipment->lowest_rate(array('USPS'), array('First')));
         $label = $shipment->postage_label->label_url;
-        session()->flash("message", "SHIPMENT CREATED: $label");
-        return redirect('/');
+
+        $response = $shipment;
+
+        session()->flash("message", "SHIPMENT CREATED. LABEL URL: $label");
+        return view('/welcome', compact('response'));
     }
 
 
     public function retrieveShipment(Request $request) {
         try {
-            $shipments = \EasyPost\Shipment::all(array(
-                "start_datetime" => "2016-01-02T08:50:00Z",
-            ));
+            $shipment = \EasyPost\Shipment::retrieve(request()->get('id'));
         } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
-        session()->flash("message", "SHIPMENTS RETRIEVED: $shipments");
-        return redirect('/');
+        $response = $shipment;
+
+        session()->flash("message", "SHIPMENT RETRIEVED");
+        return view('/welcome', compact('response'));
     }
 }
