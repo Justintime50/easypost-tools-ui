@@ -28,5 +28,8 @@ The EasyPost API creates a label once it receives a `from_address`, `to_address`
 The following are future features planned to be incorproated:
 - Support multiple carriers
 - Support multiple rates/shipping speeds
-- Insurance object
-- Tracking object
+- Create Insurance
+
+## Disclaimer
+
+This project is not endorsed or maintained by EasyPost.

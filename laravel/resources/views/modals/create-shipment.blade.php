@@ -11,6 +11,8 @@
             <form action="/create-shipment" method="POST">
                 @csrf
 
+                <p>Create a shipment which will produce a label. Submitting this form will bill your account for the cheapest USPS rate based on the information your provide below.</p>
+
                 <h3>From Address</h3>
                 <label for="from_street1">Street 1*</label>
                 <input class="form-control" name="from_street1" value="{{old('from_street1')}}">

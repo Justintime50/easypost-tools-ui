@@ -34,9 +34,9 @@ Route::post('/create-shipment', 'ShipmentController@createShipment');
 Route::post('/retrieve-shipment', 'ShipmentController@retrieveShipment');
 Route::post('/retrieve-shipments', 'ShipmentController@retrieveShipments');
 
-Route::post('/create-tracking', 'TrackingController@createTracking');
-Route::post('/retrieve-tracking', 'TrackingController@retrieveTracking');
-Route::post('/retrieve-trackingers', 'TrackingController@retrieveTrackingers');
+Route::post('/create-tracking', 'TrackerController@createTracker');
+Route::post('/retrieve-tracker', 'TrackerController@retrieveTracker');
+Route::post('/retrieve-trackers', 'TrackerController@retrieveTrackers');
 
 Route::post('/create-insurance', 'InsuranceController@createInsurance');
 Route::post('/retrieve-insurance', 'InsuranceController@retrieveInsurance');
