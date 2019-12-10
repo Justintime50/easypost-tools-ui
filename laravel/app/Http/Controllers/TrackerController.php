@@ -57,14 +57,14 @@ class TrackerController extends Controller
     }
 
     /**
-     * retrieveTrackeres
+     * retrieveTrackers
      *
      * @param Request $request
      * @return void
      */
     public function retrieveTrackers (Request $request) {
         try {
-            $trackeres = \EasyPost\Tracker::all(array(
+            $trackers = \EasyPost\Tracker::all(array(
                 # "page_size" => 2,
                 # "start_datetime" => "2016-01-02T08:50:00Z"
               ));
@@ -74,7 +74,7 @@ class TrackerController extends Controller
 
         $response = $trackers;
 
-        session()->flash("message", "TRACKERES RETRIEVED");
+        session()->flash("message", "TRACKERS RETRIEVED");
         return redirect()->back()->with(['response' => $response]);
     }
 }

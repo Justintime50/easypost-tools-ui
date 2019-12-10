@@ -1,25 +1,12 @@
 version: "3.7"
 services:
 
-    nginx:
-        image: nginx:latest
+    easypost-ui:
+        build: .
         restart: always
-        container_name: easypost-ui-nginx
-        volumes:
-            - ./laravel:/var/www/html
-            - ./nginx.conf:/etc/nginx/conf.d/default.conf
+        container_name: easypost-ui
         ports:
             - "8000:80"
-        networks:
-            - easypost-ui
-
-    php:
-        image: php:fpm
-        #build: .
-        restart: always
-        container_name: easypost-ui-php
-        volumes:
-            - ./laravel:/var/www/html
         networks:
             - easypost-ui
 
