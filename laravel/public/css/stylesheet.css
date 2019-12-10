@@ -27,34 +27,6 @@ html, body {
     top: 18px;
 }
 
-.links > a {
-    color: #636b6f;
-    padding: 0 25px;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: .1rem;
-    text-decoration: none;
-    text-transform: uppercase;
-}
-
-.box > a {
-    color: #eee;
-    padding: 5px 25px 10px 5px;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: .1rem;
-    text-decoration: none;
-    text-transform: uppercase;
-}
-
-.box > a:hover {
-    color: #2396FB;
-}
-
-form {
-    display: inline;
-}
-
 .actions {
     margin-bottom: 30px;
 }
@@ -65,29 +37,21 @@ form {
 
 pre {
     text-align: left;
-    overflow-x: auto;
 }
 
 .alert {
     text-align: left;
 }
 
-.box {
-    background-color: #303F9F;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border: solid 2px #2396FB;
-    padding-bottom: 10px;
-    color: #eee;
-    padding: 10px;
-}
-.box > h3 {
-    margin-top: 0;
-    padding-bottom: 10px;
-}
-
 button, [type="submit"] {
     margin-top: 20px;
+}
+
+a {
+    color: #2396FB;
+}
+a:hover {
+    color: #303F9F;
 }
 
 h1 {
@@ -168,4 +132,12 @@ h3 {
 
 #menu-toggle {
     margin-top: 0;
+}
+
+.btn-primary {
+    background-color: #2396FB;
+}
+.btn-primary:hover {
+    background-color: #303F9F;
+    border: solid 1px #303F9F;
 }

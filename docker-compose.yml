@@ -14,7 +14,8 @@ services:
             - easypost-ui
 
     php:
-        build: .
+        image: php:fpm
+        #build: .
         restart: always
         container_name: easypost-ui-php
         volumes:
