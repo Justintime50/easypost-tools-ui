@@ -12,15 +12,15 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('app');
 });
-Route::get('/welcome', function () {
-    return view('welcome');
+Route::get('/app', function () {
+    return view('app');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/account', 'HomeController@index')->name('account');
 
 Route::post('/create-address', 'AddressController@createAddress');
 Route::post('/retrieve-address', 'AddressController@retrieveAddress');

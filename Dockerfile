@@ -7,6 +7,6 @@ RUN apt-get update \
         git \
         unzip \
         zip
-WORKDIR /var/www/html
 COPY --chown=1000:1000 ./laravel /var/www/html
+WORKDIR /var/www/html
 RUN php composer.phar install --no-scripts
