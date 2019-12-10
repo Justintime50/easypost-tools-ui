@@ -21,7 +21,8 @@ The EasyPost API creates a label once it receives a `from_address`, `to_address`
 1) This project requires [Docker](https://www.docker.com/products/docker-desktop) and an account. Install and login to Docker.
 2) Add your EasyPost API Key to the `.env` file found in `/laravel`. 
 3) Run `cp .env.example .env` to create the file.
-4) Run `docker-compose up -d` in the project's root directory and you'll be all set!
+4) Run `php artisan key:generate`
+5) Run `docker-compose up -d` in the project's root directory and you'll be all set!
 
 <i>Alternatively to setting up via Docker, you can install PHP and run `php artisan serve` in the `/laravel` directory to start up the web server.</i>
 
