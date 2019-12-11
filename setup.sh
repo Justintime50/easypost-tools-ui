@@ -1,6 +1,8 @@
 #!/bin/bash
 
+shopt -s dotglob # ensure we can replace the hidden .env file
 docker-compose up --build -d
+sleep 5
 cd laravel
 cp .env.example .env
 echo "Enter your EasyPost API Key: "
