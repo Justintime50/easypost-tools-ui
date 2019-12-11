@@ -140,7 +140,7 @@
                 $response = session()->get( 'response' );
                 if (isset($label)) 
                 {
-                    echo "<h3><a href='$label' target='_blank'>PRINT YOUR LABEL HERE</a></h3>";
+                    echo "<a href='$label' target='_blank'><button class='btn btn-primary'>PRINT LABEL</button></a>";
                 }
                 if (!isset($response))
                     {
