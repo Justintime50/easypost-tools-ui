@@ -8,14 +8,14 @@ php:
   - 7.3
   - 7.4
 
-before_install: cd laravel
-before_script:
+before_install:
+  - cd laravel
+
+install:
   - composer self-update
   - composer install --prefer-source --no-interaction --dev
 
-install: 
+script:
   - docker build -t easypost-ui .
   - docker run -d -p 127.0.0.1:8000:80 --name easypost-ui easypost-ui
-
-script: 
--  docker ps | grep -q easypost-ui
+  -  docker ps | grep -q easypost-ui
