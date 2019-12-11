@@ -6,9 +6,7 @@ services:
         restart: always
         container_name: easypost-ui
         volumes: 
-            - ./laravel/storage/logs:/var/www/html/storage/logs
-            - ./laravel/storage/app/public:/var/www/html/storage/app/public
-            - ./laravel/.env:/var/www/html/.env
+            - ./laravel:/var/www/html
         ports:
             - "8000:80"
         networks:

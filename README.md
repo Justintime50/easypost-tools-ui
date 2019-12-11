@@ -19,18 +19,18 @@ The EasyPost API creates a label once it receives a `from_address`, `to_address`
 **EasyPost API:** You'll need a test or production API key from [EasyPost's website](https://easypost.com). Create an account and grab the API key you'd like to use. If using your production API key, make sure to setup billing info on your EasyPost account.
 
 1) This project requires [Docker](https://www.docker.com/products/docker-desktop) and an account. Install and login to Docker.
-2) Add your EasyPost API Key to the `.env` file found in `/laravel`.
-3) Run `cp .env.example .env` to create the file.
-4) Run `php artisan key:generate`
-5) Run `docker-compose up -d` in the project's root directory and you'll be all set!
+2) Run `docker-compose up -d` in the project's root directory.
+3) Run `./start.sh` and provide your EasyPost API Key.
+4) Run `docker exec -it easypost-ui bash` then `php artisan key:generate` followed by `exit`.
 
-<i>Alternatively to setting up via Docker, you can install PHP and run `php artisan serve` in the `/laravel` directory to start up the web server.</i>
+<i>Alternatively to setting up via Docker, you can install PHP and the Laravel dependencies via Composer then run `php artisan serve` in the `/laravel` directory to start up the web server.</i>
 
 ## Usage
 
 Once the project is setup, navigate to `localhost:8000` in a browser and you'll arrive at the app. Use the various links to interact with the API.
 
-Simply run `docker-compose up -d` in the project root directory for future deployments.
+- Simply run `docker-compose up -d` in the project root directory for future production deployments.
+- Run `docker-compose up -f docker-compose-dev.yml -d` in the project root directory for development deployments. <i>You'll need to install project dependencies outside of the Docker container.</i>
 
 ## Roadmap
 
