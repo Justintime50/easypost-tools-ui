@@ -5,8 +5,14 @@ services:
         build: .
         restart: always
         container_name: easypost-ui
+        volumes: 
+            - ./laravel/storage/logs:/var/www/html/storage/logs
+            - ./laravel/storage/app/public:/var/www/html/storage/app/public
+            # TODO: Volume the .env file here?
         ports:
             - "8000:80"
+        #command:
+            #- start.sh
         networks:
             - easypost-ui
 
