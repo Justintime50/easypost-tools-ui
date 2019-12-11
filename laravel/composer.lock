@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "efafe7e535f96e479292c36736304ab2",
+    "content-hash": "ec70b42e008aa46ec879c575285cadd6",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -3631,6 +3631,59 @@
             "time": "2019-03-07T21:35:13+00:00"
         },
         {
+            "name": "overtrue/phplint",
+            "version": "1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/overtrue/phplint.git",
+                "reference": "deaee8c3459087ea5d17031206b8722a96dd330b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/overtrue/phplint/zipball/deaee8c3459087ea5d17031206b8722a96dd330b",
+                "reference": "deaee8c3459087ea5d17031206b8722a96dd330b",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=5.5.9",
+                "symfony/console": "^3.2|^4.0|^5.0",
+                "symfony/finder": "^3.0|^4.0|^5.0",
+                "symfony/process": "^3.0|^4.0|^5.0",
+                "symfony/yaml": "^3.0|^4.0|^5.0"
+            },
+            "require-dev": {
+                "jakub-onderka/php-console-highlighter": "^0.3.2 || ^0.4"
+            },
+            "bin": [
+                "bin/phplint"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Overtrue\\PHPLint\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "overtrue",
+                    "email": "anzhengchao@gmail.com"
+                }
+            ],
+            "description": "a php syntax check tool.",
+            "keywords": [
+                "check",
+                "lint",
+                "phplint",
+                "syntax"
+            ],
+            "time": "2019-12-07T13:46:15+00:00"
+        },
+        {
             "name": "phar-io/manifest",
             "version": "1.0.3",
             "source": {
@@ -4961,6 +5014,65 @@
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
             "homepage": "https://github.com/sebastianbergmann/version",
             "time": "2016-10-03T07:35:21+00:00"
+        },
+        {
+            "name": "symfony/yaml",
+            "version": "v5.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/yaml.git",
+                "reference": "51b684480184fa767b97e28eaca67664e48dd3e9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/51b684480184fa767b97e28eaca67664e48dd3e9",
+                "reference": "51b684480184fa767b97e28eaca67664e48dd3e9",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2.5",
+                "symfony/polyfill-ctype": "~1.8"
+            },
+            "conflict": {
+                "symfony/console": "<4.4"
+            },
+            "require-dev": {
+                "symfony/console": "^4.4|^5.0"
+            },
+            "suggest": {
+                "symfony/console": "For validating YAML files using the lint command"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Yaml\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Yaml Component",
+            "homepage": "https://symfony.com",
+            "time": "2019-11-18T17:27:11+00:00"
         },
         {
             "name": "theseer/tokenizer",
