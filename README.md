@@ -47,10 +47,10 @@ PHP linting and Docker build testing is handled via [Travis](https://travis-ci.o
 ## Roadmap
 
 The following are future features planned to be incorproated:
-- Support multiple carriers
-- Support multiple rates/shipping speeds
+- Support for rate/carrier selection
 - Create Insurance
 - USPS/Fedex/UPS predefined packages
+- Allow Address/Parcel ID's to be entered to allow for object re-use.
 
 ## Disclaimer
 

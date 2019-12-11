@@ -7,6 +7,7 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/0dd4ecd465.js" crossorigin="anonymous"></script>
 
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -37,7 +38,7 @@
     <div class="bg-light border-right" id="sidebar-wrapper">
         <div class="sidebar-heading">EasyPost UI</div>
         <div class="list-group list-group-flush">
-            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#addressCollapse" role="button" aria-expanded="false" aria-controls="addressCollapse">Addresses</a>
+            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#addressCollapse" role="button" aria-expanded="false" aria-controls="addressCollapse">Addresses&nbsp;&nbsp;<i class="fas fa-address-book"></i></a>
             <div class="collapse" id="addressCollapse">
                 <a href="#" data-toggle="modal" data-target="#createAddress" class="nav-link">Create Address</a>
                 <a href="#" data-toggle="modal" data-target="#retrieveAddress" class="nav-link">Retrieve Address</a>
@@ -47,13 +48,13 @@
                 </form>
             </div>
 
-            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#parcelCollapse" role="button" aria-expanded="false" aria-controls="parcelCollapse">Parcels</a>
+            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#parcelCollapse" role="button" aria-expanded="false" aria-controls="parcelCollapse">Parcels&nbsp;&nbsp;<i class="fas fa-box-open"></i></a>
             <div class="collapse" id="parcelCollapse">
                 <a href="#" data-toggle="modal" data-target="#createParcel" class="nav-link">Create Parcel</a>
                 <a href="#" data-toggle="modal" data-target="#retrieveParcel" class="nav-link">Retrieve Parcel</a>
             </div>
 
-            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#shipmentCollapse" role="button" aria-expanded="false" aria-controls="shipmentCollapse">Shipments</a>
+            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#shipmentCollapse" role="button" aria-expanded="false" aria-controls="shipmentCollapse">Shipments&nbsp;&nbsp;<i class="fas fa-truck-loading"></i></a>
             <div class="collapse" id="shipmentCollapse">
                 <a href="#" data-toggle="modal" data-target="#createShipment" class="nav-link">Create Shipment</a>
                 <a href="#" data-toggle="modal" data-target="#retrieveShipment" class="nav-link">Retrieve Shipment</a>
@@ -64,7 +65,7 @@
                 <a href="#" data-toggle="modal" data-target="#createRefund" class="nav-link">Refund</a>
             </div>
 
-            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#trackerCollapse" role="button" aria-expanded="false" aria-controls="trackerCollapse">Trackers</a>
+            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#trackerCollapse" role="button" aria-expanded="false" aria-controls="trackerCollapse">Trackers&nbsp;&nbsp;<i class="fas fa-map-marker-alt"></i></a>
             <div class="collapse" id="trackerCollapse">
                 <a href="#" data-toggle="modal" data-target="#createTracker" class="nav-link">Create Tracker</a>
                 <a href="#" data-toggle="modal" data-target="#retrieveTracker" class="nav-link">Retrieve Tracker</a>
@@ -74,7 +75,7 @@
                 </form>  
             </div>
 
-            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#insuranceCollapse" role="button" aria-expanded="false" aria-controls="insuranceCollapse">Insurance</a>
+            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#insuranceCollapse" role="button" aria-expanded="false" aria-controls="insuranceCollapse">Insurance&nbsp;&nbsp;<i class="fas fa-receipt"></i></a>
             <div class="collapse" id="insuranceCollapse">
                 <a href="#" data-toggle="modal" data-target="#retrieveInsurance" class="nav-link">Retrieve Insurance</a>
                 <form action="/retrieve-insurances" method="POST" id="retrieveInsurances">
@@ -89,7 +90,7 @@
     <div id="page-content-wrapper">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-        <button class="btn btn-primary" id="menu-toggle">Toggle Sidebar</button>
+        <button class="btn btn-primary" id="menu-toggle">Toggle Sidebar&nbsp;&nbsp;<i class="fas fa-toggle-on"></i></button>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -139,7 +140,7 @@
                 $label = session()->get('label');
                 $response = session()->get('response');
                 if (isset($label)) {
-                    echo "<a href='$label' target='_blank'><button class='btn btn-primary'>PRINT LABEL</button></a>";
+                    echo "<div><a class='btn btn-primary btn-label' href='$label' target='_blank'>PRINT LABEL&nbsp;&nbsp;<i class='fas fa-mail-bulk'></i></a></div>";
                 }
                 if (!isset($response)) {
                     echo "<p>Run an action to return a response.</p>";
