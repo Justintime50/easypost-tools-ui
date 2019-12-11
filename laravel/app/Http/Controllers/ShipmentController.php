@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \EasyPost\EasyPost;
+
 EasyPost::setApiKey(env('EASYPOST_API_KEY'));
 
 class ShipmentController extends Controller
@@ -11,7 +12,8 @@ class ShipmentController extends Controller
     /**
      * createShipment
      */
-    public function createShipment(Request $request) {
+    public function createShipment(Request $request)
+    {
         request()->validate([
             'to_street1'   => 'required|string',
             'to_street2'   => 'nullable|string',
@@ -97,7 +99,8 @@ class ShipmentController extends Controller
     /**
      * retrieveShipment
      */
-    public function retrieveShipment(Request $request) {
+    public function retrieveShipment(Request $request)
+    {
         try {
             $shipment = \EasyPost\Shipment::retrieve(request()->get('id'));
         } catch (\EasyPost\Error $exception) {
@@ -116,7 +119,8 @@ class ShipmentController extends Controller
      * @param Request $request
      * @return void
      */
-    public function retrieveShipments (Request $request) {
+    public function retrieveShipments(Request $request)
+    {
         try {
             $shipments = \EasyPost\Shipment::all(array(
                 # "page_size" => 2,
@@ -139,7 +143,8 @@ class ShipmentController extends Controller
      * @param Request $request
      * @return void
      */
-    public function createRefund (Request $request) {
+    public function createRefund(Request $request)
+    {
         try {
             $shipment = \EasyPost\Shipment::create(request()->get('id'));
             $shipment->refund();

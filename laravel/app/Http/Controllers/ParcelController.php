@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \EasyPost\EasyPost;
+
 EasyPost::setApiKey(env('EASYPOST_API_KEY'));
 
 class ParcelController extends Controller
@@ -11,7 +12,8 @@ class ParcelController extends Controller
     /**
      * createParcel
      */
-    public function createParcel(Request $request) {
+    public function createParcel(Request $request)
+    {
         request()->validate([
             'length'    => 'required|string',
             'width'     => 'required|string',
@@ -41,7 +43,8 @@ class ParcelController extends Controller
     /**
      * retrieveParcel
      */
-    public function retrieveParcel(Request $request) {
+    public function retrieveParcel(Request $request)
+    {
         try {
             $parcel = \EasyPost\Parcel::retrieve(request()->get('id'));
         } catch (\EasyPost\Error $exception) {
@@ -60,7 +63,8 @@ class ParcelController extends Controller
      * @param Request $request
      * @return void
      */
-    public function retrieveParcels (Request $request) {
+    public function retrieveParcels(Request $request)
+    {
         try {
             $parcels = \EasyPost\Parcel::all(array(
                 # "page_size" => 2,
