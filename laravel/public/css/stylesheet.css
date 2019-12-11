@@ -141,3 +141,12 @@ h3 {
     background-color: #303F9F;
     border: solid 1px #303F9F;
 }
+.btn-label{
+    margin-bottom: 40px;
+    display: block;
+    max-width: 150px;
+}
+
+.navbar-toggler {
+    margin-top: 0 !important;
+}
