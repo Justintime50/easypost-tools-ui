@@ -137,19 +137,17 @@
             <p class="clear-results-link"><a href="/">Clear Results</a></p>
                 <?php
                 $label = session()->get('label');
-                $response = session()->get( 'response' );
-                if (isset($label)) 
-                {
+                $response = session()->get('response');
+                if (isset($label)) {
                     echo "<a href='$label' target='_blank'><button class='btn btn-primary'>PRINT LABEL</button></a>";
                 }
-                if (!isset($response))
-                    {
-                        echo "<p>Run an action to return a response.</p>";
-                    } else {
-                        $json = json_decode($response);
-                        header('Content-type: text/javascript');
-                        echo json_encode($json, JSON_PRETTY_PRINT);
-                    } 
+                if (!isset($response)) {
+                    echo "<p>Run an action to return a response.</p>";
+                } else {
+                    $json = json_decode($response);
+                    header('Content-type: text/javascript');
+                    echo json_encode($json, JSON_PRETTY_PRINT);
+                }
                 ?>
             </pre>
         </div>

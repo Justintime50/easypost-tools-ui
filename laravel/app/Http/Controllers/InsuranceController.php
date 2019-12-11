@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \EasyPost\EasyPost;
+
 EasyPost::setApiKey(env('EASYPOST_API_KEY'));
 
 class InsuranceController extends Controller
@@ -14,7 +15,8 @@ class InsuranceController extends Controller
      * @param Request $request
      * @return void
      */
-    public function createInsurance (Request $request) {
+    public function createInsurance(Request $request)
+    {
         request()->validate([
 
         ]);
@@ -41,7 +43,8 @@ class InsuranceController extends Controller
      * @param Request $request
      * @return void
      */
-    public function retrieveInsurance (Request $request) {
+    public function retrieveInsurance(Request $request)
+    {
         try {
             $insurance = \EasyPost\Insurance::retrieve(request()->get('id'));
         } catch (\EasyPost\Error $exception) {
@@ -60,7 +63,8 @@ class InsuranceController extends Controller
      * @param Request $request
      * @return void
      */
-    public function retrieveInsurances (Request $request) {
+    public function retrieveInsurances(Request $request)
+    {
         try {
             $insurances = \EasyPost\Insurance::all(array(
                 # "page_size" => 2,

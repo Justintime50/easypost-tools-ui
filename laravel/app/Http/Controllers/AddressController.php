@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \EasyPost\EasyPost;
+
 EasyPost::setApiKey(env('EASYPOST_API_KEY'));
 
 class AddressController extends Controller
@@ -14,7 +15,8 @@ class AddressController extends Controller
      * @param Request $request
      * @return void
      */
-    public function createAddress (Request $request) {
+    public function createAddress(Request $request)
+    {
         request()->validate([
             'street1'   => 'required|string',
             'street2'   => 'nullable|string',
@@ -61,7 +63,8 @@ class AddressController extends Controller
      * @param Request $request
      * @return void
      */
-    public function retrieveAddress (Request $request) {
+    public function retrieveAddress(Request $request)
+    {
         try {
             $address = \EasyPost\Address::retrieve(request()->get('id'));
         } catch (\EasyPost\Error $exception) {
@@ -80,7 +83,8 @@ class AddressController extends Controller
      * @param Request $request
      * @return void
      */
-    public function retrieveAddresses (Request $request) {
+    public function retrieveAddresses(Request $request)
+    {
         try {
             $addresses = \EasyPost\Address::all(array(
                 # "page_size" => 2,

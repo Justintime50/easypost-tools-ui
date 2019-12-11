@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \EasyPost\EasyPost;
+
 EasyPost::setApiKey(env('EASYPOST_API_KEY'));
 
 class TrackerController extends Controller
@@ -14,7 +15,8 @@ class TrackerController extends Controller
      * @param Request $request
      * @return void
      */
-    public function createTracker (Request $request) {
+    public function createTracker(Request $request)
+    {
         request()->validate([
             'tracking_code'   => 'required|string',
             # 'carrier'       => 'nullable|string',
@@ -43,7 +45,8 @@ class TrackerController extends Controller
      * @param Request $request
      * @return void
      */
-    public function retrieveTracker (Request $request) {
+    public function retrieveTracker(Request $request)
+    {
         try {
             $tracker = \EasyPost\Tracker::retrieve(request()->get('id'));
         } catch (\EasyPost\Error $exception) {
@@ -62,7 +65,8 @@ class TrackerController extends Controller
      * @param Request $request
      * @return void
      */
-    public function retrieveTrackers (Request $request) {
+    public function retrieveTrackers(Request $request)
+    {
         try {
             $trackers = \EasyPost\Tracker::all(array(
                 # "page_size" => 2,
