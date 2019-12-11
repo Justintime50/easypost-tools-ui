@@ -1,5 +1,8 @@
 # EasyPost UI
 
+[![Build Status](https://travis-ci.org/Justintime50/easypost-ui.svg?branch=master)](https://travis-ci.org/Justintime50/easypost-ui)
+[![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
+
 Easily interact with the EasyPost API to order one-off packages and labels via a simple UI.
 
 ## What Can it Do?
