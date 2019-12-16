@@ -22,4 +22,4 @@ script:
   - shellcheck setup.sh
   - docker-compose up -d
   - docker ps | grep -q easypost-ui
-  - ./laravel/vendor/bin/phplint ./laravel --exclude=vendor
+  - ./src/vendor/bin/phplint ./src --exclude=vendor
