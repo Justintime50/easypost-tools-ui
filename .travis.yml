@@ -9,11 +9,11 @@ php:
   - 7.4
 
 before_install:
-  - cd laravel
+  - cd src
 
 install:
   - composer self-update
-  - composer install
+  - composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
 
 before_script:
   - cd ..

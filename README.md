@@ -50,7 +50,7 @@ The following are future features planned to be incorproated:
 - Support for rate/carrier selection
 - Create Insurance
 - USPS/Fedex/UPS predefined packages
-- Allow Address/Parcel ID's to be entered to allow for object re-use.
+- Unit testing (rides on a secure way to inject an API key in Travis CI.)
 
 ## Disclaimer
 
