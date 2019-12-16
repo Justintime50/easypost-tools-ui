@@ -19,7 +19,7 @@ before_script:
   - cd ..
 
 script:
-  - docker build -t easypost-ui .
-  - docker run -d -p 127.0.0.1:8000:80 --name easypost-ui easypost-ui
+  - shellcheck setup.sh
+  - docker-compose up -d
   - docker ps | grep -q easypost-ui
   - ./laravel/vendor/bin/phplint ./laravel --exclude=vendor
