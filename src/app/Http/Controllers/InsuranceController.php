@@ -24,7 +24,12 @@ class InsuranceController extends Controller
         try {
             $insurance = \EasyPost\Insurance::create(
                 array(
-
+                    # "to_address" => $to_address,
+                    # "from_address" => $from_address,
+                    # "tracking_code" => "9400110898825022579493",
+                    # "carrier" => "USPS",
+                    # "amount" => "100.00",
+                    # "reference" => "insuranceRef1"
                 )
             );
         } catch (\EasyPost\Error $exception) {

@@ -140,7 +140,7 @@
                 $label = session()->get('label');
                 $response = session()->get('response');
                 if (isset($label)) {
-                    echo "<div><a class='btn btn-primary btn-label' href='$label' target='_blank'>PRINT LABEL&nbsp;&nbsp;<i class='fas fa-mail-bulk'></i></a></div>";
+                    echo "<div><a class='btn btn-primary btn-label' href='$label' target='_blank'>PRINT LABEL&nbsp;<i class='fas fa-mail-bulk'></i></a></div>";
                 }
                 if (!isset($response)) {
                     echo "<p>Run an action to return a response.</p>";

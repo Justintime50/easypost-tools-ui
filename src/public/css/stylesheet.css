@@ -1,7 +1,8 @@
-html, body {
+html,
+body {
     background-color: #fff;
     color: #636b6f;
-    font-family: 'Nunito', sans-serif;
+    font-family: "Nunito", sans-serif;
     font-weight: 200;
 }
 
@@ -43,24 +44,25 @@ pre {
     text-align: left;
 }
 
-button, [type="submit"] {
+button,
+[type="submit"] {
     margin-top: 20px;
 }
 
 a {
-    color: #2396FB;
+    color: #2396fb;
 }
 a:hover {
-    color: #303F9F;
+    color: #303f9f;
 }
 
 h1 {
-    color: #303F9F;
+    color: #303f9f;
     margin-top: 30px;
 }
 
 .clear-results-link a {
-    color: #2396FB;
+    color: #2396fb;
     margin: 0;
     padding: 0;
 }
@@ -92,10 +94,10 @@ h3 {
 #sidebar-wrapper {
     min-height: 100vh;
     margin-left: -15rem;
-    -webkit-transition: margin .25s ease-out;
-    -moz-transition: margin .25s ease-out;
-    -o-transition: margin .25s ease-out;
-    transition: margin .25s ease-out;
+    -webkit-transition: margin 0.25s ease-out;
+    -moz-transition: margin 0.25s ease-out;
+    -o-transition: margin 0.25s ease-out;
+    transition: margin 0.25s ease-out;
 }
 
 #sidebar-wrapper .sidebar-heading {
@@ -135,16 +137,16 @@ h3 {
 }
 
 .btn-primary {
-    background-color: #2396FB;
+    background-color: #2396fb;
 }
 .btn-primary:hover {
-    background-color: #303F9F;
-    border: solid 1px #303F9F;
+    background-color: #303f9f;
+    border: solid 1px #303f9f;
 }
-.btn-label{
+.btn-label {
     margin-bottom: 40px;
-    display: block;
-    max-width: 150px;
+    width: 180px;
+    padding: 10px
 }
 
 .navbar-toggler {
