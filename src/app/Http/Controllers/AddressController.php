@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \EasyPost\EasyPost;
+use \EasyPost\Address;
 
 EasyPost::setApiKey(env('EASYPOST_API_KEY'));
 
@@ -29,7 +30,7 @@ class AddressController extends Controller
         ]);
 
         try {
-            $address = \EasyPost\Address::create(
+            $address = Address::create(
                 array(
                     "verify"  => array("delivery"),
                     "street1" => request()->get('street1'),
@@ -42,7 +43,7 @@ class AddressController extends Controller
                     "phone"   => request()->get('phone'),
                 )
             );
-        } catch (\EasyPost\Error $exception) {
+        } catch (Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
@@ -66,8 +67,8 @@ class AddressController extends Controller
     public function retrieveAddress(Request $request)
     {
         try {
-            $address = \EasyPost\Address::retrieve(request()->get('id'));
-        } catch (\EasyPost\Error $exception) {
+            $address = Address::retrieve(request()->get('id'));
+        } catch (Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
@@ -86,11 +87,11 @@ class AddressController extends Controller
     public function retrieveAddresses(Request $request)
     {
         try {
-            $addresses = \EasyPost\Address::all(array(
+            $addresses = Address::all(array(
                 # "page_size" => 2,
                 "start_datetime" => "2016-01-02T08:50:00Z"
               ));
-        } catch (\EasyPost\Error $exception) {
+        } catch (Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 

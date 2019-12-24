@@ -152,3 +152,7 @@ h3 {
 .navbar-toggler {
     margin-top: 0 !important;
 }
+
+.rate-title {
+    font-weight: bold;
+}
