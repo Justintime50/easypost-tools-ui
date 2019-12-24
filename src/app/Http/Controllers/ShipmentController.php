@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \EasyPost\EasyPost;
+use \EasyPost\Shipment;
+use \EasyPost\Address;
+use \EasyPost\Parcel;
 
 EasyPost::setApiKey(env('EASYPOST_API_KEY'));
 
@@ -62,7 +65,7 @@ class ShipmentController extends Controller
         }
 
         if (request()->get('to_address') != null) {
-            $to_address = \EasyPost\Address::retrieve(request()->get('to_address'));
+            $to_address = Address::retrieve(request()->get('to_address'));
         } else {
             $to_address = array(
                 "verify"  => array("delivery"),
@@ -78,7 +81,7 @@ class ShipmentController extends Controller
         }
 
         if (request()->get('from_address') != null) {
-            $from_address = \EasyPost\Address::retrieve(request()->get('from_address'));
+            $from_address = Address::retrieve(request()->get('from_address'));
         } else {
             $from_address = array(
                 "verify"  => array("delivery"),
@@ -94,7 +97,7 @@ class ShipmentController extends Controller
         }
 
         if (request()->get('parcel') != null) {
-            $parcel = \EasyPost\Parcel::retrieve(request()->get('parcel'));
+            $parcel = Parcel::retrieve(request()->get('parcel'));
         } else {
             $parcel = array(
                 "length"    => request()->get('length'),
@@ -105,14 +108,14 @@ class ShipmentController extends Controller
         }
 
         try {
-            $shipment = \EasyPost\Shipment::create(
+            $shipment = Shipment::create(
                 array(
                     "to_address"    => $to_address,
                     "from_address"  => $from_address,
                     "parcel"        => $parcel
                 )
             );
-        } catch (\EasyPost\Error $exception) {
+        } catch (Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
@@ -120,11 +123,12 @@ class ShipmentController extends Controller
 
         $response = $shipment;
 
-        $shipment->buy($shipment->lowest_rate(array('USPS'), array('First')));
-        $label = $shipment->postage_label->label_url;
+        # $shipment->buy($shipment->lowest_rate(array('USPS'), array('First')));
+        # $label = $shipment->postage_label->label_url;
+        $rates = $shipment->rates;
 
         session()->flash("message", "SHIPMENT CREATED");
-        return redirect()->back()->with(['response' => $response, 'label' => $label]);
+        return redirect()->back()->with(['response' => $response, 'rates' => $rates]);
     }
 
     /**
@@ -133,8 +137,8 @@ class ShipmentController extends Controller
     public function retrieveShipment(Request $request)
     {
         try {
-            $shipment = \EasyPost\Shipment::retrieve(request()->get('id'));
-        } catch (\EasyPost\Error $exception) {
+            $shipment = Shipment::retrieve(request()->get('id'));
+        } catch (Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
@@ -153,12 +157,12 @@ class ShipmentController extends Controller
     public function retrieveShipments(Request $request)
     {
         try {
-            $shipments = \EasyPost\Shipment::all(array(
+            $shipments = Shipment::all(array(
                 # "page_size" => 2,
                 # 'purchased' => false,
                 # "start_datetime" => "2016-01-02T08:50:00Z"
             ));
-        } catch (\EasyPost\Error $exception) {
+        } catch (Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
@@ -177,9 +181,9 @@ class ShipmentController extends Controller
     public function createRefund(Request $request)
     {
         try {
-            $shipment = \EasyPost\Shipment::create(request()->get('id'));
+            $shipment = Shipment::create(request()->get('id'));
             $shipment->refund();
-        } catch (\EasyPost\Error $exception) {
+        } catch (Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
@@ -187,5 +191,29 @@ class ShipmentController extends Controller
 
         session()->flash("message", "SHIPMENT REFUNDED");
         return redirect()->back()->with(['response' => $response]);
+    }
+
+    /**
+     * buyLabel
+     */
+    public function buyLabel(Request $request)
+    {
+        try {
+            $shipment = Shipment::retrieve(request()->get('shipment_id'));
+            $shipment->buy(array(
+                'id' => request()->get('rate_id'),
+                # 'rate' => $shipment->lowest_rate(),
+                # 'insurance' => 100
+            ));
+        } catch (Error $exception) {
+            return back()->withError($exception->getMessage())->withInput();
+        }
+
+        $response = $shipment;
+
+        $label = $shipment->postage_label->label_url;
+
+        session()->flash("message", "LABEL PURCHASED");
+        return redirect()->back()->with(['response' => $response, 'label' => $label]);
     }
 }
