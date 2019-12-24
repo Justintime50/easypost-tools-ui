@@ -141,7 +141,7 @@
                 $response = session()->get('response');
                 $rates = session()->get('rates');
                 if (isset($label)) {
-                    echo "<div><a class='btn btn-primary btn-label' href='$label' target='_blank'>PRINT LABEL&nbsp;<i class='fas fa-mail-bulk'></i></a></div>";
+                    echo "<div><a class='btn btn-primary btn-label' href='$label' download='$response->id'>DOWNLOAD LABEL&nbsp;<i class='fas fa-download'></i></a></div>";
                 }
                 if (!isset($response)) {
                     echo "<p>Run an action to return a response.</p>";
@@ -171,7 +171,7 @@
                                 "<input type='hidden' name='_token' value='".csrf_token()."'>" .
                                 "<input type='hidden' name='shipment_id' value='$json->id'>" .
                                 "<input type='hidden' name='rate_id' value='$rate->id'>" .
-                                "<button class='btn btn-primary'>Purchase Shipping Label</button><br /><br /><br />" .
+                                "<button class='btn btn-primary'>Purchase Shipping Label&nbsp;<i class='fas fa-mail-bulk'></i></button><br /><br /><br />" .
                             "</form>" 
                         ;
                     }

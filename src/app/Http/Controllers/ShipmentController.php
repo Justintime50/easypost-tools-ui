@@ -201,7 +201,7 @@ class ShipmentController extends Controller
         try {
             $shipment = Shipment::retrieve(request()->get('shipment_id'));
             $shipment->buy(array(
-                'rate' => request()->get('rate_id'),
+                'id' => request()->get('rate_id'),
                 # 'rate' => $shipment->lowest_rate(),
                 # 'insurance' => 100
             ));
