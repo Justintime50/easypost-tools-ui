@@ -15,7 +15,7 @@ Easily interact with the EasyPost API to order one-off packages and labels via a
 
 ## How it Works
 
-The EasyPost API creates a label once it receives a `from_address`, `to_address`, and `parcel`. We verify the addresses and select the cheapest rate from USPS and return a label URL. Print the label, slap it on your package, and drop it off at a USPS location. That's it!
+The EasyPost API creates a label once it receives a `from_address`, `to_address`, `parcel`, and the user selects their preferred shipping rate/method. We verify the addresses and return a label for download. Print the label, slap it on your package, and drop it off at your carriers location. That's it!
 
 ## Setup
 

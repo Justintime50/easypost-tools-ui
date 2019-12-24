@@ -145,7 +145,7 @@
                 }
                 if (!isset($response)) {
                     echo "<p>Run an action to return a response.</p>";
-                } 
+                }
                 if (isset($rates)) {
                     echo "<br />";
                     $json = json_decode($response);
@@ -154,14 +154,14 @@
                     # TODO: Sort these asc by rate
                     # asort($rates->rate);
 
-                    foreach($my_rates as $rate) {
+                    foreach ($my_rates as $rate) {
                         $my_rate = $rate->rate;
                         $service = $rate->service;
                         $carrier = $rate->carrier;
                         $delivery = $rate->est_delivery_days;
                         $currency = $rate->currency;
 
-                        echo 
+                        echo
                             "<span class='rate-title'>Carrier:</span> " . $carrier . "<br />" .
                             "<span class='rate-title'>Service:</span> " . $service . "<br />" .
                             "<span class='rate-title'>Rate:</span> " . $my_rate . "<br />" .
@@ -172,13 +172,12 @@
                                 "<input type='hidden' name='shipment_id' value='$json->id'>" .
                                 "<input type='hidden' name='rate_id' value='$rate->id'>" .
                                 "<button class='btn btn-primary'>Purchase Shipping Label&nbsp;<i class='fas fa-mail-bulk'></i></button><br /><br /><br />" .
-                            "</form>" 
+                            "</form>"
                         ;
                     }
 
                     echo "<hr>";
                     echo json_encode($json, JSON_PRETTY_PRINT);
-
                 } elseif ($response != null) {
                     $json = json_decode($response);
                     echo json_encode($json, JSON_PRETTY_PRINT);
