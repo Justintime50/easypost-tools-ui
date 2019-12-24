@@ -49,10 +49,10 @@ PHP Unit testing coming soon.
 ## Roadmap
 
 The following are future features planned to be incorproated:
-- Support for rate/carrier selection
 - Create Insurance
 - USPS/Fedex/UPS predefined packages
-- Unit testing (rides on a secure way to inject an API key in Travis CI.)
+- Unit testing
+- Swap out Json responses for graphical tables
 
 ## Disclaimer
 
