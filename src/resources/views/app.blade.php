@@ -139,14 +139,48 @@
                 <?php
                 $label = session()->get('label');
                 $response = session()->get('response');
+                $rates = session()->get('rates');
                 if (isset($label)) {
                     echo "<div><a class='btn btn-primary btn-label' href='$label' target='_blank'>PRINT LABEL&nbsp;<i class='fas fa-mail-bulk'></i></a></div>";
                 }
                 if (!isset($response)) {
                     echo "<p>Run an action to return a response.</p>";
-                } else {
+                } 
+                if (isset($rates)) {
+                    echo "<br />";
                     $json = json_decode($response);
-                    header('Content-type: text/javascript');
+                    $my_rates = $json->rates;
+
+                    # TODO: Sort these asc by rate
+                    # asort($rates->rate);
+
+                    foreach($my_rates as $rate) {
+                        $my_rate = $rate->rate;
+                        $service = $rate->service;
+                        $carrier = $rate->carrier;
+                        $delivery = $rate->est_delivery_days;
+                        $currency = $rate->currency;
+
+                        echo 
+                            "<span class='rate-title'>Carrier:</span> " . $carrier . "<br />" .
+                            "<span class='rate-title'>Service:</span> " . $service . "<br />" .
+                            "<span class='rate-title'>Rate:</span> " . $my_rate . "<br />" .
+                            "<span class='rate-title'>Currency:</span> " . $currency . "<br />" .
+                            "<span class='rate-title'>Estimated Delivery Days:</span> " . $delivery . "<br />" .
+                            "<form action='/buy-label' method='POST'>" .
+                                "<input type='hidden' name='_token' value='".csrf_token()."'>" .
+                                "<input type='hidden' name='shipment_id' value='$json->id'>" .
+                                "<input type='hidden' name='rate_id' value='$rate->id'>" .
+                                "<button class='btn btn-primary'>Purchase Shipping Label</button><br /><br /><br />" .
+                            "</form>" 
+                        ;
+                    }
+
+                    echo "<hr>";
+                    echo json_encode($json, JSON_PRETTY_PRINT);
+
+                } elseif ($response != null) {
+                    $json = json_decode($response);
                     echo json_encode($json, JSON_PRETTY_PRINT);
                 }
                 ?>
@@ -154,14 +188,12 @@
         </div>
     </div>
 
-<script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-</script>
+    <script>
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
 
     </body>
 </html>
-
-

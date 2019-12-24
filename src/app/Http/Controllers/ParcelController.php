@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \EasyPost\EasyPost;
+use \EasyPost\Parcel;
 
 EasyPost::setApiKey(env('EASYPOST_API_KEY'));
 
@@ -22,7 +23,7 @@ class ParcelController extends Controller
         ]);
 
         try {
-            $parcel = \EasyPost\Parcel::create(
+            $parcel = Parcel::create(
                 array(
                     "length"    => request()->get('length'),
                     "width"     => request()->get('width'),
@@ -30,7 +31,7 @@ class ParcelController extends Controller
                     "weight"    => request()->get('weight'),
                 )
             );
-        } catch (\EasyPost\Error $exception) {
+        } catch (Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
@@ -46,8 +47,8 @@ class ParcelController extends Controller
     public function retrieveParcel(Request $request)
     {
         try {
-            $parcel = \EasyPost\Parcel::retrieve(request()->get('id'));
-        } catch (\EasyPost\Error $exception) {
+            $parcel = Parcel::retrieve(request()->get('id'));
+        } catch (Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
@@ -66,11 +67,11 @@ class ParcelController extends Controller
     public function retrieveParcels(Request $request)
     {
         try {
-            $parcels = \EasyPost\Parcel::all(array(
+            $parcels = Parcel::all(array(
                 # "page_size" => 2,
                 "start_datetime" => "2016-01-02T08:50:00Z"
               ));
-        } catch (\EasyPost\Error $exception) {
+        } catch (Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 

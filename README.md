@@ -31,7 +31,7 @@ Once the project is setup, navigate to `localhost:8000` in a browser and you'll 
 - Simply run `docker-compose up -d` in the project's root directory for future production deployments.
 - Run `docker-compose up -f docker-compose-dev.yml -d` in the project's root directory for development deployments. <i>You'll need to install project dependencies outside of the Docker container: `php composer.phar install`.</i>
 
-## Testing/Development
+## Testing & Development
 
 ### Development PHP Fixer
 
@@ -43,6 +43,8 @@ php-cs-fixer fix laravel --verbose --show-progress=estimating
 ### Testing
 
 PHP linting and Docker build testing is handled via [Travis](https://travis-ci.org/Justintime50/easypost-ui).
+
+PHP Unit testing coming soon.
 
 ## Roadmap
 
