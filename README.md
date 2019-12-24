@@ -15,7 +15,7 @@ Easily interact with the EasyPost API to order one-off packages and labels via a
 
 ## How it Works
 
-The EasyPost API creates a label once it receives a `from_address`, `to_address`, and `parcel`. We verify the addresses and select the cheapest rate from USPS and return a label URL. Print the label, slap it on your package, and drop it off at a USPS location. That's it!
+The EasyPost API creates a label once it receives a `from_address`, `to_address`, `parcel`, and the user selects their preferred shipping rate/method. We verify the addresses and return a label for download. Print the label, slap it on your package, and drop it off at your carriers location. That's it!
 
 ## Setup
 
@@ -31,7 +31,7 @@ Once the project is setup, navigate to `localhost:8000` in a browser and you'll 
 - Simply run `docker-compose up -d` in the project's root directory for future production deployments.
 - Run `docker-compose up -f docker-compose-dev.yml -d` in the project's root directory for development deployments. <i>You'll need to install project dependencies outside of the Docker container: `php composer.phar install`.</i>
 
-## Testing/Development
+## Testing & Development
 
 ### Development PHP Fixer
 
@@ -44,13 +44,15 @@ php-cs-fixer fix laravel --verbose --show-progress=estimating
 
 PHP linting and Docker build testing is handled via [Travis](https://travis-ci.org/Justintime50/easypost-ui).
 
+PHP Unit testing coming soon.
+
 ## Roadmap
 
 The following are future features planned to be incorproated:
-- Support for rate/carrier selection
 - Create Insurance
 - USPS/Fedex/UPS predefined packages
-- Unit testing (rides on a secure way to inject an API key in Travis CI.)
+- Unit testing
+- Swap out Json responses for graphical tables
 
 ## Disclaimer
 

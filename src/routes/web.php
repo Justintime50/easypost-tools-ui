@@ -33,6 +33,7 @@ Route::post('/retrieve-parcels', 'ParcelController@retrieveParcels');
 Route::post('/create-shipment', 'ShipmentController@createShipment');
 Route::post('/retrieve-shipment', 'ShipmentController@retrieveShipment');
 Route::post('/retrieve-shipments', 'ShipmentController@retrieveShipments');
+Route::post('/buy-label', 'ShipmentController@buyLabel');
 
 Route::post('/create-tracking', 'TrackerController@createTracker');
 Route::post('/retrieve-tracker', 'TrackerController@retrieveTracker');

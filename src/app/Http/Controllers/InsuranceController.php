@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \EasyPost\EasyPost;
+use \EasyPost\Insurance;
 
 EasyPost::setApiKey(env('EASYPOST_API_KEY'));
 
@@ -22,7 +23,7 @@ class InsuranceController extends Controller
         ]);
 
         try {
-            $insurance = \EasyPost\Insurance::create(
+            $insurance = Insurance::create(
                 array(
                     # "to_address" => $to_address,
                     # "from_address" => $from_address,
@@ -32,7 +33,7 @@ class InsuranceController extends Controller
                     # "reference" => "insuranceRef1"
                 )
             );
-        } catch (\EasyPost\Error $exception) {
+        } catch (Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
@@ -51,8 +52,8 @@ class InsuranceController extends Controller
     public function retrieveInsurance(Request $request)
     {
         try {
-            $insurance = \EasyPost\Insurance::retrieve(request()->get('id'));
-        } catch (\EasyPost\Error $exception) {
+            $insurance = Insurance::retrieve(request()->get('id'));
+        } catch (Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
@@ -71,11 +72,11 @@ class InsuranceController extends Controller
     public function retrieveInsurances(Request $request)
     {
         try {
-            $insurances = \EasyPost\Insurance::all(array(
+            $insurances = Insurance::all(array(
                 # "page_size" => 2,
                 # "start_datetime" => "2016-01-02T08:50:00Z"
               ));
-        } catch (\EasyPost\Error $exception) {
+        } catch (Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
