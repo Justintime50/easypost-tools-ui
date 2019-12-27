@@ -3,19 +3,22 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class ExampleTest extends TestCase
+class RoutesTest extends TestCase
 {
     /**
-     * A basic test example.
+     * Test if the app page is accessible.
      *
      * @return void
      */
-    public function testBasicTest()
+    public function testApp()
     {
         $response = $this->get('/');
+        $response->assertStatus(200);
 
+        $response = $this->get('/app');
         $response->assertStatus(200);
     }
 }

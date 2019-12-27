@@ -26,14 +26,14 @@ The EasyPost API creates a label once it receives a `from_address`, `to_address`
 
 ## Usage
 
-Once the project is setup, navigate to `localhost:8000` in a browser and you'll arrive at the app. Use the various links to interact with the API.
+Once the project is setup, navigate to `localhost:8000` in a browser and you'll arrive at the app. Use the various links to interact with the API. *NOTE: this app is currently intended to be  hosted locally and not exposed to the internet as it currently does not allow for multiple users or API keys.*
 
 - Simply run `docker-compose up -d` in the project's root directory for future production deployments.
 - Run `docker-compose up -f docker-compose-dev.yml -d` in the project's root directory for development deployments. <i>You'll need to install project dependencies outside of the Docker container: `php composer.phar install`.</i>
 
 ## Testing & Development
 
-### Development PHP Fixer
+### PHP Standards Fixer
 
 PHP coding standards can be fixed automatically by running: 
 ```bash
@@ -42,17 +42,20 @@ php-cs-fixer fix laravel --verbose --show-progress=estimating
 
 ### Testing
 
-PHP linting and Docker build testing is handled via [Travis](https://travis-ci.org/Justintime50/easypost-ui).
+Unit tests require a test API key added to the `phpunit.xml` file. Then, the tests can be run with the following:
 
-PHP Unit testing coming soon.
+```bash
+./vendor/bin/phpunit
+```
+
+PHP linting and Docker build testing is handled via [Travis](https://travis-ci.org/Justintime50/easypost-ui).
 
 ## Roadmap
 
-The following are future features planned to be incorproated:
-- Create Insurance
-- USPS/Fedex/UPS predefined packages
-- Unit testing
-- Swap out Json responses for graphical tables
+The following are future ideas that can be incorporated:
+- Create Insurance feature
+- USPS/Fedex/UPS predefined package selection
+- Swap out json responses for graphical tables
 
 ## Disclaimer
 
