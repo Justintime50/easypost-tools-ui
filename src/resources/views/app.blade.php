@@ -160,7 +160,9 @@
 
                     usort(
                         $my_rates,
-                        function($a, $b){ return $a->rate < $b->rate ? -1 : 1;}
+                        function ($a, $b) {
+                            return $a->rate < $b->rate ? -1 : 1;
+                        }
                     );
 
                     echo "<p>Shipment:<br />".$json->id."</p><br />";
@@ -199,7 +201,7 @@
                     }
                     echo "</table></div>";
                     $response = null; # Reset to not show json
-                } 
+                }
                 if (isset($response->shipments)) {
                     $json = json_decode($response);
 
@@ -228,22 +230,22 @@
                     $json = json_decode($response);
 
                     echo "<div class='table-responsive'><table class='table'><th>ID</th><th>Created At</th><th>Street1</th><th>Street2</th><th>City</th><th>State</th><th>Zip</th><th>Country</th>";
-                        foreach ($json->addresses as $address) {
-                            echo "<tr>";
-                            echo "<form action='/retrieve-address' method='POST'>";
-                            echo "<input type='hidden' name='_token' value='".csrf_token()."'>";
-                            echo "<input type='hidden' name='id' value='".$address->id."'>";
-                            echo "<td><button class='btn btn-primary btn-sm btn-table'>".substr($address->id, 0, 8)."...</button></td>";
-                            echo "</form>";
-                            echo "<td>".$address->created_at."</td>";
-                            echo "<td>".$address->street1."</td>";
-                            echo "<td>".$address->street2."</td>";
-                            echo "<td>".$address->city."</td>";
-                            echo "<td>".$address->state."</td>";
-                            echo "<td>".$address->zip."</td>";
-                            echo "<td>".$address->country."</td>";
-                            echo "</tr>";
-                        }
+                    foreach ($json->addresses as $address) {
+                        echo "<tr>";
+                        echo "<form action='/retrieve-address' method='POST'>";
+                        echo "<input type='hidden' name='_token' value='".csrf_token()."'>";
+                        echo "<input type='hidden' name='id' value='".$address->id."'>";
+                        echo "<td><button class='btn btn-primary btn-sm btn-table'>".substr($address->id, 0, 8)."...</button></td>";
+                        echo "</form>";
+                        echo "<td>".$address->created_at."</td>";
+                        echo "<td>".$address->street1."</td>";
+                        echo "<td>".$address->street2."</td>";
+                        echo "<td>".$address->city."</td>";
+                        echo "<td>".$address->state."</td>";
+                        echo "<td>".$address->zip."</td>";
+                        echo "<td>".$address->country."</td>";
+                        echo "</tr>";
+                    }
                     echo "</table></div>";
                     $response = null; # Reset to not show json
                 }
@@ -251,20 +253,20 @@
                     $json = json_decode($response);
 
                     echo "<div class='table-responsive'><table class='table'><th>ID</th><th>Created At</th><th>Tracking Code</th><th>Status</th><th>Details</th><th>Carrier</th>";
-                        foreach ($json->trackers as $tracker) {
-                            echo "<tr>";
-                            echo "<form action='/retrieve-tracker' method='POST'>";
-                            echo "<input type='hidden' name='_token' value='".csrf_token()."'>";
-                            echo "<input type='hidden' name='id' value='".$tracker->id."'>";
-                            echo "<td><button class='btn btn-primary btn-sm btn-table'>".substr($tracker->id, 0, 8)."...</button></td>";
-                            echo "</form>";
-                            echo "<td>".$tracker->created_at."</td>";
-                            echo "<td>".$tracker->tracking_code."</td>";
-                            echo "<td>".$tracker->status."</td>";
-                            echo "<td>".$tracker->status_detail."</td>";
-                            echo "<td>".$tracker->carrier."</td>";
-                            echo "</tr>";
-                        }
+                    foreach ($json->trackers as $tracker) {
+                        echo "<tr>";
+                        echo "<form action='/retrieve-tracker' method='POST'>";
+                        echo "<input type='hidden' name='_token' value='".csrf_token()."'>";
+                        echo "<input type='hidden' name='id' value='".$tracker->id."'>";
+                        echo "<td><button class='btn btn-primary btn-sm btn-table'>".substr($tracker->id, 0, 8)."...</button></td>";
+                        echo "</form>";
+                        echo "<td>".$tracker->created_at."</td>";
+                        echo "<td>".$tracker->tracking_code."</td>";
+                        echo "<td>".$tracker->status."</td>";
+                        echo "<td>".$tracker->status_detail."</td>";
+                        echo "<td>".$tracker->carrier."</td>";
+                        echo "</tr>";
+                    }
                     echo "</table></div>";
                     $response = null; # Reset to not show json
                 }
@@ -272,25 +274,24 @@
                     $json = json_decode($response);
 
                     echo "<div class='table-responsive'><table class='table'><th>ID</th><th>Created At</th><th>Amount</th><th>Provider</th><th>Street1</th><th>City</th><th>State</th>";
-                        foreach ($json->insurances as $insurance) {
-                            echo "<tr>";
-                            echo "<form action='/retrieve-insurance' method='POST'>";
-                            echo "<input type='hidden' name='_token' value='".csrf_token()."'>";
-                            echo "<input type='hidden' name='id' value='".$insurance->id."'>";
-                            echo "<td><button class='btn btn-primary btn-sm btn-table'>".substr($insurance->id, 0, 8)."...</button></td>";
-                            echo "</form>";
-                            echo "<td>".$insurance->created_at."</td>";
-                            echo "<td>".$insurance->amount."</td>";
-                            echo "<td>".$insurance->provider."</td>";
-                            echo "<td>".$insurance->to_address->street1."</td>";
-                            echo "<td>".$insurance->to_address->city."</td>";
-                            echo "<td>".$insurance->to_address->state."</td>";
-                            echo "</tr>";
-                        }
+                    foreach ($json->insurances as $insurance) {
+                        echo "<tr>";
+                        echo "<form action='/retrieve-insurance' method='POST'>";
+                        echo "<input type='hidden' name='_token' value='".csrf_token()."'>";
+                        echo "<input type='hidden' name='id' value='".$insurance->id."'>";
+                        echo "<td><button class='btn btn-primary btn-sm btn-table'>".substr($insurance->id, 0, 8)."...</button></td>";
+                        echo "</form>";
+                        echo "<td>".$insurance->created_at."</td>";
+                        echo "<td>".$insurance->amount."</td>";
+                        echo "<td>".$insurance->provider."</td>";
+                        echo "<td>".$insurance->to_address->street1."</td>";
+                        echo "<td>".$insurance->to_address->city."</td>";
+                        echo "<td>".$insurance->to_address->state."</td>";
+                        echo "</tr>";
+                    }
                     echo "</table></div>";
                     $response = null; # Reset to not show json
-                }
-                elseif ($response != null) {
+                } elseif ($response != null) {
                     $json = json_decode($response);
 
                     echo json_encode($json, JSON_PRETTY_PRINT);

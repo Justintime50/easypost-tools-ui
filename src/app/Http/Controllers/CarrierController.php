@@ -17,11 +17,11 @@ class CarrierController extends Controller
      */
     public function retrieveCarriers(Request $request)
     {
-    $carrier_types = \EasyPost\CarrierAccount::types();
+        $carrier_types = \EasyPost\CarrierAccount::types();
 
-    $response = $carrier_types;
+        $response = $carrier_types;
 
-    session()->flash("message", "CARRIERS RETRIEVED");
-    return redirect()->back()->with(['response' => $response]);
+        session()->flash("message", "CARRIERS RETRIEVED");
+        return redirect()->back()->with(['response' => $response]);
     }
 }
