@@ -115,7 +115,7 @@ class ShipmentController extends Controller
                     "parcel"        => $parcel
                 )
             );
-        } catch (Error $exception) {
+        } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
@@ -123,8 +123,6 @@ class ShipmentController extends Controller
 
         $response = $shipment;
 
-        # $shipment->buy($shipment->lowest_rate(array('USPS'), array('First')));
-        # $label = $shipment->postage_label->label_url;
         $rates = $shipment->rates;
 
         session()->flash("message", "SHIPMENT CREATED");
@@ -138,7 +136,7 @@ class ShipmentController extends Controller
     {
         try {
             $shipment = Shipment::retrieve(request()->get('id'));
-        } catch (Error $exception) {
+        } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
@@ -162,7 +160,7 @@ class ShipmentController extends Controller
                 # 'purchased' => false,
                 # "start_datetime" => "2016-01-02T08:50:00Z"
             ));
-        } catch (Error $exception) {
+        } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
@@ -183,7 +181,7 @@ class ShipmentController extends Controller
         try {
             $shipment = Shipment::create(request()->get('id'));
             $shipment->refund();
-        } catch (Error $exception) {
+        } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
@@ -201,11 +199,11 @@ class ShipmentController extends Controller
         try {
             $shipment = Shipment::retrieve(request()->get('shipment_id'));
             $shipment->buy(array(
-                'id' => request()->get('rate_id'),
+                "id" => request()->get('rate_id'),
                 # 'rate' => $shipment->lowest_rate(),
                 # 'insurance' => 100
             ));
-        } catch (Error $exception) {
+        } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 

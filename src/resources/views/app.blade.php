@@ -48,6 +48,23 @@
                 </form>
             </div>
 
+            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#carriersCollapse" role="button" aria-expanded="false" aria-controls="addressCollapse">Carriers&nbsp;&nbsp;<i class="fas fa-truck"></i></a>
+            <div class="collapse" id="carriersCollapse">
+                <form action="/retrieve-carriers" method="POST" id="retrieveCarriers">
+                    @csrf
+                    <a href="#" onclick="document.getElementById('retrieveCarriers').submit();" class="nav-link">Retrieve Supported Carriers</a>
+                </form>
+            </div>
+
+            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#insuranceCollapse" role="button" aria-expanded="false" aria-controls="insuranceCollapse">Insurance&nbsp;&nbsp;<i class="fas fa-receipt"></i></a>
+            <div class="collapse" id="insuranceCollapse">
+                <a href="#" data-toggle="modal" data-target="#retrieveInsurance" class="nav-link">Retrieve Insurance</a>
+                <form action="/retrieve-insurances" method="POST" id="retrieveInsurances">
+                    @csrf
+                    <a href="#" onclick="document.getElementById('retrieveInsurances').submit();" class="nav-link">Retrieve all Insurance</a>
+                </form>      
+            </div>
+
             <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#parcelCollapse" role="button" aria-expanded="false" aria-controls="parcelCollapse">Parcels&nbsp;&nbsp;<i class="fas fa-box-open"></i></a>
             <div class="collapse" id="parcelCollapse">
                 <a href="#" data-toggle="modal" data-target="#createParcel" class="nav-link">Create Parcel</a>
@@ -75,15 +92,6 @@
                 </form>  
             </div>
 
-            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#insuranceCollapse" role="button" aria-expanded="false" aria-controls="insuranceCollapse">Insurance&nbsp;&nbsp;<i class="fas fa-receipt"></i></a>
-            <div class="collapse" id="insuranceCollapse">
-                <a href="#" data-toggle="modal" data-target="#retrieveInsurance" class="nav-link">Retrieve Insurance</a>
-                <form action="/retrieve-insurances" method="POST" id="retrieveInsurances">
-                    @csrf
-                    <a href="#" onclick="document.getElementById('retrieveInsurances').submit();" class="nav-link">Retrieve all Insurance</a>
-                </form>      
-            </div>
-
         </div>
     </div>
 
@@ -108,7 +116,7 @@
         </div>
     </nav>
 
-    <div class="container-fluid response-wrapper">
+    <div class="response-wrapper">
 
         <div class="response">
           
@@ -141,18 +149,33 @@
                 $response = session()->get('response');
                 $rates = session()->get('rates');
                 if (isset($label)) {
-                    echo "<div><a class='btn btn-primary btn-label' href='$label' download='$response->id'>DOWNLOAD LABEL&nbsp;<i class='fas fa-download'></i></a></div>";
+                    echo "<div><a class='btn btn-primary btn-label' href='$label' download='$response->id' target='_blank'>DOWNLOAD LABEL&nbsp;<i class='fas fa-download'></i></a></div>";
                 }
                 if (!isset($response)) {
                     echo "<p>Run an action to return a response.</p>";
                 }
                 if (isset($rates)) {
-                    echo "<br />";
                     $json = json_decode($response);
                     $my_rates = $json->rates;
 
-                    # TODO: Sort these asc by rate
-                    # asort($rates->rate);
+                    usort(
+                        $my_rates,
+                        function($a, $b){ return $a->rate < $b->rate ? -1 : 1;}
+                    );
+
+                    echo "<p>Shipment:<br />".$json->id."</p><br />";
+                    echo "<div class='row'>";
+                    echo "<div class='col-md-4'>";
+                    echo "<p><b>From Address:</b><br />".$json->from_address->id."<br /><br />".$json->from_address->street1."<br />".$json->from_address->street2."<br />".$json->from_address->city."<br />".$json->from_address->state."<br />".$json->from_address->zip."<br />".$json->from_address->country."<br />".$json->from_address->phone."<br />".$json->from_address->email."</p>";
+                    echo "</div>";
+                    echo "<div class='col-md-4'>";
+                    echo "<p><b>To Address:</b><br />".$json->to_address->id."<br /><br />".$json->to_address->street1."<br />".$json->to_address->street2."<br />".$json->to_address->city."<br />".$json->to_address->state."<br />".$json->to_address->zip."<br />".$json->to_address->country."<br />".$json->to_address->phone."<br />".$json->to_address->email."</p>";
+                    echo "</div>";
+                    echo "<div class='col-md-4'>";
+                    echo "<p><b>Parcel:</b><br />".$json->parcel->id."<br /><br />Length: ".$json->parcel->length." inches<br />Width: ".$json->parcel->width." inches<br />Height: ".$json->parcel->height." inches<br />Weight: ".$json->parcel->weight." ounces</p>";
+                    echo "</div></div>";
+
+                    echo "<div class='table-responsive'><table class='table'><th>Carrier</th><th>Service</th><th>Rate</th><th>Currenty</th><th>Estimated Delivery Days</th><th>Purchase Label</th>";
 
                     foreach ($my_rates as $rate) {
                         $my_rate = $rate->rate;
@@ -161,25 +184,115 @@
                         $delivery = $rate->est_delivery_days;
                         $currency = $rate->currency;
 
-                        echo
-                            "<span class='rate-title'>Carrier:</span> " . $carrier . "<br />" .
-                            "<span class='rate-title'>Service:</span> " . $service . "<br />" .
-                            "<span class='rate-title'>Rate:</span> " . $my_rate . "<br />" .
-                            "<span class='rate-title'>Currency:</span> " . $currency . "<br />" .
-                            "<span class='rate-title'>Estimated Delivery Days:</span> " . $delivery . "<br />" .
-                            "<form action='/buy-label' method='POST'>" .
-                                "<input type='hidden' name='_token' value='".csrf_token()."'>" .
-                                "<input type='hidden' name='shipment_id' value='$json->id'>" .
-                                "<input type='hidden' name='rate_id' value='$rate->id'>" .
-                                "<button class='btn btn-primary'>Purchase Shipping Label&nbsp;<i class='fas fa-mail-bulk'></i></button><br /><br /><br />" .
-                            "</form>"
-                        ;
+                        echo "<tr>";
+                        echo "<td>" . $carrier . "</td>";
+                        echo "<td>" . $service . "</td>";
+                        echo "<td>" . $my_rate . "</td>";
+                        echo "<td>" . $currency . "</td>";
+                        echo "<td>" . $delivery . "</td>";
+                        echo "<form action='/buy-label' method='POST'>";
+                        echo "<input type='hidden' name='_token' value='".csrf_token()."'>";
+                        echo "<input type='hidden' name='shipment_id' value='$json->id'>";
+                        echo "<input type='hidden' name='rate_id' value='$rate->id'>";
+                        echo "<td><button class='btn btn-primary btn-small btn-table'>Purchase Shipping Label&nbsp;<i class='fas fa-mail-bulk'></i></button></td>";
+                        echo "</tr></form>";
                     }
-
-                    echo "<hr>";
-                    echo json_encode($json, JSON_PRETTY_PRINT);
-                } elseif ($response != null) {
+                    echo "</table></div>";
+                    $response = null; # Reset to not show json
+                } 
+                if (isset($response->shipments)) {
                     $json = json_decode($response);
+
+                    foreach ($json->shipments as $shipment) {
+                        echo "<form action='/retrieve-shipment' method='POST'>";
+                        echo "<input type='hidden' name='_token' value='".csrf_token()."'>";
+                        echo "<input type='hidden' name='id' value='".$shipment->id."'>";
+                        echo "<div>Shipment:</div>";
+                        echo "<button class='btn btn-primary btn-sm btn-shipment'>".$shipment->id."</button>";
+                        echo "</form>";
+                        echo "<div class='row'>";
+                        echo "<div class='col-md-4'>";
+                        echo "<p><b>From Address:</b><br />".$shipment->from_address->id."<br /><br />".$shipment->from_address->street1."<br />".$shipment->from_address->street2."<br />".$shipment->from_address->city."<br />".$shipment->from_address->state."<br />".$shipment->from_address->zip."<br />".$shipment->from_address->country."<br />".$shipment->from_address->phone."<br />".$shipment->from_address->email."</p>";
+                        echo "</div>";
+                        echo "<div class='col-md-4'>";
+                        echo "<p><b>To Address:</b><br />".$shipment->to_address->id."<br /><br />".$shipment->to_address->street1."<br />".$shipment->to_address->street2."<br />".$shipment->to_address->city."<br />".$shipment->to_address->state."<br />".$shipment->to_address->zip."<br />".$shipment->to_address->country."<br />".$shipment->to_address->phone."<br />".$shipment->to_address->email."</p>";
+                        echo "</div>";
+                        echo "<div class='col-md-4'>";
+                        echo "<p><b>Parcel:</b><br />".$shipment->parcel->id."<br /><br />Length: ".$shipment->parcel->length." inches<br />Width: ".$shipment->parcel->width." inches<br />Height: ".$shipment->parcel->height." inches<br />Weight: ".$shipment->parcel->weight." ounces</p>";
+                        echo "</div></div>";
+                        echo "<hr>";
+                    }
+                    $response = null; # Reset to not show json
+                }
+                if (isset($response->addresses)) {
+                    $json = json_decode($response);
+
+                    echo "<div class='table-responsive'><table class='table'><th>ID</th><th>Created At</th><th>Street1</th><th>Street2</th><th>City</th><th>State</th><th>Zip</th><th>Country</th>";
+                        foreach ($json->addresses as $address) {
+                            echo "<tr>";
+                            echo "<form action='/retrieve-address' method='POST'>";
+                            echo "<input type='hidden' name='_token' value='".csrf_token()."'>";
+                            echo "<input type='hidden' name='id' value='".$address->id."'>";
+                            echo "<td><button class='btn btn-primary btn-sm btn-table'>".substr($address->id, 0, 8)."...</button></td>";
+                            echo "</form>";
+                            echo "<td>".$address->created_at."</td>";
+                            echo "<td>".$address->street1."</td>";
+                            echo "<td>".$address->street2."</td>";
+                            echo "<td>".$address->city."</td>";
+                            echo "<td>".$address->state."</td>";
+                            echo "<td>".$address->zip."</td>";
+                            echo "<td>".$address->country."</td>";
+                            echo "</tr>";
+                        }
+                    echo "</table></div>";
+                    $response = null; # Reset to not show json
+                }
+                if (isset($response->trackers)) {
+                    $json = json_decode($response);
+
+                    echo "<div class='table-responsive'><table class='table'><th>ID</th><th>Created At</th><th>Tracking Code</th><th>Status</th><th>Details</th><th>Carrier</th>";
+                        foreach ($json->trackers as $tracker) {
+                            echo "<tr>";
+                            echo "<form action='/retrieve-tracker' method='POST'>";
+                            echo "<input type='hidden' name='_token' value='".csrf_token()."'>";
+                            echo "<input type='hidden' name='id' value='".$tracker->id."'>";
+                            echo "<td><button class='btn btn-primary btn-sm btn-table'>".substr($tracker->id, 0, 8)."...</button></td>";
+                            echo "</form>";
+                            echo "<td>".$tracker->created_at."</td>";
+                            echo "<td>".$tracker->tracking_code."</td>";
+                            echo "<td>".$tracker->status."</td>";
+                            echo "<td>".$tracker->status_detail."</td>";
+                            echo "<td>".$tracker->carrier."</td>";
+                            echo "</tr>";
+                        }
+                    echo "</table></div>";
+                    $response = null; # Reset to not show json
+                }
+                if (isset($response->insurances)) {
+                    $json = json_decode($response);
+
+                    echo "<div class='table-responsive'><table class='table'><th>ID</th><th>Created At</th><th>Amount</th><th>Provider</th><th>Street1</th><th>City</th><th>State</th>";
+                        foreach ($json->insurances as $insurance) {
+                            echo "<tr>";
+                            echo "<form action='/retrieve-insurance' method='POST'>";
+                            echo "<input type='hidden' name='_token' value='".csrf_token()."'>";
+                            echo "<input type='hidden' name='id' value='".$insurance->id."'>";
+                            echo "<td><button class='btn btn-primary btn-sm btn-table'>".substr($insurance->id, 0, 8)."...</button></td>";
+                            echo "</form>";
+                            echo "<td>".$insurance->created_at."</td>";
+                            echo "<td>".$insurance->amount."</td>";
+                            echo "<td>".$insurance->provider."</td>";
+                            echo "<td>".$insurance->to_address->street1."</td>";
+                            echo "<td>".$insurance->to_address->city."</td>";
+                            echo "<td>".$insurance->to_address->state."</td>";
+                            echo "</tr>";
+                        }
+                    echo "</table></div>";
+                    $response = null; # Reset to not show json
+                }
+                elseif ($response != null) {
+                    $json = json_decode($response);
+
                     echo json_encode($json, JSON_PRETTY_PRINT);
                 }
                 ?>

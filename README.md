@@ -53,9 +53,8 @@ PHP linting and Docker build testing is handled via [Travis](https://travis-ci.o
 ## Roadmap
 
 The following are future ideas that can be incorporated:
-- Create Insurance feature
 - USPS/Fedex/UPS predefined package selection
-- Swap out json responses for graphical tables
+- Ability to run reports
 
 ## Disclaimer
 

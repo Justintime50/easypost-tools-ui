@@ -11,7 +11,7 @@
             <form action="/create-tracker" method="POST">
                 @csrf
                 
-                <p>Create a tracker by providing the tracking code from USPS.</p>
+                <p>Create a tracker by providing the tracking code from your carrier.</p>
 
                 <label for="tracking_code">Tracking Code</label>
                 <input class="form-control" name="tracking_code" value="{{old('tracking-code')}}">
