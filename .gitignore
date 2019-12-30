@@ -2,3 +2,5 @@
 .DS_Store
 .phplint-cache
 .php_cs.cache
+db
+init-db.env

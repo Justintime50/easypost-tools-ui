@@ -8,7 +8,7 @@ use \EasyPost\Shipment;
 use \EasyPost\Address;
 use \EasyPost\Parcel;
 
-EasyPost::setApiKey(env('EASYPOST_API_KEY'));
+EasyPost::setApiKey(Auth::user()->api_key);
 
 class ShipmentController extends Controller
 {

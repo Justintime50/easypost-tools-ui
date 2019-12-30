@@ -7,7 +7,7 @@ use \EasyPost\EasyPost;
 use \EasyPost\Insurance;
 use \EasyPost\Address;
 
-EasyPost::setApiKey(env('EASYPOST_API_KEY'));
+EasyPost::setApiKey(Auth::user()->api_key);
 
 class InsuranceController extends Controller
 {
