@@ -31,7 +31,7 @@ class ParcelController extends Controller
                     "weight"    => request()->get('weight'),
                 )
             );
-        } catch (Error $exception) {
+        } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
@@ -48,7 +48,7 @@ class ParcelController extends Controller
     {
         try {
             $parcel = Parcel::retrieve(request()->get('id'));
-        } catch (Error $exception) {
+        } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
@@ -71,7 +71,7 @@ class ParcelController extends Controller
                 # "page_size" => 2,
                 "start_datetime" => "2016-01-02T08:50:00Z"
               ));
-        } catch (Error $exception) {
+        } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 

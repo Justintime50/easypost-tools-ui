@@ -88,7 +88,9 @@ h3 {
 
 .response {
     flex: 0 0 auto;
-    padding-right: 20px;
+    width: 100%;
+    padding: 20px;
+    font-family: "Nunito", sans-serif;
 }
 
 #sidebar-wrapper {
@@ -156,3 +158,17 @@ h3 {
 .rate-title {
     font-weight: bold;
 }
+
+table {
+    width: 100%;
+}
+
+.btn-table {
+    margin-top: 0 !important;
+}
+
+.btn-shipment {
+    margin-top: 0 !important;
+    margin-bottom: 30px !important;
+}
+

@@ -19,18 +19,18 @@ class TrackerController extends Controller
     public function createTracker(Request $request)
     {
         request()->validate([
-            'tracking_code'   => 'required|string',
-            # 'carrier'       => 'nullable|string',
+            'tracking_code' => 'required|string',
+            # 'carrier'       => 'required|string',
         ]);
 
         try {
             $tracker = Tracker::create(
                 array(
                     "tracking_code"  => request()->get('tracking_code'),
-                    "carrier" => "USPS", # TODO: Replace with input once multiple carriers are supported.
+                    # "carrier" => request()->get('carrier'),
                 )
             );
-        } catch (Error $exception) {
+        } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
@@ -50,7 +50,7 @@ class TrackerController extends Controller
     {
         try {
             $tracker = Tracker::retrieve(request()->get('id'));
-        } catch (Error $exception) {
+        } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
@@ -73,7 +73,7 @@ class TrackerController extends Controller
                 # "page_size" => 2,
                 # "start_datetime" => "2016-01-02T08:50:00Z"
               ));
-        } catch (Error $exception) {
+        } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 

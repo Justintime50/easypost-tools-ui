@@ -43,7 +43,7 @@ class AddressController extends Controller
                     "phone"   => request()->get('phone'),
                 )
             );
-        } catch (Error $exception) {
+        } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
@@ -68,7 +68,7 @@ class AddressController extends Controller
     {
         try {
             $address = Address::retrieve(request()->get('id'));
-        } catch (Error $exception) {
+        } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
@@ -91,7 +91,7 @@ class AddressController extends Controller
                 # "page_size" => 2,
                 "start_datetime" => "2016-01-02T08:50:00Z"
               ));
-        } catch (Error $exception) {
+        } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
