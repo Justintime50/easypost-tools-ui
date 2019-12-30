@@ -10,7 +10,7 @@ EasyPost::setApiKey(env('EASYPOST_UNIT_TESTING_API_KEY'));
 
 class ShipmentTest extends TestCase
 {
-/**
+    /**
      * Test the creation of a Shipment
      *
      * @return void
