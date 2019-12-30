@@ -7,15 +7,15 @@ Easily interact with the EasyPost API to order one-off packages and labels via a
 
 ## What Can it Do?
 
-- Create shipments with carrier labels for you to print
-- Create addresses, parcels, and trackers independantly
+- Create shipments and printable labels with 100+ carriers
 - Track a package
+- Insure a package
 - Refund a shipment
-- Retrieve addresses, parcels, shipments, insurance, and trackers from the EasyPost DB
+- Retrieve addresses, carriers, insurance, parcels, shipments, , and trackers from EasyPost
 
 ## How it Works
 
-The EasyPost API creates a label once it receives a `from_address`, `to_address`, `parcel`, and the user selects their preferred shipping rate/method. We verify the addresses and return a label for download. Print the label, slap it on your package, and drop it off at your carriers location. That's it!
+The EasyPost API creates a label once it receives a `from_address`, `to_address`, `parcel`, and the user selects their preferred shipping rate/method. We verify the addresses and return a label for download. Print the label, slap it on your package, and drop it off at your carrier's location. That's it!
 
 ## Setup
 
@@ -35,9 +35,9 @@ Once the project is setup, navigate to `localhost:8000` in a browser and you'll 
 
 ### PHP Standards Fixer
 
-PHP coding standards can be fixed automatically by running: 
+PHP coding standards can be fixed automatically by running the following from the `/src` directory: 
 ```bash
-php-cs-fixer fix laravel --verbose --show-progress=estimating
+./vendor/bin/php-cs-fixer fix . --verbose --show-progress=estimating
 ```
 
 ### Testing
@@ -53,9 +53,8 @@ PHP linting and Docker build testing is handled via [Travis](https://travis-ci.o
 ## Roadmap
 
 The following are future ideas that can be incorporated:
-- Create Insurance feature
 - USPS/Fedex/UPS predefined package selection
-- Swap out json responses for graphical tables
+- Ability to run reports
 
 ## Disclaimer
 
