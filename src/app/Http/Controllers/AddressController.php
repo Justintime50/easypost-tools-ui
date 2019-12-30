@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use \EasyPost\EasyPost;
 use \EasyPost\Address;
+use Auth;
 
-EasyPost::setApiKey(env('EASYPOST_API_KEY'));
+EasyPost::setApiKey(Auth::user()->api_key);
 
 class AddressController extends Controller
 {

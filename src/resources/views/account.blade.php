@@ -14,7 +14,14 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <p>Welcome {{ Auth::user()->email }}.</p>
+
+                    <form action="/update-api-key" method="POST">
+                        @csrf
+
+                        <input type="password" class="form-control" name="api_key" value="{{old('api_key')}}">
+                        <button class="btn btn-primary">
+                    </form>
                 </div>
             </div>
         </div>

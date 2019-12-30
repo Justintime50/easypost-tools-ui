@@ -14,6 +14,19 @@ services:
         networks:
             - easypost-ui
 
+    easypost-db:
+        image: mysql:8
+        restart: always
+        container_name: easypost-db
+        env_file:
+            - init-db.env
+        volumes:
+            - ./db:/var/lib/mysql
+        networks:
+            - easypost-ui
+        ports:
+            - "3306:3306"
+
 networks:
     easypost-ui:
         name: easypost-ui

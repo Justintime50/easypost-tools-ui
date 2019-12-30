@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use \EasyPost\EasyPost;
 
-EasyPost::setApiKey(env('EASYPOST_API_KEY'));
+EasyPost::setApiKey(Auth::user()->api_key);
 
 class CarrierController extends Controller
 {
