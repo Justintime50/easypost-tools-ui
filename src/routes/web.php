@@ -11,6 +11,7 @@
 |
 */
 
+Route::post('logout', 'Auth\LoginController@logout'); // Includes custom logic (logout url) - must come before "Auth::routes();"
 Auth::routes();
 
 Route::middleware('auth')->group(function () {
