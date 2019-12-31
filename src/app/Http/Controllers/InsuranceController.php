@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use \EasyPost\EasyPost;
 use \EasyPost\Insurance;
 use \EasyPost\Address;
-
-EasyPost::setApiKey(env('EASYPOST_API_KEY'));
+use Auth;
+use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Support\Facades\Crypt;
 
 class InsuranceController extends Controller
 {
@@ -19,6 +20,15 @@ class InsuranceController extends Controller
      */
     public function createInsurance(Request $request)
     {
+        // Decrypt stored API Key
+        try {
+            $api_key = Crypt::decryptString(Auth::user()->api_key);
+        } catch (DecryptException $e) {
+            session()->flash("error", "API KEY COULD NOT BE DECRYPTED. PLEASE UPDATE YOUR KEY.");
+            return redirect()->back();
+        }
+        EasyPost::setApiKey($api_key);
+
         if (request()->get('to_address') == null) {
             request()->validate([
                 'to_street1'    => 'required|string',
@@ -58,7 +68,7 @@ class InsuranceController extends Controller
             'from_address'      => 'required|string',
             'tracking_code'     => 'required|string',
             # 'carrier'           => 'required|string',
-            'amount'            => 'required|string',
+            'amount'            => 'required|string|max:5000',
         ]);
 
         try {
@@ -110,7 +120,7 @@ class InsuranceController extends Controller
         $response = $insurance;
 
         session()->flash("message", "INSURANCE CREATED");
-        return redirect()->back()->with(['response' => $response]);
+        return redirect('/')->with(['response' => $response]);
     }
 
     /**
@@ -121,6 +131,15 @@ class InsuranceController extends Controller
      */
     public function retrieveInsurance(Request $request)
     {
+        // Decrypt stored API Key
+        try {
+            $api_key = Crypt::decryptString(Auth::user()->api_key);
+        } catch (DecryptException $e) {
+            session()->flash("error", "API KEY COULD NOT BE DECRYPTED. PLEASE UPDATE YOUR KEY.");
+            return redirect()->back();
+        }
+        EasyPost::setApiKey($api_key);
+
         try {
             $insurance = Insurance::retrieve(request()->get('id'));
         } catch (\EasyPost\Error $exception) {
@@ -130,7 +149,7 @@ class InsuranceController extends Controller
         $response = $insurance;
 
         session()->flash("message", "INSURANCE RETRIEVED");
-        return redirect()->back()->with(['response' => $response]);
+        return redirect('/')->with(['response' => $response]);
     }
 
     /**
@@ -141,6 +160,15 @@ class InsuranceController extends Controller
      */
     public function retrieveInsurances(Request $request)
     {
+        // Decrypt stored API Key
+        try {
+            $api_key = Crypt::decryptString(Auth::user()->api_key);
+        } catch (DecryptException $e) {
+            session()->flash("error", "YOUR API KEY COULD NOT BE DECRYPTED. PLEASE UPDATE YOUR KEY.");
+            return redirect()->back();
+        }
+        EasyPost::setApiKey($api_key);
+
         try {
             $insurances = Insurance::all(array(
                 # "page_size" => 2,
@@ -153,6 +181,6 @@ class InsuranceController extends Controller
         $response = $insurances;
 
         session()->flash("message", "INSURANCES RETRIEVED");
-        return redirect()->back()->with(['response' => $response]);
+        return redirect('/')->with(['response' => $response]);
     }
 }
