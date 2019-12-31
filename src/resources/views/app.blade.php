@@ -98,7 +98,7 @@
                         echo "</tr></form>";
                     }
                     echo "</table></div>";
-                    $response = null; # Reset to not show json
+                    $response = null; # make null to not show twice
                 }
                 if (isset($response->shipments)) {
                     $json = json_decode($response);
@@ -122,7 +122,7 @@
                         echo "</div></div>";
                         echo "<hr>";
                     }
-                    $response = null; # Reset to not show json
+                    $response = null; # make null to not show twice
                 }
                 if (isset($response->addresses)) {
                     $json = json_decode($response);
@@ -145,7 +145,7 @@
                         echo "</tr>";
                     }
                     echo "</table></div>";
-                    $response = null; # Reset to not show json
+                    $response = null; # make null to not show twice
                 }
                 if (isset($response->trackers)) {
                     $json = json_decode($response);
@@ -166,7 +166,7 @@
                         echo "</tr>";
                     }
                     echo "</table></div>";
-                    $response = null; # Reset to not show json
+                    $response = null; # make null to not show twice
                 }
                 if (isset($response->insurances)) {
                     $json = json_decode($response);
@@ -188,11 +188,22 @@
                         echo "</tr>";
                     }
                     echo "</table></div>";
-                    $response = null; # Reset to not show json
-                } elseif ($response != null) {
-                    $json = json_decode($response);
-
-                    echo json_encode($json, JSON_PRETTY_PRINT);
+                    $response = null; # make null to not show twice
+                }
+                // test if the response is an array (carriers object only) and return it
+                if (is_array($response)) {
+                    echo "<div class='table-responsive'><table class='table'><th>Type</th><th>Carrier Code</th>";
+                    foreach ($response as $carrier) {
+                        echo "<tr>";
+                        echo "<td>".$carrier->type."</td>";
+                        echo "<td>".$carrier->readable."</td>";
+                        echo "</tr>";
+                    }
+                    echo "</table></div>";
+                    $response = null; # make null to not show twice
+                } else {
+                    // return single items
+                    echo "<div>".$response."</div>";
                 }
                 ?>
             </pre>

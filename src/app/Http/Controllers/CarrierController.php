@@ -27,7 +27,11 @@ class CarrierController extends Controller
         }
         EasyPost::setApiKey($api_key);
 
-        $carrier_types = \EasyPost\CarrierAccount::types();
+        try {
+            $carrier_types = \EasyPost\CarrierAccount::types();
+        } catch (\EasyPost\Error $exception) {
+            return back()->withError($exception->getMessage())->withInput();
+        }
 
         $response = $carrier_types;
 

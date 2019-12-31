@@ -85,6 +85,8 @@ class ParcelController extends Controller
      */
     public function retrieveParcels(Request $request)
     {
+        // TODO: This cannot be implimented, EasyPost doesn't support retrieving all parcels? Tried with Curl and PHP to /parcel and /parcels endpoints.
+        
         // Decrypt stored API Key
         try {
             $api_key = Crypt::decryptString(Auth::user()->api_key);
@@ -97,7 +99,7 @@ class ParcelController extends Controller
         try {
             $parcels = Parcel::all(array(
                 # "page_size" => 2,
-                "start_datetime" => "2016-01-02T08:50:00Z"
+                # "start_datetime" => "2016-01-02T08:50:00Z"
               ));
         } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
