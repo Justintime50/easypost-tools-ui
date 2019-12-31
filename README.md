@@ -11,7 +11,8 @@ Easily interact with the EasyPost API to order one-off packages and labels via a
 - Track a package
 - Insure a package
 - Refund a shipment
-- Retrieve addresses, carriers, insurance, parcels, shipments, , and trackers from EasyPost
+- Retrieve addresses, carriers, insurance, parcels, shipments, and trackers from EasyPost
+- Support multiple users with unique logins and API Keys
 
 ## How it Works
 
@@ -22,14 +23,15 @@ The EasyPost API creates a label once it receives a `from_address`, `to_address`
 **EasyPost API:** You'll need a test or production API key from [EasyPost's website](https://easypost.com). Create an account and grab the API key you'd like to use. If using your production API key, make sure to setup billing info on your EasyPost account.
 
 1) This project requires [Docker](https://www.docker.com/products/docker-desktop) and an account. Install and login to Docker.
-2) Run `./setup.sh` in the project's root directory and provide your EasyPost API Key when prompted. Once the script is finished, you're all set!
+2) Run `./setup.sh` in the project's root directory and provide your EasyPost API Key when prompted.
+3) Navigate to `localhost:8000` in a browser. Register an account and add your API Key on the `/account` page. You're all set!
 
 ## Usage
 
-Once the project is setup, navigate to `localhost:8000` in a browser and you'll arrive at the app. Use the various links to interact with the API. *NOTE: this app is currently intended to be  hosted locally and not exposed to the internet as it currently does not allow for multiple users or API keys.*
+Once the project is setup, simply interact with the various links in the app to interact with the API. Create records, retrieve them, and purchase shipping labels all without needing to do the hard work of mapping an API. 
 
-- Simply run `docker-compose up -d` in the project's root directory for future production deployments.
-- Run `docker-compose up -f docker-compose-dev.yml -d` in the project's root directory for development deployments. <i>You'll need to install project dependencies outside of the Docker container: `php composer.phar install`.</i>
+- **Production:** Run `docker-compose up -d` in the project's root directory for any production deployments.
+- **Development:** Run `docker-compose up -f docker-compose-dev.yml -d` in the project's root directory for development deployments. <i>NOTE: You'll need to install project dependencies either manually inside the Docker container once it's up or outside of the Docker container and on your machine.</i>
 
 ## Testing & Development
 
