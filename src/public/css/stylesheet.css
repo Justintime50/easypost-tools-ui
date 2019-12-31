@@ -103,8 +103,14 @@ h3 {
 }
 
 #sidebar-wrapper .sidebar-heading {
-    padding: 0.875rem 1.25rem;
+    padding: 0 1.25rem 1rem 1.25rem;
     font-size: 1.2rem;
+}
+
+#sidebar-wrapper .sidebar-heading a, a:hover {
+    text-decoration: none;
+    color: initial;
+    font-weight: 200;
 }
 
 #sidebar-wrapper .list-group {
@@ -171,4 +177,3 @@ table {
     margin-top: 0 !important;
     margin-bottom: 30px !important;
 }
-

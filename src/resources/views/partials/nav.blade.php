@@ -5,7 +5,7 @@
         </div>
         <div class="top-right links">
             @auth
-                <a href="{{ url('/account') }}">account</a>
+                <a href="{{ url('/account') }}">Account</a>
                 <a href="https://www.easypost.com/docs/api" target="_blank">API Docs</a>
                 <a class="nav-link" href="https://github.com/Justintime50/easypost-ui" target="_blank">GitHub</a>
 

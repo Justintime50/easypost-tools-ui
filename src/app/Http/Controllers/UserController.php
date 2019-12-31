@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Auth;
 use \App\Models\User;
+use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Support\Facades\Crypt;
 
 class UserController extends Controller
 {
@@ -21,10 +22,9 @@ class UserController extends Controller
             'api_key' => 'required|string',
         ]);
 
-        $api_key = User::find(Auth::user()->id);
-        $api_key_hash = Hash::make(request()->get('api_key'));
-        $api_key->api_key = $api_key_hash;
-        $api_key->save();
+        $user = User::find(Auth::user()->id);
+        $user->api_key = Crypt::encryptString(request()->get('api_key'));
+        $user->save();
 
         session()->flash("message", "API KEY UPDATED");
         return redirect()->back();

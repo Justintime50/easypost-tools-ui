@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use \EasyPost\EasyPost;
 use \EasyPost\Address;
 use Auth;
-
-EasyPost::setApiKey(Auth::user()->api_key);
+use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Support\Facades\Crypt;
 
 class AddressController extends Controller
 {
@@ -19,6 +19,15 @@ class AddressController extends Controller
      */
     public function createAddress(Request $request)
     {
+        // Decrypt stored API Key
+        try {
+            $api_key = Crypt::decryptString(Auth::user()->api_key);
+        } catch (DecryptException $e) {
+            session()->flash("error", "API KEY COULD NOT BE DECRYPTED. PLEASE UPDATE YOUR KEY.");
+            return redirect()->back();
+        }
+        EasyPost::setApiKey($api_key);
+        
         request()->validate([
             'street1'   => 'required|string',
             'street2'   => 'nullable|string',
@@ -56,7 +65,7 @@ class AddressController extends Controller
         }
 
         session()->flash("message", "ADDRESS CREATED");
-        return redirect()->back()->with(['response' => $response]);
+        return redirect('/')->with(['response' => $response]);
     }
 
     /**
@@ -67,6 +76,15 @@ class AddressController extends Controller
      */
     public function retrieveAddress(Request $request)
     {
+        // Decrypt stored API Key
+        try {
+            $api_key = Crypt::decryptString(Auth::user()->api_key);
+        } catch (DecryptException $e) {
+            session()->flash("error", "API KEY COULD NOT BE DECRYPTED. PLEASE UPDATE YOUR KEY.");
+            return redirect()->back();
+        }
+        EasyPost::setApiKey($api_key);
+
         try {
             $address = Address::retrieve(request()->get('id'));
         } catch (\EasyPost\Error $exception) {
@@ -76,7 +94,7 @@ class AddressController extends Controller
         $response = $address;
 
         session()->flash("message", "ADDRESS RETRIEVED");
-        return redirect()->back()->with(['response' => $response]);
+        return redirect('/')->with(['response' => $response]);
     }
 
     /**
@@ -87,6 +105,15 @@ class AddressController extends Controller
      */
     public function retrieveAddresses(Request $request)
     {
+        // Decrypt stored API Key
+        try {
+            $api_key = Crypt::decryptString(Auth::user()->api_key);
+        } catch (DecryptException $e) {
+            session()->flash("error", "API KEY COULD NOT BE DECRYPTED. PLEASE UPDATE YOUR KEY.");
+            return redirect()->back();
+        }
+        EasyPost::setApiKey($api_key);
+
         try {
             $addresses = Address::all(array(
                 # "page_size" => 2,
@@ -99,6 +126,6 @@ class AddressController extends Controller
         $response = $addresses;
 
         session()->flash("message", "ADDRESSES RETRIEVED");
-        return redirect()->back()->with(['response' => $response]);
+        return redirect('/')->with(['response' => $response]);
     }
 }
