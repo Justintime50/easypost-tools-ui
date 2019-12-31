@@ -10,6 +10,7 @@ php:
 
 before_install:
   - cd src
+  - cp .env.example .env
 
 install:
   - composer self-update
@@ -17,6 +18,7 @@ install:
 
 before_script:
   - cd ..
+  - cp init-db.env.example init-db.env
 
 script:
   - shellcheck setup.sh
