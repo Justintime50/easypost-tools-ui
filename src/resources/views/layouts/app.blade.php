@@ -57,6 +57,10 @@
             <div class="collapse" id="parcelCollapse">
                 <a href="#" data-toggle="modal" data-target="#createParcel" class="nav-link">Create Parcel</a>
                 <a href="#" data-toggle="modal" data-target="#retrieveParcel" class="nav-link">Retrieve Parcel</a>
+                <!--<form action="/retrieve-parcels" method="POST" id="retrieveParcels">
+                    csrf
+                    <a href="#" onclick="document.getElementById('retrieveParcels').submit();" class="nav-link">Retrieve all Parcels</a>
+                </form>-->
             </div>
 
             <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#shipmentCollapse" role="button" aria-expanded="false" aria-controls="shipmentCollapse">Shipments&nbsp;&nbsp;<i class="fas fa-truck-loading"></i></a>
@@ -95,9 +99,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                 @auth
-                    <a class="nav-link" href="{{ url('/account') }}">Account</a>
                     <a class="nav-link" href="https://www.easypost.com/docs/api" target="_blank">API Docs</a>
                     <a class="nav-link" href="https://github.com/Justintime50/easypost-ui" target="_blank">GitHub</a>
+                    <a class="nav-link" href="{{ url('/account') }}">Account</a>
+                    <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">Logout</a>
+                        <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
                 @else
                     <a class="nav-link" href="https://www.easypost.com/docs/api" target="_blank">API Docs</a>
                     <a class="nav-link" href="https://github.com/Justintime50/easypost-ui" target="_blank">GitHub</a>
