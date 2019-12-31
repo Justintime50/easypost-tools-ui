@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \EasyPost\EasyPost;
-
-EasyPost::setApiKey(Auth::user()->api_key);
+use Auth;
+use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Support\Facades\Crypt;
 
 class CarrierController extends Controller
 {
@@ -17,11 +18,20 @@ class CarrierController extends Controller
      */
     public function retrieveCarriers(Request $request)
     {
+        // Decrypt stored API Key
+        try {
+            $api_key = Crypt::decryptString(Auth::user()->api_key);
+        } catch (DecryptException $e) {
+            session()->flash("error", "API KEY COULD NOT BE DECRYPTED. PLEASE UPDATE YOUR KEY.");
+            return redirect()->back();
+        }
+        EasyPost::setApiKey($api_key);
+
         $carrier_types = \EasyPost\CarrierAccount::types();
 
         $response = $carrier_types;
 
         session()->flash("message", "CARRIERS RETRIEVED");
-        return redirect()->back()->with(['response' => $response]);
+        return redirect('/')->with(['response' => $response]);
     }
 }

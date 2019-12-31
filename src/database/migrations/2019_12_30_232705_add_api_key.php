@@ -14,7 +14,7 @@ class AddApiKey extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('api_key')->nullable();
+            $table->text('api_key')->nullable();
         });
     }
 
