@@ -24,8 +24,6 @@ services:
             - ./db:/var/lib/mysql
         networks:
             - easypost-ui
-        ports:
-            - "3306:3306"
 
 networks:
     easypost-ui:

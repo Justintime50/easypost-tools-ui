@@ -24,4 +24,5 @@ script:
   - shellcheck setup.sh
   - docker-compose up -d
   - docker ps | grep -q easypost-ui
+  - ./src/vendor/bin/phpunit
   - ./src/vendor/bin/phplint ./src --exclude=vendor
