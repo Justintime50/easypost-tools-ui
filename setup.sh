@@ -7,7 +7,7 @@ cp init-db.env.example init-db.env
 echo "Enter a password for the root DB user and press Enter: "
 read -r ROOTPASS
 sed -i '' -e "s/MYSQL_ROOT_PASSWORD=password/MYSQL_ROOT_PASSWORD=$ROOTPASS/g" init-db.env
-echo "Enter a password for the easypost-ui user and press Enter: "
+echo "Enter a password for the easypost-ui DB user and press Enter: "
 read -r DBUSERPASS
 sed -i '' -e "s/MYSQL_PASSWORD=password/MYSQL_PASSWORD=$DBUSERPASS/g" init-db.env
 
