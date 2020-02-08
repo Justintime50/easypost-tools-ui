@@ -11,7 +11,7 @@
         <form action="/create-shipment" method="POST">
             @csrf
 
-            <p>Create a shipment which will produce a label. Submitting this form will bill your account for the cheapest USPS rate based on the information your provide below.</p>
+            <p>Create a shipment which will produce a label. Submitting this form will bill your account based on the rate you select on the next screen.</p>
 
             <p>You can either use an ID from a previously created address/parcel or enter them manually.</p>
 

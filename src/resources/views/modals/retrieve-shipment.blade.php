@@ -8,15 +8,15 @@
         </button>
       </div>
       <div class="modal-body">
-            <form action="/retrieve-shipment" method="POST">
-                @csrf
+        <form action="/retrieve-shipment" method="POST">
+            @csrf
 
-                <label for="id">Shipment ID</label>
-                <input class="form-control" name="id" value="{{old('id')}}">
+            <label for="id">Shipment ID</label>
+            <input class="form-control" name="id" value="{{old('id')}}">
 
-                <button type="submit" class="btn btn-primary">Retrieve Shipment</button>
+            <button type="submit" class="btn btn-primary">Retrieve Shipment</button>
 
-            </form>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

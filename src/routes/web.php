@@ -15,7 +15,6 @@ Route::post('logout', 'Auth\LoginController@logout'); // Includes custom logic (
 Auth::routes();
 
 Route::middleware('auth')->group(function () {
-
     Route::get('/', function () {
         return view('app');
     });
@@ -51,5 +50,4 @@ Route::middleware('auth')->group(function () {
     Route::post('/retrieve-carriers', 'CarrierController@retrieveCarriers');
 
     Route::post('/update-api-key', 'UserController@updateApiKey');
-
 });

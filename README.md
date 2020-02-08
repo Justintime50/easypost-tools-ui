@@ -41,20 +41,26 @@ Once the project is setup, simply interact with the various links in the app to 
 
 ## Testing & Development
 
-### PHP Standards Fixer
-
-PHP coding standards can be fixed automatically by running the following from the `/src` directory: 
+Install project dependencies locally:
 
 ```bash
-./vendor/bin/php-cs-fixer fix . --verbose --show-progress=estimating
+php composer.phar install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+```
+
+### PHP Standards Fixer
+
+PHP coding standards can be fixed automatically: 
+
+```bash
+./src/vendor/bin/php-cs-fixer fix . --verbose --show-progress=estimating
 ```
 
 ### Testing
 
-Unit tests can be run with the following command from the `/src` directory:
+Run unit tests:
 
 ```bash
-./vendor/bin/phpunit
+./src/vendor/bin/phpunit
 ```
 
 PHP linting, Docker build testing, shellcheck, and unit tests are handled via [Travis](https://travis-ci.org/Justintime50/easypost-ui).
@@ -64,6 +70,7 @@ PHP linting, Docker build testing, shellcheck, and unit tests are handled via [T
 The following are future ideas that can be incorporated:
 - USPS/Fedex/UPS predefined package selection
 - Ability to run reports
+- CSV upload
 
 ## Disclaimer
 
