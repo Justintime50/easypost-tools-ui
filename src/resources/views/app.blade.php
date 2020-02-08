@@ -2,18 +2,6 @@
 
 @section('content')
 
-    <!-- Import all modals -->
-    @include('modals.create-address')
-    @include('modals.retrieve-address')
-    @include('modals.create-parcel')
-    @include('modals.retrieve-parcel')
-    @include('modals.create-shipment')
-    @include('modals.retrieve-shipment')
-    @include('modals.create-tracker')
-    @include('modals.retrieve-tracker')
-    @include('modals.retrieve-insurance')
-    @include('modals.create-refund')
-
     <div class="response-wrapper">
 
         <div class="response">

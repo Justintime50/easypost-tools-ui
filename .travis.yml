@@ -9,6 +9,7 @@ php:
   - 7.4
 
 before_install:
+  - cp init-db.env.example init-db.env
   - cd src
   - cp .env.example .env
 
@@ -16,12 +17,10 @@ install:
   - composer self-update
   - composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
 
-before_script:
-  - cd ..
-  - cp init-db.env.example init-db.env
-
 script:
-  - shellcheck setup.sh
+  - shellcheck ../setup.sh
   - docker-compose up -d
   - docker ps | grep -q easypost-ui
-  - ./src/vendor/bin/phplint ./src --exclude=vendor
+  - docker ps | grep -q easypost-db
+  - ./vendor/bin/phpunit
+  - ./vendor/bin/phplint ./src --exclude=vendor
