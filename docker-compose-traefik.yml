@@ -35,3 +35,4 @@ networks:
     traefik:
         external:
             name: traefik
+            ALTER USER 'easypost' IDENTIFIED BY 'YVb3k6FxdpGD69tJwEgQe4fbo2itqjkc';
