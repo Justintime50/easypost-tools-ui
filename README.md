@@ -1,9 +1,15 @@
+<div align="center">
+
 # EasyPost UI
+
+Easily interact with the EasyPost API to order one-off packages and labels via a simple UI.
 
 [![Build Status](https://travis-ci.org/Justintime50/easypost-ui.svg?branch=master)](https://travis-ci.org/Justintime50/easypost-ui)
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
 
-Easily interact with the EasyPost API to order one-off packages and labels via a simple UI.
+<img src="assets/showcase.gif">
+
+</div>
 
 ## What Can it Do?
 
@@ -18,12 +24,12 @@ Easily interact with the EasyPost API to order one-off packages and labels via a
 
 The EasyPost API creates a label once it receives a `from_address`, `to_address`, `parcel`, and the user selects their preferred shipping rate/method. We verify the addresses and return a label for download. Print the label, slap it on your package, and drop it off at your carrier's location. That's it!
 
-## Setup
+## Install
 
 **EasyPost API:** You'll need a test or production API key from [EasyPost's website](https://easypost.com). Create an account and grab the API key you'd like to use. If using your production API key, make sure to setup billing info on your EasyPost account.
 
 1) This project requires [Docker](https://www.docker.com/products/docker-desktop) and an account. Install and login to Docker.
-2) Run `./setup.sh` in the project's root directory and provide your EasyPost API Key when prompted.
+2) Run `./setup.sh` in the project's root directory which will setup the entire project for you.
 3) Navigate to `localhost:8000` in a browser. Register an account and add your API Key on the `/account` page. You're all set!
 
 ## Usage
@@ -38,19 +44,20 @@ Once the project is setup, simply interact with the various links in the app to 
 ### PHP Standards Fixer
 
 PHP coding standards can be fixed automatically by running the following from the `/src` directory: 
+
 ```bash
 ./vendor/bin/php-cs-fixer fix . --verbose --show-progress=estimating
 ```
 
 ### Testing
 
-Unit tests require a test API key added to the `phpunit.xml` file. Then, the tests can be run with the following:
+Unit tests can be run with the following command from the `/src` directory:
 
 ```bash
 ./vendor/bin/phpunit
 ```
 
-PHP linting and Docker build testing is handled via [Travis](https://travis-ci.org/Justintime50/easypost-ui).
+PHP linting, Docker build testing, shellcheck, and unit tests are handled via [Travis](https://travis-ci.org/Justintime50/easypost-ui).
 
 ## Roadmap
 
