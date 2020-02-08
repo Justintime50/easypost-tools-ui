@@ -8,15 +8,15 @@
         </button>
       </div>
       <div class="modal-body">
-            <form action="/retrieve-tracker" method="POST">
-                @csrf
+        <form action="/retrieve-tracker" method="POST">
+            @csrf
 
-                <label for="id">Tracker ID</label>
-                <input class="form-control" name="id" value="{{old('id')}}">
+            <label for="id">Tracker ID</label>
+            <input class="form-control" name="id" value="{{old('id')}}">
 
-                <button type="submit" class="btn btn-primary">Retrieve Tracker</button>
+            <button type="submit" class="btn btn-primary">Retrieve Tracker</button>
 
-            </form>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

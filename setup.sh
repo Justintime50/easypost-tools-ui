@@ -2,6 +2,8 @@
 
 shopt -s dotglob # ensure we can replace the hidden .env file
 
+echo "Setting up EasyPost UI!"
+
 # Database
 cp init-db.env.example init-db.env
 echo "Enter a password for the root DB user and press Enter: "
@@ -20,3 +22,5 @@ sleep 10
 docker exec -it easypost-ui php artisan key:generate
 sleep 50 # wait for the DB to boot up if we haven't already
 docker exec -it easypost-ui php artisan migrate
+
+echo "EasyPost UI setup complete."

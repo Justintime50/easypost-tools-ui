@@ -11,7 +11,7 @@
             <form action="/create-parcel" method="POST">
                 @csrf
 
-                <p>Create a one-off parcel. Input accepts decimals, conveyed in inches and ounces.</p>
+                <p>Create a one-off parcel. Input accepts decimals to the first decimal place (eg: 10.9). Input only accepts inches and ounces.</p>
                 
                 <label for="length">Length*</label>
                 <input class="form-control" name="length" value="{{old('length')}}">

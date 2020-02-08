@@ -9,9 +9,9 @@
       </div>
       <div class="modal-body">
             <form action="/create-insurance" method="POST">
-                @csrf
+            @csrf
 
-                <h3>From Address</h3>
+            <h3>From Address</h3>
 
             <label for="from_address">From Address ID</label>
             <input class="form-control" name="from_address" value="{{old('from_address')}}" placeholder="Use an Address ID instead of entering one manually below.">
