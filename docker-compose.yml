@@ -7,7 +7,7 @@ services:
         container_name: easypost-ui
         volumes: 
             - ./src/storage:/var/www/html/storage
-            - ./.env:/var/www/html/.env # to avoid needing to recreate the key every build
+            - .env:/var/www/html/.env # to avoid needing to recreate the key every build
         ports:
             - "8000:80"
         networks:
