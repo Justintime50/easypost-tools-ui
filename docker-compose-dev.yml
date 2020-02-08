@@ -14,7 +14,7 @@ services:
             - easypost-ui
 
     easypost-db:
-        image: mysql:8
+        image: mysql:8.0.18
         restart: always
         container_name: easypost-db
         env_file:

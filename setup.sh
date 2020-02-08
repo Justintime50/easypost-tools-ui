@@ -14,8 +14,8 @@ sed -i '' -e "s/MYSQL_PASSWORD=password/MYSQL_PASSWORD=$DBUSERPASS/g" init-db.en
 # EasyPost UI
 cd src || exit
 cp .env.example .env
-docker-compose up -d --build
 sed -i '' -e "s/DB_PASSWORD=password/DB_PASSWORD=$DBUSERPASS/g" .env
+docker-compose up -d --build
 docker exec -it easypost-ui php artisan key:generate
 sleep 10 # wait for the DB to boot up if we haven't already
 docker exec -it easypost-ui php artisan migrate

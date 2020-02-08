@@ -7,10 +7,14 @@ services:
         container_name: easypost-ui
         volumes: 
             - ./src/storage:/var/www/html/storage
-        ports:
-            - "8000:80"
         networks:
             - easypost-ui
+            - traefik
+        labels:
+            - traefik.enable=true
+            - traefik.docker.network=traefik
+            - traefik.frontend.rule=Host:easypost.localhost
+            - traefik.port=80
 
     easypost-db:
         image: mysql:8.0.18
@@ -22,7 +26,12 @@ services:
             - ./db:/var/lib/mysql
         networks:
             - easypost-ui
+        labels:
+            - traefik.enable=false
 
 networks:
     easypost-ui:
         name: easypost-ui
+    traefik:
+        external:
+            name: traefik
