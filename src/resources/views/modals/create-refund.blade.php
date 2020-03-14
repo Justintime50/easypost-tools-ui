@@ -8,17 +8,17 @@
         </button>
       </div>
       <div class="modal-body">
-            <form action="/create-refund" method="POST">
-                @csrf
+        <form action="/create-refund" method="POST">
+          @csrf
 
-                <p>Shipments can be refunded if they have not been scanned yet and were created in the last 30 days.</p>
+          <p>Shipments can be refunded if they have not been scanned yet and were created in the last 30 days.</p>
 
-                <label for="id">Shipment ID</label>
-                <input class="form-control" name="id" value="{{old('id')}}">
+          <label for="id">Shipment ID</label>
+          <input class="form-control" name="id" value="{{old('id')}}">
 
-                <button type="submit" class="btn btn-primary">Create Refund</button>
+          <button type="submit" class="btn btn-primary">Create Refund</button>
 
-            </form>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -13,12 +13,12 @@ Easily interact with the EasyPost API to order one-off packages and labels via a
 
 ## What Can it Do?
 
-- Create shipments and printable labels with 100+ carriers
+- Create shipments and printable labels with upwards of 100 carriers
+- Retrieve addresses, carriers, insurance, parcels, shipments, and trackers from EasyPost
 - Track a package
 - Insure a package
 - Refund a shipment
-- Retrieve addresses, carriers, insurance, parcels, shipments, and trackers from EasyPost
-- Support multiple users with unique logins and API Keys
+- Support multiple users with unique logins and EasyPost API keys
 
 ## How it Works
 
@@ -62,15 +62,6 @@ Run unit tests:
 ```bash
 ./src/vendor/bin/phpunit
 ```
-
-PHP linting, Docker build testing, shellcheck, and unit tests are handled via [Travis](https://travis-ci.org/Justintime50/easypost-ui).
-
-## Roadmap
-
-The following are future ideas that can be incorporated:
-- USPS/Fedex/UPS predefined package selection
-- Ability to run reports
-- CSV upload
 
 ## Disclaimer
 

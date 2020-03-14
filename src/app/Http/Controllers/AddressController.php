@@ -29,28 +29,28 @@ class AddressController extends Controller
         EasyPost::setApiKey($api_key);
         
         request()->validate([
-            'street1'   => 'required|string',
-            'street2'   => 'nullable|string',
-            'city'      => 'required|string',
-            'state'     => 'required|string',
-            'zip'       => 'required|string',
-            'country'   => 'nullable|string',
-            'company'   => 'nullable|string',
-            'phone'     => 'nullable',
+            "street1"   => "required|string",
+            "street2"   => "nullable|string",
+            "city"      => "required|string",
+            "state"     => "required|string",
+            "zip"       => "required|string",
+            "country"   => "nullable|string",
+            "company"   => "nullable|string",
+            "phone"     => "nullable",
         ]);
 
         try {
             $address = Address::create(
                 array(
                     "verify"  => array("delivery"),
-                    "street1" => request()->get('street1'),
-                    "street2" => request()->get('street2'),
-                    "city"    => request()->get('city'),
-                    "state"   => request()->get('state'),
-                    "zip"     => request()->get('zip'),
-                    "country" => request()->get('country'),
-                    "company" => request()->get('company'),
-                    "phone"   => request()->get('phone'),
+                    "street1" => request()->get("street1"),
+                    "street2" => request()->get("street2"),
+                    "city"    => request()->get("city"),
+                    "state"   => request()->get("state"),
+                    "zip"     => request()->get("zip"),
+                    "country" => request()->get("country"),
+                    "company" => request()->get("company"),
+                    "phone"   => request()->get("phone"),
                 )
             );
         } catch (\EasyPost\Error $exception) {
@@ -61,11 +61,11 @@ class AddressController extends Controller
 
         if ($address->verifications->delivery->success == false) {
             session()->flash("error", "ADDRESS ENTERED IS NOT A VERIFIED ADDRESS BUT THE RECORD WAS CREATED ANYWAY.");
-            return redirect()->back()->with(['response' => $response]);
+            return redirect()->back()->with(["response" => $response]);
         }
 
         session()->flash("message", "ADDRESS CREATED");
-        return redirect('/')->with(['response' => $response]);
+        return redirect("/")->with(["response" => $response]);
     }
 
     /**
@@ -86,7 +86,7 @@ class AddressController extends Controller
         EasyPost::setApiKey($api_key);
 
         try {
-            $address = Address::retrieve(request()->get('id'));
+            $address = Address::retrieve(request()->get("id"));
         } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
@@ -94,7 +94,7 @@ class AddressController extends Controller
         $response = $address;
 
         session()->flash("message", "ADDRESS RETRIEVED");
-        return redirect('/')->with(['response' => $response]);
+        return view("app")->with(["json" => $response]);
     }
 
     /**
@@ -115,17 +115,15 @@ class AddressController extends Controller
         EasyPost::setApiKey($api_key);
 
         try {
-            $addresses = Address::all(array(
-                # "page_size" => 2,
-                "start_datetime" => "2016-01-02T08:50:00Z"
-              ));
+            $addresses = Address::all();
         } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
         $response = $addresses;
+        $json = json_decode($response); 
 
         session()->flash("message", "ADDRESSES RETRIEVED");
-        return redirect('/')->with(['response' => $response]);
+        return view("addresses")->with(["json" => $json]);
     }
 }

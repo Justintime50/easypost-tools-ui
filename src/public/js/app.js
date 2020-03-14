@@ -6465,7 +6465,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 // Edge <= 12 - 13+, Firefox <=18 - 45+, IE 10 - 11, Safari 5.1 - 9+, iOS 6 - 9.1
 // throw exceptions when non-strict code (e.g., ASP.NET 4.5) accesses strict mode
-// arguments.callee.caller (trac-13335). But as of jQuery 3.0 (2016), strict mode should be common
+// arguments.callee.caller (trac-13335). But as of jQuery 3.0 (2019), strict mode should be common
 // enough that all such attempts are guarded in a try block.
 "use strict";
 
@@ -34154,7 +34154,7 @@ __webpack_require__.r(__webpack_exports__);
  * @fileOverview Kickass library to create and place poppers near their reference elements.
  * @version 1.16.0
  * @license
- * Copyright (c) 2016 Federico Zivolo and contributors
+ * Copyright (c) 2019 Federico Zivolo and contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
