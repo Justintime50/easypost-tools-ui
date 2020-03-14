@@ -9,12 +9,12 @@
       </div>
       <div class="modal-body">
         <form action="/retrieve-insurance" method="POST">
-            @csrf
+          @csrf
 
-            <label for="id">Insurance ID</label>
-            <input class="form-control" name="id" value="{{old('id')}}">
+          <label for="id">Insurance ID</label>
+          <input class="form-control" name="id" value="{{old('id')}}">
 
-            <button type="submit" class="btn btn-primary">Retrieve Insurance</button>
+          <button type="submit" class="btn btn-primary">Retrieve Insurance</button>
 
         </form>
       </div>

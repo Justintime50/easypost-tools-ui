@@ -8,17 +8,17 @@
         </button>
       </div>
       <div class="modal-body">
-            <form action="/create-tracker" method="POST">
-                @csrf
-                
-                <p>Create a tracker by providing the tracking code from your carrier.</p>
+        <form action="/create-tracker" method="POST">
+          @csrf
+          
+          <p>Create a tracker by providing the tracking code from your carrier.</p>
 
-                <label for="tracking_code">Tracking Code</label>
-                <input class="form-control" name="tracking_code" value="{{old('tracking-code')}}">
+          <label for="tracking_code">Tracking Code</label>
+          <input class="form-control" name="tracking_code" value="{{old('tracking-code')}}">
 
-                <button type="submit" class="btn btn-primary">Create Tracker</button>
+          <button type="submit" class="btn btn-primary">Create Tracker</button>
 
-            </form>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

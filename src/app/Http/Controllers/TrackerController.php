@@ -29,15 +29,15 @@ class TrackerController extends Controller
         EasyPost::setApiKey($api_key);
 
         request()->validate([
-            'tracking_code' => 'required|string',
-            # 'carrier'       => 'required|string',
+            "tracking_code" => "required|string",
+            # "carrier"       => "required|string",
         ]);
 
         try {
             $tracker = Tracker::create(
                 array(
-                    "tracking_code"  => request()->get('tracking_code'),
-                    # "carrier" => request()->get('carrier'),
+                    "tracking_code"  => request()->get("tracking_code"),
+                    # "carrier" => request()->get("carrier"),
                 )
             );
         } catch (\EasyPost\Error $exception) {
@@ -47,7 +47,7 @@ class TrackerController extends Controller
         $response = $tracker;
 
         session()->flash("message", "TRACKER CREATED");
-        return redirect('/')->with(['response' => $response]);
+        return redirect("/")->with(["response" => $response]);
     }
 
     /**
@@ -68,7 +68,7 @@ class TrackerController extends Controller
         EasyPost::setApiKey($api_key);
 
         try {
-            $tracker = Tracker::retrieve(request()->get('id'));
+            $tracker = Tracker::retrieve(request()->get("id"));
         } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
@@ -76,7 +76,7 @@ class TrackerController extends Controller
         $response = $tracker;
 
         session()->flash("message", "TRACKER RETRIEVED");
-        return redirect('/')->with(['response' => $response]);
+        return view("app")->with(["json" => $response]);
     }
 
     /**
@@ -97,17 +97,15 @@ class TrackerController extends Controller
         EasyPost::setApiKey($api_key);
 
         try {
-            $trackers = Tracker::all(array(
-                # "page_size" => 2,
-                # "start_datetime" => "2016-01-02T08:50:00Z"
-              ));
+            $trackers = Tracker::all();
         } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
         $response = $trackers;
+        $json = json_decode($response); 
 
         session()->flash("message", "TRACKERS RETRIEVED");
-        return redirect('/')->with(['response' => $response]);
+        return view("trackers")->with(["json" => $json]);
     }
 }

@@ -40,11 +40,12 @@
             <div class="collapse" id="carriersCollapse">
                 <form action="/retrieve-carriers" method="POST" id="retrieveCarriers">
                     @csrf
-                    <a href="#" onclick="document.getElementById('retrieveCarriers').submit();" class="nav-link">Retrieve Supported Carriers</a>
+                    <a href="#" data-toggle="modal" data-target="#retrieveCarrier" class="nav-link">Retrieve Carrier Account</a>
+                    <a href="#" onclick="document.getElementById('retrieveCarriers').submit();" class="nav-link">Retrieve Carrier Accounts</a>
                 </form>
             </div>
 
-            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#insuranceCollapse" role="button" aria-expanded="false" aria-controls="insuranceCollapse">Insurance&nbsp;&nbsp;<i class="fas fa-receipt"></i></a>
+            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#insuranceCollapse" role="button" aria-expanded="false" aria-controls="insuranceCollapse">Insurance&nbsp;&nbsp;<i class="fas fa-dollar-sign"></i></a>
             <div class="collapse" id="insuranceCollapse">
                 <a href="#" data-toggle="modal" data-target="#retrieveInsurance" class="nav-link">Retrieve Insurance</a>
                 <form action="/retrieve-insurances" method="POST" id="retrieveInsurances">
@@ -57,10 +58,11 @@
             <div class="collapse" id="parcelCollapse">
                 <a href="#" data-toggle="modal" data-target="#createParcel" class="nav-link">Create Parcel</a>
                 <a href="#" data-toggle="modal" data-target="#retrieveParcel" class="nav-link">Retrieve Parcel</a>
-                <!--<form action="/retrieve-parcels" method="POST" id="retrieveParcels">
-                    csrf
-                    <a href="#" onclick="document.getElementById('retrieveParcels').submit();" class="nav-link">Retrieve all Parcels</a>
-                </form>-->
+            </div>
+
+            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#reportsCollapse" role="button" aria-expanded="false" aria-controls="reportsCollapse">Reports&nbsp;&nbsp;<i class="fas fa-receipt"></i></a>
+            <div class="collapse" id="reportsCollapse">
+                <a href="https://easypost.com/account/reports" class="nav-link" target="_blank">Visit the EasyPost Dashboard</a>
             </div>
 
             <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#shipmentCollapse" role="button" aria-expanded="false" aria-controls="shipmentCollapse">Shipments&nbsp;&nbsp;<i class="fas fa-truck-loading"></i></a>
@@ -71,6 +73,7 @@
                     @csrf
                     <a href="#" onclick="document.getElementById('retrieveShipments').submit();" class="nav-link">Retrieve all Shipments</a>
                 </form>
+                <a href="#" data-toggle="modal" data-target="#buyShipment" class="nav-link">Buy Shipment</a>
                 <a href="#" data-toggle="modal" data-target="#createRefund" class="nav-link">Refund</a>
             </div>
 
@@ -99,7 +102,8 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                 @auth
-                    <a class="nav-link" href="https://www.easypost.com/docs/api" target="_blank">API Docs</a>
+                    <a class="nav-link" href="https://www.easypost.com/docs/api" target="_blank">EasyPost API Docs</a>
+                    <a class="nav-link" href="mailto:support@easypost.com" target="_blank">EasyPost Support</a>
                     <a class="nav-link" href="https://github.com/Justintime50/easypost-ui" target="_blank">GitHub</a>
                     <a class="nav-link" href="{{ url('/account') }}">Account</a>
                     <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">Logout</a>
@@ -130,6 +134,28 @@
         @include('modals.retrieve-tracker')
         @include('modals.retrieve-insurance')
         @include('modals.create-refund')
+        @include('modals.buy-shipment')
+        @include('modals.retrieve-carrier')
+        <!-- LARAVEL ERRORS -->
+        <div class="container-fluid" style="padding:0px;">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            @if(session()->has('message'))
+                <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+            @endif
+
+            @if(session()->has('error'))
+                <p class="alert alert-danger {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('error') }}</p>
+            @endif
+        </div>
         <!-- Inject content -->
         @yield('content')
     </main>
