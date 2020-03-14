@@ -8,26 +8,33 @@
         </button>
       </div>
       <div class="modal-body">
-            <form action="/create-parcel" method="POST">
-                @csrf
+        <form action="/create-parcel" method="POST">
+          @csrf
 
-                <p>Create a one-off parcel. Input accepts decimals to the first decimal place (eg: 10.9). Input only accepts inches and ounces.</p>
-                
-                <label for="length">Length*</label>
-                <input class="form-control" name="length" value="{{old('length')}}">
+          <p>Create a one-off parcel. Input accepts decimals to the first decimal place (eg: 10.9). Input only accepts inches and ounces.</p>
 
-                <label for="width">Width*</label>
-                <input class="form-control" name="width" value="{{old('width')}}">
+          <p>You can also specify a predefined_package for your pacel, found <a href="https://www.easypost.com/docs/api/php#predefined-packages">here</a>.</p>
+          
+          <label for="predefined_package">Predefined Parcel</label>
+          <input class="form-control" name="predefined_package" value="{{old('predefined_package')}}" placeholder="Use a predefined parcel instead of entering one manually below.">
 
-                <label for="height">Height*</label>
-                <input class="form-control" name="height" value="{{old('height')}}">
+          <hr>
 
-                <label for="weight">Weight*</label>
-                <input class="form-control" name="weight" value="{{old('weight')}}">
+          <label for="length">Length*</label>
+          <input class="form-control" name="length" value="{{old('length')}}">
 
-                <button type="submit" class="btn btn-primary">Create Parcel</button>
+          <label for="width">Width*</label>
+          <input class="form-control" name="width" value="{{old('width')}}">
 
-            </form>
+          <label for="height">Height*</label>
+          <input class="form-control" name="height" value="{{old('height')}}">
+
+          <label for="weight">Weight*</label>
+          <input class="form-control" name="weight" value="{{old('weight')}}">
+
+          <button type="submit" class="btn btn-primary">Create Parcel</button>
+
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -9,12 +9,12 @@
       </div>
       <div class="modal-body">
         <form action="/retrieve-shipment" method="POST">
-            @csrf
+          @csrf
 
-            <label for="id">Shipment ID</label>
-            <input class="form-control" name="id" value="{{old('id')}}">
+          <label for="id">Shipment ID</label>
+          <input class="form-control" name="id" value="{{old('id')}}">
 
-            <button type="submit" class="btn btn-primary">Retrieve Shipment</button>
+          <button type="submit" class="btn btn-primary">Retrieve Shipment</button>
 
         </form>
       </div>

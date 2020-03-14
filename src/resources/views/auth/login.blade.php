@@ -5,6 +5,17 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+                <div class="card-header">
+                    <h3>EasyPost UI</h3>
+                </div>
+                <div class="card-body">
+                    <p>EasyPost UI is a user interface to interact with the <a href="https://easypost.com">EasyPost API</a>. Simply signup for an account on their site, grab your API key, and enter it here on your EasyPost UI account and start creating shipments, printing labels, and sending parcels.</p>
+                </div>
+            </div>
+
+            <br />
+
+            <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">

@@ -1,20 +1,20 @@
-<div class="modal fade" id="retrieveAddress" tabindex="-1" role="dialog" aria-labelledby="retrieveAddressLabel" aria-hidden="true">
+<div class="modal fade" id="retrieveCarrier" tabindex="-1" role="dialog" aria-labelledby="retrieveCarrierLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="retrieveAddressLabel">Retrieve an Address</h5>
+        <h5 class="modal-title" id="retrieveCarrierLabel">Retrieve a Carrier</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form action="/retrieve-address" method="POST">
+        <form action="/retrieve-carrier" method="POST">
           @csrf
 
-          <label for="id">Address ID</label>
+          <label for="id">Carrier ID</label>
           <input class="form-control" name="id" value="{{old('id')}}">
 
-          <button type="submit" class="btn btn-primary">Retrieve Address</button>
+          <button type="submit" class="btn btn-primary">Retrieve Carrier</button>
 
         </form>
       </div>
