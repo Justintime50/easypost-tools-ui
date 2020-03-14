@@ -25,22 +25,36 @@ class ParcelController extends Controller
         }
         EasyPost::setApiKey($api_key);
 
-        request()->validate([
-            'length'    => 'required|string',
-            'width'     => 'required|string',
-            'height'    => 'required|string',
-            'weight'    => 'required|string',
-        ]);
+        if (request()->get("predefined_package") == null) {
+            request()->validate([
+                "length"    => "required|string",
+                "width"     => "required|string",
+                "height"    => "required|string",
+                "weight"    => "required|string",
+            ]);
+        } else {
+            request()->validate([
+                "predefined_package"    => "required|string",
+                "weight"                => "required|string"
+            ]);
+        }
 
         try {
+            if (request()->get("predefined_package") != null) {
+                $parcel = Parcel::create(array(
+                    "predefined_package"    => request()->get("predefined_package"),
+                    "weight"                => request()->get("weight"),
+                ));
+            } else {
             $parcel = Parcel::create(
                 array(
-                    "length"    => request()->get('length'),
-                    "width"     => request()->get('width'),
-                    "height"    => request()->get('height'),
-                    "weight"    => request()->get('weight'),
-                )
-            );
+                    "length"    => request()->get("length"),
+                    "width"     => request()->get("width"),
+                    "height"    => request()->get("height"),
+                    "weight"    => request()->get("weight"),
+                    )
+                );
+            }
         } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
@@ -48,7 +62,7 @@ class ParcelController extends Controller
         $response = $parcel;
 
         session()->flash("message", "PARCEL CREATED");
-        return redirect('/')->with(['response' => $response]);
+        return view("app")->with(["json" => $response]);
     }
 
     /**
@@ -66,7 +80,7 @@ class ParcelController extends Controller
         EasyPost::setApiKey($api_key);
 
         try {
-            $parcel = Parcel::retrieve(request()->get('id'));
+            $parcel = Parcel::retrieve(request()->get("id"));
         } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
@@ -74,40 +88,6 @@ class ParcelController extends Controller
         $response = $parcel;
 
         session()->flash("message", "PARCEL RETRIEVED");
-        return redirect('/')->with(['response' => $response]);
-    }
-
-    /**
-     * retrieveParcels
-     *
-     * @param Request $request
-     * @return void
-     */
-    public function retrieveParcels(Request $request)
-    {
-        // TODO: This cannot be implimented, EasyPost doesn't support retrieving all parcels? Tried with Curl and PHP to /parcel and /parcels endpoints.
-        
-        // Decrypt stored API Key
-        try {
-            $api_key = Crypt::decryptString(Auth::user()->api_key);
-        } catch (DecryptException $e) {
-            session()->flash("error", "API KEY COULD NOT BE DECRYPTED. PLEASE UPDATE YOUR KEY.");
-            return redirect()->back();
-        }
-        EasyPost::setApiKey($api_key);
-
-        try {
-            $parcels = Parcel::all(array(
-                # "page_size" => 2,
-                # "start_datetime" => "2016-01-02T08:50:00Z"
-              ));
-        } catch (\EasyPost\Error $exception) {
-            return back()->withError($exception->getMessage())->withInput();
-        }
-
-        $response = $parcels;
-
-        session()->flash("message", "ADDRESSES RETRIEVED");
-        return redirect('/')->with(['response' => $response]);
+        return view("app")->with(["json" => $response]);
     }
 }

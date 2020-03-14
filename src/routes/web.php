@@ -35,7 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/create-shipment', 'ShipmentController@createShipment');
     Route::post('/retrieve-shipment', 'ShipmentController@retrieveShipment');
     Route::post('/retrieve-shipments', 'ShipmentController@retrieveShipments');
-    Route::post('/buy-label', 'ShipmentController@buyLabel');
+    Route::post('/buy-shipment', 'ShipmentController@buyShipment');
 
     Route::post('/create-tracking', 'TrackerController@createTracker');
     Route::post('/retrieve-tracker', 'TrackerController@retrieveTracker');
@@ -47,6 +47,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/create-refund', 'ShipmentController@createRefund');
 
+    Route::post('/retrieve-carrier', 'CarrierController@retrieveCarrier');
     Route::post('/retrieve-carriers', 'CarrierController@retrieveCarriers');
 
     Route::post('/update-api-key', 'UserController@updateApiKey');
