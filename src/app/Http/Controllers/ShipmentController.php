@@ -143,8 +143,6 @@ class ShipmentController extends Controller
             return back()->withError($exception->getMessage())->withInput();
         }
 
-        # TODO: Add in error handling for rates that cannot be returned (eg: due to bad addresses)
-
         $response = $shipment;
         $json = json_decode($response); 
 
