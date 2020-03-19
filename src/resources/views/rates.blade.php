@@ -3,6 +3,18 @@
 
     <div class="response-wrapper">
         <div class="response">
+            @if (isset($json->messages))
+                <div class="card rate-errors-card">
+                    <div class="card-header">
+                        <h5>Shipment Messages</h5>
+                    </div>
+                    <div class="card-body rate-errors-bg">
+                        {{-- TODO: This is VERY hacky, fix ASAP --}}
+                        <pre>@php echo var_dump(json_encode($json->messages)) @endphp</pre>
+                    </div>
+                </div>
+            @endif
+
             <p>Shipment:<br />{{ $json->id }}</p><br />
             <div class="row">
                 <div class="col-md-4">

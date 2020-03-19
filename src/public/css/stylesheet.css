@@ -178,3 +178,10 @@ table {
     margin-top: 0 !important;
     margin-bottom: 30px !important;
 }
+
+.rate-errors-bg {
+    background-color: rgb(250, 246, 218) !important;
+}
+.rate-errors-card {
+    margin-bottom: 30px;
+}
