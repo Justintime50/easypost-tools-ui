@@ -17,8 +17,8 @@
                 @foreach ($json->insurances as $insurance)
                     <tr>
                         <form action="/retrieve-insurance" method="POST">
-                            <input type="hidden" name="_token" value="".csrf_token()."">
-                            <input type="hidden" name="id" value="".$insurance->id."">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <input type="hidden" name="id" value="{{ $insurance->id }}">
                             <td>
                                 <button class="btn btn-primary btn-sm btn-table"><?php echo substr($insurance->id, 0, 10); ?>...</button>
                             </td>
