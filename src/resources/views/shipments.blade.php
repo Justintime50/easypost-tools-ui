@@ -9,7 +9,6 @@
                 <form action="/retrieve-shipment" method="POST">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <input type="hidden" name="id" value="{{ $shipment->id }}">
-                    <div>Shipment:</div>
                     <button class="btn btn-primary btn-sm btn-shipment"><?php echo substr($shipment->id, 0, 10); ?>...</button>
                     <p>Created at: {{ $shipment->created_at }}</p>
                     @if (isset($shipment->postage_label->label_url))
@@ -49,11 +48,11 @@
                         <p>
                             <b>Parcel:</b><br />
                             {{ $shipment->parcel->id }}<br /><br />
-                            Length: {{ $shipment->parcel->length }} inches<br />
-                            Width: {{ $shipment->parcel->width }} inches<br />
-                            Height: {{ $shipment->parcel->height }} inches<br />
-                            Weight: {{ $shipment->parcel->weight }} ounces<br />
-                            Predefined Package; {{ $shipment->parcel->predefined_package }} 
+                            <b>Length:</b> {{ $shipment->parcel->length }} inches<br />
+                            <b>Width:</b> {{ $shipment->parcel->width }} inches<br />
+                            <b>Height:</b> {{ $shipment->parcel->height }} inches<br />
+                            <b>Weight:</b> {{ $shipment->parcel->weight }} ounces<br />
+                            <b>Predefined Package:</b> {{ $shipment->parcel->predefined_package }} 
                         </p>
                     </div>
                 </div>
