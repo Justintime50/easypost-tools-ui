@@ -36,6 +36,11 @@
                 </form>
             </div>
 
+            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#batchesCollapse" role="button" aria-expanded="false" aria-controls="batchesCollapse">Batches&nbsp;&nbsp;<i class="fas fa-layer-group"></i></a>
+            <div class="collapse" id="batchesCollapse">
+                <a href="https://www.easypost.com/account/batches" class="nav-link" target="_blank">Visit the EasyPost Dashboard</a>
+            </div>
+
             <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#carriersCollapse" role="button" aria-expanded="false" aria-controls="addressCollapse">Carriers&nbsp;&nbsp;<i class="fas fa-truck"></i></a>
             <div class="collapse" id="carriersCollapse">
                 <form action="/retrieve-carriers" method="POST" id="retrieveCarriers">
@@ -85,6 +90,11 @@
                     @csrf
                     <a href="#" onclick="document.getElementById('retrieveTrackers').submit();" class="nav-link">Retrieve all Trackers</a>
                 </form>  
+            </div>
+
+            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#webhooksCollapse" role="button" aria-expanded="false" aria-controls="webhooksCollapse">Webhooks&nbsp;&nbsp;<i class="fas fa-calendar-alt"></i></a>
+            <div class="collapse" id="webhooksCollapse">
+                <a href="https://www.easypost.com/account/webhooks-and-events" class="nav-link" target="_blank">Visit the EasyPost Dashboard</a>
             </div>
 
         </div>
