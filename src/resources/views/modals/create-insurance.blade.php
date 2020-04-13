@@ -80,6 +80,9 @@
           <label for="tracking_code">Tracking Code</label>
           <input class="form-control" name="tracking_code" value="{{old('tracking-code')}}">
 
+          <label for="carrier">Carrier (optional)</label>
+          <input class="form-control" name="carrier" value="{{old('carrier')}}">
+
           <label for="amount">Amount</label>
           <input class="form-control" name="amount" value="{{old('amount')}}">
 

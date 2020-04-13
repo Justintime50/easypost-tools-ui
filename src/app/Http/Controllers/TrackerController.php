@@ -12,10 +12,10 @@ use Illuminate\Support\Facades\Crypt;
 class TrackerController extends Controller
 {
     /**
-     * createTracker
+     * Create a tracker
      *
      * @param Request $request
-     * @return void
+     * @return mixed
      */
     public function createTracker(Request $request)
     {
@@ -30,14 +30,14 @@ class TrackerController extends Controller
 
         request()->validate([
             "tracking_code" => "required|string",
-            # "carrier"       => "required|string",
+            "carrier"       => "nullable|string",
         ]);
 
         try {
             $tracker = Tracker::create(
                 array(
                     "tracking_code"  => request()->get("tracking_code"),
-                    # "carrier" => request()->get("carrier"),
+                    "carrier" => request()->get("carrier"),
                 )
             );
         } catch (\EasyPost\Error $exception) {
@@ -51,10 +51,10 @@ class TrackerController extends Controller
     }
 
     /**
-     * retrieveTracker
+     * Retrieve a tracker
      *
      * @param Request $request
-     * @return void
+     * @return mixed
      */
     public function retrieveTracker(Request $request)
     {
@@ -80,10 +80,10 @@ class TrackerController extends Controller
     }
 
     /**
-     * retrieveTrackers
+     * Retrieve a list of trackers
      *
      * @param Request $request
-     * @return void
+     * @return mixed
      */
     public function retrieveTrackers(Request $request)
     {

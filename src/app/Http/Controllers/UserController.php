@@ -11,10 +11,10 @@ use Illuminate\Support\Facades\Crypt;
 class UserController extends Controller
 {
     /**
-     * updateApiKey
+     * Update the API key on the user's account
      *
      * @param Request $request
-     * @return void
+     * @return mixed
      */
     public function updateApiKey(Request $request)
     {
