@@ -8,8 +8,6 @@ use \EasyPost\Shipment;
 use \EasyPost\Address;
 use \EasyPost\Parcel;
 use Auth;
-use Illuminate\Contracts\Encryption\DecryptException;
-use Illuminate\Support\Facades\Crypt;
 
 class ShipmentController extends Controller
 {
@@ -18,15 +16,6 @@ class ShipmentController extends Controller
      */
     public function createShipment(Request $request)
     {
-        // Decrypt stored API Key
-        try {
-            $api_key = Crypt::decryptString(Auth::user()->api_key);
-        } catch (DecryptException $e) {
-            session()->flash("error", "API KEY COULD NOT BE DECRYPTED. PLEASE UPDATE YOUR KEY.");
-            return redirect()->back();
-        }
-        EasyPost::setApiKey($api_key);
-
         if (request()->get("to_address") == null) {
             request()->validate([
                 "to_street1"    => "required|string",
@@ -179,15 +168,6 @@ class ShipmentController extends Controller
      */
     public function retrieveShipment(Request $request)
     {
-        // Decrypt stored API Key
-        try {
-            $api_key = Crypt::decryptString(Auth::user()->api_key);
-        } catch (DecryptException $e) {
-            session()->flash("error", "API KEY COULD NOT BE DECRYPTED. PLEASE UPDATE YOUR KEY.");
-            return redirect()->back();
-        }
-        EasyPost::setApiKey($api_key);
-
         try {
             $shipment = Shipment::retrieve(request()->get("id"));
         } catch (\EasyPost\Error $exception) {
@@ -208,15 +188,6 @@ class ShipmentController extends Controller
      */
     public function retrieveShipments(Request $request)
     {
-        // Decrypt stored API Key
-        try {
-            $api_key = Crypt::decryptString(Auth::user()->api_key);
-        } catch (DecryptException $e) {
-            session()->flash("error", "API KEY COULD NOT BE DECRYPTED. PLEASE UPDATE YOUR KEY.");
-            return redirect()->back();
-        }
-        EasyPost::setApiKey($api_key);
-
         try {
             $shipments = Shipment::all(array(
                 "purchased" => false
@@ -240,15 +211,6 @@ class ShipmentController extends Controller
      */
     public function createRefund(Request $request)
     {
-        // Decrypt stored API Key
-        try {
-            $api_key = Crypt::decryptString(Auth::user()->api_key);
-        } catch (DecryptException $e) {
-            session()->flash("error", "API KEY COULD NOT BE DECRYPTED. PLEASE UPDATE YOUR KEY.");
-            return redirect()->back();
-        }
-        EasyPost::setApiKey($api_key);
-
         try {
             $shipment = Shipment::retrieve(request()->get("id"));
             $shipment->refund();
@@ -270,15 +232,6 @@ class ShipmentController extends Controller
      */
     public function buyShipment(Request $request)
     {
-        // Decrypt stored API Key
-        try {
-            $api_key = Crypt::decryptString(Auth::user()->api_key);
-        } catch (DecryptException $e) {
-            session()->flash("error", "API KEY COULD NOT BE DECRYPTED. PLEASE UPDATE YOUR KEY.");
-            return redirect()->back();
-        }
-        EasyPost::setApiKey($api_key);
-
         try {
             $shipment = Shipment::retrieve(request()->get("shipment_id"));
             $shipment->buy(array(

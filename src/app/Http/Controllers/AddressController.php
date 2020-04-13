@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use \EasyPost\EasyPost;
 use \EasyPost\Address;
 use Auth;
-use Illuminate\Contracts\Encryption\DecryptException;
-use Illuminate\Support\Facades\Crypt;
 
 class AddressController extends Controller
 {
@@ -19,15 +17,6 @@ class AddressController extends Controller
      */
     public function createAddress(Request $request)
     {
-        // Decrypt stored API Key
-        try {
-            $api_key = Crypt::decryptString(Auth::user()->api_key);
-        } catch (DecryptException $e) {
-            session()->flash("error", "API KEY COULD NOT BE DECRYPTED. PLEASE UPDATE YOUR KEY.");
-            return redirect()->back();
-        }
-        EasyPost::setApiKey($api_key);
-        
         request()->validate([
             "street1"   => "required|string",
             "street2"   => "nullable|string",
@@ -76,15 +65,6 @@ class AddressController extends Controller
      */
     public function retrieveAddress(Request $request)
     {
-        // Decrypt stored API Key
-        try {
-            $api_key = Crypt::decryptString(Auth::user()->api_key);
-        } catch (DecryptException $e) {
-            session()->flash("error", "API KEY COULD NOT BE DECRYPTED. PLEASE UPDATE YOUR KEY.");
-            return redirect()->back();
-        }
-        EasyPost::setApiKey($api_key);
-
         try {
             $address = Address::retrieve(request()->get("id"));
         } catch (\EasyPost\Error $exception) {
@@ -105,15 +85,6 @@ class AddressController extends Controller
      */
     public function retrieveAddresses(Request $request)
     {
-        // Decrypt stored API Key
-        try {
-            $api_key = Crypt::decryptString(Auth::user()->api_key);
-        } catch (DecryptException $e) {
-            session()->flash("error", "API KEY COULD NOT BE DECRYPTED. PLEASE UPDATE YOUR KEY.");
-            return redirect()->back();
-        }
-        EasyPost::setApiKey($api_key);
-
         try {
             $addresses = Address::all();
         } catch (\EasyPost\Error $exception) {

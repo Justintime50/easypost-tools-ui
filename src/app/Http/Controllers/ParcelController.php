@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use \EasyPost\EasyPost;
 use \EasyPost\Parcel;
 use Auth;
-use Illuminate\Contracts\Encryption\DecryptException;
-use Illuminate\Support\Facades\Crypt;
 
 class ParcelController extends Controller
 {
@@ -16,15 +14,6 @@ class ParcelController extends Controller
      */
     public function createParcel(Request $request)
     {
-        // Decrypt stored API Key
-        try {
-            $api_key = Crypt::decryptString(Auth::user()->api_key);
-        } catch (DecryptException $e) {
-            session()->flash("error", "API KEY COULD NOT BE DECRYPTED. PLEASE UPDATE YOUR KEY.");
-            return redirect()->back();
-        }
-        EasyPost::setApiKey($api_key);
-
         if (request()->get("predefined_package") == null) {
             request()->validate([
                 "length"    => "nullable|string",
@@ -70,15 +59,6 @@ class ParcelController extends Controller
      */
     public function retrieveParcel(Request $request)
     {
-        // Decrypt stored API Key
-        try {
-            $api_key = Crypt::decryptString(Auth::user()->api_key);
-        } catch (DecryptException $e) {
-            session()->flash("error", "API KEY COULD NOT BE DECRYPTED. PLEASE UPDATE YOUR KEY.");
-            return redirect()->back();
-        }
-        EasyPost::setApiKey($api_key);
-
         try {
             $parcel = Parcel::retrieve(request()->get("id"));
         } catch (\EasyPost\Error $exception) {
