@@ -20,16 +20,16 @@
 
           <hr>
 
-          <label for="length">Length*</label>
+          <label for="length">Length</label>
           <input class="form-control" name="length" value="{{old('length')}}">
 
-          <label for="width">Width*</label>
+          <label for="width">Width</label>
           <input class="form-control" name="width" value="{{old('width')}}">
 
-          <label for="height">Height*</label>
+          <label for="height">Height</label>
           <input class="form-control" name="height" value="{{old('height')}}">
 
-          <label for="weight">Weight*</label>
+          <label for="weight">Weight</label>
           <input class="form-control" name="weight" value="{{old('weight')}}">
 
           <button type="submit" class="btn btn-primary">Create Parcel</button>

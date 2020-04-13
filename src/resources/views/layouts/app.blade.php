@@ -38,7 +38,7 @@
 
             <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#batchesCollapse" role="button" aria-expanded="false" aria-controls="batchesCollapse">Batches&nbsp;&nbsp;<i class="fas fa-layer-group"></i></a>
             <div class="collapse" id="batchesCollapse">
-                <a href="https://www.easypost.com/account/batches" class="nav-link" target="_blank">Visit the EasyPost Dashboard</a>
+                <a href="#" class="nav-link" target="_blank">Not Currently Supported via UI</a>
             </div>
 
             <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#carriersCollapse" role="button" aria-expanded="false" aria-controls="addressCollapse">Carriers&nbsp;&nbsp;<i class="fas fa-truck"></i></a>
@@ -52,11 +52,17 @@
 
             <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#insuranceCollapse" role="button" aria-expanded="false" aria-controls="insuranceCollapse">Insurance&nbsp;&nbsp;<i class="fas fa-dollar-sign"></i></a>
             <div class="collapse" id="insuranceCollapse">
+                <a href="#" data-toggle="modal" data-target="#createInsurance" class="nav-link">Create Insurance</a>
                 <a href="#" data-toggle="modal" data-target="#retrieveInsurance" class="nav-link">Retrieve Insurance</a>
                 <form action="/retrieve-insurances" method="POST" id="retrieveInsurances">
                     @csrf
                     <a href="#" onclick="document.getElementById('retrieveInsurances').submit();" class="nav-link">Retrieve all Insurance</a>
                 </form>      
+            </div>
+
+            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#ordersCollapse" role="button" aria-expanded="false" aria-controls="ordersCollapse">Orders&nbsp;&nbsp;<i class="fas fa-layer-group"></i></a>
+            <div class="collapse" id="ordersCollapse">
+                <a href="#" class="nav-link" target="_blank">Not Currently Supported via UI</a>
             </div>
 
             <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#parcelCollapse" role="button" aria-expanded="false" aria-controls="parcelCollapse">Parcels&nbsp;&nbsp;<i class="fas fa-box-open"></i></a>
@@ -65,9 +71,19 @@
                 <a href="#" data-toggle="modal" data-target="#retrieveParcel" class="nav-link">Retrieve Parcel</a>
             </div>
 
+            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#pickupsCollapse" role="button" aria-expanded="false" aria-controls="pickupsCollapse">Pickups&nbsp;&nbsp;<i class="fas fa-layer-group"></i></a>
+            <div class="collapse" id="pickupsCollapse">
+                <a href="#" class="nav-link" target="_blank">Not Currently Supported via UI</a>
+            </div>
+
             <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#reportsCollapse" role="button" aria-expanded="false" aria-controls="reportsCollapse">Reports&nbsp;&nbsp;<i class="fas fa-receipt"></i></a>
             <div class="collapse" id="reportsCollapse">
                 <a href="https://easypost.com/account/reports" class="nav-link" target="_blank">Visit the EasyPost Dashboard</a>
+            </div>
+
+            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#scanformsCollapse" role="button" aria-expanded="false" aria-controls="scanformsCollapse">Scanforms/Manifest&nbsp;&nbsp;<i class="fas fa-layer-group"></i></a>
+            <div class="collapse" id="scanformsCollapse">
+                <a href="#" class="nav-link" target="_blank">Not Currently Supported via UI</a>
             </div>
 
             <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#shipmentCollapse" role="button" aria-expanded="false" aria-controls="shipmentCollapse">Shipments&nbsp;&nbsp;<i class="fas fa-truck-loading"></i></a>
@@ -79,7 +95,7 @@
                     <a href="#" onclick="document.getElementById('retrieveShipments').submit();" class="nav-link">Retrieve all Shipments</a>
                 </form>
                 <a href="#" data-toggle="modal" data-target="#buyShipment" class="nav-link">Buy Shipment</a>
-                <a href="#" data-toggle="modal" data-target="#createRefund" class="nav-link">Refund</a>
+                <a href="#" data-toggle="modal" data-target="#createRefund" class="nav-link">Refund Shipment</a>
             </div>
 
             <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#trackerCollapse" role="button" aria-expanded="false" aria-controls="trackerCollapse">Trackers&nbsp;&nbsp;<i class="fas fa-map-marker-alt"></i></a>
