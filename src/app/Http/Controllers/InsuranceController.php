@@ -13,10 +13,10 @@ use Illuminate\Support\Facades\Crypt;
 class InsuranceController extends Controller
 {
     /**
-     * createInsurance
+     * Create an insurance
      *
      * @param Request $request
-     * @return void
+     * @return mixed
      */
     public function createInsurance(Request $request)
     {
@@ -33,12 +33,12 @@ class InsuranceController extends Controller
             request()->validate([
                 "to_street1"    => "required|string",
                 "to_street2"    => "nullable|string",
-                "to_city"       => "required|string",
-                "to_state"      => "required|string",
+                "to_city"       => "nullable|string",
+                "to_state"      => "nullable|string",
                 "to_zip"        => "required|string",
                 "to_country"    => "nullable|string",
                 "to_company"    => "nullable|string",
-                "to_phone"      => "nullable",
+                "to_phone"      => "nullable|string",
             ]);
         } else {
             request()->validate([
@@ -50,12 +50,12 @@ class InsuranceController extends Controller
             request()->validate([
                 "from_street1"   => "required|string",
                 "from_street2"   => "nullable|string",
-                "from_city"      => "required|string",
-                "from_state"     => "required|string",
+                "from_city"      => "nullable|string",
+                "from_state"     => "nullable|string",
                 "from_zip"       => "required|string",
                 "from_country"   => "nullable|string",
                 "from_company"   => "nullable|string",
-                "from_phone"     => "nullable",
+                "from_phone"     => "nullable|string",
             ]);
         } else {
             request()->validate([
@@ -67,7 +67,7 @@ class InsuranceController extends Controller
             "to_address"        => "required|string",
             "from_address"      => "required|string",
             "tracking_code"     => "required|string",
-            # "carrier"           => "required|string",
+            "carrier"           => "nullable|string",
             "amount"            => "required|string|max:5000",
         ]);
 
@@ -109,7 +109,7 @@ class InsuranceController extends Controller
                     "to_address" => $to_address,
                     "from_address" => $from_address,
                     "tracking_code" => request()->get("tracking_code"),
-                    # "carrier" => request()->get("carrier"),
+                    "carrier" => request()->get("carrier"),
                     "amount" => request()->get("amount"),
                 )
             );
@@ -124,10 +124,10 @@ class InsuranceController extends Controller
     }
 
     /**
-     * retrieveInsurance
+     * Retrieve an insurance
      *
      * @param Request $request
-     * @return void
+     * @return mixed
      */
     public function retrieveInsurance(Request $request)
     {
@@ -153,10 +153,10 @@ class InsuranceController extends Controller
     }
 
     /**
-     * retrieveInsurances
+     * Retrieve a list of insurances
      *
      * @param Request $request
-     * @return void
+     * @return mixed
      */
     public function retrieveInsurances(Request $request)
     {

@@ -12,10 +12,10 @@ use Illuminate\Support\Facades\Crypt;
 class CarrierController extends Controller
 {
     /**
-     * retrieveCarrier
+     * Retrieve a carrier account
      *
      * @param Request $request
-     * @return void
+     * @return mixed
      */
     public function retrieveCarrier(Request $request)
     {
@@ -41,10 +41,10 @@ class CarrierController extends Controller
     }
 
     /**
-     * retrieveCarriers
+     * Retrieve a list of carrier accounts
      *
      * @param Request $request
-     * @return void
+     * @return mixed
      */
     public function retrieveCarriers(Request $request)
     {

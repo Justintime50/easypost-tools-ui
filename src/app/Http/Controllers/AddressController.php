@@ -12,10 +12,10 @@ use Illuminate\Support\Facades\Crypt;
 class AddressController extends Controller
 {
     /**
-     * createAddress
+     * Create an address
      *
      * @param Request $request
-     * @return void
+     * @return mixed
      */
     public function createAddress(Request $request)
     {
@@ -31,12 +31,12 @@ class AddressController extends Controller
         request()->validate([
             "street1"   => "required|string",
             "street2"   => "nullable|string",
-            "city"      => "required|string",
-            "state"     => "required|string",
+            "city"      => "nullable|string",
+            "state"     => "nullable|string",
             "zip"       => "required|string",
             "country"   => "nullable|string",
             "company"   => "nullable|string",
-            "phone"     => "nullable",
+            "phone"     => "nullable|string",
         ]);
 
         try {
@@ -69,10 +69,10 @@ class AddressController extends Controller
     }
 
     /**
-     * retrieveAddress
+     * Retrieve an address
      *
      * @param Request $request
-     * @return void
+     * @return mixed
      */
     public function retrieveAddress(Request $request)
     {
@@ -98,10 +98,10 @@ class AddressController extends Controller
     }
 
     /**
-     * retrieveAddresses
+     * Retrieve a list of addresses
      *
      * @param Request $request
-     * @return void
+     * @return mixed
      */
     public function retrieveAddresses(Request $request)
     {

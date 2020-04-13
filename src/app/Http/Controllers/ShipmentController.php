@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Crypt;
 class ShipmentController extends Controller
 {
     /**
-     * createShipment
+     * Create a shipment
      */
     public function createShipment(Request $request)
     {
@@ -31,12 +31,12 @@ class ShipmentController extends Controller
             request()->validate([
                 "to_street1"    => "required|string",
                 "to_street2"    => "nullable|string",
-                "to_city"       => "required|string",
-                "to_state"      => "required|string",
+                "to_city"       => "nullable|string",
+                "to_state"      => "nullable|string",
                 "to_zip"        => "required|string",
                 "to_country"    => "nullable|string",
                 "to_company"    => "nullable|string",
-                "to_phone"      => "nullable",
+                "to_phone"      => "nullable|string",
             ]);
         } else {
             request()->validate([
@@ -48,12 +48,12 @@ class ShipmentController extends Controller
             request()->validate([
                 "from_street1"   => "required|string",
                 "from_street2"   => "nullable|string",
-                "from_city"      => "required|string",
-                "from_state"     => "required|string",
+                "from_city"      => "nullable|string",
+                "from_state"     => "nullable|string",
                 "from_zip"       => "required|string",
                 "from_country"   => "nullable|string",
                 "from_company"   => "nullable|string",
-                "from_phone"     => "nullable",
+                "from_phone"     => "nullable|string",
             ]);
         } else {
             request()->validate([
@@ -67,9 +67,9 @@ class ShipmentController extends Controller
 
         if (request()->get("parcel") == null && request()->get("predefined_package") == null) {
             request()->validate([
-                "length"    => "required|string",
-                "width"     => "required|string",
-                "height"    => "required|string",
+                "length"    => "nullable|string",
+                "width"     => "nullable|string",
+                "height"    => "nullable|string",
                 "weight"    => "required|string",
             ]);
         } elseif (request()->get("predefined_package") == null) {
@@ -172,7 +172,10 @@ class ShipmentController extends Controller
     }
 
     /**
-     * retrieveShipment
+     * Retrieve a shipment
+     *
+     * @param Request $request
+     * @return mixed
      */
     public function retrieveShipment(Request $request)
     {
@@ -198,10 +201,10 @@ class ShipmentController extends Controller
     }
 
     /**
-     * retrieveShipments
+     * Retrieve a list of shipments
      *
      * @param Request $request
-     * @return void
+     * @return mixed
      */
     public function retrieveShipments(Request $request)
     {
@@ -230,10 +233,10 @@ class ShipmentController extends Controller
     }
 
     /**
-     * createRefund
+     * Refund a shipment
      *
      * @param Request $request
-     * @return void
+     * @return mixed
      */
     public function createRefund(Request $request)
     {
@@ -260,7 +263,10 @@ class ShipmentController extends Controller
     }
 
     /**
-     * buyShipment
+     * Buy a Shipment
+     *
+     * @param Request $request
+     * @return mixed
      */
     public function buyShipment(Request $request)
     {

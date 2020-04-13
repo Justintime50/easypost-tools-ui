@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Crypt;
 class ParcelController extends Controller
 {
     /**
-     * createParcel
+     * Create a parcel
      */
     public function createParcel(Request $request)
     {
@@ -27,9 +27,9 @@ class ParcelController extends Controller
 
         if (request()->get("predefined_package") == null) {
             request()->validate([
-                "length"    => "required|string",
-                "width"     => "required|string",
-                "height"    => "required|string",
+                "length"    => "nullable|string",
+                "width"     => "nullable|string",
+                "height"    => "nullable|string",
                 "weight"    => "required|string",
             ]);
         } else {
@@ -66,7 +66,7 @@ class ParcelController extends Controller
     }
 
     /**
-     * retrieveParcel
+     * Retrieve a parcel
      */
     public function retrieveParcel(Request $request)
     {
