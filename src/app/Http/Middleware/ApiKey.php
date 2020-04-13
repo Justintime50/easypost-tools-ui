@@ -28,5 +28,6 @@ class ApiKey
             return redirect()->back();
         }
         EasyPost::setApiKey($api_key);
+        return $next($request);
     }
 }
