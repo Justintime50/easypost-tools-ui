@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\User;
+use \EasyPost\EasyPost;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Crypt;
 
