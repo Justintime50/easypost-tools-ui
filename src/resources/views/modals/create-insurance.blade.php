@@ -18,19 +18,19 @@
 
           <hr>
           
-          <label for="from_street1">Street 1*</label>
+          <label for="from_street1">Street 1</label>
           <input class="form-control" name="from_street1" value="{{old('from_street1')}}">
 
           <label for="from_street2">Street 2</label>
           <input class="form-control" name="from_street2" value="{{old('from_street2')}}">
 
-          <label for="from_city">City*</label>
+          <label for="from_city">City</label>
           <input class="form-control" name="from_city" value="{{old('from_city')}}">
 
-          <label for="from_state">State*</label>
+          <label for="from_state">State</label>
           <input class="form-control" name="from_state" value="{{old('from_state')}}">
 
-          <label for="from_zip">Zip*</label>
+          <label for="from_zip">Zip</label>
           <input class="form-control" name="from_zip" value="{{old('from_zip')}}">
 
           <label for="from_country">Country</label>
@@ -49,19 +49,19 @@
 
           <hr>
 
-          <label for="to_street1">Street 1*</label>
+          <label for="to_street1">Street 1</label>
           <input class="form-control" name="to_street1" value="{{old('to_street1')}}">
 
           <label for="to_street2">Street 2</label>
           <input class="form-control" name="to_street2" value="{{old('to_street2')}}">
 
-          <label for="to_city">City*</label>
+          <label for="to_city">City</label>
           <input class="form-control" name="to_city" value="{{old('to_city')}}">
 
-          <label for="to_state">State*</label>
+          <label for="to_state">State</label>
           <input class="form-control" name="to_state" value="{{old('to_state')}}">
 
-          <label for="to_zip">Zip*</label>
+          <label for="to_zip">Zip</label>
           <input class="form-control" name="to_zip" value="{{old('to_zip')}}">
 
           <label for="to_country">Country</label>
