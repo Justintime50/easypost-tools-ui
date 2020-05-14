@@ -7,14 +7,13 @@ services:
         container_name: easypost-ui
         volumes: 
             - ./src/storage:/var/www/html/storage
-            # - ./src/.env:/var/www/html/.env # to avoid needing to recreate the key every build
         networks:
             - easypost-ui
             - traefik
         labels:
             - traefik.enable=true
             - traefik.docker.network=traefik
-            - traefik.frontend.rule=Host:easypost.localhost
+            - traefik.frontend.rule=Host:easypost.justinpaulhammond.com,www.easypost.justinpaulhammond.com
             - traefik.port=80
 
     easypost-db:
