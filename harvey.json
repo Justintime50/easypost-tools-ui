@@ -1,0 +1,4 @@
+{
+    "pipeline": "deploy",
+    "compose": "docker-compose-traefik.yml"
+}
