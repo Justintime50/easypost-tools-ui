@@ -5,7 +5,8 @@
 Easily interact with the EasyPost API to order one-off packages and labels via a simple UI.
 
 [![Build Status](https://travis-ci.com/Justintime50/easypost-ui.svg?branch=master)](https://travis-ci.com/Justintime50/easypost-ui)
-[![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
+[![Coverage Status](https://coveralls.io/repos/github/Justintime50/easypost-ui/badge.svg?branch=master)](https://coveralls.io/github/Justintime50/easypost-ui?branch=master)
+[![Licence](https://img.shields.io/github/license/justintime50/easypost-ui)](LICENSE)
 
 <img src="assets/showcase.gif">
 
@@ -22,7 +23,7 @@ Easily interact with the EasyPost API to order one-off packages and labels via a
 
 ## How it Works
 
-The EasyPost API creates a label once it receives a `from_address`, `to_address`, `parcel`, and the user selects their preferred shipping rate/method. We verify the addresses and return a label for download. Print the label, slap it on your package, and drop it off at your carrier's location. That's it!
+The EasyPost API creates a label once it receives a `from_address`, `to_address`, `parcel`, and the user selects their preferred shipping rate/method. Print the label, slap it on your package, and drop it off at your carrier's location. That's it!
 
 ## Install
 
@@ -39,12 +40,14 @@ Once the project is setup, simply interact with the various links in the app to 
 - **Production:** Run `docker-compose up -d` in the project's root directory for any production deployments.
 - **Development:** Run `docker-compose up -f docker-compose-dev.yml -d` in the project's root directory for development deployments. <i>NOTE: You'll need to install project dependencies either manually inside the Docker container once it's up or outside of the Docker container and on your machine.</i>
 
-## Testing & Development
-
-Install project dependencies locally:
+## Development
 
 ```bash
-php composer.phar install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+# Install dev dependencies
+cd src && php composer.phar install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+
+# Run tests
+./src/vendor/bin/phpunit
 ```
 
 ### PHP Standards Fixer
@@ -53,14 +56,6 @@ PHP coding standards can be fixed automatically:
 
 ```bash
 ./src/vendor/bin/php-cs-fixer fix . --verbose --show-progress=estimating
-```
-
-### Testing
-
-Run unit tests:
-
-```bash
-./src/vendor/bin/phpunit
 ```
 
 ## Disclaimer

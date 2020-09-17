@@ -31,7 +31,6 @@ class AddressController extends Controller
         try {
             $address = Address::create(
                 array(
-                    "verify"  => array("delivery"),
                     "street1" => request()->get("street1"),
                     "street2" => request()->get("street2"),
                     "city"    => request()->get("city"),

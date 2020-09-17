@@ -77,7 +77,6 @@ class ShipmentController extends Controller
                 $to_address = Address::retrieve(request()->get("to_address"));
             } else {
                 $to_address = array(
-                    "verify"  => array("delivery"),
                     "street1" => request()->get("to_street1"),
                     "street2" => request()->get("to_street2"),
                     "city"    => request()->get("to_city"),
@@ -97,7 +96,6 @@ class ShipmentController extends Controller
                 $from_address = Address::retrieve(request()->get("from_address"));
             } else {
                 $from_address = array(
-                    "verify"  => array("delivery"),
                     "street1" => request()->get("from_street1"),
                     "street2" => request()->get("from_street2"),
                     "city"    => request()->get("from_city"),
