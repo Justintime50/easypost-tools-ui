@@ -10,15 +10,9 @@ php:
 
 before_install:
   - cp init-db.env.example init-db.env
-  - cd src
-  - cp .env.example .env
-
-install:
-  - composer self-update
-  - composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+  - cp src/.env.example src/.env
 
 script:
-  - shellcheck ../setup.sh
   - docker-compose up -d
   - docker ps | grep -q easypost-ui
   - docker ps | grep -q easypost-db
