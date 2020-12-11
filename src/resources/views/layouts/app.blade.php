@@ -26,7 +26,7 @@
     <div class="bg-light border-right" id="sidebar-wrapper">
         <h1 class="sidebar-heading"><a href="/">EasyPost UI</a></h1>
         <div class="list-group list-group-flush">
-            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#addressCollapse" role="button" aria-expanded="false" aria-controls="addressCollapse">Addresses&nbsp;&nbsp;<i class="fas fa-address-book"></i></a>
+            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#addressCollapse" role="button" aria-expanded="false" aria-controls="addressCollapse"><i class="fas fa-address-book"></i>&nbsp;&nbsp;Addresses</a>
             <div class="collapse" id="addressCollapse">
                 <a href="#" data-toggle="modal" data-target="#createAddress" class="nav-link">Create Address</a>
                 <a href="#" data-toggle="modal" data-target="#retrieveAddress" class="nav-link">Retrieve Address</a>
@@ -36,12 +36,12 @@
                 </form>
             </div>
 
-            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#batchesCollapse" role="button" aria-expanded="false" aria-controls="batchesCollapse">Batches&nbsp;&nbsp;<i class="fas fa-layer-group"></i></a>
+            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#batchesCollapse" role="button" aria-expanded="false" aria-controls="batchesCollapse"><i class="fas fa-layer-group"></i>&nbsp;&nbsp;Batches</a>
             <div class="collapse" id="batchesCollapse">
-                <a href="#" class="nav-link" target="_blank">Not Currently Supported via UI</a>
+                <a href="#" class="nav-link">Not Currently Supported via UI</a>
             </div>
 
-            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#carriersCollapse" role="button" aria-expanded="false" aria-controls="addressCollapse">Carriers&nbsp;&nbsp;<i class="fas fa-truck"></i></a>
+            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#carriersCollapse" role="button" aria-expanded="false" aria-controls="addressCollapse"><i class="fas fa-truck"></i>&nbsp;&nbsp;Carriers</a>
             <div class="collapse" id="carriersCollapse">
                 <form action="/retrieve-carriers" method="POST" id="retrieveCarriers">
                     @csrf
@@ -50,7 +50,7 @@
                 </form>
             </div>
 
-            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#insuranceCollapse" role="button" aria-expanded="false" aria-controls="insuranceCollapse">Insurance&nbsp;&nbsp;<i class="fas fa-dollar-sign"></i></a>
+            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#insuranceCollapse" role="button" aria-expanded="false" aria-controls="insuranceCollapse"><i class="fas fa-dollar-sign"></i>&nbsp;&nbsp;Insurance</a>
             <div class="collapse" id="insuranceCollapse">
                 <a href="#" data-toggle="modal" data-target="#createInsurance" class="nav-link">Create Insurance</a>
                 <a href="#" data-toggle="modal" data-target="#retrieveInsurance" class="nav-link">Retrieve Insurance</a>
@@ -60,33 +60,33 @@
                 </form>      
             </div>
 
-            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#ordersCollapse" role="button" aria-expanded="false" aria-controls="ordersCollapse">Orders&nbsp;&nbsp;<i class="fas fa-layer-group"></i></a>
+            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#ordersCollapse" role="button" aria-expanded="false" aria-controls="ordersCollapse"><i class="fas fa-layer-group"></i>&nbsp;&nbsp;Orders</a>
             <div class="collapse" id="ordersCollapse">
-                <a href="#" class="nav-link" target="_blank">Not Currently Supported via UI</a>
+                <a href="#" class="nav-link">Not Currently Supported via UI</a>
             </div>
 
-            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#parcelCollapse" role="button" aria-expanded="false" aria-controls="parcelCollapse">Parcels&nbsp;&nbsp;<i class="fas fa-box-open"></i></a>
+            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#parcelCollapse" role="button" aria-expanded="false" aria-controls="parcelCollapse"><i class="fas fa-box-open"></i>&nbsp;&nbsp;Parcels</a>
             <div class="collapse" id="parcelCollapse">
                 <a href="#" data-toggle="modal" data-target="#createParcel" class="nav-link">Create Parcel</a>
                 <a href="#" data-toggle="modal" data-target="#retrieveParcel" class="nav-link">Retrieve Parcel</a>
             </div>
 
-            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#pickupsCollapse" role="button" aria-expanded="false" aria-controls="pickupsCollapse">Pickups&nbsp;&nbsp;<i class="fas fa-layer-group"></i></a>
+            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#pickupsCollapse" role="button" aria-expanded="false" aria-controls="pickupsCollapse"><i class="fas fa-layer-group"></i>&nbsp;&nbsp;Pickups</a>
             <div class="collapse" id="pickupsCollapse">
-                <a href="#" class="nav-link" target="_blank">Not Currently Supported via UI</a>
+                <a href="#" class="nav-link">Not Currently Supported via UI</a>
             </div>
 
-            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#reportsCollapse" role="button" aria-expanded="false" aria-controls="reportsCollapse">Reports&nbsp;&nbsp;<i class="fas fa-receipt"></i></a>
+            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#reportsCollapse" role="button" aria-expanded="false" aria-controls="reportsCollapse"><i class="fas fa-receipt"></i>&nbsp;&nbsp;Reports</a>
             <div class="collapse" id="reportsCollapse">
                 <a href="https://easypost.com/account/reports" class="nav-link" target="_blank">Visit the EasyPost Dashboard</a>
             </div>
 
-            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#scanformsCollapse" role="button" aria-expanded="false" aria-controls="scanformsCollapse">Scanforms/Manifest&nbsp;&nbsp;<i class="fas fa-layer-group"></i></a>
+            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#scanformsCollapse" role="button" aria-expanded="false" aria-controls="scanformsCollapse"><i class="fas fa-layer-group"></i>&nbsp;&nbsp;Scanforms/Manifest</a>
             <div class="collapse" id="scanformsCollapse">
-                <a href="#" class="nav-link" target="_blank">Not Currently Supported via UI</a>
+                <a href="#" class="nav-link">Not Currently Supported via UI</a>
             </div>
 
-            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#shipmentCollapse" role="button" aria-expanded="false" aria-controls="shipmentCollapse">Shipments&nbsp;&nbsp;<i class="fas fa-truck-loading"></i></a>
+            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#shipmentCollapse" role="button" aria-expanded="false" aria-controls="shipmentCollapse"><i class="fas fa-truck-loading"></i>&nbsp;&nbsp;Shipments</a>
             <div class="collapse" id="shipmentCollapse">
                 <a href="#" data-toggle="modal" data-target="#createShipment" class="nav-link">Create Shipment</a>
                 <a href="#" data-toggle="modal" data-target="#retrieveShipment" class="nav-link">Retrieve Shipment</a>
@@ -98,7 +98,7 @@
                 <a href="#" data-toggle="modal" data-target="#createRefund" class="nav-link">Refund Shipment</a>
             </div>
 
-            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#trackerCollapse" role="button" aria-expanded="false" aria-controls="trackerCollapse">Trackers&nbsp;&nbsp;<i class="fas fa-map-marker-alt"></i></a>
+            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#trackerCollapse" role="button" aria-expanded="false" aria-controls="trackerCollapse"><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;Trackers</a>
             <div class="collapse" id="trackerCollapse">
                 <a href="#" data-toggle="modal" data-target="#createTracker" class="nav-link">Create Tracker</a>
                 <a href="#" data-toggle="modal" data-target="#retrieveTracker" class="nav-link">Retrieve Tracker</a>
@@ -108,7 +108,7 @@
                 </form>  
             </div>
 
-            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#webhooksCollapse" role="button" aria-expanded="false" aria-controls="webhooksCollapse">Webhooks&nbsp;&nbsp;<i class="fas fa-calendar-alt"></i></a>
+            <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#webhooksCollapse" role="button" aria-expanded="false" aria-controls="webhooksCollapse"><i class="fas fa-calendar-alt"></i>&nbsp;&nbsp;Webhooks</a>
             <div class="collapse" id="webhooksCollapse">
                 <a href="https://www.easypost.com/account/webhooks-and-events" class="nav-link" target="_blank">Visit the EasyPost Dashboard</a>
             </div>
