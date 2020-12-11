@@ -16,5 +16,5 @@ script:
   - docker-compose up -d
   - docker ps | grep -q easypost-ui
   - docker ps | grep -q easypost-db
-  - ./vendor/bin/phpunit
-  - ./vendor/bin/phplint ./src --exclude=vendor
+  # - ./vendor/bin/phpunit
+  # - ./vendor/bin/phplint ./src --exclude=vendor
