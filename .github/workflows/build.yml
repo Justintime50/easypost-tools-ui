@@ -1,0 +1,19 @@
+name: build
+
+on: [push, pull_request]
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Setup Traefik
+        run: docker network create traefik
+      - name: Setup Docker container
+        run: |
+          cp src/.env.example src/.env
+          cp init-db.env.example init-db.env
+          docker-compose up -d
+          docker ps | grep -q easypost-ui
+          docker ps | grep -q easypost-db
