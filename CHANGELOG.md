@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v0.3.0 (2021-02-09)
+
+* Remove `composer.phar` from repo (storing binaries in git is bad) and use updated Docker image that contains composer installed
+* Switch from Travis CI to GitHub Actions
+* Bumped dependencies
+
 ## v0.2.2 (2020-12-11)
 
 * Fixed links to nowhere from opening in a new tab (closes #31)
