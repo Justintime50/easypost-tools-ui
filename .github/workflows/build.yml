@@ -17,6 +17,10 @@ jobs:
           docker-compose up -d
           docker ps | grep -q easypost-ui
           docker ps | grep -q easypost-db
+      - name: Migrate database
+        run: |
+          sleep 15
+          docker exec -t easypost-ui php artisan migrate
   lint:
     runs-on: ubuntu-latest
     steps:
