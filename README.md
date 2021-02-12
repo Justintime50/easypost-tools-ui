@@ -55,8 +55,17 @@ Once the project is setup, simply interact with the various links in the app to 
 
 ```bash
 # Install dev dependencies
-cd src && php composer.phar install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+cd src && composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
 
-# Run tests
-./src/vendor/bin/phpunit
+# Lint the project
+./src/bin/phplint . --exclude=vendor
+
+# Compile SASS and Javascript during development
+npm run dev
+
+# Compile for production
+npm run prod
+
+# Watch for CSS and Javascript changes
+npm run watch
 ```
