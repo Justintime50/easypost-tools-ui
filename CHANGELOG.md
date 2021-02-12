@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v0.3.1 (2021-02-12)
+
+* Now using Laravel Mix to compile assets
+* Bumped dependencies
+
 ## v0.3.0 (2021-02-09)
 
 * Remove `composer.phar` from repo (storing binaries in git is bad) and use updated Docker image that contains composer installed
