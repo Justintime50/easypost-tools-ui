@@ -14,7 +14,7 @@ jobs:
         run: |
           cp src/.env.example src/.env
           cp init-db.env.example init-db.env
-          docker-compose up -d
+          docker-compose -f docker-compose.yml -f docker-compose-prod.yml up -d
           docker ps | grep -q easypost-ui
           docker ps | grep -q easypost-db
       - name: Migrate database
