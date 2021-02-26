@@ -13,12 +13,16 @@ Create shipping labels, track, insure, and refund packages all from a simple UI.
 
 ## What Can it Do?
 
+The EasyPost UI is a proof of concept on how to build a complete shipping solution using the EasyPost API.
+
 - Create shipments and printable labels with upwards of 100 carriers
 - Retrieve addresses, carriers, insurance, parcels, shipments, and trackers from EasyPost
 - Track a package
 - Insure a package
 - Refund a shipment
 - Support multiple users with unique logins and EasyPost API keys
+
+As this project is a proof of concept, it may be missing some EasyPost features. If you'd like to support its continued development, feel free to sponsor or star the project!
 
 ## How it Works
 
@@ -33,11 +37,11 @@ The EasyPost API allows you to create shipping labels with some of the biggest p
 cp src/.env.example src/.env
 cp init-db.env.example init-db.env
 
-# Start the Docker containers (edit docker-compose.yml to your needs prior)
+# Run the dev environment (assumes you have Traefik setup)
 docker-compose up -d
 
 # Generate a Laravel key
-docker exec -it easypost-ui php artisan key:generate
+cd src && php artisan key:generate
 
 # Run database migrations once the database container is up and able to access connections
 docker exec -it easypost-ui php artisan migrate
@@ -45,9 +49,16 @@ docker exec -it easypost-ui php artisan migrate
 
 ## Usage
 
-Navigate to `localhost:8000` in a browser. Register an account and add your API Key on the `/account` page. You're all set!
+Navigate to `easypostui.localhost` in a browser (you'll need to add this to your `/etc/hosts` file). Register an account and add your API Key on the `/account` page. You're all set!
 
 Once the project is setup, simply interact with the various links in the app to interact with the API. Create records, retrieve them, and purchase shipping labels all without needing to do the hard work of mapping an API.
+
+### Deploy to Production
+
+```bash
+# Deploy the project to production
+docker-compose -f docker-compose.yml -f docker-compose-prod.yml up -d
+```
 
 ## Development
 

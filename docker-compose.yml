@@ -1,28 +1,33 @@
-version: "3.7"
 services:
-
-    easypost-ui:
-        build: .
-        restart: always
-        container_name: easypost-ui
-        volumes: 
-            - ./src/storage:/var/www/html/storage
-        ports:
-            - "8000:80"
-        networks:
-            - easypost-ui
-
-    easypost-db:
-        image: mysql:8.0.18
-        restart: always
-        container_name: easypost-db
-        env_file:
-            - init-db.env
-        volumes:
-            - ./db:/var/lib/mysql
-        networks:
-            - easypost-ui
+  easypost-ui:
+    build: .
+    restart: always
+    container_name: easypost-ui
+    env_file:
+      - src/.env
+    networks:
+      - easypost-ui
+      - traefik
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik
+      - traefik.port=80
+  easypost-db:
+    image: mysql:8.0.23
+    restart: always
+    container_name: easypost-db
+    env_file:
+      - init-db.env
+    volumes:
+      - ./db:/var/lib/mysql
+    networks:
+      - easypost-ui
+    labels:
+      - traefik.enable=false
 
 networks:
-    easypost-ui:
-        name: easypost-ui
+  easypost-ui:
+    name: easypost-ui
+  traefik:
+    external:
+      name: traefik

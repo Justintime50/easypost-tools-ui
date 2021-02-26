@@ -1,0 +1,4 @@
+services:
+  easypost-ui:
+    labels:
+      - traefik.frontend.rule=Host:easypost.justinpaulhammond.com,www.easypost.justinpaulhammond.com

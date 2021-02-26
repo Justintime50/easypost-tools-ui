@@ -1,0 +1,8 @@
+services:
+  easypost-ui:
+    labels:
+      - traefik.frontend.rule=Host:easypostui.localhost
+    volumes:
+      - ./src:/var/www/html
+    # ports:
+    #     - "3306:3306"
