@@ -1,4 +1,4 @@
 {
     "pipeline": "deploy",
-    "compose": "docker-compose-traefik.yml"
+    "compose": "docker-compose.yml -f docker-compose-prod.yml"
 }
