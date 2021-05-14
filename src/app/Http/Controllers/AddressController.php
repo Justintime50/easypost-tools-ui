@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use \EasyPost\EasyPost;
-use \EasyPost\Address;
+use EasyPost\EasyPost;
+use EasyPost\Address;
 use Auth;
 
 class AddressController extends Controller
@@ -91,7 +91,7 @@ class AddressController extends Controller
         }
 
         $response = $addresses;
-        $json = json_decode($response); 
+        $json = json_decode($response);
 
         session()->flash("message", "ADDRESSES RETRIEVED");
         return view("addresses")->with(["json" => $json]);

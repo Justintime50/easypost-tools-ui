@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use \EasyPost\EasyPost;
-use \EasyPost\Tracker;
+use EasyPost\EasyPost;
+use EasyPost\Tracker;
 use Auth;
 
 class TrackerController extends Controller
@@ -74,7 +74,7 @@ class TrackerController extends Controller
         }
 
         $response = $trackers;
-        $json = json_decode($response); 
+        $json = json_decode($response);
 
         session()->flash("message", "TRACKERS RETRIEVED");
         return view("trackers")->with(["json" => $json]);

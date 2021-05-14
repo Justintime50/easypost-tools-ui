@@ -35,4 +35,4 @@ jobs:
       - name: Install Dependencies
         run: cd src && composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
       - name: Lint
-        run: cd src && ./bin/phplint . --exclude=vendor
+        run: cd src && ./bin/phpcs

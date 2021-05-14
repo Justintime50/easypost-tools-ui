@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use \EasyPost\EasyPost;
-use \EasyPost\Shipment;
-use \EasyPost\Address;
-use \EasyPost\Parcel;
+use EasyPost\EasyPost;
+use EasyPost\Shipment;
+use EasyPost\Address;
+use EasyPost\Parcel;
 use Auth;
 
 class ShipmentController extends Controller
@@ -143,7 +143,7 @@ class ShipmentController extends Controller
         }
 
         $response = $shipment;
-        $json = json_decode($response); 
+        $json = json_decode($response);
 
         $rates = $shipment->rates;
 
@@ -195,7 +195,7 @@ class ShipmentController extends Controller
         }
 
         $response = $shipments;
-        $json = json_decode($response); 
+        $json = json_decode($response);
 
         session()->flash("message", "SHIPMENTS RETRIEVED");
         return view("shipments")->with(["json" => $json]);
