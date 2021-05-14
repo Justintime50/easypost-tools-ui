@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use \EasyPost\EasyPost;
-use \EasyPost\Parcel;
+use EasyPost\EasyPost;
+use EasyPost\Parcel;
 use Auth;
 
 class ParcelController extends Controller
@@ -35,12 +35,12 @@ class ParcelController extends Controller
                     "weight"                => request()->get("weight"),
                 ));
             } else {
-            $parcel = Parcel::create(
-                array(
-                    "length"    => request()->get("length"),
-                    "width"     => request()->get("width"),
-                    "height"    => request()->get("height"),
-                    "weight"    => request()->get("weight"),
+                $parcel = Parcel::create(
+                    array(
+                        "length"    => request()->get("length"),
+                        "width"     => request()->get("width"),
+                        "height"    => request()->get("height"),
+                        "weight"    => request()->get("weight"),
                     )
                 );
             }

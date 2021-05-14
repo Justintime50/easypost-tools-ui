@@ -67,7 +67,12 @@
                     <tr>
                         <td>{{ $rate->carrier }}</td>
                         <td>{{ $rate->service }}</td>
-                        <td><?php if ($rate->currency == "USD") echo "$"; ?>{{ $rate->rate }}</td>
+                        <td>
+                            <?php if ($rate->currency == "USD") {
+                                echo "$";
+                            }
+                            ?>{{ $rate->rate }}
+                        </td>
                         <td>{{ $rate->currency }}</td>
                         <td>{{ $rate->est_delivery_days }}</td>
                         <form action="/buy-shipment" method="POST">

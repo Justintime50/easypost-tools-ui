@@ -8,7 +8,14 @@
                 @if (isset($json->postage_label->label_url))
                     <div><a class="btn btn-primary btn-label" href="{{ $json->postage_label->label_url }}" download="{{ $json->id }}" target="_blank">DOWNLOAD LABEL&nbsp;<i class="fas fa-download"></i></a></div>
                 @endif
-            <pre><?php if(isset($json)) { echo $json; } else { echo "No record has been retrieved."; } ?></pre>
+            <pre>
+                <?php if (isset($json)) {
+                    echo $json;
+                } else {
+                    echo "No record has been retrieved.";
+                }
+                ?>
+            </pre>
         </div>
     </div>
 

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use \EasyPost\EasyPost;
-use \EasyPost\Insurance;
-use \EasyPost\Address;
+use EasyPost\EasyPost;
+use EasyPost\Insurance;
+use EasyPost\Address;
 use Auth;
 
 class InsuranceController extends Controller
@@ -76,7 +76,7 @@ class InsuranceController extends Controller
                     "phone"   => request()->get("to_phone"),
                 );
             }
-    
+
             if (request()->get("from_address") != null) {
                 $from_address = Address::retrieve(request()->get("from_address"));
             } else {
@@ -147,7 +147,7 @@ class InsuranceController extends Controller
         }
 
         $response = $insurances;
-        $json = json_decode($response); 
+        $json = json_decode($response);
 
         session()->flash("message", "INSURANCES RETRIEVED");
         return view("insurance")->with(["json" => $json]);
