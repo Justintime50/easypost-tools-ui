@@ -1,4 +1,4 @@
-FROM justintime50/laravel:7.4
+FROM justintime50/nginx-php:7.4-7
 
 COPY --chown=www-data:www-data ./src /var/www/html
 
