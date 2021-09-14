@@ -1,4 +1,0 @@
-{
-    "pipeline": "deploy",
-    "compose": "docker-compose.yml -f docker-compose-prod.yml"
-}

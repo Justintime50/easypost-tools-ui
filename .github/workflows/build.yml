@@ -36,3 +36,15 @@ jobs:
         run: cd src && composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
       - name: Lint
         run: cd src && composer lint
+  deploy:
+    needs: ["docker", "lint"]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Harvey
+        if: github.ref == 'refs/heads/main'
+        uses: distributhor/workflow-webhook@v2
+        env:
+          webhook_type: "json-extended"
+          webhook_url: ${{ secrets.WEBHOOK_URL }}
+          webhook_secret: ${{ secrets.WEBHOOK_SECRET }}
+          data: '{ "pipeline": "deploy", "compose" : "docker-compose.yml -f docker-compose-prod.yml" }'
