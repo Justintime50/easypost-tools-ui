@@ -7,7 +7,7 @@ Create shipping labels, track, insure, and refund packages all from a simple UI.
 [![Build Status](https://github.com/Justintime50/easypost-ui/workflows/build/badge.svg)](https://github.com/Justintime50/easypost-ui/actions)
 [![Licence](https://img.shields.io/github/license/justintime50/easypost-ui)](LICENSE)
 
-<img src="assets/showcase.gif" alt="Showcase">
+<img src="https://raw.githubusercontent.com/justintime50/assets/main/src/easypost-ui/showcase.gif" alt="Showcase">
 
 </div>
 
