@@ -13,7 +13,7 @@ services:
       - traefik.docker.network=traefik
       - traefik.port=80
   easypost-db:
-    image: mysql:8.0.23
+    image: mariadb:10.6.4
     restart: always
     container_name: easypost-db
     env_file:
