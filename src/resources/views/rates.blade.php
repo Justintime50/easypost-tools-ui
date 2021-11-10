@@ -76,7 +76,7 @@
                         <td>{{ $rate->currency }}</td>
                         <td>{{ $rate->est_delivery_days }}</td>
                         <form action="/buy-shipment" method="POST">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            @csrf
                             <input type="hidden" name="shipment_id" value="{{ $json->id }}">
                             <input type="hidden" name="rate_id" value="{{ $rate->id }}">
                             <td>

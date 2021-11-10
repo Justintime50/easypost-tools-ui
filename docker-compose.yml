@@ -1,33 +1,19 @@
 services:
-  easypost-ui:
+  easypost-tools-ui:
     build: .
-    restart: always
-    container_name: easypost-ui
+    restart: unless-stopped
     env_file:
       - src/.env
     networks:
-      - easypost-ui
+      - easypost-tools-ui
       - traefik
     labels:
       - traefik.enable=true
       - traefik.docker.network=traefik
       - traefik.port=80
-  easypost-db:
-    image: mariadb:10.6.4
-    restart: always
-    container_name: easypost-db
-    env_file:
-      - init-db.env
-    volumes:
-      - ./db:/var/lib/mysql
-    networks:
-      - easypost-ui
-    labels:
-      - traefik.enable=false
 
 networks:
-  easypost-ui:
-    name: easypost-ui
   traefik:
-    external:
-      name: traefik
+    name: traefik
+  easypost-tools-ui:
+    name: easypost-tools-ui

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use EasyPost\EasyPost;
 use EasyPost\Parcel;
-use Auth;
 
 class ParcelController extends Controller
 {

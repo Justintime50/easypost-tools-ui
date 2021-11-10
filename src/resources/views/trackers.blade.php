@@ -16,7 +16,7 @@
                 @foreach ($json->trackers as $tracker)
                     <tr>
                         <form action="/retrieve-tracker" method="POST">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            @csrf
                             <input type="hidden" name="id" value="{{ $tracker->id }}">
                             <td><button class="btn btn-primary btn-sm btn-table"><?php echo substr($tracker->id, 0, 10); ?>...</button></td>
                         </form>

@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use EasyPost\EasyPost;
 use EasyPost\Insurance;
 use EasyPost\Address;
-use Auth;
 
 class InsuranceController extends Controller
 {

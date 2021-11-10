@@ -1,19 +1,19 @@
 <div align="center">
 
-# EasyPost UI
+# EasyPost Tools UI
 
 Create shipping labels, track, insure, and refund packages all from a simple UI.
 
-[![Build Status](https://github.com/Justintime50/easypost-ui/workflows/build/badge.svg)](https://github.com/Justintime50/easypost-ui/actions)
-[![Licence](https://img.shields.io/github/license/justintime50/easypost-ui)](LICENSE)
+[![Build Status](https://github.com/Justintime50/easypost-tools-ui/workflows/build/badge.svg)](https://github.com/Justintime50/easypost-tools-ui/actions)
+[![Licence](https://img.shields.io/github/license/justintime50/easypost-tools-ui)](LICENSE)
 
-<img src="https://raw.githubusercontent.com/justintime50/assets/main/src/easypost-ui/showcase.gif" alt="Showcase">
+<img src="https://raw.githubusercontent.com/justintime50/assets/main/src/easypost-tools-ui/showcase.gif" alt="Showcase">
 
 </div>
 
 ## What Can it Do?
 
-The EasyPost UI is a proof of concept on how to build a complete shipping solution using the EasyPost API.
+The EasyPost Tools UI is a proof of concept on how to build a complete shipping solution using the EasyPost API.
 
 - Create shipments and printable labels with upwards of 100 carriers
 - Retrieve addresses, carriers, insurance, parcels, shipments, and trackers from EasyPost
@@ -30,28 +30,27 @@ The EasyPost API allows you to create shipping labels with some of the biggest p
 
 ## Install
 
-**EasyPost API:** You'll need a test or production API key from [EasyPost's website](https://easypost.com). Create an account and grab the API key you'd like to use. If using your production API key, make sure to setup billing info on your EasyPost account.
-
 ```bash
-# Copy the env file and db init file, then edit both before continuing. The DB values must match in both files
-cp src/.env.example src/.env
-cp init-db.env.example init-db.env
-
-# Run the dev environment (assumes you have Traefik setup)
-docker-compose up -d
+# Setup env variables
+cp src/.env-example src/.env
 
 # Generate a Laravel key
 cd src && php artisan key:generate
 
+# Run the dev environment (assumes you have Traefik setup)
+docker-compose up -d
+
 # Run database migrations once the database container is up and able to access connections
-docker exec -it easypost-ui php artisan migrate
+docker exec -it easypost-tools-ui-easypost-tools-ui-1 php artisan migrate
 ```
 
 ## Usage
 
-Navigate to `easypostui.localhost` in a browser (you'll need to add this to your `/etc/hosts` file). Register an account and add your API Key on the `/account` page. You're all set!
+Navigate to `easyposttools.localhost` locally or https://easyposttools.com in production.
 
 Once the project is setup, simply interact with the various links in the app to interact with the API. Create records, retrieve them, and purchase shipping labels all without needing to do the hard work of mapping an API.
+
+**EasyPost API:** You'll need a test or production API key from [EasyPost's website](https://easypost.com). Create an account and grab the API key you'd like to use. If using your production API key, make sure to setup billing info on your EasyPost account.
 
 ### Deploy to Production
 
