@@ -11,18 +11,24 @@
 |
 */
 
-Route::get('/', function () {
-    return view('app');
-});
-Route::get('/app', function () {
-    return view('app');
-});
-Route::get('/home', function () {
-    return view('app');
+Route::post('logout', 'Auth\LoginController@logout'); // Includes custom logic (logout url) - must come before "Auth::routes();"
+Auth::routes();
+
+Route::middleware('auth')->group(function () {
+    Route::get('/', function () {
+        return view('app');
+    });
+    Route::get('/app', function () {
+        return view('app');
+    });
+
+    Route::get('/account', 'HomeController@index')->name('account');
+
+    Route::post('/update-api-key', 'UserController@updateApiKey');
 });
 
-// Use a single middleware for ApiKey for all CRUD actions
-Route::middleware('ApiKey')->group(function () {
+// Decrypt and use the API key from the user's account on POST routes
+Route::middleware(['auth', 'ApiKey'])->group(function () {
     Route::post('/create-address', 'AddressController@createAddress');
     Route::post('/retrieve-address', 'AddressController@retrieveAddress');
     Route::post('/retrieve-addresses', 'AddressController@retrieveAddresses');
@@ -36,7 +42,7 @@ Route::middleware('ApiKey')->group(function () {
     Route::post('/retrieve-shipments', 'ShipmentController@retrieveShipments');
     Route::post('/buy-shipment', 'ShipmentController@buyShipment');
 
-    Route::post('/create-tracker', 'TrackerController@createTracker');
+    Route::post('/create-tracking', 'TrackerController@createTracker');
     Route::post('/retrieve-tracker', 'TrackerController@retrieveTracker');
     Route::post('/retrieve-trackers', 'TrackerController@retrieveTrackers');
 
