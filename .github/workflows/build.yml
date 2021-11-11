@@ -13,7 +13,7 @@ jobs:
       - name: Setup Docker container
         run: |
           cp src/.env-example src/.env
-          cp init-db.env-example init-db.env
+          cp database.env-example database.env
           docker-compose -f docker-compose.yml -f docker-compose-prod.yml up -d
           docker ps | grep -q easypost-tools-ui-easypost-tools-ui-1
           docker ps | grep -q easypost-tools-ui-easypost-tools-ui-2
