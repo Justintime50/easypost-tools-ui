@@ -21,8 +21,8 @@ jobs:
           docker-compose -f docker-compose.yml -f docker-compose-prod.yml up -d
           docker ps | grep -q easypost-tools-ui-easypost-tools-ui-1
           docker ps | grep -q easypost-tools-ui-easypost-tools-ui-2
-          docker ps | grep -q easypost-tools-ui-easypost-tools-ui-db-1
-          docker ps | grep -q easypost-tools-ui-easypost-tools-ui-db-replica-1
+          docker ps | grep -q easypost-tools-ui-easypost-tools-db-1
+          docker ps | grep -q easypost-tools-ui-easypost-tools-db-replica-1
       - name: Migrate database
         run: |
           sleep 15
