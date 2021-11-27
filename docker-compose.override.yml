@@ -1,6 +1,6 @@
 services:
-  easypost-ui:
+  easypost-tools-ui:
     labels:
-      - traefik.frontend.rule=Host:easypostui.localhost
+      - traefik.frontend.rule=Host:easyposttools.localhost
     volumes:
       - ./src:/var/www/html

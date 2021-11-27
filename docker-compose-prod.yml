@@ -1,6 +1,9 @@
 services:
-  easypost-ui:
+  easypost-tools-ui:
+    deploy:
+      replicas: 2
     labels:
-      - traefik.frontend.rule=Host:ui.easyposttools.com,www.ui.easyposttools.com
+      - traefik.frontend.rule=Host:easyposttools.com,www.easyposttools.com
+    # TODO: Do we use a named volume here or backup this folder somewhere?
     volumes:
       - ./src/storage:/var/www/html/storage

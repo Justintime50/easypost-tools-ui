@@ -6,10 +6,10 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h3>EasyPost UI</h3>
+                    <h3>{{ config('app.name') }}</h3>
                 </div>
                 <div class="card-body">
-                    <p>EasyPost UI is a user interface to interact with the <a href="https://easypost.com">EasyPost API</a>. Simply signup for an account on their site, grab your API key, and enter it here on your EasyPost UI account and start creating shipments, printing labels, and sending parcels.</p>
+                    <p>EasyPost Tools is a user interface to interact with the <a href="https://easypost.com">EasyPost API</a>. Simply signup for an account on their site, grab your API key, and enter it here on your EasyPost Tools account and start creating shipments, printing labels, and sending parcels.</p>
                     <p>New here? <a href="{{ route('register') }}">Register an account</a></p>
                 </div>
             </div>

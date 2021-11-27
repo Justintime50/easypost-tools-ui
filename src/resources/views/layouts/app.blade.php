@@ -24,7 +24,7 @@
     <div class="d-flex" id="wrapper">
 
     <div class="bg-light border-right" id="sidebar-wrapper">
-        <h1 class="sidebar-heading"><a href="/">EasyPost UI</a></h1>
+        <h1 class="sidebar-heading"><a href="/">{{ config('app.name') }}</a></h1>
         <div class="list-group list-group-flush">
             <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#addressCollapse" role="button" aria-expanded="false" aria-controls="addressCollapse"><i class="fas fa-address-book"></i>&nbsp;&nbsp;Addresses</a>
             <div class="collapse" id="addressCollapse">
@@ -130,7 +130,7 @@
                 @auth
                     <a class="nav-link" href="https://www.easypost.com/docs/api" target="_blank">EasyPost API Docs</a>
                     <a class="nav-link" href="mailto:support@easypost.com" target="_blank">EasyPost Support</a>
-                    <a class="nav-link" href="https://github.com/Justintime50/easypost-ui" target="_blank">GitHub</a>
+                    <a class="nav-link" href="https://github.com/Justintime50/easypost-tools-ui" target="_blank">GitHub</a>
                     <a class="nav-link" href="{{ url('/account') }}">Account</a>
                     <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">Logout</a>
                         <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -138,7 +138,7 @@
                         </form>
                 @else
                     <a class="nav-link" href="https://www.easypost.com/docs/api" target="_blank">API Docs</a>
-                    <a class="nav-link" href="https://github.com/Justintime50/easypost-ui" target="_blank">GitHub</a>
+                    <a class="nav-link" href="https://github.com/Justintime50/easypost-tools-ui" target="_blank">GitHub</a>
                     <a class="nav-link" href="{{ route('login') }}">Login</a>
                     @if (Route::has('register'))
                         <a class="nav-link" href="{{ route('register') }}">Register</a>
@@ -162,6 +162,7 @@
         @include('modals.create-refund')
         @include('modals.buy-shipment')
         @include('modals.retrieve-carrier')
+
         <!-- LARAVEL ERRORS -->
         <div class="container-fluid" style="padding:0px;">
             @if ($errors->any())

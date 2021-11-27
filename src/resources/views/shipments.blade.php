@@ -7,7 +7,7 @@
             <p>Select a shipment ID to view all details for that record.</p>
             @foreach ($json->shipments as $shipment)
                 <form action="/retrieve-shipment" method="POST">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    @csrf
                     <input type="hidden" name="id" value="{{ $shipment->id }}">
                     <button class="btn btn-primary btn-sm btn-shipment"><?php echo substr($shipment->id, 0, 10); ?>...</button>
                     <p>Created at: {{ $shipment->created_at }}</p>

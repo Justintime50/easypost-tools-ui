@@ -16,7 +16,7 @@
                 @foreach ($json as $carrier)
                     <tr>
                         <form action="/retrieve-carrier" method="POST">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            @csrf
                             <input type="hidden" name="id" value="{{ $carrier->id }}">
                             <td>
                                 <button class="btn btn-primary btn-sm btn-table"><?php echo substr($carrier->id, 0, 10); ?>...</button>

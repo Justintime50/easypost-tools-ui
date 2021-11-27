@@ -8,19 +8,25 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
+      # TODO: Once GitHub Actions runs `docker-compose` v2, remove this step
+      - name: Setup Docker Compose v2
+        run: |
+          curl -LJs https://github.com/docker/compose/releases/download/v2.1.0/docker-compose-linux-x86_64 > /usr/local/bin/docker-compose
       - name: Setup Traefik
         run: docker network create traefik
       - name: Setup Docker container
         run: |
-          cp src/.env.example src/.env
-          cp init-db.env.example init-db.env
+          cp src/.env-example src/.env
+          cp database.env-example database.env
           docker-compose -f docker-compose.yml -f docker-compose-prod.yml up -d
-          docker ps | grep -q easypost-ui
-          docker ps | grep -q easypost-db
+          docker ps | grep -q easypost-tools-ui-easypost-tools-ui-1
+          docker ps | grep -q easypost-tools-ui-easypost-tools-ui-2
+          docker ps | grep -q easypost-tools-ui-easypost-tools-db-1
+          docker ps | grep -q easypost-tools-ui-easypost-tools-db-replica-1
       - name: Migrate database
         run: |
           sleep 15
-          docker exec -t easypost-ui php artisan migrate
+          docker exec -t easypost-tools-ui-easypost-tools-ui-1 php artisan migrate
   lint:
     runs-on: ubuntu-latest
     steps:

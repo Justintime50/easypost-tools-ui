@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use EasyPost\EasyPost;
 use EasyPost\Address;
-use Auth;
 
 class AddressController extends Controller
 {
@@ -46,11 +45,6 @@ class AddressController extends Controller
         }
 
         $response = $address;
-
-        if ($address->verifications->delivery->success == false) {
-            session()->flash("error", "ADDRESS ENTERED IS NOT A VERIFIED ADDRESS BUT THE RECORD WAS CREATED ANYWAY.");
-            return redirect()->back()->with(["response" => $response]);
-        }
 
         session()->flash("message", "ADDRESS CREATED");
         return redirect("/")->with(["response" => $response]);

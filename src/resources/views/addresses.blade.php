@@ -18,7 +18,7 @@
                 @foreach ($json->addresses as $address)
                     <tr>
                         <form action="/retrieve-address" method="POST">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            @csrf
                             <input type="hidden" name="id" value="{{ $address->id }}">
                             <td>
                                 <button class="btn btn-primary btn-sm btn-table"><?php echo substr($address->id, 0, 10); ?>...</button>

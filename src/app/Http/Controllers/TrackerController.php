@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use EasyPost\EasyPost;
 use EasyPost\Tracker;
-use Auth;
 
 class TrackerController extends Controller
 {

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use EasyPost\EasyPost;
 use EasyPost\CarrierAccount;
-use Auth;
 
 class CarrierController extends Controller
 {

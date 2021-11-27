@@ -7,7 +7,6 @@ use EasyPost\EasyPost;
 use EasyPost\Shipment;
 use EasyPost\Address;
 use EasyPost\Parcel;
-use Auth;
 
 class ShipmentController extends Controller
 {
