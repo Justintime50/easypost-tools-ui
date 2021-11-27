@@ -33,6 +33,7 @@ The EasyPost API allows you to create shipping labels with some of the biggest p
 ```bash
 # Setup env variables
 cp src/.env-example src/.env
+cp database.env-example database.env
 
 # Generate a Laravel key
 cd src && php artisan key:generate
