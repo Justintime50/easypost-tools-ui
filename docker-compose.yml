@@ -1,7 +1,7 @@
 services:
   easypost-tools-ui:
     build: .
-    restart: unless-stopped
+    restart: always
     env_file:
       - src/.env
     networks:
@@ -12,8 +12,8 @@ services:
       - traefik.docker.network=traefik
       - traefik.port=80
   easypost-tools-db:
-    image: 'bitnami/mariadb:10.6.4'
-    restart: unless-stopped
+    image: 'bitnami/mariadb:10.6.5'
+    restart: always
     volumes:
       - database-data:/bitnami/mariadb
     environment:
@@ -26,8 +26,8 @@ services:
     labels:
       - traefik.enable=false
   easypost-tools-db-replica:
-    image: 'bitnami/mariadb:10.6.4'
-    restart: unless-stopped
+    image: 'bitnami/mariadb:10.6.5'
+    restart: always
     depends_on:
       - easypost-tools-db
     environment:
