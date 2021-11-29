@@ -53,4 +53,4 @@ jobs:
           webhook_type: "json-extended"
           webhook_url: ${{ secrets.WEBHOOK_URL }}
           webhook_secret: ${{ secrets.WEBHOOK_SECRET }}
-          data: '{ "pipeline": "deploy", "compose" : "docker-compose.yml -f docker-compose-prod.yml" }'
+          data: '{ "pipeline": "deploy", "prod_compose": true, "healthcheck": ["easypost-tools-ui-easypost-tools-1", "easypost-tools-ui-easypost-tools-2", "easypost-tools-ui-easypost-tools-db-1", "easypost-tools-ui-easypost-tools-db-replica-1"] }'
