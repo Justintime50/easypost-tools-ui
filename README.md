@@ -24,6 +24,8 @@ The EasyPost Tools UI is a proof of concept on how to build a complete shipping 
 
 As this project is a proof of concept, it may be missing some EasyPost features. If you'd like to support its continued development, feel free to sponsor or star the project!
 
+**See the accompanying [EasyPost Tools](https://github.com/Justintime50/easypost-tools) repo for additional tooling not available via the UI.**
+
 ## How it Works
 
 The EasyPost API allows you to create shipping labels with some of the biggest parcel carriers in the space. Supply a `from_address`, `to_address`, `parcel`, and preferred shipping rate/method. Print the label, slap it on your package, and drop it off at your carrier's location. That's it!
@@ -31,18 +33,11 @@ The EasyPost API allows you to create shipping labels with some of the biggest p
 ## Install
 
 ```bash
-# Setup env variables
-cp src/.env-example src/.env
-cp database.env-example database.env
+# Copy the env files, edit as needed
+cp src/.env-example src/.env && cp database.env-example database.env
 
-# Generate a Laravel key
-cd src && php artisan key:generate
-
-# Run the dev environment (assumes you have Traefik setup)
-docker-compose up -d
-
-# Run database migrations once the database container is up and able to access connections
-docker exec -it easypost-tools-ui-easypost-tools-ui-1 php artisan migrate
+# Run the setup script which will bootstrap all the requirements, spin up the service, and migrate the database
+./setup.sh
 ```
 
 ## Usage
@@ -53,11 +48,14 @@ Once the project is setup, simply interact with the various links in the app to 
 
 **EasyPost API:** You'll need a test or production API key from [EasyPost's website](https://easypost.com). Create an account and grab the API key you'd like to use. If using your production API key, make sure to setup billing info on your EasyPost account.
 
-### Deploy to Production
+### Deploy
 
 ```bash
-# Deploy the project to production
-docker-compose -f docker-compose.yml -f docker-compose-prod.yml up -d
+# Deploy the project locally
+docker compose up -d
+
+# Deploy the project in production
+docker compose -f docker-compose.yml -f docker-compose-prod.yml up -d
 ```
 
 ## Development
@@ -65,8 +63,18 @@ docker-compose -f docker-compose.yml -f docker-compose-prod.yml up -d
 **NOTE:** To use dev dependencies, you'll need to install project dependencies outside of the Docker container on your machine.
 
 ```bash
-# Install dev dependencies
-cd src && composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+# Install dependencies
+composer install
+
+# Migrate the database
+composer migrate
+composer migrate-fresh
+
+# Clean the database
+composer db-clean
+
+# Seed the database
+composer seed
 
 # Lint the project
 composer lint
