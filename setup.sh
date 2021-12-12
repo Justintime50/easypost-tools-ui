@@ -8,6 +8,7 @@ main() {
 
     # Install dependencies
     composer install
+    npm install
 
     # Generate a Laravel key
     php artisan key:generate
