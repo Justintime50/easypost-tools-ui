@@ -62,7 +62,7 @@
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="display-none">
                                         @csrf
                                     </form>
                                 </div>
@@ -74,7 +74,7 @@
         </nav>
 
         <!-- LARAVEL ERRORS -->
-        <div class="container-fluid" style="padding:0px;">
+        <div class="container-fluid padding-0">
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>

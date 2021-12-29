@@ -3,7 +3,7 @@
 
     <div class="container">
         <!-- LARAVEL ERRORS -->
-        <div class="container-fluid" style="padding:0px; margin-top:20px;">
+        <div class="container-fluid" class="padding-0 top-margin-20">
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>

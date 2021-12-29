@@ -133,7 +133,7 @@
                     <a class="nav-link" href="https://github.com/Justintime50/easypost-tools-ui" target="_blank">GitHub</a>
                     <a class="nav-link" href="{{ url('/account') }}">Account</a>
                     <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">Logout</a>
-                        <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        <form id="frm-logout" action="{{ route('logout') }}" method="POST" class="display-none">
                             {{ csrf_field() }}
                         </form>
                 @else
@@ -164,7 +164,7 @@
         @include('modals.retrieve-carrier')
 
         <!-- LARAVEL ERRORS -->
-        <div class="container-fluid" style="padding:0px;">
+        <div class="container-fluid padding-0">
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
