@@ -2,7 +2,8 @@
 
 ## NEXT RELEASE
 
-* Bumps Laravel from v6 to v8
+* Bumps Laravel from v6 to v9
+* Bumps PHP from 7.4 to 8.1
 * Bumps all dependencies
 
 ## v0.3.1 (2021-02-12)
