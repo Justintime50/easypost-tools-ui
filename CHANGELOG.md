@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## NEXT RELEASE
+
+* Bumps Laravel from v6 to v7
+* Bumps all dependencies
+
 ## v0.3.1 (2021-02-12)
 
 * Now using Laravel Mix to compile assets
