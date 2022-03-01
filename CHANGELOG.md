@@ -1,10 +1,11 @@
 # CHANGELOG
 
-## NEXT RELEASE
+## v0.4.0 (2022-03-01)
 
 * Bumps Laravel from v6 to v9
 * Bumps PHP from 7.4 to 8.1
 * Bumps all dependencies
+* Fixed a bug where the `create insurance` modal wouldn't open
 
 ## v0.3.1 (2021-02-12)
 
