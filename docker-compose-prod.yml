@@ -1,13 +1,13 @@
+version: "3.8"
 services:
   easypost-tools-ui:
     deploy:
       replicas: 2
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://localhost" ]
-      interval: 60s
+      interval: 30s
       timeout: 10s
       retries: 3
-      start_period: 30s
     labels:
       - traefik.frontend.rule=Host:easyposttools.com,www.easyposttools.com
     # TODO: Do we use a named volume here or backup this folder somewhere?
