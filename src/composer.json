@@ -12,7 +12,8 @@
         "easypost/easypost-php": "^5.0",
         "laravel/framework": "^9.0",
         "laravel/tinker": "^2.7",
-        "laravel/ui": "^3.4"
+        "laravel/ui": "^3.4",
+        "sentry/sentry-laravel": "^2.11"
     },
     "require-dev": {
         "spatie/laravel-ignition": "^1.0",
