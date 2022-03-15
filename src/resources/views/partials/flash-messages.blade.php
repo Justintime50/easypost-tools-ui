@@ -17,7 +17,3 @@
     <p class="alert alert-danger {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('error') }}</p>
     @endif
 </div>
-
-<main class="py-4">
-    @yield('content')
-</main>

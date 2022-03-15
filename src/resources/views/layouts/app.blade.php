@@ -4,19 +4,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ config('app.name', 'EasyPost Tools') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/stylesheet.css') }}" rel="stylesheet">
-
-    <title>{{ config('app.name') }}</title>
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 </head>
 
 <body>
-
     <div class="d-flex" id="wrapper">
         {{-- Left sidebar --}}
         <div class="bg-light border-right" id="sidebar-wrapper">
@@ -158,8 +152,9 @@
             {{-- Top navbar --}}
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                 <div class="container-fluid">
-                    <button class="btn btn-primary" id="menu-toggle">Toggle Sidebar&nbsp;&nbsp;<i
-                            class="fas fa-toggle-on"></i></button>
+                    <button class="btn btn-primary" id="menu-toggle" onclick="toggleSidebar()">
+                        Toggle Sidebar&nbsp;&nbsp;<i class="fas fa-toggle-on"></i>
+                    </button>
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -168,8 +163,7 @@
                     </button>
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        {{-- TODO: Fix these so this gets right aligned --}}
-                        <ul class="navbar-nav ms-auto ms-2 ms-lg-0">
+                        <ul class="navbar-nav ms-auto">
                             @auth
                             <a class="nav-link" href="https://www.easypost.com/docs/api" target="_blank">EasyPost API
                                 Docs</a>
@@ -180,7 +174,7 @@
                             <a class="nav-link" href="{{ route('logout') }}"
                                 onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">Logout</a>
                             <form id="frm-logout" action="{{ route('logout') }}" method="POST" class="display-none">
-                                {{ csrf_field() }}
+                                @csrf
                             </form>
                             @else
                             <a class="nav-link" href="https://www.easypost.com/docs/api" target="_blank">API Docs</a>
@@ -216,20 +210,18 @@
 
                 @yield('content')
             </main>
-
-            <!-- Scripts -->
-            <script src="{{ asset('js/app.js') }}" defer></script>
-            <script src="https://kit.fontawesome.com/0dd4ecd465.js" crossorigin="anonymous"></script>
-
-            <script>
-                // TODO: This needs vanilla JS
-                $("#menu-toggle").click(function(e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
-            </script>
-
         </div>
+    </div>
 </body>
+
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}" defer></script>
+<script src="https://kit.fontawesome.com/0dd4ecd465.js" crossorigin="anonymous"></script>
+<script>
+    function toggleSidebar() {
+    const menuWrapper = document.getElementById("wrapper")
+    menuWrapper.classList.toggle("toggled");
+}
+</script>
 
 </html>
