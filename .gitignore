@@ -1,3 +1,4 @@
 .idea
 .DS_Store
 *.env
+src/public/js/app.js.LICENSE.txt
