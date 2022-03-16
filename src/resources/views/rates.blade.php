@@ -70,8 +70,8 @@
                     <td>
                         <?php if ($rate->currency == "USD") {
                                 echo "$";
-                            }
-                            ?>{{ $rate->rate }}
+                        }
+                        ?>{{ $rate->rate }}
                     </td>
                     <td>{{ $rate->currency }}</td>
                     <td>{{ $rate->est_delivery_days }}</td>
