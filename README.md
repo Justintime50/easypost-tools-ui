@@ -15,7 +15,7 @@ Create shipping labels, track, insure, and refund packages all from a simple UI.
 
 The EasyPost Tools UI is a proof of concept on how to build a complete shipping solution using the EasyPost API.
 
-- Create shipments and printable labels with upwards of 100 carriers
+- Create shipments and printable parcel labels & envelope stamps with upwards of 100 carriers
 - Retrieve addresses, carriers, insurance, parcels, shipments, and trackers from EasyPost
 - Track a package
 - Insure a package

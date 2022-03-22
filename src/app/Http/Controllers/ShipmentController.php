@@ -6,7 +6,6 @@ use EasyPost\Address;
 use EasyPost\CarrierAccount;
 use EasyPost\Parcel;
 use EasyPost\Shipment;
-use Illuminate\Http\Request;
 
 class ShipmentController extends Controller
 {
@@ -73,62 +72,66 @@ class ShipmentController extends Controller
             ]);
         }
 
-        try {
-            if (request()->get("to_address") != null) {
+        if (request()->get("to_address") != null) {
+            try {
                 $to_address = Address::retrieve(request()->get("to_address"));
-            } else {
-                $to_address = [
-                    "street1" => request()->get("to_street1"),
-                    "street2" => request()->get("to_street2"),
-                    "city"    => request()->get("to_city"),
-                    "state"   => request()->get("to_state"),
-                    "zip"     => request()->get("to_zip"),
-                    "country" => request()->get("to_country"),
-                    "company" => request()->get("to_company"),
-                    "phone"   => request()->get("to_phone"),
-                ];
+            } catch (\EasyPost\Error $exception) {
+                return back()->withError($exception->getMessage())->withInput();
             }
-        } catch (\EasyPost\Error $exception) {
-            return back()->withError($exception->getMessage())->withInput();
+        } else {
+            $to_address = [
+                "street1" => request()->get("to_street1"),
+                "street2" => request()->get("to_street2"),
+                "city"    => request()->get("to_city"),
+                "state"   => request()->get("to_state"),
+                "zip"     => request()->get("to_zip"),
+                "country" => request()->get("to_country"),
+                "company" => request()->get("to_company"),
+                "phone"   => request()->get("to_phone"),
+            ];
         }
 
-        try {
-            if (request()->get("from_address") != null) {
+        if (request()->get("from_address") != null) {
+            try {
                 $from_address = Address::retrieve(request()->get("from_address"));
-            } else {
-                $from_address = [
-                    "street1" => request()->get("from_street1"),
-                    "street2" => request()->get("from_street2"),
-                    "city"    => request()->get("from_city"),
-                    "state"   => request()->get("from_state"),
-                    "zip"     => request()->get("from_zip"),
-                    "country" => request()->get("from_country"),
-                    "company" => request()->get("from_company"),
-                    "phone"   => request()->get("from_phone"),
-                ];
+            } catch (\EasyPost\Error $exception) {
+                return back()->withError($exception->getMessage())->withInput();
             }
-        } catch (\EasyPost\Error $exception) {
-            return back()->withError($exception->getMessage())->withInput();
+        } else {
+            $from_address = [
+                "street1" => request()->get("from_street1"),
+                "street2" => request()->get("from_street2"),
+                "city"    => request()->get("from_city"),
+                "state"   => request()->get("from_state"),
+                "zip"     => request()->get("from_zip"),
+                "country" => request()->get("from_country"),
+                "company" => request()->get("from_company"),
+                "phone"   => request()->get("from_phone"),
+            ];
         }
 
-        try {
-            if (request()->get("parcel") != null) {
+        if (request()->get("parcel") != null) {
+            try {
                 $parcel = Parcel::retrieve(request()->get("parcel"));
-            } elseif (request()->get("predefined_package") != null) {
+            } catch (\EasyPost\Error $exception) {
+                return back()->withError($exception->getMessage())->withInput();
+            }
+        } elseif (request()->get("predefined_package") != null) {
+            try {
                 $parcel = Parcel::create([
                     "predefined_package"    => request()->get("predefined_package"),
                     "weight"                => request()->get("weight"),
                 ]);
-            } else {
-                $parcel = [
-                    "length"    => request()->get("length"),
-                    "width"     => request()->get("width"),
-                    "height"    => request()->get("height"),
-                    "weight"    => request()->get("weight"),
-                ];
+            } catch (\EasyPost\Error $exception) {
+                return back()->withError($exception->getMessage())->withInput();
             }
-        } catch (\EasyPost\Error $exception) {
-            return back()->withError($exception->getMessage())->withInput();
+        } else {
+            $parcel = [
+                "length"    => request()->get("length"),
+                "width"     => request()->get("width"),
+                "height"    => request()->get("height"),
+                "weight"    => request()->get("weight"),
+            ];
         }
 
         try {
@@ -281,46 +284,42 @@ class ShipmentController extends Controller
             ]);
         }
 
-        if (request()->get("parcel") != null && request()->get("predefined_package") != null) {
-            return back()->withError("Either a Parcel ID or a predefined package may be specified, not both.")->withInput();
-        }
-
-        try {
-            if (request()->get("to_address") != null) {
+        if (request()->get("to_address") != null) {
+            try {
                 $to_address = Address::retrieve(request()->get("to_address"));
-            } else {
-                $to_address = [
-                    "street1" => request()->get("to_street1"),
-                    "street2" => request()->get("to_street2"),
-                    "city"    => request()->get("to_city"),
-                    "state"   => request()->get("to_state"),
-                    "zip"     => request()->get("to_zip"),
-                    "country" => 'United States',
-                    "company" => request()->get("to_company"),
-                    "phone"   => request()->get("to_phone"),
-                ];
+            } catch (\EasyPost\Error $exception) {
+                return back()->withError($exception->getMessage())->withInput();
             }
-        } catch (\EasyPost\Error $exception) {
-            return back()->withError($exception->getMessage())->withInput();
+        } else {
+            $to_address = [
+                "street1" => request()->get("to_street1"),
+                "street2" => request()->get("to_street2"),
+                "city"    => request()->get("to_city"),
+                "state"   => request()->get("to_state"),
+                "zip"     => request()->get("to_zip"),
+                "country" => 'United States',
+                "company" => request()->get("to_company"),
+                "phone"   => request()->get("to_phone"),
+            ];
         }
 
-        try {
-            if (request()->get("from_address") != null) {
+        if (request()->get("from_address") != null) {
+            try {
                 $from_address = Address::retrieve(request()->get("from_address"));
-            } else {
-                $from_address = [
-                    "street1" => request()->get("from_street1"),
-                    "street2" => request()->get("from_street2"),
-                    "city"    => request()->get("from_city"),
-                    "state"   => request()->get("from_state"),
-                    "zip"     => request()->get("from_zip"),
-                    "country" => 'United States',
-                    "company" => request()->get("from_company"),
-                    "phone"   => request()->get("from_phone"),
-                ];
+            } catch (\EasyPost\Error $exception) {
+                return back()->withError($exception->getMessage())->withInput();
             }
-        } catch (\EasyPost\Error $exception) {
-            return back()->withError($exception->getMessage())->withInput();
+        } else {
+            $from_address = [
+                "street1" => request()->get("from_street1"),
+                "street2" => request()->get("from_street2"),
+                "city"    => request()->get("from_city"),
+                "state"   => request()->get("from_state"),
+                "zip"     => request()->get("from_zip"),
+                "country" => 'United States',
+                "company" => request()->get("from_company"),
+                "phone"   => request()->get("from_phone"),
+            ];
         }
 
         $parcel = [
@@ -328,9 +327,14 @@ class ShipmentController extends Controller
             "weight"                => 1,
         ];
 
+        try {
+            $carrier_accounts = CarrierAccount::all();
+        } catch (\EasyPost\Error $exception) {
+            return back()->withError($exception->getMessage())->withInput();
+        }
+
         // Naive approach of grabbing the first USPS carrier account, this is not intended to be robust but convenient
         // We also call this out on the frontend so the user knows
-        $carrier_accounts = CarrierAccount::all();
         foreach ($carrier_accounts as $carrier_account) {
             if ($carrier_account->type == 'UspsAccount') {
                 $usps = $carrier_account;

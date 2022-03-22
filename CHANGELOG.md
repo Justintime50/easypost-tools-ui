@@ -1,7 +1,9 @@
 # CHANGELOG
 
-## NEXT RELEASE
+## v0.5.0 (2022-03-21)
 
+- Add the ability to buy a USPS stamp (uses the first USPS carrier account on file, USA addresses only)
+- Cleaned up error handling with shipment API calls
 - Adds `sentry` integration
 
 ## v0.4.0 (2022-03-01)
