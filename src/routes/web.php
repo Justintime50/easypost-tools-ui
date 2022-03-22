@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,6 +44,7 @@ Route::middleware(['auth', 'ApiKey'])->group(function () {
     Route::post('/retrieve-shipment', 'ShipmentController@retrieveShipment');
     Route::post('/retrieve-shipments', 'ShipmentController@retrieveShipments');
     Route::post('/buy-shipment', 'ShipmentController@buyShipment');
+    Route::post('/buy-stamp', 'ShipmentController@buyStamp');
 
     Route::post('/create-tracking', 'TrackerController@createTracker');
     Route::post('/retrieve-tracker', 'TrackerController@retrieveTracker');

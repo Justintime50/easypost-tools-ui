@@ -118,9 +118,10 @@
                         <a href="#" onclick="document.getElementById('retrieveShipments').submit();"
                             class="nav-link">Retrieve all Shipments</a>
                     </form>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#buyShipment" class="nav-link">Buy Shipment</a>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#buyShipment" class="nav-link">Buy a Shipment</a>
                     <a href="#" data-bs-toggle="modal" data-bs-target="#createRefund" class="nav-link">Refund
                         Shipment</a>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#buyStamp" class="nav-link">Buy a Stamp</a>
                 </div>
 
                 <a class="list-group-item list-group-item-action bg-light" data-bs-toggle="collapse"
@@ -193,6 +194,7 @@
             <main>
                 <!-- Import all modals -->
                 @include('modals.buy-shipment')
+                @include('modals.buy-stamp')
                 @include('modals.create-address')
                 @include('modals.create-insurance')
                 @include('modals.create-parcel')
