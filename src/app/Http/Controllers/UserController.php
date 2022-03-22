@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Auth;
 use App\Models\User;
-use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
 class UserController extends Controller
@@ -16,7 +15,7 @@ class UserController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function updateApiKey(Request $request)
+    public function updateApiKey()
     {
         request()->validate([
             'api_key' => 'required|string',

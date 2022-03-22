@@ -1,10 +1,11 @@
 # CHANGELOG
 
-## v0.5.0 (2022-03-21)
+## v0.5.0 (2022-03-22)
 
 - Add the ability to buy a USPS stamp (uses the first USPS carrier account on file, USA addresses only)
 - Cleaned up error handling with shipment API calls
 - Adds `sentry` integration
+- Bumps MariaDB from `10.6.5` to `10.6.7`
 
 ## v0.4.0 (2022-03-01)
 
