@@ -148,10 +148,13 @@ a:hover {
 
 .btn-primary {
     background-color: #2396fb;
+    // override Bootstrap 5 default
+    color: #fff;
 }
 .btn-primary:hover {
     background-color: #303f9f;
     border: solid 1px #303f9f;
+    color: #fff;
 }
 .btn-label {
     margin-bottom: 40px;
@@ -197,11 +200,6 @@ table {
 
 .top-margin-20 {
     margin-top: 20px;
-}
-
-.btn-primary {
-    // override Bootstrap 5 default
-    color: #fff;
 }
 
 .card {
