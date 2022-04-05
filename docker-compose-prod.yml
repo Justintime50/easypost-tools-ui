@@ -10,7 +10,7 @@ services:
       retries: 3
     labels:
       - traefik.frontend.rule=Host:easyposttools.com,www.easyposttools.com
-    # TODO: Do we use a named volume here or backup this folder somewhere?
     volumes:
-      - ./src/storage:/var/www/html/storage
+      - ./src/storage/logs:/var/www/html/storage/logs
+      - ./src/storage/app/public:/var/www/html/storage/app/public
   # The `easypost-tools-db` and `easypost-tools-db-replica` containers will automatically restart on a failure, no custom healthcheck needed
