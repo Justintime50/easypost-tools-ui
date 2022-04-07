@@ -12,30 +12,15 @@ services:
       - traefik.enable=true
       - traefik.docker.network=traefik
       - traefik.port=80
+    depends_on:
+       - easypost-tools-db
   easypost-tools-db:
-    image: 'bitnami/mariadb:10.6.7'
+    image: 'mariadb:10.8.2'
     restart: always
     volumes:
-      - database-data:/bitnami/mariadb
-    environment:
-      - MARIADB_REPLICATION_MODE=master
-      - MARIADB_SKIP_TEST_DB=yes
+      - database-data:/var/lib/mysql
     env_file:
-      - database.env
-    networks:
-      - easypost-tools-ui
-    labels:
-      - traefik.enable=false
-  easypost-tools-db-replica:
-    image: 'bitnami/mariadb:10.6.7'
-    restart: always
-    depends_on:
-      - easypost-tools-db
-    environment:
-      - MARIADB_REPLICATION_MODE=slave
-      - MARIADB_MASTER_HOST=easypost-tools-db
-    env_file:
-      - database.env
+      - .env
     networks:
       - easypost-tools-ui
     labels:

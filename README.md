@@ -34,7 +34,7 @@ The EasyPost API allows you to create shipping labels with some of the biggest p
 
 ```bash
 # Copy the env files, edit as needed
-cp src/.env-example src/.env && cp database.env-example database.env
+cp src/.env-example src/.env && cp .env-example .env
 
 # Run the setup script which will bootstrap all the requirements, spin up the service, and migrate the database
 ./setup.sh
