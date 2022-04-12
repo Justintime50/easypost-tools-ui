@@ -2,6 +2,6 @@ version: "3.8"
 services:
   easypost-tools-ui:
     labels:
-      - traefik.frontend.rule=Host:easyposttools.localhost
+      - "traefik.http.routers.easyposttools.rule=Host(`easyposttools.localhost`)"
     volumes:
       - ./src:/var/www/html

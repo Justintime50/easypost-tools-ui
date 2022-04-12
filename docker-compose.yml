@@ -10,8 +10,6 @@ services:
       - traefik
     labels:
       - traefik.enable=true
-      - traefik.docker.network=traefik
-      - traefik.port=80
     depends_on:
        - easypost-tools-db
   easypost-tools-db:
@@ -23,8 +21,6 @@ services:
       - .env
     networks:
       - easypost-tools-ui
-    labels:
-      - traefik.enable=false
 
 volumes:
   database-data:

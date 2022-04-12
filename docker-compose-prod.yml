@@ -9,7 +9,9 @@ services:
       timeout: 10s
       retries: 3
     labels:
-      - traefik.frontend.rule=Host:easyposttools.com,www.easyposttools.com
+      - "traefik.http.routers.easyposttools.rule=Host(`easyposttools.com`) || Host(`www.easyposttools.com`)"
+      - "traefik.http.routers.easyposttools.tls=true"
+      - "traefik.http.routers.easyposttools.tls.certresolver=letsencrypt"
     volumes:
       - ./src/storage/logs:/var/www/html/storage/logs
       - ./src/storage/app/public:/var/www/html/storage/app/public
