@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## NEXT RELEASE
+
+- Adds recaptcha to registration (when keys/secrets are present in the env)
+
 ## v0.5.0 (2022-03-22)
 
 - Add the ability to buy a USPS stamp (uses the first USPS carrier account on file, USA addresses only)
