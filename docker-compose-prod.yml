@@ -3,6 +3,13 @@ services:
   easypost-tools-ui:
     deploy:
       replicas: 2
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: "512M"
+        reservations:
+          cpus: "0.25"
+          memory: "128M"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost"]
       interval: 30s
@@ -16,6 +23,14 @@ services:
       - ./src/storage/logs:/var/www/html/storage/logs
       - ./src/storage/app/public:/var/www/html/storage/app/public
   easypost-tools-db:
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: "512M"
+        reservations:
+          cpus: "0.25"
+          memory: "128M"
       healthcheck:
         test: ["CMD", "mysql", "-u${MARIADB_USER}", "-p${MARIADB_PASSWORD}", "-e", "show databases;"]
         interval: 30s
