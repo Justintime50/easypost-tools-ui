@@ -7,6 +7,7 @@
     <file>src</file>
 
     <!-- What to exclude -->
+    <exclude-pattern>*.blade.php</exclude-pattern>
     <exclude-pattern>*/bin/*</exclude-pattern>
     <exclude-pattern>*/bootstrap/*</exclude-pattern>
     <exclude-pattern>*/database/*</exclude-pattern>

@@ -1,6 +1,5 @@
-@extends("layouts.app")
-@section("content")
-
+@extends('layouts.app')
+@section('content')
     <div class="response-wrapper">
         <div class="response">
             <h2>Shipments</h2>
@@ -12,7 +11,9 @@
                     <button class="btn btn-primary btn-sm btn-shipment"><?php echo substr($shipment->id, 0, 10); ?>...</button>
                     <p>Created at: {{ $shipment->created_at }}</p>
                     @if (isset($shipment->postage_label->label_url))
-                        <div><a class="btn btn-primary btn-label btn-sm" href="{{ $shipment->postage_label->label_url }}" download="{{ $shipment->id }}" target="_blank">DOWNLOAD LABEL&nbsp;<i class="fas fa-download"></i></a></div>
+                        <div><a class="btn btn-primary btn-label btn-sm" href="{{ $shipment->postage_label->label_url }}"
+                                download="{{ $shipment->id }}" target="_blank">DOWNLOAD LABEL&nbsp;<i
+                                    class="fas fa-download"></i></a></div>
                     @endif
                 </form>
                 <div class="row">
@@ -52,7 +53,7 @@
                             <b>Width:</b> {{ $shipment->parcel->width }} inches<br />
                             <b>Height:</b> {{ $shipment->parcel->height }} inches<br />
                             <b>Weight:</b> {{ $shipment->parcel->weight }} ounces<br />
-                            <b>Predefined Package:</b> {{ $shipment->parcel->predefined_package }} 
+                            <b>Predefined Package:</b> {{ $shipment->parcel->predefined_package }}
                         </p>
                     </div>
                 </div>
@@ -60,5 +61,4 @@
             @endforeach
         </div>
     </div>
-
 @endsection

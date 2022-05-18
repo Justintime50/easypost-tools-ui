@@ -5,7 +5,7 @@
         <p>Shipments can be refunded if they have not been scanned yet and were created in the last 30 days.</p>
 
         <label for="id">Shipment ID</label>
-        <input class="form-control" name="id" value="{{old('id')}}">
+        <input class="form-control" name="id" value="{{ old('id') }}">
 
         {{-- We do not close the form here because we do so at the component level --}}
 </x-modal>

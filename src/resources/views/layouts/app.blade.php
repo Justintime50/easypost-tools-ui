@@ -58,7 +58,8 @@
                 <div class="collapse" id="insuranceCollapse">
                     <a href="#" data-bs-toggle="modal" data-bs-target="#createInsurance" class="nav-link">Create
                         Insurance</a>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#retrieveInsurance" class="nav-link">Retrieve
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#retrieveInsurance"
+                        class="nav-link">Retrieve
                         Insurance</a>
                     <form action="/retrieve-insurances" method="POST" id="retrieveInsurances">
                         @csrf
@@ -78,7 +79,8 @@
                     href="#parcelCollapse" role="button" aria-expanded="false" aria-controls="parcelCollapse"><i
                         class="fas fa-box-open"></i>&nbsp;&nbsp;Parcels</a>
                 <div class="collapse" id="parcelCollapse">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#createParcel" class="nav-link">Create Parcel</a>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#createParcel" class="nav-link">Create
+                        Parcel</a>
                     <a href="#" data-bs-toggle="modal" data-bs-target="#retrieveParcel" class="nav-link">Retrieve
                         Parcel</a>
                 </div>
@@ -94,7 +96,8 @@
                     href="#reportsCollapse" role="button" aria-expanded="false" aria-controls="reportsCollapse"><i
                         class="fas fa-receipt"></i>&nbsp;&nbsp;Reports</a>
                 <div class="collapse" id="reportsCollapse">
-                    <a href="https://easypost.com/account/reports" class="nav-link" target="_blank">Visit the EasyPost
+                    <a href="https://easypost.com/account/reports" class="nav-link" target="_blank">Visit the
+                        EasyPost
                         Dashboard</a>
                 </div>
 
@@ -111,14 +114,16 @@
                 <div class="collapse" id="shipmentCollapse">
                     <a href="#" data-bs-toggle="modal" data-bs-target="#createShipment" class="nav-link">Create
                         Shipment</a>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#retrieveShipment" class="nav-link">Retrieve
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#retrieveShipment"
+                        class="nav-link">Retrieve
                         Shipment</a>
                     <form action="/retrieve-shipments" method="POST" id="retrieveShipments">
                         @csrf
                         <a href="#" onclick="document.getElementById('retrieveShipments').submit();"
                             class="nav-link">Retrieve all Shipments</a>
                     </form>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#buyShipment" class="nav-link">Buy a Shipment</a>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#buyShipment" class="nav-link">Buy a
+                        Shipment</a>
                     <a href="#" data-bs-toggle="modal" data-bs-target="#createRefund" class="nav-link">Refund
                         Shipment</a>
                     <a href="#" data-bs-toggle="modal" data-bs-target="#buyStamp" class="nav-link">Buy a Stamp</a>
@@ -166,25 +171,27 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto">
                             @auth
-                            <a class="nav-link" href="https://www.easypost.com/docs/api" target="_blank">EasyPost API
-                                Docs</a>
-                            <a class="nav-link" href="mailto:support@easypost.com" target="_blank">EasyPost Support</a>
-                            <a class="nav-link" href="https://github.com/Justintime50/easypost-tools-ui"
-                                target="_blank">GitHub</a>
-                            <a class="nav-link" href="{{ url('/account') }}">Account</a>
-                            <a class="nav-link" href="{{ route('logout') }}"
-                                onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">Logout</a>
-                            <form id="frm-logout" action="{{ route('logout') }}" method="POST" class="display-none">
-                                @csrf
-                            </form>
+                                <a class="nav-link" href="https://www.easypost.com/docs/api" target="_blank">EasyPost
+                                    API Docs</a>
+                                <a class="nav-link" href="mailto:support@easypost.com" target="_blank">EasyPost
+                                    Support</a>
+                                <a class="nav-link" href="https://github.com/Justintime50/easypost-tools-ui"
+                                    target="_blank">GitHub</a>
+                                <a class="nav-link" href="{{ url('/account') }}">Account</a>
+                                <a class="nav-link" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">Logout</a>
+                                <form id="frm-logout" action="{{ route('logout') }}" method="POST" class="display-none">
+                                    @csrf
+                                </form>
                             @else
-                            <a class="nav-link" href="https://www.easypost.com/docs/api" target="_blank">API Docs</a>
-                            <a class="nav-link" href="https://github.com/Justintime50/easypost-tools-ui"
-                                target="_blank">GitHub</a>
-                            <a class="nav-link" href="{{ route('login') }}">Login</a>
-                            @if (Route::has('register'))
-                            <a class="nav-link" href="{{ route('register') }}">Register</a>
-                            @endif
+                                <a class="nav-link" href="https://www.easypost.com/docs/api" target="_blank">API
+                                    Docs</a>
+                                <a class="nav-link" href="https://github.com/Justintime50/easypost-tools-ui"
+                                    target="_blank">GitHub</a>
+                                <a class="nav-link" href="{{ route('login') }}">Login</a>
+                                @if (Route::has('register'))
+                                    <a class="nav-link" href="{{ route('register') }}">Register</a>
+                                @endif
                             @endauth
                         </ul>
                     </div>
@@ -221,9 +228,9 @@
 <script src="https://kit.fontawesome.com/0dd4ecd465.js" crossorigin="anonymous"></script>
 <script>
     function toggleSidebar() {
-    const menuWrapper = document.getElementById("wrapper")
-    menuWrapper.classList.toggle("toggled");
-}
+        const menuWrapper = document.getElementById("wrapper")
+        menuWrapper.classList.toggle("toggled");
+    }
 </script>
 
 </html>

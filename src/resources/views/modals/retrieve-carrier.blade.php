@@ -3,7 +3,7 @@
         @csrf
 
         <label for="id">Carrier ID</label>
-        <input class="form-control" name="id" value="{{old('id')}}">
+        <input class="form-control" name="id" value="{{ old('id') }}">
 
         {{-- We do not close the form here because we do so at the component level --}}
 </x-modal>
