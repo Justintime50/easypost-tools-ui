@@ -42,7 +42,7 @@ cp src/.env-example src/.env && cp .env-example .env
 
 ## Usage
 
-Navigate to `easyposttools.localhost` locally or https://easyposttools.com in production.
+Navigate to `easyposttools.localhost` locally or <https://easyposttools.com> in production.
 
 Once the project is setup, simply interact with the various links in the app to interact with the API. Create records, retrieve them, and purchase shipping labels all without needing to do the hard work of mapping an API.
 
@@ -76,8 +76,17 @@ composer db-clean
 # Seed the database
 composer seed
 
-# Lint the project
+# Lint the PHP files
 composer lint
+
+# Fix PHP linting
+composer fix
+
+# Lint the SASS files
+npm run lint
+
+# Fix SASS linting
+npm run fix
 
 # Compile SASS and Javascript during development
 npm run dev
