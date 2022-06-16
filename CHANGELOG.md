@@ -1,8 +1,9 @@
 # CHANGELOG
 
-## NEXT RELEASE
+## v0.6.0 (2022-06-15)
 
 - Adds recaptcha to registration (when keys/secrets are present in the env)
+- Cleans up and unifies styles for project
 
 ## v0.5.0 (2022-03-22)
 
