@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v0.6.1 (2022-08-29)
+
+- Fixes a Sentry error where retrieving all shipments could error when there is no to/from or parcel objects set on a shipment because it would try accessing properties of null, now there is a check in place prior to displaying data
+- Shows name and company on all shipment addresses
+- Fixes a bug where recaptcha was required in development mode
+
 ## v0.6.0 (2022-06-15)
 
 - Adds recaptcha to registration (when keys/secrets are present in the env)
