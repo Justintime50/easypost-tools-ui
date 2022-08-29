@@ -58,7 +58,7 @@ class RegisterController extends Controller
             unset($params_to_validate['g-recaptcha-response']);
         }
 
-        return Validator::make($data, $params_to_validate);;
+        return Validator::make($data, $params_to_validate);
     }
 
     /**
