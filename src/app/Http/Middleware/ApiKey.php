@@ -21,13 +21,13 @@ class ApiKey
     public function handle($request, Closure $next)
     {
         try {
-            $api_key = Crypt::decryptString(Auth::user()->api_key);
+            $apiKey = Crypt::decryptString(Auth::user()->api_key);
         } catch (DecryptException $e) {
-            session()->flash("error", "API KEY COULD NOT BE DECRYPTED. PLEASE UPDATE YOUR KEY.");
+            session()->flash('error', 'API KEY COULD NOT BE DECRYPTED. PLEASE UPDATE YOUR KEY.');
             return redirect()->back();
         }
 
-        EasyPost::setApiKey($api_key);
+        EasyPost::setApiKey($apiKey);
 
         return $next($request);
     }

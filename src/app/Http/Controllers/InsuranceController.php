@@ -17,89 +17,89 @@ class InsuranceController extends Controller
      */
     public function createInsurance(Request $request)
     {
-        if (request()->get("to_address") == null) {
+        if (request()->get('to_address') == null) {
             request()->validate([
-                "to_street1"    => "required|string",
-                "to_street2"    => "nullable|string",
-                "to_city"       => "nullable|string",
-                "to_state"      => "nullable|string",
-                "to_zip"        => "required|string",
-                "to_country"    => "nullable|string",
-                "to_company"    => "nullable|string",
-                "to_phone"      => "nullable|string",
+                'to_street1'    => 'required|string',
+                'to_street2'    => 'nullable|string',
+                'to_city'       => 'nullable|string',
+                'to_state'      => 'nullable|string',
+                'to_zip'        => 'required|string',
+                'to_country'    => 'nullable|string',
+                'to_company'    => 'nullable|string',
+                'to_phone'      => 'nullable|string',
             ]);
         } else {
             request()->validate([
-                "to_address"    => "required|string",
+                'to_address'    => 'required|string',
             ]);
         }
 
-        if (request()->get("from_address") == null) {
+        if (request()->get('from_address') == null) {
             request()->validate([
-                "from_street1"   => "required|string",
-                "from_street2"   => "nullable|string",
-                "from_city"      => "nullable|string",
-                "from_state"     => "nullable|string",
-                "from_zip"       => "required|string",
-                "from_country"   => "nullable|string",
-                "from_company"   => "nullable|string",
-                "from_phone"     => "nullable|string",
+                'from_street1'   => 'required|string',
+                'from_street2'   => 'nullable|string',
+                'from_city'      => 'nullable|string',
+                'from_state'     => 'nullable|string',
+                'from_zip'       => 'required|string',
+                'from_country'   => 'nullable|string',
+                'from_company'   => 'nullable|string',
+                'from_phone'     => 'nullable|string',
             ]);
         } else {
             request()->validate([
-                "from_address"  => "required|string",
+                'from_address'  => 'required|string',
             ]);
         }
 
         request()->validate([
-            "to_address"        => "required|string",
-            "from_address"      => "required|string",
-            "tracking_code"     => "required|string",
-            "carrier"           => "nullable|string",
-            "amount"            => "required|string|max:5000",
+            'to_address'        => 'required|string',
+            'from_address'      => 'required|string',
+            'tracking_code'     => 'required|string',
+            'carrier'           => 'nullable|string',
+            'amount'            => 'required|string|max:5000',
         ]);
 
         try {
-            if (request()->get("to_address") != null) {
-                $to_address = Address::retrieve(request()->get("to_address"));
+            if (request()->get('to_address') != null) {
+                $toAddress = Address::retrieve(request()->get('to_address'));
             } else {
-                $to_address = array(
-                    "verify"  => array("delivery"),
-                    "street1" => request()->get("to_street1"),
-                    "street2" => request()->get("to_street2"),
-                    "city"    => request()->get("to_city"),
-                    "state"   => request()->get("to_state"),
-                    "zip"     => request()->get("to_zip"),
-                    "country" => request()->get("to_country"),
-                    "company" => request()->get("to_company"),
-                    "phone"   => request()->get("to_phone"),
-                );
+                $toAddress = [
+                    'verify'  => ['delivery'],
+                    'street1' => request()->get('to_street1'),
+                    'street2' => request()->get('to_street2'),
+                    'city'    => request()->get('to_city'),
+                    'state'   => request()->get('to_state'),
+                    'zip'     => request()->get('to_zip'),
+                    'country' => request()->get('to_country'),
+                    'company' => request()->get('to_company'),
+                    'phone'   => request()->get('to_phone'),
+                ];
             }
 
-            if (request()->get("from_address") != null) {
-                $from_address = Address::retrieve(request()->get("from_address"));
+            if (request()->get('from_address') != null) {
+                $fromAddress = Address::retrieve(request()->get('from_address'));
             } else {
-                $from_address = array(
-                    "verify"  => array("delivery"),
-                    "street1" => request()->get("from_street1"),
-                    "street2" => request()->get("from_street2"),
-                    "city"    => request()->get("from_city"),
-                    "state"   => request()->get("from_state"),
-                    "zip"     => request()->get("from_zip"),
-                    "country" => request()->get("from_country"),
-                    "company" => request()->get("from_company"),
-                    "phone"   => request()->get("from_phone"),
-                );
+                $fromAddress = [
+                    'verify'  => ['delivery'],
+                    'street1' => request()->get('from_street1'),
+                    'street2' => request()->get('from_street2'),
+                    'city'    => request()->get('from_city'),
+                    'state'   => request()->get('from_state'),
+                    'zip'     => request()->get('from_zip'),
+                    'country' => request()->get('from_country'),
+                    'company' => request()->get('from_company'),
+                    'phone'   => request()->get('from_phone'),
+                ];
             }
 
             $insurance = Insurance::create(
-                array(
-                    "to_address" => $to_address,
-                    "from_address" => $from_address,
-                    "tracking_code" => request()->get("tracking_code"),
-                    "carrier" => request()->get("carrier"),
-                    "amount" => request()->get("amount"),
-                )
+                [
+                    'to_address' => $toAddress,
+                    'from_address' => $fromAddress,
+                    'tracking_code' => request()->get('tracking_code'),
+                    'carrier' => request()->get('carrier'),
+                    'amount' => request()->get('amount'),
+                ]
             );
         } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
@@ -107,8 +107,8 @@ class InsuranceController extends Controller
 
         $response = $insurance;
 
-        session()->flash("message", "INSURANCE CREATED");
-        return view("app")->with(["response" => $response]);
+        session()->flash('message', 'INSURANCE CREATED');
+        return view('app')->with(['response' => $response]);
     }
 
     /**
@@ -120,15 +120,15 @@ class InsuranceController extends Controller
     public function retrieveInsurance(Request $request)
     {
         try {
-            $insurance = Insurance::retrieve(request()->get("id"));
+            $insurance = Insurance::retrieve(request()->get('id'));
         } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
         $response = $insurance;
 
-        session()->flash("message", "INSURANCE RETRIEVED");
-        return view("app")->with(["json" => $response]);
+        session()->flash('message', 'INSURANCE RETRIEVED');
+        return view('app')->with(['json' => $response]);
     }
 
     /**
@@ -148,7 +148,7 @@ class InsuranceController extends Controller
         $response = $insurances;
         $json = json_decode($response);
 
-        session()->flash("message", "INSURANCES RETRIEVED");
-        return view("insurance")->with(["json" => $json]);
+        session()->flash('message', 'INSURANCES RETRIEVED');
+        return view('insurance')->with(['json' => $json]);
     }
 }

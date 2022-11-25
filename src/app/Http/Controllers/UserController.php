@@ -25,7 +25,7 @@ class UserController extends Controller
         $user->api_key = Crypt::encryptString(request()->get('api_key'));
         $user->save();
 
-        session()->flash("message", "API KEY UPDATED");
+        session()->flash('message', 'API KEY UPDATED');
         return redirect()->back();
     }
 }

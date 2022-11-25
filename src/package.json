@@ -8,13 +8,14 @@
         "hot": "mix watch --hot",
         "prod": "npm run production",
         "production": "mix --production",
-        "lint": "npx stylelint resources/sass/*.scss --custom-syntax postcss-scss",
-        "fix": "npx stylelint resources/sass/*.scss --custom-syntax postcss-scss --fix"
+        "lint": "npx stylelint resources/sass/*.scss --config node_modules/justintime50-styles/src/css/.stylelintrc.json --custom-syntax postcss-scss",
+        "fix": "npx stylelint resources/sass/*.scss --config node_modules/justintime50-styles/src/css/.stylelintrc.json --custom-syntax postcss-scss --fix"
     },
     "devDependencies": {
         "@popperjs/core": "^2.11.4",
         "axios": "^0.26",
         "bootstrap": "^5.0",
+        "justintime50-styles": "0.2.0",
         "laravel-mix": "^6.0",
         "resolve-url-loader": "^5.0",
         "postcss-scss": "^4.0.4",

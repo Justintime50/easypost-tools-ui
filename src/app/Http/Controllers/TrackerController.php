@@ -17,16 +17,16 @@ class TrackerController extends Controller
     public function createTracker(Request $request)
     {
         request()->validate([
-            "tracking_code" => "required|string",
-            "carrier"       => "nullable|string",
+            'tracking_code' => 'required|string',
+            'carrier'       => 'nullable|string',
         ]);
 
         try {
             $tracker = Tracker::create(
-                array(
-                    "tracking_code"  => request()->get("tracking_code"),
-                    "carrier" => request()->get("carrier"),
-                )
+                [
+                    'tracking_code'  => request()->get('tracking_code'),
+                    'carrier' => request()->get('carrier'),
+                ]
             );
         } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
@@ -34,8 +34,8 @@ class TrackerController extends Controller
 
         $response = $tracker;
 
-        session()->flash("message", "TRACKER CREATED");
-        return redirect("/")->with(["response" => $response]);
+        session()->flash('message', 'TRACKER CREATED');
+        return redirect('/')->with(['response' => $response]);
     }
 
     /**
@@ -47,15 +47,15 @@ class TrackerController extends Controller
     public function retrieveTracker(Request $request)
     {
         try {
-            $tracker = Tracker::retrieve(request()->get("id"));
+            $tracker = Tracker::retrieve(request()->get('id'));
         } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
         $response = $tracker;
 
-        session()->flash("message", "TRACKER RETRIEVED");
-        return view("app")->with(["json" => $response]);
+        session()->flash('message', 'TRACKER RETRIEVED');
+        return view('app')->with(['json' => $response]);
     }
 
     /**
@@ -75,7 +75,7 @@ class TrackerController extends Controller
         $response = $trackers;
         $json = json_decode($response);
 
-        session()->flash("message", "TRACKERS RETRIEVED");
-        return view("trackers")->with(["json" => $json]);
+        session()->flash('message', 'TRACKERS RETRIEVED');
+        return view('trackers')->with(['json' => $json]);
     }
 }

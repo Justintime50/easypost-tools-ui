@@ -17,14 +17,14 @@ class CarrierController extends Controller
     public function retrieveCarrier(Request $request)
     {
         try {
-            $carriers = CarrierAccount::retrieve(request()->get("id"));
+            $carriers = CarrierAccount::retrieve(request()->get('id'));
         } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
         $response = $carriers;
 
-        session()->flash("message", "CARRIER RETRIEVED");
+        session()->flash('message', 'CARRIER RETRIEVED');
         return view('app')->with(['json' => $response]);
     }
 
@@ -44,7 +44,7 @@ class CarrierController extends Controller
 
         $response = $carriers;
 
-        session()->flash("message", "CARRIERS RETRIEVED");
+        session()->flash('message', 'CARRIERS RETRIEVED');
         return view('carriers')->with(['json' => $response]);
     }
 }

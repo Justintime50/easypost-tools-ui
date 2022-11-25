@@ -20,7 +20,7 @@ jobs:
           ./setup.sh
           docker ps | grep -q easypost-tools-ui-easypost-tools-ui-1
           docker ps | grep -q easypost-tools-ui-easypost-tools-db-1
-  lint:
+  lint-php:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -32,9 +32,25 @@ jobs:
       - name: Install Composer
         run: cd src && composer self-update
       - name: Install Dependencies
-        run: cd src && composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+        run: |
+          cd src
+          composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+          npm install
       - name: Lint
         run: cd src && composer lint
+  lint-sass:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+      - name: Install dependencies
+        run: cd src && npm install
+      - name: Run SASS lint
+        run: cd src && npm run lint
   deploy:
     needs: ["docker", "lint"]
     runs-on: ubuntu-latest
