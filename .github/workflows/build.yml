@@ -52,7 +52,7 @@ jobs:
       - name: Run SASS lint
         run: cd src && npm run lint
   deploy:
-    needs: ["docker", "lint"]
+    needs: ["docker", "lint-php", "lint-sass"]
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to Harvey
