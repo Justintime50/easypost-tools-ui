@@ -24,11 +24,7 @@
                         Address</a>
                     <a href="#" data-bs-toggle="modal" data-bs-target="#retrieveAddress" class="nav-link">Retrieve
                         Address</a>
-                    <form action="/retrieve-addresses" method="POST" id="retrieveAddresses">
-                        @csrf
-                        <a href="#" onclick="document.getElementById('retrieveAddresses').submit();"
-                            class="nav-link">Retrieve all Addresses</a>
-                    </form>
+                    <a href="/addresses" class="nav-link">List All Addresses</a>
                 </div>
 
                 <a class="list-group-item list-group-item-action bg-light" data-bs-toggle="collapse"
@@ -81,7 +77,8 @@
                 <div class="collapse" id="parcelCollapse">
                     <a href="#" data-bs-toggle="modal" data-bs-target="#createParcel" class="nav-link">Create
                         Parcel</a>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#retrieveParcel" class="nav-link">Retrieve
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#retrieveParcel"
+                        class="nav-link">Retrieve
                         Parcel</a>
                 </div>
 
@@ -102,17 +99,19 @@
                 </div>
 
                 <a class="list-group-item list-group-item-action bg-light" data-bs-toggle="collapse"
-                    href="#scanformsCollapse" role="button" aria-expanded="false" aria-controls="scanformsCollapse"><i
+                    href="#scanformsCollapse" role="button" aria-expanded="false"
+                    aria-controls="scanformsCollapse"><i
                         class="fas fa-layer-group"></i>&nbsp;&nbsp;Scanforms/Manifest</a>
                 <div class="collapse" id="scanformsCollapse">
                     <a href="#" class="nav-link">Not Currently Supported via UI</a>
                 </div>
 
                 <a class="list-group-item list-group-item-action bg-light" data-bs-toggle="collapse"
-                    href="#shipmentCollapse" role="button" aria-expanded="false" aria-controls="shipmentCollapse"><i
-                        class="fas fa-truck-loading"></i>&nbsp;&nbsp;Shipments</a>
+                    href="#shipmentCollapse" role="button" aria-expanded="false"
+                    aria-controls="shipmentCollapse"><i class="fas fa-truck-loading"></i>&nbsp;&nbsp;Shipments</a>
                 <div class="collapse" id="shipmentCollapse">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#createShipment" class="nav-link">Create
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#createShipment"
+                        class="nav-link">Create
                         Shipment</a>
                     <a href="#" data-bs-toggle="modal" data-bs-target="#retrieveShipment"
                         class="nav-link">Retrieve
@@ -126,7 +125,8 @@
                         Shipment</a>
                     <a href="#" data-bs-toggle="modal" data-bs-target="#createRefund" class="nav-link">Refund
                         Shipment</a>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#buyStamp" class="nav-link">Buy a Stamp</a>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#buyStamp" class="nav-link">Buy a
+                        Stamp</a>
                 </div>
 
                 <a class="list-group-item list-group-item-action bg-light" data-bs-toggle="collapse"
@@ -135,7 +135,8 @@
                 <div class="collapse" id="trackerCollapse">
                     <a href="#" data-bs-toggle="modal" data-bs-target="#createTracker" class="nav-link">Create
                         Tracker</a>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#retrieveTracker" class="nav-link">Retrieve
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#retrieveTracker"
+                        class="nav-link">Retrieve
                         Tracker</a>
                     <form action="/retrieve-trackers" method="POST" id="retrieveTrackers">
                         @csrf
@@ -145,8 +146,8 @@
                 </div>
 
                 <a class="list-group-item list-group-item-action bg-light" data-bs-toggle="collapse"
-                    href="#webhooksCollapse" role="button" aria-expanded="false" aria-controls="webhooksCollapse"><i
-                        class="fas fa-calendar-alt"></i>&nbsp;&nbsp;Webhooks</a>
+                    href="#webhooksCollapse" role="button" aria-expanded="false"
+                    aria-controls="webhooksCollapse"><i class="fas fa-calendar-alt"></i>&nbsp;&nbsp;Webhooks</a>
                 <div class="collapse" id="webhooksCollapse">
                     <a href="https://www.easypost.com/account/webhooks-and-events" class="nav-link"
                         target="_blank">Visit the EasyPost Dashboard</a>
@@ -168,7 +169,7 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="navbar-collapse collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto">
                             @auth
                                 <a class="nav-link" href="https://www.easypost.com/docs/api" target="_blank">EasyPost
@@ -180,7 +181,8 @@
                                 <a class="nav-link" href="{{ url('/account') }}">Account</a>
                                 <a class="nav-link" href="{{ route('logout') }}"
                                     onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">Logout</a>
-                                <form id="frm-logout" action="{{ route('logout') }}" method="POST" class="display-none">
+                                <form id="frm-logout" action="{{ route('logout') }}" method="POST"
+                                    class="display-none">
                                     @csrf
                                 </form>
                             @else

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Fix `address` routes and logic so GET requests don't use POST
+
 ## v0.6.1 (2022-08-29)
 
 - Fixes a Sentry error where retrieving all shipments could error when there is no to/from or parcel objects set on a shipment because it would try accessing properties of null, now there is a check in place prior to displaying data

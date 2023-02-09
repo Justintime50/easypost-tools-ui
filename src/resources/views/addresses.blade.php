@@ -16,13 +16,10 @@
                     <th>Country</th>
                     @foreach ($json->addresses as $address)
                         <tr>
-                            <form action="/retrieve-address" method="POST">
-                                @csrf
-                                <input type="hidden" name="id" value="{{ $address->id }}">
-                                <td>
-                                    <button class="btn btn-primary btn-sm btn-table"><?php echo substr($address->id, 0, 10); ?>...</button>
-                                </td>
-                            </form>
+                            <td>
+                                <a href="/address/{{ $address->id }}"><button
+                                        class="btn btn-primary btn-sm btn-table">{{ substr($address->id, 0, 10) }}...</button></a>
+                            </td>
                             <td>{{ $address->created_at }}</td>
                             <td>{{ $address->street1 }}</td>
                             <td>{{ $address->street2 }}</td>

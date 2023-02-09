@@ -2,19 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use EasyPost\EasyPost;
 use EasyPost\Address;
 
 class AddressController extends Controller
 {
     /**
-     * Create an address
+     * Create an address.
      *
-     * @param Request $request
      * @return mixed
      */
-    public function createAddress(Request $request)
+    public function createAddress()
     {
         request()->validate([
             'street1'   => 'required|string',
@@ -51,43 +48,34 @@ class AddressController extends Controller
     }
 
     /**
-     * Retrieve an address
+     * Retrieve an address.
      *
-     * @param Request $request
      * @return mixed
      */
-    public function retrieveAddress(Request $request)
+    public function retrieveAddress(string $id)
     {
         try {
-            $address = Address::retrieve(request()->get('id'));
+            $json = Address::retrieve($id);
         } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
-        $response = $address;
-
-        session()->flash('message', 'ADDRESS RETRIEVED');
-        return view('app')->with(['json' => $response]);
+        return view('app', compact('json'));
     }
 
     /**
-     * Retrieve a list of addresses
+     * Retrieve a list of addresses.
      *
-     * @param Request $request
      * @return mixed
      */
-    public function retrieveAddresses(Request $request)
+    public function retrieveAddresses()
     {
         try {
-            $addresses = Address::all();
+            $json = Address::all();
         } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
-        $response = $addresses;
-        $json = json_decode($response);
-
-        session()->flash('message', 'ADDRESSES RETRIEVED');
-        return view('addresses')->with(['json' => $json]);
+        return view('addresses', compact('json'));
     }
 }
