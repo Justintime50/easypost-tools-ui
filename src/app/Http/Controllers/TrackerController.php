@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use EasyPost\Tracker;
+use EasyPost\Exception\General\EasyPostException;
 
 class TrackerController extends Controller
 {
@@ -18,14 +18,16 @@ class TrackerController extends Controller
             'carrier'       => 'nullable|string',
         ]);
 
+        $client = request()->get('client');
+
         try {
-            $response = Tracker::create(
+            $response = $client->tracker->create(
                 [
                     'tracking_code'  => request()->get('tracking_code'),
                     'carrier' => request()->get('carrier'),
                 ]
             );
-        } catch (\EasyPost\Error $exception) {
+        } catch (EasyPostException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
@@ -41,9 +43,11 @@ class TrackerController extends Controller
      */
     public function retrieveTracker(string $id)
     {
+        $client = request()->get('client');
+
         try {
-            $tracker = Tracker::retrieve($id);
-        } catch (\EasyPost\Error $exception) {
+            $tracker = $client->tracker->retrieve($id);
+        } catch (EasyPostException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
@@ -60,9 +64,11 @@ class TrackerController extends Controller
      */
     public function retrieveTrackers()
     {
+        $client = request()->get('client');
+
         try {
-            $response = Tracker::all();
-        } catch (\EasyPost\Error $exception) {
+            $response = $client->tracker->all();
+        } catch (EasyPostException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 

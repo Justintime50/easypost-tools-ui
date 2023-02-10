@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use EasyPost\CarrierAccount;
-use EasyPost\EasyPost;
-use Illuminate\Http\Request;
+use EasyPost\Exception\General\EasyPostException;
 
 class CarrierController extends Controller
 {
@@ -16,9 +14,11 @@ class CarrierController extends Controller
      */
     public function retrieveCarrier(string $id)
     {
+        $client = request()->get('client');
+
         try {
-            $carriers = CarrierAccount::retrieve($id);
-        } catch (\EasyPost\Error $exception) {
+            $carriers = $client->carrierAccount->retrieve($id);
+        } catch (EasyPostException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
@@ -35,9 +35,11 @@ class CarrierController extends Controller
      */
     public function retrieveCarriers()
     {
+        $client = request()->get('client');
+
         try {
-            $response = CarrierAccount::all();
-        } catch (\EasyPost\Error $exception) {
+            $response = $client->carrierAccount->all();
+        } catch (EasyPostException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 

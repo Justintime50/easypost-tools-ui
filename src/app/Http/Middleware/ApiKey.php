@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use EasyPost\EasyPost;
+use EasyPost\EasyPostClient;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,7 +27,8 @@ class ApiKey
             return redirect()->back();
         }
 
-        EasyPost::setApiKey($apiKey);
+        $client = new EasyPostClient($apiKey);
+        $request->attributes->add(['client' => $client]);
 
         return $next($request);
     }

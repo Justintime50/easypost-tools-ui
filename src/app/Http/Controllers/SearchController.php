@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use EasyPost;
+use EasyPost\Exception\General\EasyPostException;
 
 const OBJECT_ID_PREFIXES = [
     'adr'       => EasyPost\Address::class,
@@ -48,7 +49,7 @@ class SearchController extends Controller
 
         try {
             $response = OBJECT_ID_PREFIXES[$idPrefix]::retrieve($id);
-        } catch (\EasyPost\Error $exception) {
+        } catch (EasyPostException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 

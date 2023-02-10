@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use EasyPost\Address;
+use EasyPost\Exception\General\EasyPostException;
 
 class AddressController extends Controller
 {
@@ -26,8 +26,10 @@ class AddressController extends Controller
             'email'    => 'nullable|string',
         ]);
 
+        $client = request()->get('client');
+
         try {
-            $address = Address::create(
+            $address = $client->address->create(
                 [
                     'name'      => request()->get('name'),
                     'company'   => request()->get('company'),
@@ -41,7 +43,7 @@ class AddressController extends Controller
                     'email'     => request()->get('email'),
                 ]
             );
-        } catch (\EasyPost\Error $exception) {
+        } catch (EasyPostException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
@@ -56,9 +58,11 @@ class AddressController extends Controller
      */
     public function retrieveAddress(string $id)
     {
+        $client = request()->get('client');
+
         try {
-            $json = Address::retrieve($id);
-        } catch (\EasyPost\Error $exception) {
+            $json = $client->address->retrieve($id);
+        } catch (EasyPostException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
@@ -72,9 +76,11 @@ class AddressController extends Controller
      */
     public function retrieveAddresses()
     {
+        $client = request()->get('client');
+
         try {
-            $json = Address::all();
-        } catch (\EasyPost\Error $exception) {
+            $json = $client->address->all();
+        } catch (EasyPostException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 

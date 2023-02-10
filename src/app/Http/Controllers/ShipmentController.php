@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use EasyPost\Address;
-use EasyPost\CarrierAccount;
-use EasyPost\Parcel;
-use EasyPost\Shipment;
+use EasyPost\Exception\General\EasyPostException;
 
 class ShipmentController extends Controller
 {
@@ -76,10 +73,12 @@ class ShipmentController extends Controller
             ]);
         }
 
+        $client = request()->get('client');
+
         if (request()->get('to_address') != null) {
             try {
-                $toAddress = Address::retrieve(request()->get('to_address'));
-            } catch (\EasyPost\Error $exception) {
+                $toAddress = $client->address->retrieve(request()->get('to_address'));
+            } catch (EasyPostException $exception) {
                 return back()->withError($exception->getMessage())->withInput();
             }
         } else {
@@ -99,8 +98,8 @@ class ShipmentController extends Controller
 
         if (request()->get('from_address') != null) {
             try {
-                $fromAddress = Address::retrieve(request()->get('from_address'));
-            } catch (\EasyPost\Error $exception) {
+                $fromAddress = $client->address->retrieve(request()->get('from_address'));
+            } catch (EasyPostException $exception) {
                 return back()->withError($exception->getMessage())->withInput();
             }
         } else {
@@ -120,17 +119,17 @@ class ShipmentController extends Controller
 
         if (request()->get('parcel') != null) {
             try {
-                $parcel = Parcel::retrieve(request()->get('parcel'));
-            } catch (\EasyPost\Error $exception) {
+                $parcel = $client->parcel->retrieve(request()->get('parcel'));
+            } catch (EasyPostException $exception) {
                 return back()->withError($exception->getMessage())->withInput();
             }
         } elseif (request()->get('predefined_package') != null) {
             try {
-                $parcel = Parcel::create([
+                $parcel = $client->parcel->create([
                     'predefined_package'    => request()->get('predefined_package'),
                     'weight'                => request()->get('weight'),
                 ]);
-            } catch (\EasyPost\Error $exception) {
+            } catch (EasyPostException $exception) {
                 return back()->withError($exception->getMessage())->withInput();
             }
         } else {
@@ -143,14 +142,14 @@ class ShipmentController extends Controller
         }
 
         try {
-            $shipment = Shipment::create(
+            $shipment = $client->shipment->create(
                 [
                     'to_address'    => $toAddress,
                     'from_address'  => $fromAddress,
                     'parcel'        => $parcel
                 ]
             );
-        } catch (\EasyPost\Error $exception) {
+        } catch (EasyPostException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
@@ -178,9 +177,11 @@ class ShipmentController extends Controller
      */
     public function retrieveShipment(string $id)
     {
+        $client = request()->get('client');
+
         try {
-            $response = Shipment::retrieve($id);
-        } catch (\EasyPost\Error $exception) {
+            $response = $client->shipment->retrieve($id);
+        } catch (EasyPostException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
@@ -195,11 +196,13 @@ class ShipmentController extends Controller
      */
     public function retrieveShipments()
     {
+        $client = request()->get('client');
+
         try {
-            $shipments = Shipment::all([
+            $shipments = $client->shipment->all([
                 'purchased' => false
             ]);
-        } catch (\EasyPost\Error $exception) {
+        } catch (EasyPostException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
@@ -217,10 +220,12 @@ class ShipmentController extends Controller
      */
     public function createRefund()
     {
+        $client = request()->get('client');
+
         try {
-            $shipment = Shipment::retrieve(request()->get('id'));
+            $shipment = $client->shipment->retrieve(request()->get('id'));
             $shipment->refund();
-        } catch (\EasyPost\Error $exception) {
+        } catch (EasyPostException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
@@ -235,12 +240,14 @@ class ShipmentController extends Controller
      */
     public function buyShipment()
     {
+        $client = request()->get('client');
+
         try {
-            $shipment = Shipment::retrieve(request()->get('shipment_id'));
+            $shipment = $client->shipment->retrieve(request()->get('shipment_id'));
             $shipment->buy([
                 'id' => request()->get('rate_id'),
             ]);
-        } catch (\EasyPost\Error $exception) {
+        } catch (EasyPostException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
@@ -287,10 +294,12 @@ class ShipmentController extends Controller
             ]);
         }
 
+        $client = request()->get('client');
+
         if (request()->get('to_address') != null) {
             try {
-                $toAddress = Address::retrieve(request()->get('to_address'));
-            } catch (\EasyPost\Error $exception) {
+                $toAddress = $client->address->retrieve(request()->get('to_address'));
+            } catch (EasyPostException $exception) {
                 return back()->withError($exception->getMessage())->withInput();
             }
         } else {
@@ -308,8 +317,8 @@ class ShipmentController extends Controller
 
         if (request()->get('from_address') != null) {
             try {
-                $fromAddress = Address::retrieve(request()->get('from_address'));
-            } catch (\EasyPost\Error $exception) {
+                $fromAddress = $client->address->retrieve(request()->get('from_address'));
+            } catch (EasyPostException $exception) {
                 return back()->withError($exception->getMessage())->withInput();
             }
         } else {
@@ -331,8 +340,8 @@ class ShipmentController extends Controller
         ];
 
         try {
-            $carrierAccounts = CarrierAccount::all();
-        } catch (\EasyPost\Error $exception) {
+            $carrierAccounts = $client->carrierAccount->all();
+        } catch (EasyPostException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
@@ -348,7 +357,7 @@ class ShipmentController extends Controller
         }
 
         try {
-            $shipment = Shipment::create(
+            $shipment = $client->shipment->create(
                 [
                     'to_address'        => $toAddress,
                     'from_address'      => $fromAddress,
@@ -357,7 +366,7 @@ class ShipmentController extends Controller
                     'carrier_accounts'  => [$usps->id],
                 ]
             );
-        } catch (\EasyPost\Error $exception) {
+        } catch (EasyPostException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 

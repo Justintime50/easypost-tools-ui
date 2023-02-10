@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use EasyPost\Address;
-use EasyPost\Insurance;
+use EasyPost\Exception\General\EasyPostException;
 
 class InsuranceController extends Controller
 {
@@ -56,9 +55,11 @@ class InsuranceController extends Controller
             'amount'            => 'required|string|max:5000',
         ]);
 
+        $client = request()->get('client');
+
         try {
             if (request()->get('to_address') != null) {
-                $toAddress = Address::retrieve(request()->get('to_address'));
+                $toAddress = $client->address->retrieve(request()->get('to_address'));
             } else {
                 $toAddress = [
                     'verify'  => ['delivery'],
@@ -74,7 +75,7 @@ class InsuranceController extends Controller
             }
 
             if (request()->get('from_address') != null) {
-                $fromAddress = Address::retrieve(request()->get('from_address'));
+                $fromAddress = $client->address->retrieve(request()->get('from_address'));
             } else {
                 $fromAddress = [
                     'verify'  => ['delivery'],
@@ -89,7 +90,7 @@ class InsuranceController extends Controller
                 ];
             }
 
-            $insurance = Insurance::create(
+            $insurance = $client->insurance->create(
                 [
                     'to_address' => $toAddress,
                     'from_address' => $fromAddress,
@@ -98,7 +99,7 @@ class InsuranceController extends Controller
                     'amount' => request()->get('amount'),
                 ]
             );
-        } catch (\EasyPost\Error $exception) {
+        } catch (EasyPostException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
@@ -116,9 +117,11 @@ class InsuranceController extends Controller
      */
     public function retrieveInsurance(string $id)
     {
+        $client = request()->get('client');
+
         try {
-            $response = Insurance::retrieve($id);
-        } catch (\EasyPost\Error $exception) {
+            $response = $client->insurance->retrieve($id);
+        } catch (EasyPostException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
@@ -133,9 +136,11 @@ class InsuranceController extends Controller
      */
     public function retrieveInsurances()
     {
+        $client = request()->get('client');
+
         try {
-            $json = Insurance::all();
-        } catch (\EasyPost\Error $exception) {
+            $json = $client->insurance->all();
+        } catch (EasyPostException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 

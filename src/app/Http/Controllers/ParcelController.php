@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use EasyPost\Parcel;
+use EasyPost\Exception\General\EasyPostException;
 
 class ParcelController extends Controller
 {
@@ -25,14 +25,16 @@ class ParcelController extends Controller
             ]);
         }
 
+        $client = request()->get('client');
+
         try {
             if (request()->get('predefined_package') != null) {
-                $parcel = Parcel::create([
+                $parcel = $client->parcel->create([
                     'predefined_package'    => request()->get('predefined_package'),
                     'weight'                => request()->get('weight'),
                 ]);
             } else {
-                $parcel = Parcel::create(
+                $parcel = $client->parcel->create(
                     [
                         'length'    => request()->get('length'),
                         'width'     => request()->get('width'),
@@ -41,13 +43,11 @@ class ParcelController extends Controller
                     ]
                 );
             }
-        } catch (\EasyPost\Error $exception) {
+        } catch (EasyPostException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
-        $response = $parcel;
-
         session()->flash('message', 'PARCEL CREATED');
-        return view('app')->with(['json' => $response]);
+        return view('app')->with(['json' => $parcel]);
     }
 }

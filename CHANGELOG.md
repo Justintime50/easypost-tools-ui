@@ -1,6 +1,10 @@
 # CHANGELOG
 
-## v0.7.0 (2022-09-10)
+## v0.8.0 (2023-02-10)
+
+- Bumps EasyPost library from v5 to v6 which introduces thread-safety and various other improvements
+
+## v0.7.0 (2023-02-10)
 
 - Bumps PHP from 8.1 to 8.2
 - Bumps all minor dependency versions
