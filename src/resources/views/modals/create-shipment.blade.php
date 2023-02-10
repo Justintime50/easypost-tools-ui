@@ -15,6 +15,12 @@
 
         <hr>
 
+        <label for="from_name">Name</label>
+        <input class="form-control" name="from_name" value="{{ old('from_name') }}">
+
+        <label for="from_company">Company</label>
+        <input class="form-control" name="from_company" value="{{ old('from_company') }}">
+
         <label for="from_street1">Street 1</label>
         <input class="form-control" name="from_street1" value="{{ old('from_street1') }}">
 
@@ -33,11 +39,11 @@
         <label for="from_country">Country</label>
         <input class="form-control" name="from_country" value="{{ old('from_country') }}">
 
-        <label for="from_company">Company</label>
-        <input class="form-control" name="from_company" value="{{ old('from_company') }}">
-
         <label for="from_phone">Phone</label>
         <input class="form-control" name="from_phone" value="{{ old('from_phone') }}">
+
+        <label for="from_email">Email</label>
+        <input class="form-control" name="from_email" value="{{ old('from_email') }}">
 
         <h3>To Address</h3>
 
@@ -46,6 +52,12 @@
             placeholder="Use an Address ID instead of entering one manually below.">
 
         <hr>
+
+        <label for="to_name">Name</label>
+        <input class="form-control" name="to_name" value="{{ old('to_name') }}">
+
+        <label for="to_company">Company</label>
+        <input class="form-control" name="to_company" value="{{ old('to_company') }}">
 
         <label for="to_street1">Street 1</label>
         <input class="form-control" name="to_street1" value="{{ old('to_street1') }}">
@@ -65,11 +77,11 @@
         <label for="to_country">Country</label>
         <input class="form-control" name="to_country" value="{{ old('to_country') }}">
 
-        <label for="to_company">Company</label>
-        <input class="form-control" name="to_company" value="{{ old('to_company') }}">
-
         <label for="to_phone">Phone</label>
         <input class="form-control" name="to_phone" value="{{ old('to_phone') }}">
+
+        <label for="to_email">Email</label>
+        <input class="form-control" name="to_email" value="{{ old('to_email') }}">
 
         <h3>Parcel</h3>
 

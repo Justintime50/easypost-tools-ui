@@ -4,7 +4,10 @@
     <div class="response-wrapper">
         <div class="response">
             <p>Select an action to the left to interact with the EasyPost API.</p>
-            <h4>Record</h4>
+            @php $json = $json ?? session()->get('json') @endphp
+            @if (isset($json))
+                <h4>Record</h4>
+            @endif
 
             @if (isset($json->postage_label->label_url))
                 <div>
@@ -14,7 +17,7 @@
                 </div>
             @endif
 
-            @php $response = isset($json) ? $json : "No record has been retrieved." @endphp
+            @php $response = isset($json) ? $json : "" @endphp
             <pre>{{ $response }}</pre>
         </div>
     </div>

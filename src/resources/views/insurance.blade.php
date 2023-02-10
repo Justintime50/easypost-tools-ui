@@ -14,20 +14,16 @@
                     <th>City</th>
                     <th>State</th>
                     @foreach ($json->insurances as $insurance)
-                        <tr>
-                            <form action="/retrieve-insurance" method="POST">
-                                @csrf
-                                <input type="hidden" name="id" value="{{ $insurance->id }}">
-                                <td>
-                                    <button class="btn btn-primary btn-sm btn-table"><?php echo substr($insurance->id, 0, 10); ?>...</button>
-                                </td>
-                            </form>
-                            <td>{{ $insurance->created_at }}</td>
-                            <td>{{ $insurance->amount }}</td>
-                            <td>{{ $insurance->provider }}</td>
-                            <td>{{ $insurance->to_address->street1 }}</td>
-                            <td>{{ $insurance->to_address->city }}</td>
-                            <td>{{ $insurance->to_address->state }}</td>
+                        <td>
+                            <a href="/insurance/{{ $insurance->id }}"><button
+                                    class="btn btn-primary btn-sm btn-table"><?php echo substr($insurance->id, 0, 10); ?>...</button></a>
+                        </td>
+                        <td>{{ $insurance->created_at }}</td>
+                        <td>{{ $insurance->amount }}</td>
+                        <td>{{ $insurance->provider }}</td>
+                        <td>{{ $insurance->to_address->street1 }}</td>
+                        <td>{{ $insurance->to_address->city }}</td>
+                        <td>{{ $insurance->to_address->state }}</td>
                         </tr>
                     @endforeach
                 </table>

@@ -14,11 +14,10 @@
                     <th>Carrier</th>
                     @foreach ($json->trackers as $tracker)
                         <tr>
-                            <form action="/retrieve-tracker" method="POST">
-                                @csrf
-                                <input type="hidden" name="id" value="{{ $tracker->id }}">
-                                <td><button class="btn btn-primary btn-sm btn-table"><?php echo substr($tracker->id, 0, 10); ?>...</button></td>
-                            </form>
+                            <td>
+                                <a href="/tracker/{{ $tracker->id }}"><button
+                                        class="btn btn-primary btn-sm btn-table"><?php echo substr($tracker->id, 0, 10); ?>...</button></a>
+                            </td>
                             <td>{{ $tracker->created_at }}</td>
                             <td>{{ $tracker->tracking_code }}</td>
                             <td>{{ $tracker->status }}</td>

@@ -14,37 +14,39 @@ class AddressController extends Controller
     public function createAddress()
     {
         request()->validate([
-            'street1'   => 'required|string',
-            'street2'   => 'nullable|string',
-            'city'      => 'nullable|string',
-            'state'     => 'nullable|string',
-            'zip'       => 'required|string',
-            'country'   => 'nullable|string',
-            'company'   => 'nullable|string',
-            'phone'     => 'nullable|string',
+            'name'     => 'nullable|string',
+            'company'  => 'nullable|string',
+            'street1'  => 'required|string',
+            'street2'  => 'nullable|string',
+            'city'     => 'nullable|string',
+            'state'    => 'nullable|string',
+            'zip'      => 'required|string',
+            'country'  => 'nullable|string',
+            'phone'    => 'nullable|string',
+            'email'    => 'nullable|string',
         ]);
 
         try {
             $address = Address::create(
                 [
-                    'street1' => request()->get('street1'),
-                    'street2' => request()->get('street2'),
-                    'city'    => request()->get('city'),
-                    'state'   => request()->get('state'),
-                    'zip'     => request()->get('zip'),
-                    'country' => request()->get('country'),
-                    'company' => request()->get('company'),
-                    'phone'   => request()->get('phone'),
+                    'name'      => request()->get('name'),
+                    'company'   => request()->get('company'),
+                    'street1'   => request()->get('street1'),
+                    'street2'   => request()->get('street2'),
+                    'city'      => request()->get('city'),
+                    'state'     => request()->get('state'),
+                    'zip'       => request()->get('zip'),
+                    'country'   => request()->get('country'),
+                    'phone'     => request()->get('phone'),
+                    'email'     => request()->get('email'),
                 ]
             );
         } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
-        $response = $address;
-
         session()->flash('message', 'ADDRESS CREATED');
-        return redirect('/')->with(['response' => $response]);
+        return redirect('/')->with(['json' => $address]);
     }
 
     /**
@@ -64,7 +66,7 @@ class AddressController extends Controller
     }
 
     /**
-     * Retrieve a list of addresses.
+     * Retrieve a list of Address objects.
      *
      * @return mixed
      */

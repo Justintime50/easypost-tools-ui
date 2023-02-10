@@ -2,20 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use EasyPost\EasyPost;
-use EasyPost\Insurance;
 use EasyPost\Address;
+use EasyPost\Insurance;
 
 class InsuranceController extends Controller
 {
     /**
-     * Create an insurance
+     * Create an Insurance.
      *
-     * @param Request $request
      * @return mixed
      */
-    public function createInsurance(Request $request)
+    public function createInsurance()
     {
         if (request()->get('to_address') == null) {
             request()->validate([
@@ -112,41 +109,35 @@ class InsuranceController extends Controller
     }
 
     /**
-     * Retrieve an insurance
+     * Retrieve an Insurance.
      *
-     * @param Request $request
+     * @param string $id
      * @return mixed
      */
-    public function retrieveInsurance(Request $request)
+    public function retrieveInsurance(string $id)
     {
         try {
-            $insurance = Insurance::retrieve(request()->get('id'));
+            $response = Insurance::retrieve($id);
         } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
-
-        $response = $insurance;
 
         session()->flash('message', 'INSURANCE RETRIEVED');
         return view('app')->with(['json' => $response]);
     }
 
     /**
-     * Retrieve a list of insurances
+     * Retrieve a list of Insurance objects.
      *
-     * @param Request $request
      * @return mixed
      */
-    public function retrieveInsurances(Request $request)
+    public function retrieveInsurances()
     {
         try {
-            $insurances = Insurance::all();
+            $json = Insurance::all();
         } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
-
-        $response = $insurances;
-        $json = json_decode($response);
 
         session()->flash('message', 'INSURANCES RETRIEVED');
         return view('insurance')->with(['json' => $json]);

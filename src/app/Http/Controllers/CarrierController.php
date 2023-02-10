@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use EasyPost\EasyPost;
 use EasyPost\CarrierAccount;
+use EasyPost\EasyPost;
+use Illuminate\Http\Request;
 
 class CarrierController extends Controller
 {
     /**
-     * Retrieve a carrier account
+     * Retrieve a CarrierAccount.
      *
-     * @param Request $request
+     * @param string $id
      * @return mixed
      */
-    public function retrieveCarrier(Request $request)
+    public function retrieveCarrier(string $id)
     {
         try {
-            $carriers = CarrierAccount::retrieve(request()->get('id'));
+            $carriers = CarrierAccount::retrieve($id);
         } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
@@ -29,20 +29,17 @@ class CarrierController extends Controller
     }
 
     /**
-     * Retrieve a list of carrier accounts
+     * Retrieve a list of CarrierAccount objects.
      *
-     * @param Request $request
      * @return mixed
      */
-    public function retrieveCarriers(Request $request)
+    public function retrieveCarriers()
     {
         try {
-            $carriers = CarrierAccount::all();
+            $response = CarrierAccount::all();
         } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
-
-        $response = $carriers;
 
         session()->flash('message', 'CARRIERS RETRIEVED');
         return view('carriers')->with(['json' => $response]);

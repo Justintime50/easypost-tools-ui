@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use EasyPost\EasyPost;
 use EasyPost\Parcel;
 
 class ParcelController extends Controller
 {
     /**
-     * Create a parcel
+     * Create a Parcel.
      */
-    public function createParcel(Request $request)
+    public function createParcel()
     {
         if (request()->get('predefined_package') == null) {
             request()->validate([
@@ -50,23 +48,6 @@ class ParcelController extends Controller
         $response = $parcel;
 
         session()->flash('message', 'PARCEL CREATED');
-        return view('app')->with(['json' => $response]);
-    }
-
-    /**
-     * Retrieve a parcel
-     */
-    public function retrieveParcel(Request $request)
-    {
-        try {
-            $parcel = Parcel::retrieve(request()->get('id'));
-        } catch (\EasyPost\Error $exception) {
-            return back()->withError($exception->getMessage())->withInput();
-        }
-
-        $response = $parcel;
-
-        session()->flash('message', 'PARCEL RETRIEVED');
         return view('app')->with(['json' => $response]);
     }
 }

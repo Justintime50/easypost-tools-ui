@@ -28,7 +28,10 @@
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true,
-        "bin-dir": "bin"
+        "bin-dir": "bin",
+        "allow-plugins": {
+            "php-http/discovery": false
+        }
     },
     "extra": {
         "laravel": {

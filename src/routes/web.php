@@ -18,20 +18,17 @@ Route::post('logout', 'Auth\LoginController@logout'); // Includes custom logic (
 Auth::routes();
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', function () {
-        return view('app');
-    });
-    Route::get('/app', function () {
-        return view('app');
-    });
-
-    Route::get('/account', 'HomeController@index')->name('account');
-
+    Route::get('/', 'HomeController@index');
+    Route::get('/app', 'HomeController@index')->name('app');
+    Route::get('/account', 'HomeController@account')->name('account');
     Route::post('/update-api-key', 'UserController@updateApiKey');
 });
 
 // Decrypt and use the API key from the user's account on POST routes
 Route::middleware(['auth', 'ApiKey'])->group(function () {
+    // Search
+    Route::post('/search', 'SearchController@searchRecord');
+
     // Addresses
     Route::post('/create-address', 'AddressController@createAddress');
     Route::get('/address/{id}', 'AddressController@retrieveAddress');
@@ -39,30 +36,25 @@ Route::middleware(['auth', 'ApiKey'])->group(function () {
 
     // Parcels
     Route::post('/create-parcel', 'ParcelController@createParcel');
-    Route::post('/retrieve-parcel', 'ParcelController@retrieveParcel');
-    Route::post('/retrieve-parcels', 'ParcelController@retrieveParcels');
 
     // Shipments
     Route::post('/create-shipment', 'ShipmentController@createShipment');
-    Route::post('/retrieve-shipment', 'ShipmentController@retrieveShipment');
-    Route::post('/retrieve-shipments', 'ShipmentController@retrieveShipments');
+    Route::get('/shipment/{id}', 'ShipmentController@retrieveShipment');
+    Route::get('/shipments', 'ShipmentController@retrieveShipments');
     Route::post('/buy-shipment', 'ShipmentController@buyShipment');
     Route::post('/buy-stamp', 'ShipmentController@buyStamp');
+    Route::post('/create-refund', 'ShipmentController@createRefund');
 
     // Tracking
-    Route::post('/create-tracking', 'TrackerController@createTracker');
-    Route::post('/retrieve-tracker', 'TrackerController@retrieveTracker');
-    Route::post('/retrieve-trackers', 'TrackerController@retrieveTrackers');
+    Route::post('/create-tracker', 'TrackerController@createTracker');
+    Route::get('/tracker/{id}', 'TrackerController@retrieveTracker');
+    Route::get('/trackers', 'TrackerController@retrieveTrackers');
 
     // Insurance
     Route::post('/create-insurance', 'InsuranceController@createInsurance');
-    Route::post('/retrieve-insurance', 'InsuranceController@retrieveInsurance');
-    Route::post('/retrieve-insurances', 'InsuranceController@retrieveInsurances');
-
-    // Refunds
-    Route::post('/create-refund', 'ShipmentController@createRefund');
+    Route::get('/insurances', 'InsuranceController@retrieveInsurances');
 
     // Carriers
-    Route::post('/retrieve-carrier', 'CarrierController@retrieveCarrier');
-    Route::post('/retrieve-carriers', 'CarrierController@retrieveCarriers');
+    Route::get('/carrier/{id}', 'CarrierController@retrieveCarrier');
+    Route::get('/carriers', 'CarrierController@retrieveCarriers');
 });

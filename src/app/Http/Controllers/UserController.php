@@ -3,16 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
 class UserController extends Controller
 {
     /**
-     * Update the API key on the user's account
+     * Update the API key on the user's account.
      *
-     * @param Request $request
      * @return mixed
      */
     public function updateApiKey()

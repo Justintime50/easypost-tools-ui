@@ -2,19 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use EasyPost\EasyPost;
 use EasyPost\Tracker;
 
 class TrackerController extends Controller
 {
     /**
-     * Create a tracker
+     * Create a Tracker.
      *
-     * @param Request $request
      * @return mixed
      */
-    public function createTracker(Request $request)
+    public function createTracker()
     {
         request()->validate([
             'tracking_code' => 'required|string',
@@ -22,7 +19,7 @@ class TrackerController extends Controller
         ]);
 
         try {
-            $tracker = Tracker::create(
+            $response = Tracker::create(
                 [
                     'tracking_code'  => request()->get('tracking_code'),
                     'carrier' => request()->get('carrier'),
@@ -32,22 +29,20 @@ class TrackerController extends Controller
             return back()->withError($exception->getMessage())->withInput();
         }
 
-        $response = $tracker;
-
         session()->flash('message', 'TRACKER CREATED');
-        return redirect('/')->with(['response' => $response]);
+        return redirect('/')->with(['json' => $response]);
     }
 
     /**
-     * Retrieve a tracker
+     * Retrieve a Tracker.
      *
-     * @param Request $request
+     * @param string $id
      * @return mixed
      */
-    public function retrieveTracker(Request $request)
+    public function retrieveTracker(string $id)
     {
         try {
-            $tracker = Tracker::retrieve(request()->get('id'));
+            $tracker = Tracker::retrieve($id);
         } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
@@ -59,23 +54,19 @@ class TrackerController extends Controller
     }
 
     /**
-     * Retrieve a list of trackers
+     * Retrieve a list of Tracker objects.
      *
-     * @param Request $request
      * @return mixed
      */
-    public function retrieveTrackers(Request $request)
+    public function retrieveTrackers()
     {
         try {
-            $trackers = Tracker::all();
+            $response = Tracker::all();
         } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
-        $response = $trackers;
-        $json = json_decode($response);
-
         session()->flash('message', 'TRACKERS RETRIEVED');
-        return view('trackers')->with(['json' => $json]);
+        return view('trackers')->with(['json' => $response]);
     }
 }

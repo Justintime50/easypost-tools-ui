@@ -9,7 +9,7 @@
                     </div>
                     <div class="card-body rate-errors-bg">
                         {{-- TODO: This is VERY hacky, fix it --}}
-                        <pre>@php echo var_dump(json_encode($json->messages)) @endphp</pre>
+                        <code>@php echo var_dump(json_encode($json->messages)) @endphp</code>
                     </div>
                 </div>
             @endif

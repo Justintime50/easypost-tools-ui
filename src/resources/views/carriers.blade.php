@@ -14,13 +14,10 @@
                     <th>Reference</th>
                     @foreach ($json as $carrier)
                         <tr>
-                            <form action="/retrieve-carrier" method="POST">
-                                @csrf
-                                <input type="hidden" name="id" value="{{ $carrier->id }}">
-                                <td>
-                                    <button class="btn btn-primary btn-sm btn-table"><?php echo substr($carrier->id, 0, 10); ?>...</button>
-                                </td>
-                            </form>
+                            <td>
+                                <a href="/carrier/{{ $carrier->id }}"><button
+                                        class="btn btn-primary btn-sm btn-table"><?php echo substr($carrier->id, 0, 10); ?>...</button></a>
+                            </td>
                             <td>{{ $carrier->created_at }}</td>
                             <td>{{ $carrier->readable }}</td>
                             <td>{{ $carrier->type }}</td>

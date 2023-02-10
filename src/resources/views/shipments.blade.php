@@ -5,20 +5,17 @@
             <h2>Shipments</h2>
             <p>Select a shipment ID to view all details for that record.</p>
             @foreach ($json->shipments as $shipment)
-                <form action="/retrieve-shipment" method="POST">
-                    @csrf
-                    <input type="hidden" name="id" value="{{ $shipment->id }}">
-                    <button class="btn btn-primary btn-sm btn-shipment"><?php echo substr($shipment->id, 0, 10); ?>...</button>
-                    <p>Created at: {{ $shipment->created_at }}</p>
-                    @if (isset($shipment->postage_label->label_url))
-                        <div>
-                            <a class="btn btn-primary btn-label btn-sm" href="{{ $shipment->postage_label->label_url }}"
-                                download="{{ $shipment->id }}" target="_blank">
-                                DOWNLOAD LABEL&nbsp;<i class="fas fa-download"></i>
-                            </a>
-                        </div>
-                    @endif
-                </form>
+                <a href="/shipment/{{ $shipment->id }}"><button
+                        class="btn btn-primary btn-sm btn-shipment">{{ substr($shipment->id, 0, 10) }}...</button></a>
+                <p>Created at: {{ $shipment->created_at }}</p>
+                @if (isset($shipment->postage_label->label_url))
+                    <div>
+                        <a class="btn btn-primary btn-label btn-sm" href="{{ $shipment->postage_label->label_url }}"
+                            download="{{ $shipment->id }}" target="_blank">
+                            DOWNLOAD LABEL&nbsp;<i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                @endif
                 <div class="row">
                     <div class="col-md-4">
                         <p>

@@ -10,7 +10,7 @@ use EasyPost\Shipment;
 class ShipmentController extends Controller
 {
     /**
-     * Create a shipment
+     * Create a Shipment.
      *
      * @return mixed
      */
@@ -18,14 +18,16 @@ class ShipmentController extends Controller
     {
         if (request()->get('to_address') == null) {
             request()->validate([
+                'to_name'       => 'nullable|string',
+                'to_company'    => 'nullable|string',
                 'to_street1'    => 'required|string',
                 'to_street2'    => 'nullable|string',
                 'to_city'       => 'nullable|string',
                 'to_state'      => 'nullable|string',
                 'to_zip'        => 'required|string',
                 'to_country'    => 'nullable|string',
-                'to_company'    => 'nullable|string',
                 'to_phone'      => 'nullable|string',
+                'to_email'      => 'nullable|string',
             ]);
         } else {
             request()->validate([
@@ -35,14 +37,16 @@ class ShipmentController extends Controller
 
         if (request()->get('from_address') == null) {
             request()->validate([
-                'from_street1'   => 'required|string',
-                'from_street2'   => 'nullable|string',
-                'from_city'      => 'nullable|string',
-                'from_state'     => 'nullable|string',
-                'from_zip'       => 'required|string',
-                'from_country'   => 'nullable|string',
-                'from_company'   => 'nullable|string',
-                'from_phone'     => 'nullable|string',
+                'from_name'       => 'nullable|string',
+                'from_company'    => 'nullable|string',
+                'from_street1'    => 'required|string',
+                'from_street2'    => 'nullable|string',
+                'from_city'       => 'nullable|string',
+                'from_state'      => 'nullable|string',
+                'from_zip'        => 'required|string',
+                'from_country'    => 'nullable|string',
+                'from_phone'      => 'nullable|string',
+                'from_email'      => 'nullable|string',
             ]);
         } else {
             request()->validate([
@@ -80,14 +84,16 @@ class ShipmentController extends Controller
             }
         } else {
             $toAddress = [
-                'street1' => request()->get('to_street1'),
-                'street2' => request()->get('to_street2'),
-                'city'    => request()->get('to_city'),
-                'state'   => request()->get('to_state'),
-                'zip'     => request()->get('to_zip'),
-                'country' => request()->get('to_country'),
-                'company' => request()->get('to_company'),
-                'phone'   => request()->get('to_phone'),
+                'name'      => request()->get('to_name'),
+                'company'   => request()->get('to_company'),
+                'street1'   => request()->get('to_street1'),
+                'street2'   => request()->get('to_street2'),
+                'city'      => request()->get('to_city'),
+                'state'     => request()->get('to_state'),
+                'zip'       => request()->get('to_zip'),
+                'country'   => request()->get('to_country'),
+                'phone'     => request()->get('to_phone'),
+                'email'     => request()->get('to_email'),
             ];
         }
 
@@ -99,14 +105,16 @@ class ShipmentController extends Controller
             }
         } else {
             $fromAddress = [
-                'street1' => request()->get('from_street1'),
-                'street2' => request()->get('from_street2'),
-                'city'    => request()->get('from_city'),
-                'state'   => request()->get('from_state'),
-                'zip'     => request()->get('from_zip'),
-                'country' => request()->get('from_country'),
-                'company' => request()->get('from_company'),
-                'phone'   => request()->get('from_phone'),
+                'name'      => request()->get('from_name'),
+                'company'   => request()->get('from_company'),
+                'street1'   => request()->get('from_street1'),
+                'street2'   => request()->get('from_street2'),
+                'city'      => request()->get('from_city'),
+                'state'     => request()->get('from_state'),
+                'zip'       => request()->get('from_zip'),
+                'country'   => request()->get('from_country'),
+                'phone'     => request()->get('from_phone'),
+                'email'     => request()->get('from_email'),
             ];
         }
 
@@ -163,26 +171,25 @@ class ShipmentController extends Controller
     }
 
     /**
-     * Retrieve a shipment
+     * Retrieve a Shipment.
      *
+     * @param string $id
      * @return mixed
      */
-    public function retrieveShipment()
+    public function retrieveShipment(string $id)
     {
         try {
-            $shipment = Shipment::retrieve(request()->get('id'));
+            $response = Shipment::retrieve($id);
         } catch (\EasyPost\Error $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
-
-        $response = $shipment;
 
         session()->flash('message', 'SHIPMENT RETRIEVED');
         return view('app')->with(['json' => $response]);
     }
 
     /**
-     * Retrieve a list of shipments
+     * Retrieve a list of Shipment objects.
      *
      * @return mixed
      */
@@ -204,7 +211,7 @@ class ShipmentController extends Controller
     }
 
     /**
-     * Refund a shipment
+     * Refund a Shipment.
      *
      * @return mixed
      */
@@ -217,14 +224,12 @@ class ShipmentController extends Controller
             return back()->withError($exception->getMessage())->withInput();
         }
 
-        $response = $shipment;
-
         session()->flash('message', 'SHIPMENT REFUNDED');
-        return view('app')->with(['json' => $response]);
+        return redirect('/')->with(['json' => $shipment]);
     }
 
     /**
-     * Buy a Shipment
+     * Buy a Shipment.
      *
      * @return mixed
      */
@@ -239,14 +244,12 @@ class ShipmentController extends Controller
             return back()->withError($exception->getMessage())->withInput();
         }
 
-        $response = $shipment;
-
         session()->flash('message', 'LABEL PURCHASED');
-        return view('app')->with(['json' => $response]);
+        return redirect('/')->with(['json' => $shipment]);
     }
 
     /**
-     * Buy a USPS stamp (will produce an A10 envelope label with the stamp/barcode included)
+     * Buy a USPS stamp (will produce an A10 envelope label with the stamp/barcode included).
      *
      * @return mixed
      */
@@ -359,6 +362,6 @@ class ShipmentController extends Controller
         }
 
         session()->flash('message', 'USPS STAMP BOUGHT');
-        return view('app')->with(['json' => $shipment]);
+        return redirect('/')->with(['json' => $shipment]);
     }
 }

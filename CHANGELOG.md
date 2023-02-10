@@ -1,8 +1,13 @@
 # CHANGELOG
 
-## Next Release
+## v0.7.0 (2022-09-10)
 
-- Fix `address` routes and logic so GET requests don't use POST
+- Bumps PHP from 8.1 to 8.2
+- Bumps all minor dependency versions
+- Completely overhauls all app routing to fix various bugs with GET vs POST and the names of pages which also corrects various workflows like purchasing a shipment
+- Removes all individual "retrieve x" modals and logic and replaces it with a global search by ID form. Now you can lookup any EasyPost object by its public ID
+- Adds missing `name` and `email` properties to Address forms
+- Various other bug fixes and cleanup throughout
 
 ## v0.6.1 (2022-08-29)
 

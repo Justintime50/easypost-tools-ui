@@ -22,8 +22,6 @@
                 <div class="collapse" id="addressCollapse">
                     <a href="#" data-bs-toggle="modal" data-bs-target="#createAddress" class="nav-link">Create
                         Address</a>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#retrieveAddress" class="nav-link">Retrieve
-                        Address</a>
                     <a href="/addresses" class="nav-link">List All Addresses</a>
                 </div>
 
@@ -38,14 +36,7 @@
                     href="#carriersCollapse" role="button" aria-expanded="false" aria-controls="addressCollapse"><i
                         class="fas fa-truck"></i>&nbsp;&nbsp;Carriers</a>
                 <div class="collapse" id="carriersCollapse">
-                    <form action="/retrieve-carriers" method="POST" id="retrieveCarriers">
-                        @csrf
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#retrieveCarrier" class="nav-link">
-                            Retrieve Carrier Account
-                        </a>
-                        <a href="#" onclick="document.getElementById('retrieveCarriers').submit();"
-                            class="nav-link">Retrieve Carrier Accounts</a>
-                    </form>
+                    <a href="/carriers" class="nav-link">List All Carriers</a>
                 </div>
 
                 <a class="list-group-item list-group-item-action bg-light" data-bs-toggle="collapse"
@@ -54,14 +45,7 @@
                 <div class="collapse" id="insuranceCollapse">
                     <a href="#" data-bs-toggle="modal" data-bs-target="#createInsurance" class="nav-link">Create
                         Insurance</a>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#retrieveInsurance"
-                        class="nav-link">Retrieve
-                        Insurance</a>
-                    <form action="/retrieve-insurances" method="POST" id="retrieveInsurances">
-                        @csrf
-                        <a href="#" onclick="document.getElementById('retrieveInsurances').submit();"
-                            class="nav-link">Retrieve all Insurance</a>
-                    </form>
+                    <a href="/insurances" class="nav-link">List All Insurances</a>
                 </div>
 
                 <a class="list-group-item list-group-item-action bg-light" data-bs-toggle="collapse"
@@ -76,9 +60,6 @@
                         class="fas fa-box-open"></i>&nbsp;&nbsp;Parcels</a>
                 <div class="collapse" id="parcelCollapse">
                     <a href="#" data-bs-toggle="modal" data-bs-target="#createParcel" class="nav-link">Create
-                        Parcel</a>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#retrieveParcel"
-                        class="nav-link">Retrieve
                         Parcel</a>
                 </div>
 
@@ -113,14 +94,7 @@
                     <a href="#" data-bs-toggle="modal" data-bs-target="#createShipment"
                         class="nav-link">Create
                         Shipment</a>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#retrieveShipment"
-                        class="nav-link">Retrieve
-                        Shipment</a>
-                    <form action="/retrieve-shipments" method="POST" id="retrieveShipments">
-                        @csrf
-                        <a href="#" onclick="document.getElementById('retrieveShipments').submit();"
-                            class="nav-link">Retrieve all Shipments</a>
-                    </form>
+                    <a href="/shipments" class="nav-link">List All Shipments</a>
                     <a href="#" data-bs-toggle="modal" data-bs-target="#buyShipment" class="nav-link">Buy a
                         Shipment</a>
                     <a href="#" data-bs-toggle="modal" data-bs-target="#createRefund" class="nav-link">Refund
@@ -135,14 +109,7 @@
                 <div class="collapse" id="trackerCollapse">
                     <a href="#" data-bs-toggle="modal" data-bs-target="#createTracker" class="nav-link">Create
                         Tracker</a>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#retrieveTracker"
-                        class="nav-link">Retrieve
-                        Tracker</a>
-                    <form action="/retrieve-trackers" method="POST" id="retrieveTrackers">
-                        @csrf
-                        <a href="#" onclick="document.getElementById('retrieveTrackers').submit();"
-                            class="nav-link">Retrieve all Trackers</a>
-                    </form>
+                    <a href="/trackers" class="nav-link">List All Trackers</a>
                 </div>
 
                 <a class="list-group-item list-group-item-action bg-light" data-bs-toggle="collapse"
@@ -152,6 +119,9 @@
                     <a href="https://www.easypost.com/account/webhooks-and-events" class="nav-link"
                         target="_blank">Visit the EasyPost Dashboard</a>
                 </div>
+
+                <a href="#" data-bs-toggle="modal" data-bs-target="#search" class="nav-link">Search EasyPost
+                    Object ID</a>
             </div>
         </div>
 
@@ -210,12 +180,7 @@
                 @include('modals.create-refund')
                 @include('modals.create-shipment')
                 @include('modals.create-tracker')
-                @include('modals.retrieve-address')
-                @include('modals.retrieve-carrier')
-                @include('modals.retrieve-insurance')
-                @include('modals.retrieve-parcel')
-                @include('modals.retrieve-shipment')
-                @include('modals.retrieve-tracker')
+                @include('modals.search')
 
                 @include('partials.flash-messages')
 
