@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Next Release
+
+- Upgrades from Laravel 9 to Laravel 10
+  - Bumps all dependencies
+  - Migrates from Webpack to Vite
+
 ## v0.8.2 (2023-02-17)
 
 - Fix Shipment buy method call
