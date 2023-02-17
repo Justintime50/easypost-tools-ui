@@ -106,7 +106,7 @@ class InsuranceController extends Controller
         $response = $insurance;
 
         session()->flash('message', 'INSURANCE CREATED');
-        return view('app')->with(['response' => $response]);
+        return redirect('/')->with(['response' => $response]);
     }
 
     /**

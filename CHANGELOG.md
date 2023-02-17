@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v0.8.1 (2023-02-17)
+
+- Fix create insurance, and parcel routing
+- Fix search object lookup that wasn't migrated when we moved from EasyPost PHP lib v5 to v6
+
 ## v0.8.0 (2023-02-10)
 
 - Bumps EasyPost library from v5 to v6 which introduces thread-safety and various other improvements

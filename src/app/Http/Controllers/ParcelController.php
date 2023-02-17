@@ -48,6 +48,6 @@ class ParcelController extends Controller
         }
 
         session()->flash('message', 'PARCEL CREATED');
-        return view('app')->with(['json' => $parcel]);
+        return redirect('/')->with(['json' => $parcel]);
     }
 }
