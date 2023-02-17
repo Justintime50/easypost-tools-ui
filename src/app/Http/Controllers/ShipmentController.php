@@ -244,15 +244,16 @@ class ShipmentController extends Controller
 
         try {
             $shipment = $client->shipment->retrieve(request()->get('shipment_id'));
-            $shipment->buy([
-                'id' => request()->get('rate_id'),
-            ]);
+            $boughtShipment = $client->shipment->buy(
+                $shipment->id,
+                ['id' => request()->get('rate_id')],
+            );
         } catch (EasyPostException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
 
         session()->flash('message', 'LABEL PURCHASED');
-        return redirect('/')->with(['json' => $shipment]);
+        return redirect('/')->with(['json' => $boughtShipment]);
     }
 
     /**

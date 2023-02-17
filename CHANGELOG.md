@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v0.8.2 (2023-02-17)
+
+- Fix Shipment buy method call
+
 ## v0.8.1 (2023-02-17)
 
 - Fix create insurance, and parcel routing
