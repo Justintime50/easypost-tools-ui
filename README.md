@@ -88,12 +88,9 @@ npm run lint
 # Fix SASS linting
 npm run fix
 
-# Compile SASS and Javascript during development
+# Compile SASS and Javascript during development (hot-reloads)
 npm run dev
 
 # Compile for production
-npm run prod
-
-# Watch for CSS and Javascript changes
-npm run watch
+npm run build
 ```
