@@ -28,7 +28,7 @@ class TrackerController extends Controller
                 ]
             );
         } catch (EasyPostException $exception) {
-            return back()->withError($exception->getMessage())->withInput();
+            return back()->withError($exception->getMessage());
         }
 
         session()->flash('message', 'TRACKER CREATED');
@@ -48,7 +48,7 @@ class TrackerController extends Controller
         try {
             $tracker = $client->tracker->retrieve($id);
         } catch (EasyPostException $exception) {
-            return back()->withError($exception->getMessage())->withInput();
+            return back()->withError($exception->getMessage());
         }
 
         $response = $tracker;
@@ -69,7 +69,7 @@ class TrackerController extends Controller
         try {
             $response = $client->tracker->all();
         } catch (EasyPostException $exception) {
-            return back()->withError($exception->getMessage())->withInput();
+            return back()->withError($exception->getMessage());
         }
 
         session()->flash('message', 'TRACKERS RETRIEVED');

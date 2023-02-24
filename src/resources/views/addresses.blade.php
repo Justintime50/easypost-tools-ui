@@ -17,7 +17,7 @@
                     @foreach ($json->addresses as $address)
                         <tr>
                             <td>
-                                <a href="/address/{{ $address->id }}"><button
+                                <a href="/addresses/{{ $address->id }}"><button
                                         class="btn btn-primary btn-sm btn-table">{{ substr($address->id, 0, 10) }}...</button></a>
                             </td>
                             <td>{{ $address->created_at }}</td>

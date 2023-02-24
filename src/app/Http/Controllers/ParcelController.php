@@ -44,7 +44,7 @@ class ParcelController extends Controller
                 );
             }
         } catch (EasyPostException $exception) {
-            return back()->withError($exception->getMessage())->withInput();
+            return back()->withError($exception->getMessage());
         }
 
         session()->flash('message', 'PARCEL CREATED');

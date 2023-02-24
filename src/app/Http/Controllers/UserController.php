@@ -24,6 +24,6 @@ class UserController extends Controller
         $user->save();
 
         session()->flash('message', 'API KEY UPDATED');
-        return redirect()->back();
+        return back();
     }
 }

@@ -50,7 +50,7 @@ class SearchController extends Controller
         try {
             $response = $client->{OBJECT_ID_PREFIXES[$idPrefix]}->retrieve($id);
         } catch (EasyPostException $exception) {
-            return back()->withError($exception->getMessage())->withInput();
+            return back()->withError($exception->getMessage());
         }
 
         return redirect('/')->with(['json' => $response]);

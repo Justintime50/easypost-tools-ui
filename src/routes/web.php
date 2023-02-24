@@ -30,8 +30,8 @@ Route::middleware(['auth', 'ApiKey'])->group(function () {
     Route::post('/search', 'SearchController@searchRecord');
 
     // Addresses
-    Route::post('/create-address', 'AddressController@createAddress');
-    Route::get('/address/{id}', 'AddressController@retrieveAddress');
+    Route::post('/addresses', 'AddressController@createAddress');
+    Route::get('/addresses/{id}', 'AddressController@retrieveAddress');
     Route::get('/addresses', 'AddressController@retrieveAddresses');
 
     // Parcels

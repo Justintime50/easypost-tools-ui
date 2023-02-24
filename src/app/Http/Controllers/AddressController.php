@@ -2,18 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use EasyPost\Exception\Api\ApiException;
 use EasyPost\Exception\General\EasyPostException;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class AddressController extends Controller
 {
     /**
-     * Create an address.
+     * Create an Address.
      *
-     * @return mixed
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function createAddress()
+    public function createAddress(Request $request): RedirectResponse
     {
-        request()->validate([
+        $request->validate([
             'name'     => 'nullable|string',
             'company'  => 'nullable|string',
             'street1'  => 'required|string',
@@ -26,44 +31,45 @@ class AddressController extends Controller
             'email'    => 'nullable|string',
         ]);
 
-        $client = request()->get('client');
+        $client = $request->session()->get('client');
 
         try {
             $address = $client->address->create(
                 [
-                    'name'      => request()->get('name'),
-                    'company'   => request()->get('company'),
-                    'street1'   => request()->get('street1'),
-                    'street2'   => request()->get('street2'),
-                    'city'      => request()->get('city'),
-                    'state'     => request()->get('state'),
-                    'zip'       => request()->get('zip'),
-                    'country'   => request()->get('country'),
-                    'phone'     => request()->get('phone'),
-                    'email'     => request()->get('email'),
+                    'name'      => $request->input('name'),
+                    'company'   => $request->input('company'),
+                    'street1'   => $request->input('street1'),
+                    'street2'   => $request->input('street2'),
+                    'city'      => $request->input('city'),
+                    'state'     => $request->input('state'),
+                    'zip'       => $request->input('zip'),
+                    'country'   => $request->input('country'),
+                    'phone'     => $request->input('phone'),
+                    'email'     => $request->input('email'),
                 ]
             );
-        } catch (EasyPostException $exception) {
-            return back()->withError($exception->getMessage())->withInput();
+        } catch (ApiException $exception) {
+            return back()->withError($exception->getMessage());
         }
 
-        session()->flash('message', 'ADDRESS CREATED');
+        session()->flash('message', 'Address created!');
         return redirect('/')->with(['json' => $address]);
     }
 
     /**
-     * Retrieve an address.
+     * Retrieve an Address.
      *
-     * @return mixed
+     * @param Request $request
+     * @return View
      */
-    public function retrieveAddress(string $id)
+    public function retrieveAddress(Request $request, string $id): View
     {
-        $client = request()->get('client');
+        $client = $request->session()->get('client');
 
         try {
             $json = $client->address->retrieve($id);
         } catch (EasyPostException $exception) {
-            return back()->withError($exception->getMessage())->withInput();
+            return back()->withError($exception->getMessage());
         }
 
         return view('app', compact('json'));
@@ -72,16 +78,17 @@ class AddressController extends Controller
     /**
      * Retrieve a list of Address objects.
      *
-     * @return mixed
+     * @param Request $request
+     * @return View
      */
-    public function retrieveAddresses()
+    public function retrieveAddresses(Request $request): View
     {
-        $client = request()->get('client');
+        $client = $request->session()->get('client');
 
         try {
             $json = $client->address->all();
         } catch (EasyPostException $exception) {
-            return back()->withError($exception->getMessage())->withInput();
+            return back()->withError($exception->getMessage());
         }
 
         return view('addresses', compact('json'));

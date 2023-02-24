@@ -19,7 +19,7 @@ class CarrierController extends Controller
         try {
             $carriers = $client->carrierAccount->retrieve($id);
         } catch (EasyPostException $exception) {
-            return back()->withError($exception->getMessage())->withInput();
+            return back()->withError($exception->getMessage());
         }
 
         $response = $carriers;
@@ -40,7 +40,7 @@ class CarrierController extends Controller
         try {
             $response = $client->carrierAccount->all();
         } catch (EasyPostException $exception) {
-            return back()->withError($exception->getMessage())->withInput();
+            return back()->withError($exception->getMessage());
         }
 
         session()->flash('message', 'CARRIERS RETRIEVED');

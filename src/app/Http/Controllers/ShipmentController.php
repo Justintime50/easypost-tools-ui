@@ -52,7 +52,7 @@ class ShipmentController extends Controller
         }
 
         if (request()->get('parcel') != null && request()->get('predefined_package') != null) {
-            return back()->withError('Either a Parcel ID or a predefined package may be specified, not both.')->withInput();
+            return back()->withError('Either a Parcel ID or a predefined package may be specified, not both.');
         }
 
         if (request()->get('parcel') == null && request()->get('predefined_package') == null) {
@@ -79,7 +79,7 @@ class ShipmentController extends Controller
             try {
                 $toAddress = $client->address->retrieve(request()->get('to_address'));
             } catch (EasyPostException $exception) {
-                return back()->withError($exception->getMessage())->withInput();
+                return back()->withError($exception->getMessage());
             }
         } else {
             $toAddress = [
@@ -100,7 +100,7 @@ class ShipmentController extends Controller
             try {
                 $fromAddress = $client->address->retrieve(request()->get('from_address'));
             } catch (EasyPostException $exception) {
-                return back()->withError($exception->getMessage())->withInput();
+                return back()->withError($exception->getMessage());
             }
         } else {
             $fromAddress = [
@@ -121,7 +121,7 @@ class ShipmentController extends Controller
             try {
                 $parcel = $client->parcel->retrieve(request()->get('parcel'));
             } catch (EasyPostException $exception) {
-                return back()->withError($exception->getMessage())->withInput();
+                return back()->withError($exception->getMessage());
             }
         } elseif (request()->get('predefined_package') != null) {
             try {
@@ -130,7 +130,7 @@ class ShipmentController extends Controller
                     'weight'                => request()->get('weight'),
                 ]);
             } catch (EasyPostException $exception) {
-                return back()->withError($exception->getMessage())->withInput();
+                return back()->withError($exception->getMessage());
             }
         } else {
             $parcel = [
@@ -150,11 +150,8 @@ class ShipmentController extends Controller
                 ]
             );
         } catch (EasyPostException $exception) {
-            return back()->withError($exception->getMessage())->withInput();
+            return back()->withError($exception->getMessage());
         }
-
-        $response = $shipment;
-        $json = json_decode($response);
 
         $rates = $shipment->rates;
 
@@ -166,7 +163,7 @@ class ShipmentController extends Controller
         );
 
         session()->flash('message', 'SHIPMENT CREATED');
-        return view('rates')->with(['json' => $json, 'rates' => $rates]);
+        return view('rates')->with(['json' => $shipment, 'rates' => $rates]);
     }
 
     /**
@@ -182,7 +179,7 @@ class ShipmentController extends Controller
         try {
             $response = $client->shipment->retrieve($id);
         } catch (EasyPostException $exception) {
-            return back()->withError($exception->getMessage())->withInput();
+            return back()->withError($exception->getMessage());
         }
 
         session()->flash('message', 'SHIPMENT RETRIEVED');
@@ -203,14 +200,11 @@ class ShipmentController extends Controller
                 'purchased' => false
             ]);
         } catch (EasyPostException $exception) {
-            return back()->withError($exception->getMessage())->withInput();
+            return back()->withError($exception->getMessage());
         }
 
-        $response = $shipments;
-        $json = json_decode($response);
-
         session()->flash('message', 'SHIPMENTS RETRIEVED');
-        return view('shipments')->with(['json' => $json]);
+        return view('shipments')->with(['json' => $shipments]);
     }
 
     /**
@@ -226,7 +220,7 @@ class ShipmentController extends Controller
             $shipment = $client->shipment->retrieve(request()->get('id'));
             $shipment->refund();
         } catch (EasyPostException $exception) {
-            return back()->withError($exception->getMessage())->withInput();
+            return back()->withError($exception->getMessage());
         }
 
         session()->flash('message', 'SHIPMENT REFUNDED');
@@ -249,7 +243,7 @@ class ShipmentController extends Controller
                 ['id' => request()->get('rate_id')],
             );
         } catch (EasyPostException $exception) {
-            return back()->withError($exception->getMessage())->withInput();
+            return back()->withError($exception->getMessage());
         }
 
         session()->flash('message', 'LABEL PURCHASED');
@@ -301,7 +295,7 @@ class ShipmentController extends Controller
             try {
                 $toAddress = $client->address->retrieve(request()->get('to_address'));
             } catch (EasyPostException $exception) {
-                return back()->withError($exception->getMessage())->withInput();
+                return back()->withError($exception->getMessage());
             }
         } else {
             $toAddress = [
@@ -320,7 +314,7 @@ class ShipmentController extends Controller
             try {
                 $fromAddress = $client->address->retrieve(request()->get('from_address'));
             } catch (EasyPostException $exception) {
-                return back()->withError($exception->getMessage())->withInput();
+                return back()->withError($exception->getMessage());
             }
         } else {
             $fromAddress = [
@@ -343,7 +337,7 @@ class ShipmentController extends Controller
         try {
             $carrierAccounts = $client->carrierAccount->all();
         } catch (EasyPostException $exception) {
-            return back()->withError($exception->getMessage())->withInput();
+            return back()->withError($exception->getMessage());
         }
 
         // Naive approach of grabbing the first USPS carrier account, this is not intended to be robust but convenient
@@ -368,7 +362,7 @@ class ShipmentController extends Controller
                 ]
             );
         } catch (EasyPostException $exception) {
-            return back()->withError($exception->getMessage())->withInput();
+            return back()->withError($exception->getMessage());
         }
 
         session()->flash('message', 'USPS STAMP BOUGHT');

@@ -100,7 +100,7 @@ class InsuranceController extends Controller
                 ]
             );
         } catch (EasyPostException $exception) {
-            return back()->withError($exception->getMessage())->withInput();
+            return back()->withError($exception->getMessage());
         }
 
         $response = $insurance;
@@ -122,7 +122,7 @@ class InsuranceController extends Controller
         try {
             $response = $client->insurance->retrieve($id);
         } catch (EasyPostException $exception) {
-            return back()->withError($exception->getMessage())->withInput();
+            return back()->withError($exception->getMessage());
         }
 
         session()->flash('message', 'INSURANCE RETRIEVED');
@@ -141,7 +141,7 @@ class InsuranceController extends Controller
         try {
             $json = $client->insurance->all();
         } catch (EasyPostException $exception) {
-            return back()->withError($exception->getMessage())->withInput();
+            return back()->withError($exception->getMessage());
         }
 
         session()->flash('message', 'INSURANCES RETRIEVED');

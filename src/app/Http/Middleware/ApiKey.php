@@ -24,11 +24,11 @@ class ApiKey
             $apiKey = Crypt::decryptString(Auth::user()->api_key);
         } catch (DecryptException $e) {
             session()->flash('error', 'API KEY COULD NOT BE DECRYPTED. PLEASE UPDATE YOUR KEY.');
-            return redirect()->back();
+            return back();
         }
 
         $client = new EasyPostClient($apiKey);
-        $request->attributes->add(['client' => $client]);
+        $request->session()->put(['client' => $client]);
 
         return $next($request);
     }
