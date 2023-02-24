@@ -6,4 +6,6 @@ RUN composer install -q --no-ansi --no-interaction --no-scripts --no-plugins --n
     # Setup Laravel
     && chmod -R 755 storage bootstrap/cache \
     && php artisan storage:link \
-    && php artisan optimize:clear
+    && php artisan optimize:clear \
+    && npm install -s \
+    && npm run build

@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ config('app.name', 'EasyPost Tools') }}</title>
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
 <body>
@@ -23,13 +22,6 @@
                     <a href="#" data-bs-toggle="modal" data-bs-target="#createAddress" class="nav-link">Create
                         Address</a>
                     <a href="/addresses" class="nav-link">List All Addresses</a>
-                </div>
-
-                <a class="list-group-item list-group-item-action bg-light" data-bs-toggle="collapse"
-                    href="#batchesCollapse" role="button" aria-expanded="false" aria-controls="batchesCollapse"><i
-                        class="fas fa-layer-group"></i>&nbsp;&nbsp;Batches</a>
-                <div class="collapse" id="batchesCollapse">
-                    <a href="#" class="nav-link">Not Currently Supported via UI</a>
                 </div>
 
                 <a class="list-group-item list-group-item-action bg-light" data-bs-toggle="collapse"
@@ -49,25 +41,11 @@
                 </div>
 
                 <a class="list-group-item list-group-item-action bg-light" data-bs-toggle="collapse"
-                    href="#ordersCollapse" role="button" aria-expanded="false" aria-controls="ordersCollapse"><i
-                        class="fas fa-layer-group"></i>&nbsp;&nbsp;Orders</a>
-                <div class="collapse" id="ordersCollapse">
-                    <a href="#" class="nav-link">Not Currently Supported via UI</a>
-                </div>
-
-                <a class="list-group-item list-group-item-action bg-light" data-bs-toggle="collapse"
                     href="#parcelCollapse" role="button" aria-expanded="false" aria-controls="parcelCollapse"><i
                         class="fas fa-box-open"></i>&nbsp;&nbsp;Parcels</a>
                 <div class="collapse" id="parcelCollapse">
                     <a href="#" data-bs-toggle="modal" data-bs-target="#createParcel" class="nav-link">Create
                         Parcel</a>
-                </div>
-
-                <a class="list-group-item list-group-item-action bg-light" data-bs-toggle="collapse"
-                    href="#pickupsCollapse" role="button" aria-expanded="false" aria-controls="pickupsCollapse"><i
-                        class="fas fa-layer-group"></i>&nbsp;&nbsp;Pickups</a>
-                <div class="collapse" id="pickupsCollapse">
-                    <a href="#" class="nav-link">Not Currently Supported via UI</a>
                 </div>
 
                 <a class="list-group-item list-group-item-action bg-light" data-bs-toggle="collapse"
@@ -80,19 +58,10 @@
                 </div>
 
                 <a class="list-group-item list-group-item-action bg-light" data-bs-toggle="collapse"
-                    href="#scanformsCollapse" role="button" aria-expanded="false"
-                    aria-controls="scanformsCollapse"><i
-                        class="fas fa-layer-group"></i>&nbsp;&nbsp;Scanforms/Manifest</a>
-                <div class="collapse" id="scanformsCollapse">
-                    <a href="#" class="nav-link">Not Currently Supported via UI</a>
-                </div>
-
-                <a class="list-group-item list-group-item-action bg-light" data-bs-toggle="collapse"
-                    href="#shipmentCollapse" role="button" aria-expanded="false"
-                    aria-controls="shipmentCollapse"><i class="fas fa-truck-loading"></i>&nbsp;&nbsp;Shipments</a>
+                    href="#shipmentCollapse" role="button" aria-expanded="false" aria-controls="shipmentCollapse"><i
+                        class="fas fa-truck-loading"></i>&nbsp;&nbsp;Shipments</a>
                 <div class="collapse" id="shipmentCollapse">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#createShipment"
-                        class="nav-link">Create
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#createShipment" class="nav-link">Create
                         Shipment</a>
                     <a href="/shipments" class="nav-link">List All Shipments</a>
                     <a href="#" data-bs-toggle="modal" data-bs-target="#buyShipment" class="nav-link">Buy a
@@ -110,14 +79,6 @@
                     <a href="#" data-bs-toggle="modal" data-bs-target="#createTracker" class="nav-link">Create
                         Tracker</a>
                     <a href="/trackers" class="nav-link">List All Trackers</a>
-                </div>
-
-                <a class="list-group-item list-group-item-action bg-light" data-bs-toggle="collapse"
-                    href="#webhooksCollapse" role="button" aria-expanded="false"
-                    aria-controls="webhooksCollapse"><i class="fas fa-calendar-alt"></i>&nbsp;&nbsp;Webhooks</a>
-                <div class="collapse" id="webhooksCollapse">
-                    <a href="https://www.easypost.com/account/webhooks-and-events" class="nav-link"
-                        target="_blank">Visit the EasyPost Dashboard</a>
                 </div>
 
                 <a href="#" data-bs-toggle="modal" data-bs-target="#search" class="nav-link">Search EasyPost
@@ -191,7 +152,6 @@
 </body>
 
 <!-- Scripts -->
-<script src="{{ asset('js/app.js') }}" defer></script>
 <script src="https://kit.fontawesome.com/0dd4ecd465.js" crossorigin="anonymous"></script>
 <script>
     function toggleSidebar() {
