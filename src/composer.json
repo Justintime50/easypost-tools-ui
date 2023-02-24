@@ -9,7 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "8.2.x",
-        "anhskohbo/no-captcha": "^3.4",
+        "anhskohbo/no-captcha": "^3.5",
         "easypost/easypost-php": "^6.0",
         "laravel/framework": "^10.0",
         "laravel/tinker": "^2.8",
@@ -18,7 +18,7 @@
     },
     "require-dev": {
         "spatie/laravel-ignition": "^2.0",
-        "fzaninotto/faker": "^1.9",
+        "fakerphp/faker": "^1.21",
         "mockery/mockery": "^1.5",
         "nunomaduro/collision": "^7.0",
         "phpunit/phpunit": "^10.0",
