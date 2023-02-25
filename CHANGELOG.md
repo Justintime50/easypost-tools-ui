@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v0.9.1 (2023-02-24)
+
+- Fixes address fields on forms with address input to contain the necessary fields for the object in question (removed some fields from buying a stamp, added back a few for insurances from bad copy-pasta)
+- Fixes the redirect when buying a stamp to go back to the shipment page
+
 ## v0.9.0 (2023-02-24)
 
 - Upgrades from Laravel 9 to Laravel 10

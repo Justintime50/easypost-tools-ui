@@ -260,9 +260,9 @@ class ShipmentController extends Controller
      * Buy a USPS stamp (will produce an A10 envelope label with the stamp/barcode included).
      *
      * @param Request $request
-     * @return View
+     * @return RedirectResponse
      */
-    public function buyStamp(Request $request): View
+    public function buyStamp(Request $request): RedirectResponse
     {
         if ($request->input('to_address') == null) {
             $request->validate([
@@ -273,9 +273,6 @@ class ShipmentController extends Controller
                 'to_city'       => 'nullable|string',
                 'to_state'      => 'nullable|string',
                 'to_zip'        => 'required|string',
-                'to_country'    => 'nullable|string',
-                'to_phone'      => 'nullable|string',
-                'to_email'      => 'nullable|string',
             ]);
         } else {
             $request->validate([
@@ -292,9 +289,6 @@ class ShipmentController extends Controller
                 'from_city'       => 'nullable|string',
                 'from_state'      => 'nullable|string',
                 'from_zip'        => 'required|string',
-                'from_country'    => 'nullable|string',
-                'from_phone'      => 'nullable|string',
-                'from_email'      => 'nullable|string',
             ]);
         } else {
             $request->validate([
@@ -319,9 +313,6 @@ class ShipmentController extends Controller
                 'city'      => $request->input('to_city'),
                 'state'     => $request->input('to_state'),
                 'zip'       => $request->input('to_zip'),
-                'country'   => 'United States',
-                'phone'     => $request->input('to_phone'),
-                'email'     => $request->input('to_email'),
             ];
         }
 
@@ -340,9 +331,6 @@ class ShipmentController extends Controller
                 'city'      => $request->input('from_city'),
                 'state'     => $request->input('from_state'),
                 'zip'       => $request->input('from_zip'),
-                'country'   => 'United States',
-                'phone'     => $request->input('from_phone'),
-                'email'     => $request->input('from_email'),
             ];
         }
 
@@ -369,7 +357,7 @@ class ShipmentController extends Controller
         }
 
         try {
-            $shipment = $client->shipment->create(
+            $client->shipment->create(
                 [
                     'to_address'        => $toAddress,
                     'from_address'      => $fromAddress,
@@ -382,6 +370,7 @@ class ShipmentController extends Controller
             return back()->withError($exception->getMessage());
         }
 
-        return view('record')->with(['json' => $shipment]);
+        session()->flash('message', 'Stamp bought!');
+        return back();
     }
 }

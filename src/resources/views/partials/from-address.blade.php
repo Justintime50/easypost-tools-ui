@@ -1,3 +1,9 @@
+<label for="from_name">Name</label>
+<input class="form-control" name="from_name" value="{{ old('from_name') }}">
+
+<label for="from_company">Company</label>
+<input class="form-control" name="from_company" value="{{ old('from_company') }}">
+
 <label for="from_street1">Street 1</label>
 <input class="form-control" name="from_street1" value="{{ old('from_street1') }}">
 
@@ -15,9 +21,6 @@
 
 <label for="from_country">Country</label>
 <input class="form-control" name="from_country" value="{{ old('from_country') }}">
-
-<label for="from_company">Company</label>
-<input class="form-control" name="from_company" value="{{ old('from_company') }}">
 
 <label for="from_phone">Phone</label>
 <input class="form-control" name="from_phone" value="{{ old('from_phone') }}">
