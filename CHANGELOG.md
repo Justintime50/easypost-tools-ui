@@ -1,11 +1,22 @@
 # CHANGELOG
 
-## Next Release
+## v0.9.0 (2023-02-24)
 
 - Upgrades from Laravel 9 to Laravel 10
   - Bumps all dependencies
   - Migrates from Webpack to Vite
+- Rewrote the whole app's routing system
+  - All endpoints/urls now follow proper REST conventions (endpoint names, ids, verbs, etc)
+  - The app no longer functions as a psuedo single-page-app, instead, you have to select a resource from the sidebar which takes you to that resources page where there are now buttons to take actions against that type of resource. The initial landing page of each resrouce will retrieve all the records of that resource
+- Shipments can now be bought if they were previously created and unpurchased. Previously, you would need to make a new shipment as once you navigated away from the rates page, the buy option for that shipment was lost
+  - Removed the ability to purchase a shipment by providing a shipment and rate ID since you can now purchase shipments directly from the individual shipment page
+- Hides the buy shipping label buttons from the shipment page once a shipment has been purchased
+  - The `selected_rate` row is now highlighted once purchased so you know which rate was bought
+- Adds a new `/refunds` page where you can view all your refunded shipments
 - Removes sidebar links to EasyPost resources that weren't supported in this project to avoid confusion
+- Fixes a syntax error for refunding a shipment due to v6 EasyPost lib upgrade
+- Removes address verification from creating an insurance
+- Various other bug fixes and improvements
 
 ## v0.8.2 (2023-02-17)
 

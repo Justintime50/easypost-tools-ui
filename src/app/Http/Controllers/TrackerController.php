@@ -2,77 +2,78 @@
 
 namespace App\Http\Controllers;
 
-use EasyPost\Exception\General\EasyPostException;
+use EasyPost\Exception\Api\ApiException;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class TrackerController extends Controller
 {
     /**
      * Create a Tracker.
      *
-     * @return mixed
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function createTracker()
+    public function createTracker(Request $request): RedirectResponse
     {
-        request()->validate([
+        $request->validate([
             'tracking_code' => 'required|string',
             'carrier'       => 'nullable|string',
         ]);
 
-        $client = request()->get('client');
+        $client = $request->session()->get('client');
 
         try {
             $response = $client->tracker->create(
                 [
-                    'tracking_code'  => request()->get('tracking_code'),
-                    'carrier' => request()->get('carrier'),
+                    'tracking_code'  => $request->input('tracking_code'),
+                    'carrier' => $request->input('carrier'),
                 ]
             );
-        } catch (EasyPostException $exception) {
+        } catch (ApiException $exception) {
             return back()->withError($exception->getMessage());
         }
 
-        session()->flash('message', 'TRACKER CREATED');
-        return redirect('/')->with(['json' => $response]);
+        return view('record')->with(['json' => $response]);
     }
 
     /**
      * Retrieve a Tracker.
      *
+     * @param Request $request
      * @param string $id
-     * @return mixed
+     * @return View
      */
-    public function retrieveTracker(string $id)
+    public function retrieveTracker(Request $request, string $id): View
     {
-        $client = request()->get('client');
+        $client = $request->session()->get('client');
 
         try {
             $tracker = $client->tracker->retrieve($id);
-        } catch (EasyPostException $exception) {
+        } catch (ApiException $exception) {
             return back()->withError($exception->getMessage());
         }
 
-        $response = $tracker;
-
-        session()->flash('message', 'TRACKER RETRIEVED');
-        return view('app')->with(['json' => $response]);
+        return view('record')->with(['json' => $tracker]);
     }
 
     /**
      * Retrieve a list of Tracker objects.
      *
-     * @return mixed
+     * @param Request $request
+     * @return View
      */
-    public function retrieveTrackers()
+    public function retrieveTrackers(Request $request): View
     {
-        $client = request()->get('client');
+        $client = $request->session()->get('client');
 
         try {
             $response = $client->tracker->all();
-        } catch (EasyPostException $exception) {
+        } catch (ApiException $exception) {
             return back()->withError($exception->getMessage());
         }
 
-        session()->flash('message', 'TRACKERS RETRIEVED');
         return view('trackers')->with(['json' => $response]);
     }
 }

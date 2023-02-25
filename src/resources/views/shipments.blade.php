@@ -1,11 +1,17 @@
 @extends('layouts.app')
 @section('content')
+    @include('modals.create-shipment')
+    @include('modals.buy-stamp')
     <div class="response-wrapper">
         <div class="response">
             <h2>Shipments</h2>
-            <p>Select a shipment ID to view all details for that record.</p>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createShipment">Create
+                Shipment</button>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#buyStamp">Buy a
+                Stamp</button>
+            <hr />
             @foreach ($json->shipments as $shipment)
-                <a href="/shipment/{{ $shipment->id }}"><button
+                <a href="/shipments/{{ $shipment->id }}"><button
                         class="btn btn-primary btn-sm btn-shipment">{{ substr($shipment->id, 0, 10) }}...</button></a>
                 <p>Created at: {{ $shipment->created_at }}</p>
                 @if (isset($shipment->postage_label->label_url))

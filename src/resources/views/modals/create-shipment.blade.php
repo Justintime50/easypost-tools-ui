@@ -1,5 +1,5 @@
 <x-modal title="Create Shipment" id="createShipment" submit-button="Create Shipment">
-    <form action="/create-shipment" method="POST">
+    <form action="/shipments" method="POST">
         @csrf
 
         <p>Create a shipment which will produce a label. Submitting this form will bill your account based on the rate
@@ -15,35 +15,7 @@
 
         <hr>
 
-        <label for="from_name">Name</label>
-        <input class="form-control" name="from_name" value="{{ old('from_name') }}">
-
-        <label for="from_company">Company</label>
-        <input class="form-control" name="from_company" value="{{ old('from_company') }}">
-
-        <label for="from_street1">Street 1</label>
-        <input class="form-control" name="from_street1" value="{{ old('from_street1') }}">
-
-        <label for="from_street2">Street 2</label>
-        <input class="form-control" name="from_street2" value="{{ old('from_street2') }}">
-
-        <label for="from_city">City</label>
-        <input class="form-control" name="from_city" value="{{ old('from_city') }}">
-
-        <label for="from_state">State</label>
-        <input class="form-control" name="from_state" value="{{ old('from_state') }}">
-
-        <label for="from_zip">Zip</label>
-        <input class="form-control" name="from_zip" value="{{ old('from_zip') }}">
-
-        <label for="from_country">Country</label>
-        <input class="form-control" name="from_country" value="{{ old('from_country') }}">
-
-        <label for="from_phone">Phone</label>
-        <input class="form-control" name="from_phone" value="{{ old('from_phone') }}">
-
-        <label for="from_email">Email</label>
-        <input class="form-control" name="from_email" value="{{ old('from_email') }}">
+        @include('partials.from-address')
 
         <h3>To Address</h3>
 
@@ -53,35 +25,7 @@
 
         <hr>
 
-        <label for="to_name">Name</label>
-        <input class="form-control" name="to_name" value="{{ old('to_name') }}">
-
-        <label for="to_company">Company</label>
-        <input class="form-control" name="to_company" value="{{ old('to_company') }}">
-
-        <label for="to_street1">Street 1</label>
-        <input class="form-control" name="to_street1" value="{{ old('to_street1') }}">
-
-        <label for="to_street2">Street 2</label>
-        <input class="form-control" name="to_street2" value="{{ old('to_street2') }}">
-
-        <label for="to_city">City</label>
-        <input class="form-control" name="to_city" value="{{ old('to_city') }}">
-
-        <label for="to_state">State</label>
-        <input class="form-control" name="to_state" value="{{ old('to_state') }}">
-
-        <label for="to_zip">Zip</label>
-        <input class="form-control" name="to_zip" value="{{ old('to_zip') }}">
-
-        <label for="to_country">Country</label>
-        <input class="form-control" name="to_country" value="{{ old('to_country') }}">
-
-        <label for="to_phone">Phone</label>
-        <input class="form-control" name="to_phone" value="{{ old('to_phone') }}">
-
-        <label for="to_email">Email</label>
-        <input class="form-control" name="to_email" value="{{ old('to_email') }}">
+        @include('partials.to-address')
 
         <h3>Parcel</h3>
 

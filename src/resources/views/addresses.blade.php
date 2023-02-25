@@ -1,9 +1,12 @@
 @extends('layouts.app')
 @section('content')
+    @include('modals.create-address')
     <div class="response-wrapper">
         <div class="response">
             <h2>Addresses</h2>
-            <p>Select an address ID to view all details for that record.</p>
+            <button class="btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#createAddress"
+                class="nav-link">Create
+                Address</button>
             <div class="table-responsive">
                 <table class="table">
                     <th>ID</th>

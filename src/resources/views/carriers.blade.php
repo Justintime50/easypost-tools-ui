@@ -15,7 +15,7 @@
                     @foreach ($json as $carrier)
                         <tr>
                             <td>
-                                <a href="/carrier/{{ $carrier->id }}"><button
+                                <a href="/carriers/{{ $carrier->id }}"><button
                                         class="btn btn-primary btn-sm btn-table"><?php echo substr($carrier->id, 0, 10); ?>...</button></a>
                             </td>
                             <td>{{ $carrier->created_at }}</td>

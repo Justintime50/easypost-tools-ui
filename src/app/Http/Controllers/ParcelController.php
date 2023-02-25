@@ -2,14 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use EasyPost\Exception\General\EasyPostException;
+use EasyPost\Exception\Api\ApiException;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class ParcelController extends Controller
 {
     /**
      * Create a Parcel.
+     *
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function createParcel()
+    public function createParcel(Request $request): RedirectResponse
     {
         if (request()->get('predefined_package') == null) {
             request()->validate([
@@ -25,7 +31,7 @@ class ParcelController extends Controller
             ]);
         }
 
-        $client = request()->get('client');
+        $client = $request->session()->get('client');
 
         try {
             if (request()->get('predefined_package') != null) {
@@ -43,11 +49,43 @@ class ParcelController extends Controller
                     ]
                 );
             }
-        } catch (EasyPostException $exception) {
+        } catch (ApiException $exception) {
             return back()->withError($exception->getMessage());
         }
 
-        session()->flash('message', 'PARCEL CREATED');
-        return redirect('/')->with(['json' => $parcel]);
+        return redirect("/parcels/$parcel->id");
+    }
+
+    /**
+     * Retrieve an Parcel.
+     *
+     * @param Request $request
+     * @param string $id
+     * @return View|RedirectResponse
+     */
+    public function retrieveParcel(Request $request, string $id)
+    {
+        $client = $request->session()->get('client');
+
+        try {
+            $parcel = $client->parcel->retrieve($id);
+        } catch (ApiException $exception) {
+            return back()->withError($exception->getMessage());
+        }
+
+        return view('record')->with(['json' => $parcel]);
+    }
+
+    /**
+     * Retrieve a list of Parcels.
+     *
+     * You can't actually retrieve a list of Parcels, there is no EasyPost endpoint for this, so we just return the parcels page.
+     *
+     * @param Request $request
+     * @return View
+     */
+    public function retrieveParcels(Request $request): View
+    {
+        return view('parcels');
     }
 }

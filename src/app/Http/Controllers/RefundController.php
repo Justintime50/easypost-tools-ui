@@ -7,44 +7,46 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
-class CarrierController extends Controller
+class RefundController extends Controller
 {
     /**
-     * Retrieve a CarrierAccount.
+     * Retrieve an Refund.
      *
      * @param Request $request
      * @param string $id
      * @return View|RedirectResponse
      */
-    public function retrieveCarrier(Request $request, string $id): View|RedirectResponse
+    public function retrieveRefund(Request $request, string $id)
     {
         $client = $request->session()->get('client');
 
         try {
-            $carrier = $client->carrierAccount->retrieve($id);
+            $refund = $client->refund->retrieve($id);
         } catch (ApiException $exception) {
             return back()->withError($exception->getMessage());
         }
 
-        return view('record')->with(['json' => $carrier]);
+        return view('record')->with(['json' => $refund]);
     }
 
     /**
-     * Retrieve a list of CarrierAccount objects.
+     * Retrieve a list of Refunds.
+     *
+     * You can't actually retrieve a list of Refunds, there is no EasyPost endpoint for this, so we just return the refunds page.
      *
      * @param Request $request
-     * @return View|RedirectResponse
+     * @return View
      */
-    public function retrieveCarriers(Request $request): View|RedirectResponse
+    public function retrieveRefunds(Request $request): View
     {
         $client = $request->session()->get('client');
 
         try {
-            $carriers = $client->carrierAccount->all();
+            $refunds = $client->refund->all();
         } catch (ApiException $exception) {
             return back()->withError($exception->getMessage());
         }
 
-        return view('carriers')->with(['json' => $carriers]);
+        return view('refunds')->with(['json' => $refunds]);
     }
 }

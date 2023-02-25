@@ -2,19 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use EasyPost\Exception\General\EasyPostException;
+use EasyPost\Exception\Api\ApiException;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class ShipmentController extends Controller
 {
     /**
      * Create a Shipment.
      *
-     * @return mixed
+     * @param Request $request
+     * @return View
      */
-    public function createShipment()
+    public function createShipment(Request $request): View
     {
-        if (request()->get('to_address') == null) {
-            request()->validate([
+        if ($request->input('to_address') == null) {
+            $request->validate([
                 'to_name'       => 'nullable|string',
                 'to_company'    => 'nullable|string',
                 'to_street1'    => 'required|string',
@@ -27,13 +31,13 @@ class ShipmentController extends Controller
                 'to_email'      => 'nullable|string',
             ]);
         } else {
-            request()->validate([
+            $request->validate([
                 'to_address'    => 'required|string',
             ]);
         }
 
-        if (request()->get('from_address') == null) {
-            request()->validate([
+        if ($request->input('from_address') == null) {
+            $request->validate([
                 'from_name'       => 'nullable|string',
                 'from_company'    => 'nullable|string',
                 'from_street1'    => 'required|string',
@@ -46,98 +50,98 @@ class ShipmentController extends Controller
                 'from_email'      => 'nullable|string',
             ]);
         } else {
-            request()->validate([
+            $request->validate([
                 'from_address'  => 'required|string',
             ]);
         }
 
-        if (request()->get('parcel') != null && request()->get('predefined_package') != null) {
+        if ($request->input('parcel') != null && $request->input('predefined_package') != null) {
             return back()->withError('Either a Parcel ID or a predefined package may be specified, not both.');
         }
 
-        if (request()->get('parcel') == null && request()->get('predefined_package') == null) {
-            request()->validate([
+        if ($request->input('parcel') == null && $request->input('predefined_package') == null) {
+            $request->validate([
                 'length'    => 'nullable|string',
                 'width'     => 'nullable|string',
                 'height'    => 'nullable|string',
                 'weight'    => 'required|string',
             ]);
-        } elseif (request()->get('predefined_package') == null) {
-            request()->validate([
+        } elseif ($request->input('predefined_package') == null) {
+            $request->validate([
                 'parcel'    => 'required|string',
             ]);
-        } elseif (request()->get('parcel') == null) {
-            request()->validate([
+        } elseif ($request->input('parcel') == null) {
+            $request->validate([
                 'predefined_package'    => 'required|string',
                 'weight'                => 'required|string'
             ]);
         }
 
-        $client = request()->get('client');
+        $client = $request->session()->get('client');
 
-        if (request()->get('to_address') != null) {
+        if ($request->input('to_address') != null) {
             try {
-                $toAddress = $client->address->retrieve(request()->get('to_address'));
-            } catch (EasyPostException $exception) {
+                $toAddress = $client->address->retrieve($request->input('to_address'));
+            } catch (ApiException $exception) {
                 return back()->withError($exception->getMessage());
             }
         } else {
             $toAddress = [
-                'name'      => request()->get('to_name'),
-                'company'   => request()->get('to_company'),
-                'street1'   => request()->get('to_street1'),
-                'street2'   => request()->get('to_street2'),
-                'city'      => request()->get('to_city'),
-                'state'     => request()->get('to_state'),
-                'zip'       => request()->get('to_zip'),
-                'country'   => request()->get('to_country'),
-                'phone'     => request()->get('to_phone'),
-                'email'     => request()->get('to_email'),
+                'name'      => $request->input('to_name'),
+                'company'   => $request->input('to_company'),
+                'street1'   => $request->input('to_street1'),
+                'street2'   => $request->input('to_street2'),
+                'city'      => $request->input('to_city'),
+                'state'     => $request->input('to_state'),
+                'zip'       => $request->input('to_zip'),
+                'country'   => $request->input('to_country'),
+                'phone'     => $request->input('to_phone'),
+                'email'     => $request->input('to_email'),
             ];
         }
 
-        if (request()->get('from_address') != null) {
+        if ($request->input('from_address') != null) {
             try {
-                $fromAddress = $client->address->retrieve(request()->get('from_address'));
-            } catch (EasyPostException $exception) {
+                $fromAddress = $client->address->retrieve($request->input('from_address'));
+            } catch (ApiException $exception) {
                 return back()->withError($exception->getMessage());
             }
         } else {
             $fromAddress = [
-                'name'      => request()->get('from_name'),
-                'company'   => request()->get('from_company'),
-                'street1'   => request()->get('from_street1'),
-                'street2'   => request()->get('from_street2'),
-                'city'      => request()->get('from_city'),
-                'state'     => request()->get('from_state'),
-                'zip'       => request()->get('from_zip'),
-                'country'   => request()->get('from_country'),
-                'phone'     => request()->get('from_phone'),
-                'email'     => request()->get('from_email'),
+                'name'      => $request->input('from_name'),
+                'company'   => $request->input('from_company'),
+                'street1'   => $request->input('from_street1'),
+                'street2'   => $request->input('from_street2'),
+                'city'      => $request->input('from_city'),
+                'state'     => $request->input('from_state'),
+                'zip'       => $request->input('from_zip'),
+                'country'   => $request->input('from_country'),
+                'phone'     => $request->input('from_phone'),
+                'email'     => $request->input('from_email'),
             ];
         }
 
-        if (request()->get('parcel') != null) {
+        if ($request->input('parcel') != null) {
             try {
-                $parcel = $client->parcel->retrieve(request()->get('parcel'));
-            } catch (EasyPostException $exception) {
+                $parcel = $client->parcel->retrieve($request->input('parcel'));
+            } catch (ApiException $exception) {
                 return back()->withError($exception->getMessage());
             }
-        } elseif (request()->get('predefined_package') != null) {
+        } elseif ($request->input('predefined_package') != null) {
             try {
                 $parcel = $client->parcel->create([
-                    'predefined_package'    => request()->get('predefined_package'),
-                    'weight'                => request()->get('weight'),
+                    'predefined_package'    => $request->input('predefined_package'),
+                    'weight'                => $request->input('weight'),
                 ]);
-            } catch (EasyPostException $exception) {
+            } catch (ApiException $exception) {
                 return back()->withError($exception->getMessage());
             }
         } else {
             $parcel = [
-                'length'    => request()->get('length'),
-                'width'     => request()->get('width'),
-                'height'    => request()->get('height'),
-                'weight'    => request()->get('weight'),
+                'length'    => $request->input('length'),
+                'width'     => $request->input('width'),
+                'height'    => $request->input('height'),
+                'weight'    => $request->input('weight'),
             ];
         }
 
@@ -149,7 +153,7 @@ class ShipmentController extends Controller
                     'parcel'        => $parcel
                 ]
             );
-        } catch (EasyPostException $exception) {
+        } catch (ApiException $exception) {
             return back()->withError($exception->getMessage());
         }
 
@@ -162,170 +166,183 @@ class ShipmentController extends Controller
             }
         );
 
-        session()->flash('message', 'SHIPMENT CREATED');
-        return view('rates')->with(['json' => $shipment, 'rates' => $rates]);
+        return view('shipment')->with(['json' => $shipment, 'rates' => $rates]);
     }
 
     /**
      * Retrieve a Shipment.
      *
+     * @param Request $request
      * @param string $id
-     * @return mixed
+     * @return View
      */
-    public function retrieveShipment(string $id)
+    public function retrieveShipment(Request $request, string $id): View
     {
-        $client = request()->get('client');
+        $client = $request->session()->get('client');
 
         try {
-            $response = $client->shipment->retrieve($id);
-        } catch (EasyPostException $exception) {
+            $shipment = $client->shipment->retrieve($id);
+        } catch (ApiException $exception) {
             return back()->withError($exception->getMessage());
         }
 
-        session()->flash('message', 'SHIPMENT RETRIEVED');
-        return view('app')->with(['json' => $response]);
+        return view('shipment')->with(['shipment' => $shipment, 'rates' => $shipment->rates ?? []]);
     }
 
     /**
      * Retrieve a list of Shipment objects.
      *
-     * @return mixed
+     * @param Request $request
+     * @return View
      */
-    public function retrieveShipments()
+    public function retrieveShipments(Request $request): View
     {
-        $client = request()->get('client');
+        $client = $request->session()->get('client');
 
         try {
             $shipments = $client->shipment->all([
-                'purchased' => false
+                'purchased' => false,
             ]);
-        } catch (EasyPostException $exception) {
+        } catch (ApiException $exception) {
             return back()->withError($exception->getMessage());
         }
 
-        session()->flash('message', 'SHIPMENTS RETRIEVED');
         return view('shipments')->with(['json' => $shipments]);
     }
 
     /**
      * Refund a Shipment.
      *
-     * @return mixed
+     * @param Request $request
+     * @param string $id
+     * @return RedirectResponse
      */
-    public function createRefund()
+    public function createRefund(Request $request, string $id): RedirectResponse
     {
-        $client = request()->get('client');
+        $client = $request->session()->get('client');
 
         try {
-            $shipment = $client->shipment->retrieve(request()->get('id'));
-            $shipment->refund();
-        } catch (EasyPostException $exception) {
+            $client->shipment->refund($id);
+        } catch (ApiException $exception) {
             return back()->withError($exception->getMessage());
         }
 
-        session()->flash('message', 'SHIPMENT REFUNDED');
-        return redirect('/')->with(['json' => $shipment]);
+        session()->flash('message', 'Refund submitted! Follow-up with the carrier for more details.');
+        return back();
     }
 
     /**
      * Buy a Shipment.
      *
-     * @return mixed
+     * @param Request $request
+     * @param string $id
+     * @return RedirectResponse
      */
-    public function buyShipment()
+    public function buyShipment(Request $request, string $id): RedirectResponse
     {
-        $client = request()->get('client');
+        $client = $request->session()->get('client');
 
         try {
-            $shipment = $client->shipment->retrieve(request()->get('shipment_id'));
+            $shipment = $client->shipment->retrieve($id);
             $boughtShipment = $client->shipment->buy(
                 $shipment->id,
-                ['id' => request()->get('rate_id')],
+                ['id' => $request->input('rate_id')],
             );
-        } catch (EasyPostException $exception) {
+        } catch (ApiException $exception) {
             return back()->withError($exception->getMessage());
         }
 
-        session()->flash('message', 'LABEL PURCHASED');
-        return redirect('/')->with(['json' => $boughtShipment]);
+        session()->flash('message', 'Shipment bought!');
+        return back()->with(['shipment' => $boughtShipment]);
     }
 
     /**
      * Buy a USPS stamp (will produce an A10 envelope label with the stamp/barcode included).
      *
-     * @return mixed
+     * @param Request $request
+     * @return View
      */
-    public function buyStamp()
+    public function buyStamp(Request $request): View
     {
-        if (request()->get('to_address') == null) {
-            request()->validate([
+        if ($request->input('to_address') == null) {
+            $request->validate([
+                'to_name'       => 'nullable|string',
+                'to_company'    => 'nullable|string',
                 'to_street1'    => 'required|string',
                 'to_street2'    => 'nullable|string',
                 'to_city'       => 'nullable|string',
                 'to_state'      => 'nullable|string',
                 'to_zip'        => 'required|string',
-                'to_company'    => 'nullable|string',
+                'to_country'    => 'nullable|string',
                 'to_phone'      => 'nullable|string',
+                'to_email'      => 'nullable|string',
             ]);
         } else {
-            request()->validate([
+            $request->validate([
                 'to_address'    => 'required|string',
             ]);
         }
 
-        if (request()->get('from_address') == null) {
-            request()->validate([
-                'from_street1'   => 'required|string',
-                'from_street2'   => 'nullable|string',
-                'from_city'      => 'nullable|string',
-                'from_state'     => 'nullable|string',
-                'from_zip'       => 'required|string',
-                'from_company'   => 'nullable|string',
-                'from_phone'     => 'nullable|string',
+        if ($request->input('from_address') == null) {
+            $request->validate([
+                'from_name'       => 'nullable|string',
+                'from_company'    => 'nullable|string',
+                'from_street1'    => 'required|string',
+                'from_street2'    => 'nullable|string',
+                'from_city'       => 'nullable|string',
+                'from_state'      => 'nullable|string',
+                'from_zip'        => 'required|string',
+                'from_country'    => 'nullable|string',
+                'from_phone'      => 'nullable|string',
+                'from_email'      => 'nullable|string',
             ]);
         } else {
-            request()->validate([
+            $request->validate([
                 'from_address'  => 'required|string',
             ]);
         }
 
-        $client = request()->get('client');
+        $client = $request->session()->get('client');
 
-        if (request()->get('to_address') != null) {
+        if ($request->input('to_address') != null) {
             try {
-                $toAddress = $client->address->retrieve(request()->get('to_address'));
-            } catch (EasyPostException $exception) {
+                $toAddress = $client->address->retrieve($request->input('to_address'));
+            } catch (ApiException $exception) {
                 return back()->withError($exception->getMessage());
             }
         } else {
             $toAddress = [
-                'street1' => request()->get('to_street1'),
-                'street2' => request()->get('to_street2'),
-                'city'    => request()->get('to_city'),
-                'state'   => request()->get('to_state'),
-                'zip'     => request()->get('to_zip'),
-                'country' => 'United States',
-                'company' => request()->get('to_company'),
-                'phone'   => request()->get('to_phone'),
+                'name'      => $request->input('to_name'),
+                'company'   => $request->input('to_company'),
+                'street1'   => $request->input('to_street1'),
+                'street2'   => $request->input('to_street2'),
+                'city'      => $request->input('to_city'),
+                'state'     => $request->input('to_state'),
+                'zip'       => $request->input('to_zip'),
+                'country'   => 'United States',
+                'phone'     => $request->input('to_phone'),
+                'email'     => $request->input('to_email'),
             ];
         }
 
-        if (request()->get('from_address') != null) {
+        if ($request->input('from_address') != null) {
             try {
-                $fromAddress = $client->address->retrieve(request()->get('from_address'));
-            } catch (EasyPostException $exception) {
+                $fromAddress = $client->address->retrieve($request->input('from_address'));
+            } catch (ApiException $exception) {
                 return back()->withError($exception->getMessage());
             }
         } else {
             $fromAddress = [
-                'street1' => request()->get('from_street1'),
-                'street2' => request()->get('from_street2'),
-                'city'    => request()->get('from_city'),
-                'state'   => request()->get('from_state'),
-                'zip'     => request()->get('from_zip'),
-                'country' => 'United States',
-                'company' => request()->get('from_company'),
-                'phone'   => request()->get('from_phone'),
+                'name'      => $request->input('from_name'),
+                'company'   => $request->input('from_company'),
+                'street1'   => $request->input('from_street1'),
+                'street2'   => $request->input('from_street2'),
+                'city'      => $request->input('from_city'),
+                'state'     => $request->input('from_state'),
+                'zip'       => $request->input('from_zip'),
+                'country'   => 'United States',
+                'phone'     => $request->input('from_phone'),
+                'email'     => $request->input('from_email'),
             ];
         }
 
@@ -336,7 +353,7 @@ class ShipmentController extends Controller
 
         try {
             $carrierAccounts = $client->carrierAccount->all();
-        } catch (EasyPostException $exception) {
+        } catch (ApiException $exception) {
             return back()->withError($exception->getMessage());
         }
 
@@ -361,11 +378,10 @@ class ShipmentController extends Controller
                     'carrier_accounts'  => [$usps->id],
                 ]
             );
-        } catch (EasyPostException $exception) {
+        } catch (ApiException $exception) {
             return back()->withError($exception->getMessage());
         }
 
-        session()->flash('message', 'USPS STAMP BOUGHT');
-        return redirect('/')->with(['json' => $shipment]);
+        return view('record')->with(['json' => $shipment]);
     }
 }

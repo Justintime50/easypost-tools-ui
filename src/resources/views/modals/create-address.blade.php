@@ -5,7 +5,7 @@
         <p>Create a one-off address, save the returned ID for future use.</p>
 
         <label for="street1">Street 1</label>
-        <input class="form-control" name="street1" value="{{ old('street1') }}" required>
+        <input class="form-control" name="street1" value="{{ old('street1') }}">
 
         <label for="street2">Street 2</label>
         <input class="form-control" name="street2" value="{{ old('street2') }}">
@@ -17,7 +17,7 @@
         <input class="form-control" name="state" value="{{ old('state') }}">
 
         <label for="zip">Zip</label>
-        <input class="form-control" name="zip" value="{{ old('zip') }}" required>
+        <input class="form-control" name="zip" value="{{ old('zip') }}">
 
         <label for="country">Country</label>
         <input class="form-control" name="country" value="{{ old('country') }}">

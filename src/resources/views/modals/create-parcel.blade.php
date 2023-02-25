@@ -1,5 +1,5 @@
 <x-modal title="Create Parcel" id="createParcel" submit-button="Create Parcel">
-    <form action="/create-parcel" method="POST">
+    <form action="/parcels" method="POST">
         @csrf
 
         <p>Create a one-off parcel. Input accepts decimals to the first decimal place (eg: 10.9). Input only accepts

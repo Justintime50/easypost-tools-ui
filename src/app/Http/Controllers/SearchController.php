@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use EasyPost\Exception\General\EasyPostException;
+use EasyPost\Exception\Api\ApiException;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 const OBJECT_ID_PREFIXES = [
     'adr'       => 'address',
@@ -39,20 +42,21 @@ class SearchController extends Controller
     /**
      * Search for an EasyPost object by passing an EasyPost object public ID.
      *
-     * @return mixed
+     * @param Request $request
+     * @return View
      */
-    public function searchRecord()
+    public function searchRecord(Request $request): View
     {
         $id = request()->get('id');
         $idPrefix = substr($id, 0, strpos($id, '_'));
-        $client = request()->get('client');
+        $client = $request->session()->get('client');
 
         try {
             $response = $client->{OBJECT_ID_PREFIXES[$idPrefix]}->retrieve($id);
-        } catch (EasyPostException $exception) {
+        } catch (ApiException $exception) {
             return back()->withError($exception->getMessage());
         }
 
-        return redirect('/')->with(['json' => $response]);
+        return view('record')->with(['json' => $response]);
     }
 }

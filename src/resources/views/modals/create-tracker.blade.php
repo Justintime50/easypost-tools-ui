@@ -1,5 +1,5 @@
 <x-modal title="Create Tracker" id="createTracker" submit-button="Create Tracker">
-    <form action="/create-tracker" method="POST">
+    <form action="/trackers" method="POST">
         @csrf
 
         <p>Create a tracker by providing the tracking code from your carrier.</p>

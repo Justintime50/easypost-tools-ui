@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use EasyPost\Exception\Api\ApiException;
-use EasyPost\Exception\General\EasyPostException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -52,8 +51,7 @@ class AddressController extends Controller
             return back()->withError($exception->getMessage());
         }
 
-        session()->flash('message', 'Address created!');
-        return redirect('/')->with(['json' => $address]);
+        return redirect("/addresses/$address->id");
     }
 
     /**
@@ -68,11 +66,11 @@ class AddressController extends Controller
 
         try {
             $json = $client->address->retrieve($id);
-        } catch (EasyPostException $exception) {
+        } catch (ApiException $exception) {
             return back()->withError($exception->getMessage());
         }
 
-        return view('app', compact('json'));
+        return view('record', compact('json'));
     }
 
     /**
@@ -87,7 +85,7 @@ class AddressController extends Controller
 
         try {
             $json = $client->address->all();
-        } catch (EasyPostException $exception) {
+        } catch (ApiException $exception) {
             return back()->withError($exception->getMessage());
         }
 
