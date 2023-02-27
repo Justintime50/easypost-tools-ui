@@ -65,7 +65,9 @@ jobs:
           php-version: ${{ matrix.phpversion }}
           coverage: xdebug
       - name: Install Dependencies
-        run: cd src && composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+        run: |
+          cp src/.env-example src/.env && cp .env-example .env
+          ./setup.sh
       - name: Test
         run: cd src && composer coverage
       - name: Coveralls
