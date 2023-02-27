@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use EasyPost\Exception\Api\ApiException;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 const OBJECT_ID_PREFIXES = [

@@ -23,7 +23,7 @@ class ApiKey
         try {
             $apiKey = Crypt::decryptString(Auth::user()->api_key);
         } catch (DecryptException $e) {
-            session()->flash('error', 'API KEY COULD NOT BE DECRYPTED. PLEASE UPDATE YOUR KEY.');
+            session()->flash('error', 'API Key could not be decrypted. Please update your key and try again.');
             return back();
         }
 

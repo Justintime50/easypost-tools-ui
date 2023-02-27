@@ -6,9 +6,11 @@
 *.env
 
 # PHP
-bin
-vendor
 *.cache
+bin
+clover.xml
+src/clover.html
+vendor
 
 # Other
 *.css.map
