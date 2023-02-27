@@ -17,13 +17,14 @@
         "sentry/sentry-laravel": "^3.2"
     },
     "require-dev": {
-        "spatie/laravel-ignition": "^2.0",
         "fakerphp/faker": "^1.21",
         "mockery/mockery": "^1.5",
         "nunomaduro/collision": "^7.0",
+        "php-coveralls/php-coveralls": "^2.5",
         "phpunit/phpunit": "^10.0",
-        "squizlabs/php_codesniffer": "^3.7",
-        "rregeer/phpunit-coverage-check": "^0.3.1"
+        "rregeer/phpunit-coverage-check": "^0.3.1",
+        "spatie/laravel-ignition": "^2.0",
+        "squizlabs/php_codesniffer": "^3.7"
     },
     "config": {
         "optimize-autoloader": true,

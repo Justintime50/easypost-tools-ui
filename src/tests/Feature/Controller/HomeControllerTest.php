@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Feature\Controller;
 
 use App\Http\Controllers\HomeController;
 use Illuminate\Http\Request;
