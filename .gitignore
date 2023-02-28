@@ -8,6 +8,7 @@
 # PHP
 *.cache
 bin
+build
 clover.xml
 src/clover.html
 vendor

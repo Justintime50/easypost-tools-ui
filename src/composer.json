@@ -55,7 +55,7 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "scripts": {
-        "coverage": "XDEBUG_MODE=coverage ./bin/phpunit --coverage-html clover.html --coverage-clover clover.xml && bin/coverage-check clover.xml 5 --only-percentage",
+        "coverage": "XDEBUG_MODE=coverage ./bin/phpunit --coverage-html clover.html --coverage-clover build/logs/clover.xml && bin/coverage-check build/logs/clover.xml 5 --only-percentage",
         "fix": "./bin/phpcbf --standard=./node_modules/justintime50-styles/src/php/phpcs.xml .",
         "lint": "./bin/phpcs --standard=./node_modules/justintime50-styles/src/php/phpcs.xml .",
         "migrate": "docker exec -t easypost-tools-ui-easypost-tools-ui-1 php artisan migrate",
