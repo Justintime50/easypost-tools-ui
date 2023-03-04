@@ -4,6 +4,7 @@
 
 - Fixes bugs where the request wasn't set correctly for parcels. users, or search
 - Fixes the input of creating a parcel from strings to numbers
+- Temporarily downgrade to PHP 8.1 in Dockerfile
 
 ## v0.9.1 (2023-02-24)
 
