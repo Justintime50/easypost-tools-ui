@@ -1,0 +1,79 @@
+
+-
+    request:
+        method: POST
+        url: 'https://api.easypost.com/v2/parcels'
+        headers:
+            Host: api.easypost.com
+            Expect: ''
+            Accept-Encoding: ''
+            Accept: application/json
+            Authorization: ''
+            Content-Type: application/json
+            User-Agent: ''
+        body: '{"parcel":{"length":"10","width":"10","height":"10","weight":"10"}}'
+    response:
+        status:
+            code: 201
+            message: Created
+        headers:
+            x-frame-options: SAMEORIGIN
+            x-xss-protection: '1; mode=block'
+            x-content-type-options: nosniff
+            x-download-options: noopen
+            x-permitted-cross-domain-policies: none
+            referrer-policy: strict-origin-when-cross-origin
+            x-ep-request-uuid: 10494ccd6403ce8de2b8e18800204e7a
+            cache-control: 'private, no-cache, no-store'
+            pragma: no-cache
+            expires: '0'
+            location: /api/prcl_1444df22649f4211a34b9e0b0ba7343b/parcels
+            content-type: 'application/json; charset=utf-8'
+            content-length: '231'
+            etag: 'W/"a92ceeb1ebd5eb1bba5a7f90f3353b56"'
+            x-runtime: '0.029670'
+            x-node: bigweb6nuq
+            x-version-label: easypost-202303032159-702d6b662a-master
+            x-backend: easypost
+            x-proxied: ['intlb1nuq a40ea751fd', 'extlb2nuq a40ea751fd']
+            strict-transport-security: 'max-age=31536000; includeSubDomains; preload'
+        body: '{"id":"prcl_1444df22649f4211a34b9e0b0ba7343b","object":"Parcel","created_at":"2023-03-04T23:04:45Z","updated_at":"2023-03-04T23:04:45Z","length":10,"width":10,"height":10,"predefined_package":null,"weight":10,"mode":"test"}'
+        curl_info:
+            url: 'https://api.easypost.com/v2/parcels'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 201
+            header_size: 798
+            request_size: 373
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.150462
+            namelookup_time: 0.009599
+            connect_time: 0.044756
+            pretransfer_time: 0.083563
+            size_upload: 67.0
+            size_download: 231.0
+            speed_download: 1535.0
+            speed_upload: 445.0
+            download_content_length: 231.0
+            upload_content_length: 67.0
+            starttransfer_time: 0.150417
+            redirect_time: 0.0
+            redirect_url: ''
+            primary_ip: 169.62.110.130
+            certinfo: {  }
+            primary_port: 443
+            local_ip: 192.168.1.201
+            local_port: 52010
+            http_version: 2
+            protocol: 2
+            ssl_verifyresult: 0
+            scheme: HTTPS
+            appconnect_time_us: 83487
+            connect_time_us: 44756
+            namelookup_time_us: 9599
+            pretransfer_time_us: 83563
+            redirect_time_us: 0
+            starttransfer_time_us: 150417
+            total_time_us: 150462
+    index: 0

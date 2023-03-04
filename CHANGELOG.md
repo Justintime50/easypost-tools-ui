@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Next Release
+
+- Fixes bugs where the request wasn't set correctly for parcels. users, or search
+- Fixes the input of creating a parcel from strings to numbers
+
 ## v0.9.1 (2023-02-24)
 
 - Fixes address fields on forms with address input to contain the necessary fields for the object in question (removed some fields from buying a stamp, added back a few for insurances from bad copy-pasta)

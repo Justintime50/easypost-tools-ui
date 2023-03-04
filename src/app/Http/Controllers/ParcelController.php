@@ -17,35 +17,35 @@ class ParcelController extends Controller
      */
     public function createParcel(Request $request): RedirectResponse
     {
-        if (request()->get('predefined_package') == null) {
-            request()->validate([
-                'length'    => 'nullable|string',
-                'width'     => 'nullable|string',
-                'height'    => 'nullable|string',
-                'weight'    => 'required|string',
+        if ($request->input('predefined_package') == null) {
+            $request->validate([
+                'length'    => 'nullable|numeric',
+                'width'     => 'nullable|numeric',
+                'height'    => 'nullable|numeric',
+                'weight'    => 'required|numeric',
             ]);
         } else {
-            request()->validate([
+            $request->validate([
                 'predefined_package'    => 'required|string',
-                'weight'                => 'required|string'
+                'weight'                => 'required|numeric'
             ]);
         }
 
         $client = $request->session()->get('client');
 
         try {
-            if (request()->get('predefined_package') != null) {
+            if ($request->input('predefined_package') != null) {
                 $parcel = $client->parcel->create([
-                    'predefined_package'    => request()->get('predefined_package'),
-                    'weight'                => request()->get('weight'),
+                    'predefined_package'    => $request->input('predefined_package'),
+                    'weight'                => $request->input('weight'),
                 ]);
             } else {
                 $parcel = $client->parcel->create(
                     [
-                        'length'    => request()->get('length'),
-                        'width'     => request()->get('width'),
-                        'height'    => request()->get('height'),
-                        'weight'    => request()->get('weight'),
+                        'length'    => $request->input('length'),
+                        'width'     => $request->input('width'),
+                        'height'    => $request->input('height'),
+                        'weight'    => $request->input('weight'),
                     ]
                 );
             }

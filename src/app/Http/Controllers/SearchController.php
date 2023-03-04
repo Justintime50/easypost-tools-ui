@@ -46,7 +46,7 @@ class SearchController extends Controller
      */
     public function searchRecord(Request $request): View
     {
-        $id = request()->get('id');
+        $id = $request->input('id');
         $idPrefix = substr($id, 0, strpos($id, '_'));
         $client = $request->session()->get('client');
 

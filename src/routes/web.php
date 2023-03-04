@@ -24,7 +24,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/update-api-key', 'UserController@updateApiKey'); // Named this to avoid conflict with the EasyPost API key resources
 });
 
-// Decrypt and use the API key from the user's account on POST routes
+// Decrypt and use the API key from the user's account for the following routes
 Route::middleware(['auth', 'ApiKey'])->group(function () {
     // Addresses
     Route::post('/addresses', 'AddressController@createAddress');

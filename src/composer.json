@@ -17,10 +17,12 @@
         "sentry/sentry-laravel": "^3.2"
     },
     "require-dev": {
+        "allejo/php-vcr-sanitizer": "^1.1.0",
         "fakerphp/faker": "^1.21",
         "mockery/mockery": "^1.5",
         "nunomaduro/collision": "^7.0",
         "php-coveralls/php-coveralls": "^2.5",
+        "php-vcr/php-vcr": "^1.6",
         "phpunit/phpunit": "^10.0",
         "rregeer/phpunit-coverage-check": "^0.3.1",
         "spatie/laravel-ignition": "^2.0",

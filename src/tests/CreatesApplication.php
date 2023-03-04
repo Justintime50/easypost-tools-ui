@@ -20,11 +20,11 @@ trait CreatesApplication
 
         $app->make(Kernel::class)->bootstrap();
 
-        // if (!static::$setUpRun) {
-        //     Artisan::call('migrate:fresh');
+        if (!static::$setUpRun) {
+            Artisan::call('migrate:fresh');
 
-        //     static::$setUpRun = true;
-        // }
+            static::$setUpRun = true;
+        }
 
         return $app;
     }
