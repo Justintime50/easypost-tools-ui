@@ -20,6 +20,7 @@ jobs:
           ./setup.sh
           docker ps | grep -q easypost-tools-ui-easypost-tools-ui-1
           docker ps | grep -q easypost-tools-ui-easypost-tools-db-1
+          docker exec -t easypost-tools-ui-easypost-tools-ui-1 curl -f http://localhost
   lint-php:
     runs-on: ubuntu-latest
     steps:
