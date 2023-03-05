@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7635ef4d66945adc9cc84828a59c33ff",
+    "content-hash": "f4c12c844389d4cecbc1404fa2ccc48d",
     "packages": [
         {
             "name": "anhskohbo/no-captcha",
@@ -7499,22 +7499,22 @@
         },
         {
             "name": "php-vcr/php-vcr",
-            "version": "1.6.5",
+            "version": "1.6.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-vcr/php-vcr.git",
-                "reference": "5c9417b806e5b153e7d12b50ecafe27f45608122"
+                "reference": "bddc1fea824c9b571d21899a484dc680ff256091"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-vcr/php-vcr/zipball/5c9417b806e5b153e7d12b50ecafe27f45608122",
-                "reference": "5c9417b806e5b153e7d12b50ecafe27f45608122",
+                "url": "https://api.github.com/repos/php-vcr/php-vcr/zipball/bddc1fea824c9b571d21899a484dc680ff256091",
+                "reference": "bddc1fea824c9b571d21899a484dc680ff256091",
                 "shasum": ""
             },
             "require": {
                 "beberlei/assert": "^3.2.5",
                 "ext-curl": "*",
-                "php": "^8,<8.2",
+                "php": "^8",
                 "symfony/event-dispatcher": "^4|^5|^6",
                 "symfony/event-dispatcher-contracts": "^1|^2|^3",
                 "symfony/yaml": "^3|^4|^5|^6"
@@ -7550,9 +7550,9 @@
             "description": "Record your test suite's HTTP interactions and replay them during future test runs for fast, deterministic, accurate tests.",
             "support": {
                 "issues": "https://github.com/php-vcr/php-vcr/issues",
-                "source": "https://github.com/php-vcr/php-vcr/tree/1.6.5"
+                "source": "https://github.com/php-vcr/php-vcr/tree/1.6.4"
             },
-            "time": "2023-02-20T07:54:59+00:00"
+            "time": "2022-12-27T21:48:04+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
