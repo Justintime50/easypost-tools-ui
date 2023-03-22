@@ -13,9 +13,9 @@ class ShipmentController extends Controller
      * Create a Shipment.
      *
      * @param Request $request
-     * @return View
+     * @return View|RedirectResponse
      */
-    public function createShipment(Request $request): View
+    public function createShipment(Request $request): View|RedirectResponse
     {
         if ($request->input('to_address') == null) {
             $request->validate([
@@ -174,9 +174,9 @@ class ShipmentController extends Controller
      *
      * @param Request $request
      * @param string $id
-     * @return View
+     * @return View|RedirectResponse
      */
-    public function retrieveShipment(Request $request, string $id): View
+    public function retrieveShipment(Request $request, string $id): View|RedirectResponse
     {
         $client = $request->session()->get('client');
 
@@ -193,9 +193,9 @@ class ShipmentController extends Controller
      * Retrieve a list of Shipment objects.
      *
      * @param Request $request
-     * @return View
+     * @return View|RedirectResponse
      */
-    public function retrieveShipments(Request $request): View
+    public function retrieveShipments(Request $request): View|RedirectResponse
     {
         $client = $request->session()->get('client');
 
