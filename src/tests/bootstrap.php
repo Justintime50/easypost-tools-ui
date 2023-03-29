@@ -1,14 +1,12 @@
 <?php
 
 use allejo\VCR\VCRCleaner;
-use EasyPost\Util\InternalUtil;
 use VCR\VCR;
+use VCRAccessories\CassetteScrubber;
+use VCRAccessories\CassetteSetup;
 
 const CASSETTE_DIR = 'tests/cassettes';
-
-if (!file_exists(CASSETTE_DIR)) {
-    mkdir(CASSETTE_DIR, 0755, true);
-}
+CassetteSetup::setupCassetteDirectory(CASSETTE_DIR);
 
 VCR::configure()->setCassettePath(CASSETTE_DIR)
     ->setStorage('yaml')
@@ -43,7 +41,7 @@ VCRCleaner::enable([
         'bodyScrubbers' => [
             function ($responseBody) {
                 $responseBodyJson = json_decode($responseBody, true);
-                $responseBodyEncoded = scrubCassette($responseBodyJson);
+                $responseBodyEncoded = CassetteScrubber::scrubCassette(RESPONSE_BODY_SCRUBBERS, $responseBodyJson);
 
                 // Re-encode the data so we can properly store it in the cassette
                 return json_encode($responseBodyEncoded);
@@ -51,56 +49,5 @@ VCRCleaner::enable([
         ],
     ],
 ]);
-
-/**
- * Scrub sensitive information from cassette files prior to persisting on disk.
- *
- * @param mixed $data
- * @return mixed
- */
-function scrubCassette($data)
-{
-    if (isset($data)) {
-        foreach (RESPONSE_BODY_SCRUBBERS as $scrubber) {
-            $key = $scrubber[0];
-            $replacement = $scrubber[1];
-
-            // Root-level list scrubbing
-            if (InternalUtil::isList($data)) {
-                foreach ($data as $index => $item) {
-                    if (is_array($index)) {
-                        if (is_array($item)) {
-                            if (array_key_exists($key, $item)) {
-                                $data[$index][$key] = $replacement;
-                            }
-                        }
-                    }
-                }
-            } else {
-                // Root-level key scrubbing
-                if (is_array($data)) {
-                    if (array_key_exists($key, $data)) {
-                        $data[$key] = $replacement;
-                    } else {
-                        // Nested scrubbing
-                        foreach ($data as $index => $item) {
-                            if (is_array($item)) {
-                                if (InternalUtil::isList($item)) {
-                                    foreach ($item as $nestedIndex => $nestedItem) {
-                                        $data[$index][$nestedIndex] = scrubCassette($nestedItem);
-                                    }
-                                } elseif (!InternalUtil::isList($item)) {
-                                    $data[$index] = scrubCassette($item);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    return $data;
-}
 
 VCR::turnOn();

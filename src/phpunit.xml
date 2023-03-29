@@ -31,5 +31,7 @@
         <env name="QUEUE_CONNECTION" value="sync"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="TELESCOPE_ENABLED" value="false"/>
+        <env name="EASYPOST_TEST_API_KEY" value="123"/>
+        <env name="EASYPOST_PROD_API_KEY" value="123"/>
     </php>
 </phpunit>

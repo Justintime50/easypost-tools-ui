@@ -17,8 +17,8 @@
         "sentry/sentry-laravel": "^3.2"
     },
     "require-dev": {
-        "allejo/php-vcr-sanitizer": "^1.1.0",
         "fakerphp/faker": "^1.21",
+        "justintime50/vcr-accessories": "^0.2.0",
         "mockery/mockery": "^1.5",
         "nunomaduro/collision": "^7.0",
         "php-coveralls/php-coveralls": "^2.5",

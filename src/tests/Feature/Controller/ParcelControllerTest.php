@@ -7,21 +7,23 @@ use EasyPost\EasyPostClient;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Request;
 use Tests\TestCase;
-use Tests\Util;
+use VCRAccessories\CassetteSetup;
 
 class ParcelControllerTest extends TestCase
 {
     use RefreshDatabase;
 
     private static $client;
+    private static $expireCassetteDays;
 
     /**
      * Setup the testing environment for this file.
      */
     public static function setUpBeforeClass(): void
     {
-        Util::setupVcrTests();
+        CassetteSetup::setupVcrTests();
         self::$client = new EasyPostClient(getenv('EASYPOST_TEST_API_KEY'));
+        self::$expireCassetteDays = 180;
     }
 
     /**
@@ -29,7 +31,7 @@ class ParcelControllerTest extends TestCase
      */
     public static function tearDownAfterClass(): void
     {
-        Util::teardownVcrTests();
+        CassetteSetup::teardownVcrTests();
     }
 
     /**
@@ -56,7 +58,7 @@ class ParcelControllerTest extends TestCase
      */
     public function testCreateParcels()
     {
-        Util::setupCassette('parcels/create.yml');
+        CassetteSetup::setupCassette('parcels/create.yml', self::$expireCassetteDays);
         $controller = new ParcelController();
 
         $request = Request::create('/parcels', 'POST', [
