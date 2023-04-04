@@ -32,7 +32,8 @@ class RefundController extends Controller
     /**
      * Retrieve a list of Refunds.
      *
-     * You can't actually retrieve a list of Refunds, there is no EasyPost endpoint for this, so we just return the refunds page.
+     * You can't actually retrieve a list of Refunds, there is no EasyPost endpoint for this,
+     * so we just return the refunds page.
      *
      * @param Request $request
      * @return View

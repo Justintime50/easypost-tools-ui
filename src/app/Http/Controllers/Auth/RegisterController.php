@@ -54,7 +54,11 @@ class RegisterController extends Controller
             'g-recaptcha-response'  => 'required|captcha',
         ];
 
-        if (env('APP_ENV') != 'production' || getenv('NOCAPTCHA_SECRET') !== false || getenv('NOCAPTCHA_SITEKEY') !== false) {
+        if (
+            env('APP_ENV') != 'production'
+            || getenv('NOCAPTCHA_SECRET') !== false
+            || getenv('NOCAPTCHA_SITEKEY') !== false
+        ) {
             unset($paramsToValidate['g-recaptcha-response']);
         }
 

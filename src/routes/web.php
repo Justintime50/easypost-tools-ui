@@ -14,14 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('logout', 'Auth\LoginController@logout'); // Includes custom logic (logout url) - must come before "Auth::routes();"
+// Includes custom logic (logout url) - must come before "Auth::routes();"
+Route::post('logout', 'Auth\LoginController@logout');
 Auth::routes();
 
 Route::middleware('auth')->group(function () {
     Route::get('/', 'HomeController@index');
     Route::get('/app', 'HomeController@index')->name('app');
     Route::get('/account', 'HomeController@account')->name('account');
-    Route::post('/update-api-key', 'UserController@updateApiKey'); // Named this to avoid conflict with the EasyPost API key resources
+    // Named this to avoid conflict with the EasyPost API key resources
+    Route::post('/update-api-key', 'UserController@updateApiKey');
 });
 
 // Decrypt and use the API key from the user's account for the following routes

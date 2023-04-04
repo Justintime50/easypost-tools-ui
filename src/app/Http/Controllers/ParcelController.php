@@ -79,7 +79,8 @@ class ParcelController extends Controller
     /**
      * Retrieve a list of Parcels.
      *
-     * You can't actually retrieve a list of Parcels, there is no EasyPost endpoint for this, so we just return the parcels page.
+     * You can't actually retrieve a list of Parcels, there is no EasyPost endpoint for this,
+     * so we just return the parcels page.
      *
      * @param Request $request
      * @return View
