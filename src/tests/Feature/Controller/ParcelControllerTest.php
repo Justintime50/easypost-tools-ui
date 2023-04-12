@@ -56,7 +56,7 @@ class ParcelControllerTest extends TestCase
      *
      * @return void
      */
-    public function testCreateParcels()
+    public function testCreateParcel()
     {
         CassetteSetup::setupCassette('parcels/create.yml', self::$expireCassetteDays);
         $controller = new ParcelController();
@@ -72,6 +72,92 @@ class ParcelControllerTest extends TestCase
         $response = $controller->createParcel($request);
 
         $this->assertNull($response->exception);
+        $this->assertEquals(302, $response->getStatusCode());
+    }
+
+    /**
+     * Tests that we can create a Predefined Package Parcel correctly.
+     *
+     * @return void
+     */
+    public function testCreateParcelPredefinedPackage()
+    {
+        CassetteSetup::setupCassette('parcels/createPredefinedPackage.yml', self::$expireCassetteDays);
+        $controller = new ParcelController();
+
+        $request = Request::create('/parcels', 'POST', [
+            'predefined_package' => 'Parcel',
+            'weight' => 10.0,
+        ]);
+        $request->setLaravelSession(session());
+        $request->session()->put(['client' => self::$client]);
+        $response = $controller->createParcel($request);
+
+        $this->assertNull($response->exception);
+        $this->assertEquals(302, $response->getStatusCode());
+    }
+
+    /**
+     * Tests that we return an error correctly when creating a Parcel.
+     *
+     * @return void
+     */
+    public function testCreateParcelException()
+    {
+        CassetteSetup::setupCassette('parcels/createException.yml', self::$expireCassetteDays);
+        $controller = new ParcelController();
+
+        $request = Request::create('/parcels', 'POST', ['weight' => 0]);
+        $request->setLaravelSession(session());
+        $request->session()->put(['client' => self::$client]);
+        $response = $controller->createParcel($request);
+
+        $this->assertEquals('Wrong parameter type.', $response->getSession()->get('error'));
+        $this->assertEquals(302, $response->getStatusCode());
+    }
+
+    /**
+     * Tests that we can create a Parcel correctly.
+     *
+     * @return void
+     */
+    public function testRetrieveParcel()
+    {
+        CassetteSetup::setupCassette('parcels/retrieve.yml', self::$expireCassetteDays);
+        $controller = new ParcelController();
+
+        // TODO: Make this dynamic, is that possible with our setup?
+        $parcelId = 'prcl_a2c01c778a39467da5b148c6d344d90c';
+
+        $request = Request::create("/parcels/$parcelId", 'GET');
+        $request->setLaravelSession(session());
+        $request->session()->put(['client' => self::$client]);
+        $response = $controller->retrieveParcel($request, $parcelId);
+
+        $viewData = $response->getData();
+
+        $this->assertNull($response->exception);
+        $this->assertEquals($parcelId, $viewData['json']['id']);
+    }
+
+    /**
+     * Tests that we return an error correctly when retrieving a Parcel.
+     *
+     * @return void
+     */
+    public function testRetrieveParcelException()
+    {
+        CassetteSetup::setupCassette('parcels/retrieveException.yml', self::$expireCassetteDays);
+        $controller = new ParcelController();
+
+        $parcelId = 'bad_id';
+
+        $request = Request::create("/parcels/$parcelId", 'GET');
+        $request->setLaravelSession(session());
+        $request->session()->put(['client' => self::$client]);
+        $response = $controller->retrieveParcel($request, $parcelId);
+
+        $this->assertEquals('The requested resource could not be found.', $response->getSession()->get('error'));
         $this->assertEquals(302, $response->getStatusCode());
     }
 }

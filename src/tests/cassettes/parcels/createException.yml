@@ -11,11 +11,11 @@
             Authorization: ''
             Content-Type: application/json
             User-Agent: ''
-        body: '{"parcel":{"length":"10","width":"10","height":"10","weight":"10"}}'
+        body: '{"parcel":{"weight":"0"}}'
     response:
         status:
-            code: 201
-            message: Created
+            code: 422
+            message: 'Unprocessable Entity'
         headers:
             x-frame-options: SAMEORIGIN
             x-xss-protection: '1; mode=block'
@@ -23,57 +23,56 @@
             x-download-options: noopen
             x-permitted-cross-domain-policies: none
             referrer-policy: strict-origin-when-cross-origin
-            x-ep-request-uuid: 5ddc893a6436f391e786c560001e8556
+            x-ep-request-uuid: 5ddc89396436f392e786c562001e8598
             cache-control: 'private, no-cache, no-store'
             pragma: no-cache
             expires: '0'
-            location: /api/prcl_a2c01c778a39467da5b148c6d344d90c/parcels
             content-type: 'application/json; charset=utf-8'
-            content-length: '231'
-            etag: 'W/"006057e1b9bf7bcceddb6e6f0d72e696"'
-            x-runtime: '0.026320'
-            x-node: bigweb11nuq
+            content-length: '149'
+            x-runtime: '0.032790'
+            x-node: bigweb7nuq
             x-version-label: easypost-202304121724-4f083020cd-master
             x-backend: easypost
-            x-proxied: ['intlb2nuq a29e4ad05c', 'extlb1nuq a29e4ad05c']
+            x-canary: direct
+            x-proxied: ['intlb1nuq a29e4ad05c', 'extlb1nuq a29e4ad05c']
             strict-transport-security: 'max-age=31536000; includeSubDomains; preload'
-        body: '{"id":"prcl_a2c01c778a39467da5b148c6d344d90c","object":"Parcel","created_at":"2023-04-12T18:08:17Z","updated_at":"2023-04-12T18:08:17Z","length":10,"width":10,"height":10,"predefined_package":null,"weight":10,"mode":"test"}'
+        body: '{"error":{"code":"PARAMETER.INVALID_TYPE","message":"Wrong parameter type.","errors":[{"field":"parcel.weight","message":"must be greater than 0"}]}}'
         curl_info:
             url: 'https://api.easypost.com/v2/parcels'
             content_type: 'application/json; charset=utf-8'
-            http_code: 201
-            header_size: 799
-            request_size: 372
+            http_code: 422
+            header_size: 723
+            request_size: 330
             filetime: -1
             ssl_verify_result: 0
             redirect_count: 0
-            total_time: 0.248941
-            namelookup_time: 0.004923
-            connect_time: 0.075226
-            pretransfer_time: 0.150764
-            size_upload: 67.0
-            size_download: 231.0
-            speed_download: 927.0
-            speed_upload: 269.0
-            download_content_length: 231.0
-            upload_content_length: 67.0
-            starttransfer_time: 0.248914
+            total_time: 0.246997
+            namelookup_time: 0.001231
+            connect_time: 0.071506
+            pretransfer_time: 0.1435
+            size_upload: 25.0
+            size_download: 149.0
+            speed_download: 603.0
+            speed_upload: 101.0
+            download_content_length: 149.0
+            upload_content_length: 25.0
+            starttransfer_time: 0.246979
             redirect_time: 0.0
             redirect_url: ''
             primary_ip: 169.62.110.131
             certinfo: {  }
             primary_port: 443
             local_ip: 10.130.6.16
-            local_port: 50860
+            local_port: 50862
             http_version: 2
             protocol: 2
             ssl_verifyresult: 0
             scheme: HTTPS
-            appconnect_time_us: 150712
-            connect_time_us: 75226
-            namelookup_time_us: 4923
-            pretransfer_time_us: 150764
+            appconnect_time_us: 143462
+            connect_time_us: 71506
+            namelookup_time_us: 1231
+            pretransfer_time_us: 143500
             redirect_time_us: 0
-            starttransfer_time_us: 248914
-            total_time_us: 248941
+            starttransfer_time_us: 246979
+            total_time_us: 246997
     index: 0
