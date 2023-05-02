@@ -7,11 +7,10 @@
         "fix": "npx stylelint resources/sass/*.scss --config node_modules/justintime50-styles/src/css/.stylelintrc.json --custom-syntax postcss-scss --fix"
     },
     "devDependencies": {
-        "@popperjs/core": "^2.11",
         "axios": "^1.3",
-        "bootstrap": "^5.0",
+        "bootstrap": "^5.2",
         "justintime50-styles": "0.4.0",
-        "laravel-vite-plugin": "^0.7.3",
+        "laravel-vite-plugin": "^0.7.4",
         "postcss-scss": "^4.0",
         "sass": "^1.62",
         "stylelint": "^15.6",

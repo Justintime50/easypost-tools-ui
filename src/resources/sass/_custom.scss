@@ -1,0 +1,96 @@
+.alert {
+  text-align: left;
+}
+
+.clear-results-link a {
+  color: $color-easypost-blue-secondary;
+  margin: 0;
+  padding: 0;
+}
+
+.clear-results-link a:hover {
+  opacity: 0.7;
+}
+
+#sidebar-wrapper .sidebar-heading a {
+  text-decoration: none;
+  color: initial;
+  font-weight: 200;
+}
+
+.response-wrapper {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.response {
+  flex: 0 0 auto;
+  width: 100%;
+  padding: 20px;
+  font-family: Helvetica, sans-serif;
+}
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  transition: margin 0.25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0 1.25rem 0.5rem;
+  font-size: 1.2rem;
+  margin-top: 20px;
+}
+
+#sidebar-wrapper .list-group {
+  width: 15rem;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+#menu-toggle {
+  margin-top: 0;
+}
+
+.btn-label {
+  margin-bottom: 10px;
+  width: 180px;
+  padding: 10px;
+}
+
+.btn-table {
+  margin-top: 0 !important;
+}
+
+.btn-shipment {
+  margin-top: 0 !important;
+  margin-bottom: 10px !important;
+}
+
+.rate-errors-bg {
+  background-color: $subtle-yellow !important;
+}
+
+.rate-errors-card {
+  margin-bottom: 30px;
+}
+
+.padding-0 {
+  padding: 0;
+}
+
+.display-none {
+  display: none;
+}
+
+.inline-block {
+  display: inline-block;
+}

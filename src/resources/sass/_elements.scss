@@ -1,0 +1,44 @@
+@import "variables";
+
+html,
+body {
+  background-color: $color-white;
+  color: $color-font;
+  font: 0.9rem Poppins, sans-serif;
+}
+
+button,
+[type="submit"] {
+  margin-top: 20px;
+}
+
+a {
+  color: $color-easypost-blue-secondary;
+}
+
+a:hover {
+  color: $color-easypost-blue-primary;
+  text-decoration: none;
+  font-weight: 200;
+}
+
+h1 {
+  color: $color-easypost-blue-primary;
+  margin-top: 30px;
+}
+
+h3 {
+  margin-top: 20px;
+}
+
+pre {
+  text-align: left;
+}
+
+label {
+  font-weight: bold;
+}
+
+table {
+  width: 100%;
+}

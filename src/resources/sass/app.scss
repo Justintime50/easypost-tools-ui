@@ -1,11 +1,9 @@
-// Fonts
-@import "https://fonts.googleapis.com/css?family=Nunito";
-
-// Variables
-@import "variables";
-
-// Bootstrap
+// External
+@import "https://fonts.googleapis.com/css?family=Poppins";
 @import "bootstrap/scss/bootstrap";
 
 // Internal
-@import "stylesheet"
+@import "elements";
+@import "overrides";
+@import "custom";
+@import "media_queries";
