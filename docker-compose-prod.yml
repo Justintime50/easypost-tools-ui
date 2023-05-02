@@ -1,4 +1,3 @@
-version: "3.8"
 services:
   easypost-tools-ui:
     deploy:
@@ -12,7 +11,7 @@ services:
           memory: "128M"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost"]
-      interval: 30s
+      interval: 10s
       timeout: 10s
       retries: 3
     labels:
@@ -33,6 +32,6 @@ services:
           memory: "128M"
     healthcheck:
       test: ["CMD", "mysql", "-u${MARIADB_USER}", "-p${MARIADB_PASSWORD}", "-e", "show databases;"]
-      interval: 30s
+      interval: 10s
       timeout: 10s
       retries: 3
