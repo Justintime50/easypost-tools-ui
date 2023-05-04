@@ -94,4 +94,7 @@ npm run dev
 
 # Compile for production
 npm run build
+
+# Run tests
+EASYPOST_TEST_API_KEY=123 EASYPOST_PROD_API_KEY=123 composer test
 ```
