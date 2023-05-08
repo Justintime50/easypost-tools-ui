@@ -1,0 +1,12 @@
+# Exclude everything we won't need for a production build
+# NOTE: These will get volumed during development but excluded in production
+**/.DS_Store
+**/.env-example
+**/.gitattributes
+**/.gitignore
+**/bin
+**/node_modules
+**/*.xml
+**/*.md
+**/tests
+**/vendor
