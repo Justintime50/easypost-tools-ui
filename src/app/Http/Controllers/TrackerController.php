@@ -13,9 +13,9 @@ class TrackerController extends Controller
      * Create a Tracker.
      *
      * @param Request $request
-     * @return RedirectResponse
+     * @return View|RedirectResponse
      */
-    public function createTracker(Request $request): RedirectResponse
+    public function createTracker(Request $request): View|RedirectResponse
     {
         $request->validate([
             'tracking_code' => 'required|string',
@@ -43,9 +43,9 @@ class TrackerController extends Controller
      *
      * @param Request $request
      * @param string $id
-     * @return View
+     * @return View|RedirectResponse
      */
-    public function retrieveTracker(Request $request, string $id): View
+    public function retrieveTracker(Request $request, string $id): View|RedirectResponse
     {
         $client = $request->session()->get('client');
 
@@ -62,9 +62,9 @@ class TrackerController extends Controller
      * Retrieve a list of Tracker objects.
      *
      * @param Request $request
-     * @return View
+     * @return View|RedirectResponse
      */
-    public function retrieveTrackers(Request $request): View
+    public function retrieveTrackers(Request $request): View|RedirectResponse
     {
         $client = $request->session()->get('client');
 

@@ -63,7 +63,7 @@ class ParcelController extends Controller
      * @param string $id
      * @return View|RedirectResponse
      */
-    public function retrieveParcel(Request $request, string $id)
+    public function retrieveParcel(Request $request, string $id): View|RedirectResponse
     {
         $client = $request->session()->get('client');
 

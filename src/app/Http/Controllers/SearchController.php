@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use EasyPost\Exception\Api\ApiException;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 const OBJECT_ID_PREFIXES = [
@@ -42,9 +43,9 @@ class SearchController extends Controller
      * Search for an EasyPost object by passing an EasyPost object public ID.
      *
      * @param Request $request
-     * @return View
+     * @return View|RedirectResponse
      */
-    public function searchRecord(Request $request): View
+    public function searchRecord(Request $request): View|RedirectResponse
     {
         $id = $request->input('id');
         $idPrefix = substr($id, 0, strpos($id, '_'));

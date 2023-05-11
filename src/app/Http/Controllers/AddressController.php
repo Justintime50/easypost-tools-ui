@@ -58,9 +58,9 @@ class AddressController extends Controller
      * Retrieve an Address.
      *
      * @param Request $request
-     * @return View
+     * @return View|RedirectResponse
      */
-    public function retrieveAddress(Request $request, string $id): View
+    public function retrieveAddress(Request $request, string $id): View|RedirectResponse
     {
         $client = $request->session()->get('client');
 
@@ -77,9 +77,9 @@ class AddressController extends Controller
      * Retrieve a list of Address objects.
      *
      * @param Request $request
-     * @return View
+     * @return View|RedirectResponse
      */
-    public function retrieveAddresses(Request $request): View
+    public function retrieveAddresses(Request $request): View|RedirectResponse
     {
         $client = $request->session()->get('client');
 

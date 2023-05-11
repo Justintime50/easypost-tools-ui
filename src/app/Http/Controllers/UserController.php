@@ -14,7 +14,7 @@ class UserController extends Controller
      * Update the API key on the user's account.
      *
      * @param Request $request
-     * @return mixed
+     * @return RedirectResponse
      */
     public function updateApiKey(Request $request): RedirectResponse
     {

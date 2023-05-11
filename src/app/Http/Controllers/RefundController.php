@@ -36,9 +36,9 @@ class RefundController extends Controller
      * so we just return the refunds page.
      *
      * @param Request $request
-     * @return View
+     * @return View|RedirectResponse
      */
-    public function retrieveRefunds(Request $request): View
+    public function retrieveRefunds(Request $request): View|RedirectResponse
     {
         $client = $request->session()->get('client');
 
