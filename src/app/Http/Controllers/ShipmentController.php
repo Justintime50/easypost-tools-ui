@@ -166,7 +166,7 @@ class ShipmentController extends Controller
             }
         );
 
-        return view('shipment')->with(['json' => $shipment, 'rates' => $rates]);
+        return view('shipment')->with(['shipment' => $shipment, 'rates' => $rates]);
     }
 
     /**
