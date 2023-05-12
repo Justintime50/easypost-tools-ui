@@ -52,7 +52,12 @@ class SearchController extends Controller
         $client = $request->session()->get('client');
 
         try {
-            $response = $client->{OBJECT_ID_PREFIXES[$idPrefix]}->retrieve($id);
+            $class = OBJECT_ID_PREFIXES[$idPrefix] ?? null;
+            if ($class == null) {
+                return back()->withError('Invalid EasyPost ID supplied, please try again.');
+            } else {
+                $response = $client->{$class}->retrieve($id);
+            }
         } catch (ApiException $exception) {
             return back()->withError($exception->getMessage());
         }

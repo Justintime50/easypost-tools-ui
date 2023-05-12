@@ -5,6 +5,7 @@
 - Fixes bugs where the request wasn't set correctly for parcels. users, or search
 - Fixes the input of creating a parcel from strings to numbers
 - Fixes the return types of various functions so 500s aren't thrown at runtime
+- Fixes a bug where an invalid ID passed to search would throw a 500 instead of returning an error to the user
 - Temporarily downgrade to PHP 8.1 in Dockerfile
 
 ## v0.9.1 (2023-02-24)
