@@ -28,5 +28,6 @@ volumes:
 networks:
   traefik:
     name: traefik
+    external: true
   easypost-tools-ui:
     name: easypost-tools-ui
