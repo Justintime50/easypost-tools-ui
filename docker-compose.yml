@@ -12,7 +12,7 @@ services:
     depends_on:
        - easypost-tools-db
   easypost-tools-db:
-    image: 'mariadb:10.10.3'
+    image: 'mariadb:10.11.4'
     restart: always
     volumes:
       - database-data:/var/lib/mysql
