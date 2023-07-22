@@ -5,10 +5,12 @@ use VCR\VCR;
 use VCRAccessories\CassetteScrubber;
 use VCRAccessories\CassetteSetup;
 
-const CASSETTE_DIR = 'tests/cassettes';
-CassetteSetup::setupCassetteDirectory(CASSETTE_DIR);
+// Must be an absolute path, otherwise PHP VCR segfaults: https://github.com/php-vcr/php-vcr/issues/373
+$cassetteDir = dirname(__FILE__) . '/cassettes';
 
-VCR::configure()->setCassettePath(CASSETTE_DIR)
+CassetteSetup::setupCassetteDirectory($cassetteDir);
+
+VCR::configure()->setCassettePath($cassetteDir)
     ->setStorage('yaml')
     ->setMode('once')
     ->setWhiteList(['vendor/guzzle']);

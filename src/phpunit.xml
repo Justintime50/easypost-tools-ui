@@ -1,26 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="tests/bootstrap.php"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd" colors="true">
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="tests/bootstrap.php" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.2/phpunit.xsd" colors="true">
     <testsuites>
         <!-- <testsuite name="Unit">
-            <directory suffix="Test.php">./tests/Unit</directory>
-        </testsuite> -->
-
+        <directory suffix="Test.php">./tests/Unit</directory>
+    </testsuite> -->
         <testsuite name="Feature">
             <directory suffix="Test.php">./tests/Feature</directory>
         </testsuite>
     </testsuites>
-    <coverage>
-        <include>
-            <directory suffix=".php">./app</directory>
-        </include>
-        <exclude>
-            <file>./app/Providers/BroadcastServiceProvider.php</file>
-            <directory>./app/Console</directory>
-            <directory>./app/Models</directory>
-            <directory>./app/Exceptions</directory>
-        </exclude>
-    </coverage>
     <php>
         <env name="APP_ENV" value="testing"/>
         <env name="BCRYPT_ROUNDS" value="4"/>
@@ -34,4 +21,15 @@
         <env name="EASYPOST_TEST_API_KEY" value="123"/>
         <env name="EASYPOST_PROD_API_KEY" value="123"/>
     </php>
+    <source>
+        <include>
+            <directory suffix=".php">./app</directory>
+        </include>
+        <exclude>
+            <file>./app/Providers/BroadcastServiceProvider.php</file>
+            <directory>./app/Console</directory>
+            <directory>./app/Models</directory>
+            <directory>./app/Exceptions</directory>
+        </exclude>
+    </source>
 </phpunit>
