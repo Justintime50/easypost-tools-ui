@@ -64,8 +64,7 @@
 
                             <div class="row mb-3">
                                 <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Confirm
-                                                                                                        Password') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
@@ -73,9 +72,7 @@
                                 </div>
                             </div>
 
-                            @if (env('APP_ENV') == 'production' ||
-                                getenv('NOCAPTCHA_SECRET') !== false ||
-                                getenv('NOCAPTCHA_SITEKEY') !== false)
+                            @if (config('app.env') == 'production' || config('captcha.secret') !== false || config('captcha.sitekey') !== false)
                                 {!! NoCaptcha::renderJs() !!}
                                 <div class="text-center">
                                     <div class="inline-block">
@@ -84,7 +81,7 @@
                                 </div>
                             @endif
 
-                            <div class="row mb-3 mb-0">
+                            <div class="row mb-0 mb-3">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Register') }}

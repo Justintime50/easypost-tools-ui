@@ -1,0 +1,68 @@
+# Clean the database
+clean-db:
+    composer clean-db
+
+# Run a coverage report
+coverage:
+    composer coverage
+
+# Compile for production
+build:
+    npm run build
+
+# Install dependencies
+install:
+    composer install
+    npm install
+
+# Lint entire project
+lint: lint-php lint-css
+
+# Lint the PHP files
+lint-php:
+    composer lint
+
+# Lint the SASS files
+lint-css:
+    npm run lint
+
+# Fix all linting issues
+lint-fix: lint-php-fix lint-css-fix
+
+# Fix PHP linting
+lint-php-fix:
+    composer fix
+
+# Fix SASS linting
+lint-css-fix:
+    npm run fix
+
+# Migrates the database
+migrate:
+    composer migrate
+
+# Migrates the database and cleans in one go
+migrate-fresh:
+    composer migrate-fresh
+
+# Migrates and seeds the database
+migrate-seed:
+    composer migrate-seed
+
+# Deploy the project for production
+prod:
+    docker compose -f ../docker-compose.yml -f ../docker-compose-prod.yml up -d --build
+
+# Compile SASS and Javascript during development (hot-reloads)
+run:
+    docker compose up -d
+    npm run dev
+
+# Seeds the database
+seed:
+    composer seed
+
+# Sets up and spins up the project for the first time
+setup:
+    #!/usr/bin/env bash
+    bash <(curl -s https://gist.githubusercontent.com/Justintime50/2de9303a491c22627ee502aaa7b1f289/raw/) easypost-tools-ui easypost-tools-ui has_database

@@ -1,37 +1,40 @@
 services:
   easypost-tools-ui:
+    build:
+      args:
+        PROD: true
     deploy:
       replicas: 2
       resources:
         limits:
-          cpus: "0.50"
-          memory: "512M"
+          cpus: '0.50'
+          memory: '512M'
         reservations:
-          cpus: "0.25"
-          memory: "128M"
+          cpus: '0.25'
+          memory: '128M'
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost"]
+      test: ['CMD', 'curl', '-f', 'http://localhost']
       interval: 10s
       timeout: 10s
       retries: 3
     labels:
-      - "traefik.http.routers.easyposttools.rule=Host(`easyposttools.com`, `www.easyposttools.com`)"
-      - "traefik.http.routers.easyposttools.tls=true"
-      - "traefik.http.routers.easyposttools.tls.certresolver=letsencrypt"
+      - 'traefik.http.routers.easyposttools.rule=Host(`easyposttools.com`, `www.easyposttools.com`)'
+      - 'traefik.http.routers.easyposttools.tls=true'
+      - 'traefik.http.routers.easyposttools.tls.certresolver=letsencrypt'
     volumes:
       - ./src/storage/logs:/var/www/html/storage/logs
       - ./src/storage/app/public:/var/www/html/storage/app/public
-  easypost-tools-db:
+  easypost-tools-ui-db:
     deploy:
       resources:
         limits:
-          cpus: "0.50"
-          memory: "512M"
+          cpus: '0.50'
+          memory: '512M'
         reservations:
-          cpus: "0.25"
-          memory: "128M"
+          cpus: '0.25'
+          memory: '128M'
     healthcheck:
-      test: ["CMD", "mysql", "-u${MARIADB_USER}", "-p${MARIADB_PASSWORD}", "-e", "show databases;"]
+      test: ['CMD', 'mysql', '-u${MARIADB_USER}', '-p${MARIADB_PASSWORD}', '-e', 'show databases;']
       interval: 10s
       timeout: 10s
       retries: 3

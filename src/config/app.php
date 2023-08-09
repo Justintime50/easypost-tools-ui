@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'EasyPost UI'),
+    'name' => env('APP_NAME', 'EasyPost Tools'),
 
     /*
     |--------------------------------------------------------------------------

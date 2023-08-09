@@ -10,8 +10,8 @@ services:
     labels:
       - traefik.enable=true
     depends_on:
-       - easypost-tools-db
-  easypost-tools-db:
+      - easypost-tools-ui-db
+  easypost-tools-ui-db:
     image: 'mariadb:10.11.4'
     restart: always
     volumes:

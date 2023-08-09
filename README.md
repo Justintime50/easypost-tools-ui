@@ -38,7 +38,7 @@ The EasyPost API allows you to create shipping labels with some of the biggest p
 cp src/.env-example src/.env && cp .env-example .env
 
 # Run the setup script which will bootstrap all the requirements, spin up the service, and migrate the database
-./setup.sh
+just setup
 ```
 
 ## Usage
@@ -53,10 +53,10 @@ Once the project is setup, simply interact with the various links in the app to 
 
 ```bash
 # Deploy the project locally
-docker compose up -d
+just run
 
 # Deploy the project in production
-docker compose -f docker-compose.yml -f docker-compose-prod.yml up -d
+just prod
 ```
 
 ## Development
@@ -64,37 +64,6 @@ docker compose -f docker-compose.yml -f docker-compose-prod.yml up -d
 **NOTE:** To use dev dependencies, you'll need to install project dependencies outside of the Docker container on your machine.
 
 ```bash
-# Install dependencies
-composer install
-
-# Migrate the database
-composer migrate
-composer migrate-fresh
-
-# Clean the database
-composer db-clean
-
-# Seed the database
-composer seed
-
-# Lint the PHP files
-composer lint
-
-# Fix PHP linting
-composer fix
-
-# Lint the SASS files
-npm run lint
-
-# Fix SASS linting
-npm run fix
-
-# Compile SASS and Javascript during development (hot-reloads)
-npm run dev
-
-# Compile for production
-npm run build
-
-# Run tests
-EASYPOST_TEST_API_KEY=123 EASYPOST_PROD_API_KEY=123 composer test
+# Get a comprehensive list of development tools
+just --list
 ```
