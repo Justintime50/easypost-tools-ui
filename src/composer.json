@@ -56,12 +56,14 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "scripts": {
+        "clean-db": "docker exec -t easypost-tools-ui-easypost-tools-ui-1 php artisan db:wipe",
         "coverage": "XDEBUG_MODE=coverage ./bin/phpunit --coverage-html clover.html --coverage-clover build/logs/clover.xml && bin/coverage-check build/logs/clover.xml 5 --only-percentage",
         "fix": "./bin/phpcbf --standard=./node_modules/justintime50-styles/src/php/phpcs.xml .",
         "lint": "./bin/phpcs --standard=./node_modules/justintime50-styles/src/php/phpcs.xml .",
-        "migrate": "docker exec -t easypost-tools-ui-easypost-tools-ui-1 php artisan migrate",
         "migrate-fresh": "docker exec -t easypost-tools-ui-easypost-tools-ui-1 php artisan migrate:fresh",
         "migrate-seed": "docker exec -t easypost-tools-ui-easypost-tools-ui-1 php artisan migrate:fresh --seed",
+        "migrate": "docker exec -t easypost-tools-ui-easypost-tools-ui-1 php artisan migrate",
+        "rollback": "docker exec -t easypost-tools-ui-easypost-tools-ui-1 php artisan migrate:rollback --no-interaction --force",
         "seed": "docker exec -t easypost-tools-ui-easypost-tools-ui-1 php artisan db:seed",
         "test": "./bin/phpunit",
         "post-autoload-dump": [

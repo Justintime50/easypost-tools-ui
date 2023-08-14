@@ -53,6 +53,10 @@ migrate-seed:
 prod:
     docker compose -f ../docker-compose.yml -f ../docker-compose-prod.yml up -d --build
 
+# Rollback a database migration
+rollback:
+    composer rollback
+
 # Compile SASS and Javascript during development (hot-reloads)
 run:
     docker compose up -d
