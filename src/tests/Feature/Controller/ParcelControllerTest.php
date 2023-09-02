@@ -13,9 +13,6 @@ class ParcelControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    private static $client;
-    private static $expireCassetteDays;
-
     /**
      * Setup the testing environment for this file.
      */
@@ -23,7 +20,6 @@ class ParcelControllerTest extends TestCase
     {
         CassetteSetup::setupVcrTests();
         self::$client = new EasyPostClient(getenv('EASYPOST_TEST_API_KEY'));
-        self::$expireCassetteDays = 180;
     }
 
     /**
