@@ -37,7 +37,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        phpversion: ['8.1']
+        # 8.2.9+ is needed due to segfaults on 8.2-8.2.8 when generating coverage: https://github.com/php-vcr/php-vcr/issues/373
+        phpversion: ['8.1', '8.2.9']
     steps:
       - uses: actions/checkout@v3
       - uses: extractions/setup-just@v1
@@ -64,7 +65,8 @@ jobs:
       - uses: extractions/setup-just@v1
       - uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
+          # 8.2.9+ is needed due to segfaults on 8.2-8.2.8 when generating coverage: https://github.com/php-vcr/php-vcr/issues/373
+          php-version: '8.2.9'
       - name: Generate coverage report
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
