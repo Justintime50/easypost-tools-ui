@@ -69,7 +69,7 @@ seed:
 # Sets up and spins up the project for the first time
 setup:
     #!/usr/bin/env bash
-    bash <(curl -s https://gist.githubusercontent.com/Justintime50/2de9303a491c22627ee502aaa7b1f289/raw/) easypost-tools-ui easypost-tools-ui has_database
+    bash <(curl -s https://gist.githubusercontent.com/Justintime50/2de9303a491c22627ee502aaa7b1f289/raw) easypost-tools-ui easypost-tools-ui has_database
 
 # Tests the project
 test:
