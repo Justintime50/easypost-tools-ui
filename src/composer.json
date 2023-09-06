@@ -56,6 +56,7 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "scripts": {
+        "clean": "rm -rf bin clover.html node_modules vendor *.cache .*.cache bootstrap/cache/*.php",
         "clean-db": "docker exec -t easypost-tools-ui-easypost-tools-ui-1 php artisan db:wipe",
         "coverage": "XDEBUG_MODE=coverage ./bin/phpunit --coverage-html clover.html --coverage-clover build/logs/clover.xml && bin/coverage-check build/logs/clover.xml 5 --only-percentage",
         "fix": "./bin/phpcbf --standard=./node_modules/justintime50-styles/src/php/phpcs.xml .",
