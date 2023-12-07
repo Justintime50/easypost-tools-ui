@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Next Release
+
+- Adds PHP 8.3 support
+- Upgrades `easypost-php` from v6 to v7
+
 ## v0.9.2 (2023-09-02)
 
 - Fixes bugs where the request wasn't set correctly for parcels. users, or search

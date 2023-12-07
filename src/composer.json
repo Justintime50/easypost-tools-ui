@@ -10,18 +10,18 @@
     "require": {
         "php": "^8.1",
         "anhskohbo/no-captcha": "^3.5",
-        "easypost/easypost-php": "^6.6",
+        "easypost/easypost-php": "^7.0",
         "laravel/framework": "^10.0",
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.2",
         "sentry/sentry-laravel": "^3.3"
     },
     "require-dev": {
-        "justintime50/vcr-accessories": "^0.2.0",
+        "justintime50/vcr-accessories": "^0.2.1",
         "mockery/mockery": "^1.5",
         "nunomaduro/collision": "^7.0",
         "php-coveralls/php-coveralls": "^2.5",
-        "php-vcr/php-vcr": "1.6.7",
+        "php-vcr/php-vcr": "^1.6.0",
         "phpunit/phpunit": "^10.0",
         "rregeer/phpunit-coverage-check": "^0.3.1",
         "spatie/laravel-ignition": "^2.1",
