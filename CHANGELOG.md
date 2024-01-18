@@ -3,7 +3,6 @@
 ## Next Release
 
 - Adds PHP 8.3 support
-- Upgrades `easypost-php` from v6 to v7
 - Upgrades MariaDB from `10.11` to `11.1.3`
 
 ## v0.9.2 (2023-09-02)
