@@ -27,7 +27,8 @@ services:
     mem_limit: '768m'
     healthcheck:
       test: ['CMD', 'mariadb', '-u${MARIADB_USER}', '-p${MARIADB_PASSWORD}', '-e', 'show databases;']
-      start_period: 10s
+      # Need to account for upgrade times at startup
+      start_period: 30s
       start_interval: 1s
       interval: 30s
       timeout: 10s
