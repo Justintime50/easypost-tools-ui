@@ -2,5 +2,8 @@ services:
   easypost-tools-ui:
     labels:
       - 'traefik.http.routers.easyposttools.rule=Host(`easyposttools.localhost`)'
+    depends_on:
+      easypost-tools-ui-db:
+        condition: service_started
     volumes:
       - ./src:/var/www/html
