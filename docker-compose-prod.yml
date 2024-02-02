@@ -8,7 +8,9 @@ services:
     mem_limit: '512m'
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost']
-      interval: 10s
+      start_period: 10s
+      start_interval: 1s
+      interval: 30s
       timeout: 10s
       retries: 3
     labels:
@@ -22,6 +24,8 @@ services:
     mem_limit: '768m'
     healthcheck:
       test: ['CMD', 'mariadb', '-u${MARIADB_USER}', '-p${MARIADB_PASSWORD}', '-e', 'show databases;']
-      interval: 10s
+      start_period: 10s
+      start_interval: 1s
+      interval: 30s
       timeout: 10s
       retries: 3
