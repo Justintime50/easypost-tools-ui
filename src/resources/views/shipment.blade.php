@@ -69,8 +69,8 @@
 
             @if (isset($shipment->postage_label->label_url))
                 <div>
-                    <a class="btn btn-primary btn-label" href="{{ $shipment->postage_label->label_url }}"
-                        download="{{ $shipment->id }}" target="_blank">DOWNLOAD LABEL&nbsp;&nbsp;<i
+                    <a class="btn btn-primary" href="{{ $shipment->postage_label->label_url }}"
+                        download="{{ $shipment->id }}" target="_blank">Download Label&nbsp;&nbsp;<i
                             class="fas fa-download"></i>
                     </a>
                 </div>
@@ -94,7 +94,7 @@
 
                     @foreach ($shipment->forms as $form)
                         <a href="{{ $form->form_url }}" class="btn btn-primary" target="_blank">Download
-                            {{ $form->form_type }}</a>
+                            {{ $form->form_type }}&nbsp;&nbsp;<i class="fas fa-download"></i></a>
                     @endforeach
                     <hr />
                 @endif

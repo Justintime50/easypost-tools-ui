@@ -6,21 +6,12 @@
         <div class="response">
             <h2>Shipments</h2>
             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createShipment">Create a Shipment</button>
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#generateQrCodes">Generate QR Codes</button>
             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#buyStamp">Buy a Stamp</button>
             <hr />
             @foreach ($json->shipments as $shipment)
                 <a href="/shipments/{{ $shipment->id }}"><button
-                        class="btn btn-primary btn-sm btn-shipment">{{ substr($shipment->id, 0, 10) }}...</button></a>
+                        class="btn btn-primary btn-shipment">{{ substr($shipment->id, 0, 10) }}...</button></a>
                 <p>Created at: {{ $shipment->created_at }}</p>
-                @if (isset($shipment->postage_label->label_url))
-                    <div>
-                        <a class="btn btn-primary btn-label btn-sm" href="{{ $shipment->postage_label->label_url }}"
-                            download="{{ $shipment->id }}" target="_blank">
-                            DOWNLOAD LABEL&nbsp;<i class="fas fa-download"></i>
-                        </a>
-                    </div>
-                @endif
                 <div class="row">
                     <div class="col-md-4">
                         <p>
@@ -72,6 +63,20 @@
                         </p>
                     </div>
                 </div>
+                @if (isset($shipment->postage_label->label_url))
+                    <div>
+                        <a class="btn btn-primary mb-1" href="{{ $shipment->postage_label->label_url }}"
+                            download="{{ $shipment->id }}" target="_blank">
+                            Download Label&nbsp;<i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                @endif
+                @if (isset($shipment->forms))
+                    @foreach ($shipment->forms as $form)
+                        <a href="{{ $form->form_url }}" class="btn btn-primary" target="_blank">Download
+                            {{ $form->form_type }}&nbsp;&nbsp;<i class="fas fa-download"></i></a>
+                    @endforeach
+                @endif
                 <hr />
             @endforeach
         </div>
