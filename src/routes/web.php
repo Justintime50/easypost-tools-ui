@@ -60,6 +60,7 @@ Route::middleware(['auth', 'ApiKey'])->group(function () {
     Route::post('/shipments/{id}/buy', 'ShipmentController@buyShipment');
     Route::post('/shipments/{id}/refund', 'ShipmentController@createRefund');
     Route::post('/shipments/stamp', 'ShipmentController@buyStamp');
+    Route::post('/shipments/{id}/qr-codes', 'ShipmentController@generateQrCodes');
 
     // Tracking
     Route::post('/trackers', 'TrackerController@createTracker');

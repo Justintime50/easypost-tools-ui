@@ -243,17 +243,16 @@ class ShipmentController extends Controller
         $client = $request->session()->get('client');
 
         try {
-            $shipment = $client->shipment->retrieve($id);
-            $boughtShipment = $client->shipment->buy(
-                $shipment->id,
-                ['id' => $request->input('rate_id')],
+            $shipment = $client->shipment->buy(
+                $id,
+                ['rate' => ['id' => $request->input('rate_id')]],
             );
         } catch (ApiException $exception) {
             return back()->withError($exception->getMessage());
         }
 
         session()->flash('message', 'Shipment bought!');
-        return back()->with(['shipment' => $boughtShipment]);
+        return back()->with(['shipment' => $shipment]);
     }
 
     /**
@@ -372,5 +371,25 @@ class ShipmentController extends Controller
 
         session()->flash('message', 'Stamp bought!');
         return back();
+    }
+
+    /**
+     * Generate QR Codes for a Shipment.
+     *
+     * @param Request $request
+     * @param string $id
+     * @return View|RedirectResponse
+     */
+    public function generateQrCodes(Request $request, string $id): View|RedirectResponse
+    {
+        $client = $request->session()->get('client');
+
+        try {
+            $shipment = $client->shipment->generateForm($id, 'label_qr_code');
+        } catch (ApiException $exception) {
+            return back()->withError($exception->getMessage());
+        }
+
+        return view('shipment')->with(['shipment' => $shipment, 'rates' => $shipment->rates ?? []]);
     }
 }

@@ -2,34 +2,31 @@
 @section('content')
     <div class="response-wrapper">
         <div class="response">
+            <a href="/shipments" class="btn btn-primary">Back to Shipments</a>
             @if (isset($shipment->messages))
                 <div class="card rate-errors-card">
                     <div class="card-header">
                         Shipment Messages
                     </div>
                     <div class="card-body rate-errors-bg">
-                        <code>{{ implode(' ', $shipment->messages) }}</code>
+                        <button class="btn btn-primary mb-2" data-bs-toggle="collapse" data-bs-target="#messages"
+                            aria-expanded="false" aria-controls="messages">Toggle Shipment Messages</button>
+                        <div class="collapse" id="messages">
+                            <code>
+                                <pre>
+@foreach ($shipment->messages as $item)
+{{ $item }}
+@endforeach
+                                </pre>
+                            </code>
+                        </div>
                     </div>
                 </div>
             @endif
 
+            <h3>Shipment Details</h3>
             <p>Shipment:<br />{{ $shipment->id }}</p>
-            @if (isset($shipment->postage_label->label_url))
-                <div>
-                    <a class="btn btn-primary btn-label" href="{{ $shipment->postage_label->label_url }}"
-                        download="{{ $shipment->id }}" target="_blank">DOWNLOAD LABEL&nbsp;&nbsp;<i
-                            class="fas fa-download"></i>
-                    </a>
-                </div>
 
-                <form action="/shipments/{{ $shipment->id }}/refund" method="POST">
-                    @csrf
-
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createRefund"
-                        @if ($shipment->status == 'delivered') {{ 'disabled' }} @endif>Refund
-                        Shipment</button>
-                </form>
-            @endif
             <div class="row">
                 <div class="col-md-4">
                     <p>
@@ -69,6 +66,41 @@
                     </p>
                 </div>
             </div>
+
+            @if (isset($shipment->postage_label->label_url))
+                <div>
+                    <a class="btn btn-primary btn-label" href="{{ $shipment->postage_label->label_url }}"
+                        download="{{ $shipment->id }}" target="_blank">DOWNLOAD LABEL&nbsp;&nbsp;<i
+                            class="fas fa-download"></i>
+                    </a>
+                </div>
+
+                <form action="/shipments/{{ $shipment->id }}/refund" method="POST">
+                    @csrf
+
+                    <button class="btn btn-primary" type="submit"
+                        @if ($shipment->status == 'delivered') {{ 'disabled' }} @endif>Refund Shipment</button>
+                </form>
+
+                <hr />
+                <h4>Forms</h4>
+                @if (isset($shipment->forms))
+                    <form action="/shipments/{{ $shipment->id }}/qr-codes" method="POST">
+                        @csrf
+
+                        <button class="btn btn-primary mb-2" type="submit"
+                            @if (isset($shipment->forms)) {{ 'disabled' }} @endif>Generate QR Codes</button>
+                    </form>
+
+                    @foreach ($shipment->forms as $form)
+                        <a href="{{ $form->form_url }}" class="btn btn-primary" target="_blank">Download
+                            {{ $form->form_type }}</a>
+                    @endforeach
+                    <hr />
+                @endif
+            @endif
+
+            <h3>Rates</h3>
             <div class="table-responsive">
                 <table class="table">
                     <th>Carrier</th>
@@ -114,6 +146,7 @@
                 </table>
             </div>
 
+            <h3>Shipment JSON</h3>
             <pre>{{ $shipment }}</pre>
         </div>
     </div>

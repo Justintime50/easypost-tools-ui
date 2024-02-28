@@ -4,8 +4,8 @@
     <div class="response-wrapper">
         <div class="response">
             <h2>Insurances</h2>
-            <button class="btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#createInsurance"
-                class="nav-link">Create
+            <button class="btn btn-primary mb-3" href="#" data-bs-toggle="modal" data-bs-target="#createInsurance"
+                class="nav-link">Create an
                 Insurance</button>
             <div class="table-responsive">
                 <table class="table">

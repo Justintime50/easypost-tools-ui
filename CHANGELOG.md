@@ -1,9 +1,14 @@
 # CHANGELOG
 
-## Next Release
+## v0.10.0 (2024-02-27)
 
 - Adds PHP 8.3 support
 - Upgrades MariaDB from `10.11` to `11.1.3`
+- Adds the ability to generate QR codes for shipments
+- Removes the unusable "remember me" checkbox on the login screen
+- Overhauls Shipment page for better readability
+- Corrects EasyPost colors to align with new branding
+- Fixes a bug that didn't allow shipments to be purchased
 
 ## v0.9.2 (2023-09-02)
 

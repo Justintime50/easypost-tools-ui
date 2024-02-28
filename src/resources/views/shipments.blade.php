@@ -5,10 +5,9 @@
     <div class="response-wrapper">
         <div class="response">
             <h2>Shipments</h2>
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createShipment">Create
-                Shipment</button>
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#buyStamp">Buy a
-                Stamp</button>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createShipment">Create a Shipment</button>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#generateQrCodes">Generate QR Codes</button>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#buyStamp">Buy a Stamp</button>
             <hr />
             @foreach ($json->shipments as $shipment)
                 <a href="/shipments/{{ $shipment->id }}"><button

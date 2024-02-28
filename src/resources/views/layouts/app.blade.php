@@ -30,9 +30,7 @@
                 <a href="/trackers" class="list-group-item list-group-item-action bg-light"><i
                         class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;Trackers</a>
                 <a href="#" data-bs-toggle="modal" data-bs-target="#search"
-                    class="list-group-item list-group-item-action bg-light">Search
-                    EasyPost
-                    Object ID</a>
+                    class="list-group-item list-group-item-action bg-light">Search by EasyPost Object ID</a>
             </div>
         </div>
 
