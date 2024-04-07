@@ -10,7 +10,7 @@ services:
     labels:
       - traefik.enable=true
   easypost-tools-ui-db:
-    image: 'mariadb:11.1.3'
+    image: 'mariadb:11.3.2'
     restart: always
     volumes:
       - database-data:/var/lib/mysql
