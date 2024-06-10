@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v0.11.0 (2024-06-09)
+
+- Upgrades Laravel 10 to Laravel 11
+
 ## v0.10.0 (2024-02-27)
 
 - Adds PHP 8.3 support

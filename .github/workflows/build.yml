@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: extractions/setup-just@v1
+      - uses: extractions/setup-just@v2
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
@@ -22,13 +22,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: extractions/setup-just@v1
+      - uses: extractions/setup-just@v2
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
       - name: Lint project
         run: |
           cd src
@@ -40,7 +40,7 @@ jobs:
         phpversion: ['8.1', '8.2', '8.3']
     steps:
       - uses: actions/checkout@v4
-      - uses: extractions/setup-just@v1
+      - uses: extractions/setup-just@v2
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.phpversion }}
@@ -61,7 +61,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: extractions/setup-just@v1
+      - uses: extractions/setup-just@v2
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'

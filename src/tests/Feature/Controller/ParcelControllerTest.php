@@ -63,7 +63,7 @@ class ParcelControllerTest extends TestCase
             'height' => 10.0,
             'weight' => 10.0,
         ]);
-        $request->setLaravelSession(session());
+        $request->setLaravelSession(session()->driver());
         $request->session()->put(['client' => self::$client]);
         $response = $controller->createParcel($request);
 
@@ -85,7 +85,7 @@ class ParcelControllerTest extends TestCase
             'predefined_package' => 'Parcel',
             'weight' => 10.0,
         ]);
-        $request->setLaravelSession(session());
+        $request->setLaravelSession(session()->driver());
         $request->session()->put(['client' => self::$client]);
         $response = $controller->createParcel($request);
 
@@ -104,7 +104,7 @@ class ParcelControllerTest extends TestCase
         $controller = new ParcelController();
 
         $request = Request::create('/parcels', 'POST', ['weight' => 0]);
-        $request->setLaravelSession(session());
+        $request->setLaravelSession(session()->driver());
         $request->session()->put(['client' => self::$client]);
         $response = $controller->createParcel($request);
 
@@ -126,7 +126,7 @@ class ParcelControllerTest extends TestCase
         $parcelId = 'prcl_a2c01c778a39467da5b148c6d344d90c';
 
         $request = Request::create("/parcels/$parcelId", 'GET');
-        $request->setLaravelSession(session());
+        $request->setLaravelSession(session()->driver());
         $request->session()->put(['client' => self::$client]);
         $response = $controller->retrieveParcel($request, $parcelId);
 
@@ -149,7 +149,7 @@ class ParcelControllerTest extends TestCase
         $parcelId = 'bad_id';
 
         $request = Request::create("/parcels/$parcelId", 'GET');
-        $request->setLaravelSession(session());
+        $request->setLaravelSession(session()->driver());
         $request->session()->put(['client' => self::$client]);
         $response = $controller->retrieveParcel($request, $parcelId);
 
