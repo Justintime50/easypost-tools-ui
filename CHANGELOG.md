@@ -3,6 +3,7 @@
 ## v0.11.0 (2024-06-09)
 
 - Upgrades Laravel 10 to Laravel 11
+- Drops support for PHP 8.1
 
 ## v0.10.0 (2024-02-27)
 
