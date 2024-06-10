@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## v0.11.0 (2024-06-09)
+## v0.11.0 (2024-06-10)
 
 - Upgrades Laravel 10 to Laravel 11
 - Drops support for PHP 8.1
