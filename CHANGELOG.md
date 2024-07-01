@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Switches from Font Awesome to Bootstrap Icons
+
 ## v0.11.0 (2024-06-10)
 
 - Upgrades Laravel 10 to Laravel 11

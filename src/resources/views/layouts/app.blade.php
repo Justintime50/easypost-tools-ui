@@ -16,19 +16,19 @@
             <h1 class="sidebar-heading"><a href="/">{{ config('app.name') }}</a></h1>
             <div class="list-group list-group-flush">
                 <a href="/addresses" class="list-group-item list-group-item-action bg-light"><i
-                        class="fas fa-address-book"></i>&nbsp;&nbsp;Addresses</a>
+                        class="bi bi-book"></i>&nbsp;&nbsp;Addresses</a>
                 <a href="/carriers" class="list-group-item list-group-item-action bg-light"><i
-                        class="fas fa-truck"></i>&nbsp;&nbsp;Carriers</a>
+                        class="bi bi-truck"></i>&nbsp;&nbsp;Carriers</a>
                 <a href="/insurances" class="list-group-item list-group-item-action bg-light"><i
-                        class="fas fa-dollar-sign"></i>&nbsp;&nbsp;Insurances</a>
+                        class="bi bi-currency-dollar"></i>&nbsp;&nbsp;Insurances</a>
                 <a href="/parcels" class="list-group-item list-group-item-action bg-light"><i
-                        class="fas fa-box-open"></i>&nbsp;&nbsp;Parcels</a>
+                        class="bi bi-box"></i>&nbsp;&nbsp;Parcels</a>
                 <a href="/refunds" class="list-group-item list-group-item-action bg-light"><i
-                        class="fas fa-dollar"></i>&nbsp;&nbsp;Refunds</a>
+                        class="bi bi-currency-dollar"></i>&nbsp;&nbsp;Refunds</a>
                 <a href="/shipments" class="list-group-item list-group-item-action bg-light"><i
-                        class="fas fa-truck-loading"></i>&nbsp;&nbsp;Shipments</a>
+                        class="bi bi-truck"></i>&nbsp;&nbsp;Shipments</a>
                 <a href="/trackers" class="list-group-item list-group-item-action bg-light"><i
-                        class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;Trackers</a>
+                        class="bi bi-pin-map"></i>&nbsp;&nbsp;Trackers</a>
                 <a href="#" data-bs-toggle="modal" data-bs-target="#search"
                     class="list-group-item list-group-item-action bg-light">Search by EasyPost Object ID</a>
             </div>
@@ -39,7 +39,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                 <div class="container-fluid">
                     <button class="btn btn-primary" id="menu-toggle" onclick="toggleSidebar()">
-                        Toggle Sidebar&nbsp;&nbsp;<i class="fas fa-toggle-on"></i>
+                        Toggle Sidebar&nbsp;&nbsp;<i class="bi bi-toggle-on"></i>
                     </button>
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"

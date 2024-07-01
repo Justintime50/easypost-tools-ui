@@ -67,14 +67,14 @@
                     <div>
                         <a class="btn btn-primary mb-1" href="{{ $shipment->postage_label->label_url }}"
                             download="{{ $shipment->id }}" target="_blank">
-                            Download Label&nbsp;<i class="fas fa-download"></i>
+                            Download Label&nbsp;<i class="bi bi-download"></i>
                         </a>
                     </div>
                 @endif
                 @if (isset($shipment->forms))
                     @foreach ($shipment->forms as $form)
                         <a href="{{ $form->form_url }}" class="btn btn-primary" target="_blank">Download
-                            {{ $form->form_type }}&nbsp;&nbsp;<i class="fas fa-download"></i></a>
+                            {{ $form->form_type }}&nbsp;&nbsp;<i class="bi bi-download"></i></a>
                     @endforeach
                 @endif
                 <hr />

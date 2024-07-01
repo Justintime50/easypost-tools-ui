@@ -71,7 +71,7 @@
                 <div>
                     <a class="btn btn-primary" href="{{ $shipment->postage_label->label_url }}"
                         download="{{ $shipment->id }}" target="_blank">Download Label&nbsp;&nbsp;<i
-                            class="fas fa-download"></i>
+                            class="bi bi-download"></i>
                     </a>
                 </div>
 
@@ -94,7 +94,7 @@
 
                     @foreach ($shipment->forms as $form)
                         <a href="{{ $form->form_url }}" class="btn btn-primary" target="_blank">Download
-                            {{ $form->form_type }}&nbsp;&nbsp;<i class="fas fa-download"></i></a>
+                            {{ $form->form_type }}&nbsp;&nbsp;<i class="bi bi-download"></i></a>
                     @endforeach
                     <hr />
                 @endif
@@ -137,7 +137,7 @@
                                     <input type="hidden" name="rate_id" value="{{ $rate->id }}">
                                     <td>
                                         <button class="btn btn-primary btn-small btn-table">Purchase Shipping
-                                            Label&nbsp;&nbsp;<i class="fas fa-mail-bulk"></i></button>
+                                            Label&nbsp;&nbsp;<i class="bi bi-currency-dollar"></i></button>
                                     </td>
                                 </form>
                             @endif
