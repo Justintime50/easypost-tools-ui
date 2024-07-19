@@ -12,7 +12,7 @@ class ParcelControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public static $apiKey;
+    private static $apiKey;
 
     /**
      * Setup the testing environment for this file.
