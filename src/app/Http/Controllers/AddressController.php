@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use EasyPost\EasyPostClient;
 use EasyPost\Exception\Api\ApiException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -30,7 +31,7 @@ class AddressController extends Controller
             'email'    => 'nullable|string',
         ]);
 
-        $client = $request->session()->get('client');
+        $client = new EasyPostClient($request->session()->get('apiKey'));
 
         try {
             $address = $client->address->create(
@@ -62,7 +63,7 @@ class AddressController extends Controller
      */
     public function retrieveAddress(Request $request, string $id): View|RedirectResponse
     {
-        $client = $request->session()->get('client');
+        $client = new EasyPostClient($request->session()->get('apiKey'));
 
         try {
             $json = $client->address->retrieve($id);
@@ -81,7 +82,7 @@ class AddressController extends Controller
      */
     public function retrieveAddresses(Request $request): View|RedirectResponse
     {
-        $client = $request->session()->get('client');
+        $client = new EasyPostClient($request->session()->get('apiKey'));
 
         try {
             $json = $client->address->all();

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use EasyPost\EasyPostClient;
 use EasyPost\Exception\Api\ApiException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -31,7 +32,7 @@ class ParcelController extends Controller
             ]);
         }
 
-        $client = $request->session()->get('client');
+        $client = new EasyPostClient($request->session()->get('apiKey'));
 
         try {
             if ($request->input('predefined_package') != null) {
@@ -65,7 +66,7 @@ class ParcelController extends Controller
      */
     public function retrieveParcel(Request $request, string $id): View|RedirectResponse
     {
-        $client = $request->session()->get('client');
+        $client = new EasyPostClient($request->session()->get('apiKey'));
 
         try {
             $parcel = $client->parcel->retrieve($id);

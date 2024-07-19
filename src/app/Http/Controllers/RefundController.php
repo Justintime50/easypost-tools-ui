@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use EasyPost\EasyPostClient;
 use EasyPost\Exception\Api\ApiException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -18,7 +19,7 @@ class RefundController extends Controller
      */
     public function retrieveRefund(Request $request, string $id)
     {
-        $client = $request->session()->get('client');
+        $client = new EasyPostClient($request->session()->get('apiKey'));
 
         try {
             $refund = $client->refund->retrieve($id);
@@ -40,7 +41,7 @@ class RefundController extends Controller
      */
     public function retrieveRefunds(Request $request): View|RedirectResponse
     {
-        $client = $request->session()->get('client');
+        $client = new EasyPostClient($request->session()->get('apiKey'));
 
         try {
             $refunds = $client->refund->all();

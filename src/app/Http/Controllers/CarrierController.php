@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use EasyPost\EasyPostClient;
 use EasyPost\Exception\Api\ApiException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -18,7 +19,7 @@ class CarrierController extends Controller
      */
     public function retrieveCarrier(Request $request, string $id): View|RedirectResponse
     {
-        $client = $request->session()->get('client');
+        $client = new EasyPostClient($request->session()->get('apiKey'));
 
         try {
             $carrier = $client->carrierAccount->retrieve($id);
@@ -37,7 +38,7 @@ class CarrierController extends Controller
      */
     public function retrieveCarriers(Request $request): View|RedirectResponse
     {
-        $client = $request->session()->get('client');
+        $client = new EasyPostClient($request->session()->get('apiKey'));
 
         try {
             $carriers = $client->carrierAccount->all();

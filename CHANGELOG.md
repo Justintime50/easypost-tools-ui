@@ -1,8 +1,11 @@
 # CHANGELOG
 
-## Next Release
+## v0.12.0 (2024-07-18)
 
+- Upgrades `easypost-php` from v6 to v7
+  - Moves the EasyPostClient initialization from middleware to each function call and passes down the user's API key from the session instead
 - Switches from Font Awesome to Bootstrap Icons
+- Bumps deps
 
 ## v0.11.0 (2024-06-10)
 

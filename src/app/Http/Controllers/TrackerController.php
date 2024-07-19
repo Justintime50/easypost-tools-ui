@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use EasyPost\EasyPostClient;
 use EasyPost\Exception\Api\ApiException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -22,7 +23,7 @@ class TrackerController extends Controller
             'carrier'       => 'nullable|string',
         ]);
 
-        $client = $request->session()->get('client');
+        $client = new EasyPostClient($request->session()->get('apiKey'));
 
         try {
             $response = $client->tracker->create(
@@ -47,7 +48,7 @@ class TrackerController extends Controller
      */
     public function retrieveTracker(Request $request, string $id): View|RedirectResponse
     {
-        $client = $request->session()->get('client');
+        $client = new EasyPostClient($request->session()->get('apiKey'));
 
         try {
             $tracker = $client->tracker->retrieve($id);
@@ -66,7 +67,7 @@ class TrackerController extends Controller
      */
     public function retrieveTrackers(Request $request): View|RedirectResponse
     {
-        $client = $request->session()->get('client');
+        $client = new EasyPostClient($request->session()->get('apiKey'));
 
         try {
             $response = $client->tracker->all();

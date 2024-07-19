@@ -3,7 +3,6 @@
 namespace Tests\Feature\Controller;
 
 use App\Http\Controllers\ParcelController;
-use EasyPost\EasyPostClient;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Request;
 use Tests\TestCase;
@@ -13,13 +12,15 @@ class ParcelControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    public static $apiKey;
+
     /**
      * Setup the testing environment for this file.
      */
     public static function setUpBeforeClass(): void
     {
         CassetteSetup::setupVcrTests();
-        self::$client = new EasyPostClient(getenv('EASYPOST_TEST_API_KEY'));
+        self::$apiKey = getenv('EASYPOST_TEST_API_KEY');
     }
 
     /**
@@ -64,7 +65,7 @@ class ParcelControllerTest extends TestCase
             'weight' => 10.0,
         ]);
         $request->setLaravelSession(session()->driver());
-        $request->session()->put(['client' => self::$client]);
+        $request->session()->put(['apiKey' => self::$apiKey]);
         $response = $controller->createParcel($request);
 
         $this->assertNull($response->exception);
@@ -86,7 +87,7 @@ class ParcelControllerTest extends TestCase
             'weight' => 10.0,
         ]);
         $request->setLaravelSession(session()->driver());
-        $request->session()->put(['client' => self::$client]);
+        $request->session()->put(['apiKey' => self::$apiKey]);
         $response = $controller->createParcel($request);
 
         $this->assertNull($response->exception);
@@ -105,7 +106,7 @@ class ParcelControllerTest extends TestCase
 
         $request = Request::create('/parcels', 'POST', ['weight' => 0]);
         $request->setLaravelSession(session()->driver());
-        $request->session()->put(['client' => self::$client]);
+        $request->session()->put(['apiKey' => self::$apiKey]);
         $response = $controller->createParcel($request);
 
         $this->assertEquals('Wrong parameter type.', $response->getSession()->get('error'));
@@ -127,7 +128,7 @@ class ParcelControllerTest extends TestCase
 
         $request = Request::create("/parcels/$parcelId", 'GET');
         $request->setLaravelSession(session()->driver());
-        $request->session()->put(['client' => self::$client]);
+        $request->session()->put(['apiKey' => self::$apiKey]);
         $response = $controller->retrieveParcel($request, $parcelId);
 
         $viewData = $response->getData();
@@ -150,7 +151,7 @@ class ParcelControllerTest extends TestCase
 
         $request = Request::create("/parcels/$parcelId", 'GET');
         $request->setLaravelSession(session()->driver());
-        $request->session()->put(['client' => self::$client]);
+        $request->session()->put(['apiKey' => self::$apiKey]);
         $response = $controller->retrieveParcel($request, $parcelId);
 
         $this->assertEquals('The requested resource could not be found.', $response->getSession()->get('error'));

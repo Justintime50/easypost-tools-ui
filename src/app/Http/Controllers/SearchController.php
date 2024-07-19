@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use EasyPost\EasyPostClient;
 use EasyPost\Exception\Api\ApiException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -49,7 +50,7 @@ class SearchController extends Controller
     {
         $id = $request->input('id');
         $idPrefix = substr($id, 0, strpos($id, '_'));
-        $client = $request->session()->get('client');
+        $client = new EasyPostClient($request->session()->get('apiKey'));
 
         try {
             $class = OBJECT_ID_PREFIXES[$idPrefix] ?? null;

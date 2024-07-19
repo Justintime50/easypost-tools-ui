@@ -10,7 +10,7 @@
     "require": {
         "php": "^8.2",
         "anhskohbo/no-captcha": "^3.6",
-        "easypost/easypost-php": "^6.0",
+        "easypost/easypost-php": "^7.0",
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9",
         "laravel/ui": "^4.5",

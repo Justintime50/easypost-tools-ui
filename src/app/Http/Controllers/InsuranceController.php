@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use EasyPost\EasyPostClient;
 use EasyPost\Exception\Api\ApiException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -63,7 +64,7 @@ class InsuranceController extends Controller
             'amount'            => 'required|string|max:5000',
         ]);
 
-        $client = $request->session()->get('client');
+        $client = new EasyPostClient($request->session()->get('apiKey'));
 
         try {
             if ($request->input('to_address') != null) {
@@ -125,7 +126,7 @@ class InsuranceController extends Controller
      */
     public function retrieveInsurance(Request $request, string $id)
     {
-        $client = $request->session()->get('client');
+        $client = new EasyPostClient($request->session()->get('apiKey'));
 
         try {
             $insurance = $client->insurance->retrieve($id);
@@ -144,7 +145,7 @@ class InsuranceController extends Controller
      */
     public function retrieveInsurances(Request $request)
     {
-        $client = $request->session()->get('client');
+        $client = new EasyPostClient($request->session()->get('apiKey'));
 
         try {
             $insurances = $client->insurance->all();

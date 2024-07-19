@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use EasyPost\EasyPostClient;
 use EasyPost\Exception\Api\ApiException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -77,7 +78,7 @@ class ShipmentController extends Controller
             ]);
         }
 
-        $client = $request->session()->get('client');
+        $client = new EasyPostClient($request->session()->get('apiKey'));
 
         if ($request->input('to_address') != null) {
             try {
@@ -178,7 +179,7 @@ class ShipmentController extends Controller
      */
     public function retrieveShipment(Request $request, string $id): View|RedirectResponse
     {
-        $client = $request->session()->get('client');
+        $client = new EasyPostClient($request->session()->get('apiKey'));
 
         try {
             $shipment = $client->shipment->retrieve($id);
@@ -197,7 +198,7 @@ class ShipmentController extends Controller
      */
     public function retrieveShipments(Request $request): View|RedirectResponse
     {
-        $client = $request->session()->get('client');
+        $client = new EasyPostClient($request->session()->get('apiKey'));
 
         try {
             $shipments = $client->shipment->all([
@@ -219,7 +220,7 @@ class ShipmentController extends Controller
      */
     public function createRefund(Request $request, string $id): RedirectResponse
     {
-        $client = $request->session()->get('client');
+        $client = new EasyPostClient($request->session()->get('apiKey'));
 
         try {
             $client->shipment->refund($id);
@@ -240,7 +241,7 @@ class ShipmentController extends Controller
      */
     public function buyShipment(Request $request, string $id): RedirectResponse
     {
-        $client = $request->session()->get('client');
+        $client = new EasyPostClient($request->session()->get('apiKey'));
 
         try {
             $shipment = $client->shipment->buy(
@@ -295,7 +296,7 @@ class ShipmentController extends Controller
             ]);
         }
 
-        $client = $request->session()->get('client');
+        $client = new EasyPostClient($request->session()->get('apiKey'));
 
         if ($request->input('to_address') != null) {
             try {
@@ -382,7 +383,7 @@ class ShipmentController extends Controller
      */
     public function generateQrCodes(Request $request, string $id): View|RedirectResponse
     {
-        $client = $request->session()->get('client');
+        $client = new EasyPostClient($request->session()->get('apiKey'));
 
         try {
             $shipment = $client->shipment->generateForm($id, 'label_qr_code');
