@@ -167,7 +167,7 @@ class ShipmentController extends Controller
             }
         );
 
-        return view('shipment')->with(['shipment' => $shipment, 'rates' => $rates]);
+        return redirect("shipments/$shipment->id");
     }
 
     /**
@@ -253,7 +253,7 @@ class ShipmentController extends Controller
         }
 
         session()->flash('message', 'Shipment bought!');
-        return back()->with(['shipment' => $shipment]);
+        return redirect("shipments/$shipment->id");
     }
 
     /**
@@ -357,7 +357,7 @@ class ShipmentController extends Controller
         }
 
         try {
-            $client->shipment->create(
+            $shipment = $client->shipment->create(
                 [
                     'to_address'        => $toAddress,
                     'from_address'      => $fromAddress,
@@ -371,7 +371,7 @@ class ShipmentController extends Controller
         }
 
         session()->flash('message', 'Stamp bought!');
-        return back();
+        return redirect("/shipments/$shipment->id");
     }
 
     /**
@@ -391,6 +391,7 @@ class ShipmentController extends Controller
             return back()->withError($exception->getMessage());
         }
 
-        return view('shipment')->with(['shipment' => $shipment, 'rates' => $shipment->rates ?? []]);
+        session()->flash('message', 'QR code generated!');
+        return redirect("/shipments/$shipment->id");
     }
 }

@@ -26,7 +26,7 @@ class TrackerController extends Controller
         $client = new EasyPostClient($request->session()->get('apiKey'));
 
         try {
-            $response = $client->tracker->create(
+            $tracker = $client->tracker->create(
                 [
                     'tracking_code'  => $request->input('tracking_code'),
                     'carrier' => $request->input('carrier'),
@@ -36,7 +36,7 @@ class TrackerController extends Controller
             return back()->withError($exception->getMessage());
         }
 
-        return view('record')->with(['json' => $response]);
+        return view("/trackers/$tracker->id");
     }
 
     /**

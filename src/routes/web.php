@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Middleware\ApiKey;
-use App\Http\Middleware\Authenticate;
+use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 

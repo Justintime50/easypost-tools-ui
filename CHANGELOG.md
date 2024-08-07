@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Fixes routing for creating/buying a label, generating QR codes, creating a tracker, and updating your API key
+
 ## v0.12.0 (2024-07-18)
 
 - Upgrades `easypost-php` from v6 to v7
