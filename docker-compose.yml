@@ -11,7 +11,7 @@ services:
       - traefik.enable=true
       - 'traefik.docker.network=traefik'
   easypost-tools-ui-db:
-    image: 'mariadb:11.3.2'
+    image: 'mariadb:11.4.3'
     restart: always
     volumes:
       - database-data:/var/lib/mysql

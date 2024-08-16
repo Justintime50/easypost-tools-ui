@@ -3,6 +3,7 @@
 ## Next Release
 
 - Fixes routing for creating/buying a label, generating QR codes, creating a tracker, and updating your API key
+- Upgrades mariadb from 11.3.2 to 11.4.3
 
 ## v0.12.0 (2024-07-18)
 

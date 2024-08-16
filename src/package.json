@@ -8,7 +8,7 @@
         "fix": "npx stylelint resources/sass/*.scss --config node_modules/justintime50-styles/src/css/.stylelintrc.json --custom-syntax postcss-scss --fix"
     },
     "dependencies": {
-        "axios": "^1.6",
+        "axios": "^1.7",
         "bootstrap": "^5.3",
         "bootstrap-icons": "^1.11.3",
         "laravel-vite-plugin": "^1.0",
