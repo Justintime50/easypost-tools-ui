@@ -31,7 +31,7 @@ lint-css:
     npm run lint
 
 # Fix all linting issues
-lint-fix: lint-php-fix lint-css-fix
+lint-fix: lint-php-fix lint-css-fix phpstan
 
 # Fix PHP linting
 lint-php-fix:
@@ -52,6 +52,10 @@ migrate-fresh:
 # Migrates and seeds the database
 migrate-seed:
     composer migrate-seed
+
+# Run static analysis on the project
+phpstan:
+    composer phpstan
 
 # Deploy the project for production
 prod:

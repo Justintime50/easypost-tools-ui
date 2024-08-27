@@ -356,6 +356,10 @@ class ShipmentController extends Controller
             }
         }
 
+        if (!isset($usps)) {
+            return back()->withError('No USPS carrier account found!');
+        }
+
         try {
             $shipment = $client->shipment->create(
                 [

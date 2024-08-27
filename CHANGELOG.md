@@ -1,8 +1,10 @@
 # CHANGELOG
 
-## Next Release
+## v0.13.0 (2024-08-27)
 
 - Fixes routing for creating/buying a label, generating QR codes, creating a tracker, and updating your API key
+- Fixes a bug when attempting to buy a stamp and there was no USPS carrier account
+- Fixes a bug where searching for certain objects would result in an error due to no EasyPost service on the client being available (eg: fees)
 - Upgrades mariadb from 11.3.2 to 11.4.3
 
 ## v0.12.0 (2024-07-18)
