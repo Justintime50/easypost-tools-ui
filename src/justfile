@@ -20,7 +20,7 @@ install:
     npm install
 
 # Lint entire project
-lint: lint-php lint-css
+lint: lint-php lint-css phpstan
 
 # Lint the PHP files
 lint-php:
@@ -31,7 +31,7 @@ lint-css:
     npm run lint
 
 # Fix all linting issues
-lint-fix: lint-php-fix lint-css-fix phpstan
+lint-fix: lint-php-fix lint-css-fix
 
 # Fix PHP linting
 lint-php-fix:
