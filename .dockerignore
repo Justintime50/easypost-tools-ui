@@ -1,12 +1,16 @@
-# Exclude everything we won't need for a production build
-# NOTE: These will get volumed during development but excluded in production
+# Exclude everything we won't need for a production build.
+# NOTE: These will be volumed during development but excluded in production 
+# unless explicitly put there by the build process.
 **/.DS_Store
-**/.env-example
+**/.editorconfig
+**/.env*
 **/.gitattributes
 **/.gitignore
+**/.styleci.yml
+**/*.md
+**/*.xml
 **/bin
 **/node_modules
-**/*.xml
-**/*.md
+**/phpstan.neon
 **/tests
 **/vendor

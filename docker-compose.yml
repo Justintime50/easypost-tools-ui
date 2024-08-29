@@ -8,7 +8,7 @@ services:
       - easypost-tools-ui
       - traefik
     labels:
-      - traefik.enable=true
+      - 'traefik.enable=true'
       - 'traefik.docker.network=traefik'
   easypost-tools-ui-db:
     image: 'mariadb:11.4.3'
