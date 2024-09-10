@@ -1,6 +1,7 @@
 services:
   easypost-tools-ui:
     labels:
+      - 'traefik.enable=true'
       - 'traefik.http.routers.easyposttools.rule=Host(`easyposttools.localhost`)'
     depends_on:
       easypost-tools-ui-db:

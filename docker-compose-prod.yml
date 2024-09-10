@@ -13,9 +13,6 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
-    labels:
-      - 'traefik.http.routers.easyposttools.rule=Host(`easyposttools.com`) || Host(`www.easyposttools.com`)'
-      - 'traefik.http.routers.easyposttools.tls=true'
     depends_on:
       easypost-tools-ui-db:
         condition: service_healthy
