@@ -21,58 +21,57 @@
             x-download-options: noopen
             x-permitted-cross-domain-policies: none
             referrer-policy: strict-origin-when-cross-origin
-            x-ep-request-uuid: 78f87172657233bde787c45a00838efb
+            x-ep-request-uuid: a7e7f57f66ec9b7de789694000061c62
             cache-control: 'private, no-cache, no-store'
             pragma: no-cache
             expires: '0'
             content-type: 'application/json; charset=utf-8'
             content-length: '231'
-            x-runtime: '0.027455'
-            x-node: bigweb43nuq
-            x-version-label: easypost-202312071753-52fc8e3dc9-master
+            x-runtime: '0.030690'
+            x-node: bigweb41nuq
+            x-version-label: easypost-202409192048-2a928ba5fc-master
             x-backend: easypost
-            x-canary: direct
-            x-proxied: ['intlb2nuq b3de2c47ef', 'extlb1nuq 003ad9bca0']
+            x-proxied: ['intlb4nuq b6e1b5034c', 'extlb1nuq b6e1b5034c']
             strict-transport-security: 'max-age=31536000; includeSubDomains; preload'
         body: '{"id":"prcl_a2c01c778a39467da5b148c6d344d90c","object":"Parcel","created_at":"2023-04-12T18:08:17Z","updated_at":"2023-04-12T18:08:17Z","length":10,"width":10,"height":10,"predefined_package":null,"weight":10,"mode":"test"}'
         curl_info:
             url: 'https://api.easypost.com/v2/parcels/prcl_a2c01c778a39467da5b148c6d344d90c'
             content_type: 'application/json; charset=utf-8'
             http_code: 200
-            header_size: 706
-            request_size: 321
+            header_size: 688
+            request_size: 322
             filetime: -1
             ssl_verify_result: 0
             redirect_count: 0
-            total_time: 0.252939
-            namelookup_time: 0.001165
-            connect_time: 0.080142
-            pretransfer_time: 0.151322
+            total_time: 0.226148
+            namelookup_time: 0.00164
+            connect_time: 0.064641
+            pretransfer_time: 0.129033
             size_upload: 0.0
             size_download: 231.0
-            speed_download: 913.0
+            speed_download: 1021.0
             speed_upload: 0.0
             download_content_length: 231.0
             upload_content_length: 0.0
-            starttransfer_time: 0.252912
+            starttransfer_time: 0.225971
             redirect_time: 0.0
             redirect_url: ''
             primary_ip: 169.62.110.131
             certinfo: {  }
             primary_port: 443
-            local_ip: 10.130.6.49
-            local_port: 52240
+            local_ip: 10.130.6.58
+            local_port: 55225
             http_version: 2
             protocol: 2
             ssl_verifyresult: 0
-            scheme: HTTPS
-            appconnect_time_us: 151239
-            connect_time_us: 80142
-            namelookup_time_us: 1165
-            pretransfer_time_us: 151322
+            scheme: https
+            appconnect_time_us: 129000
+            connect_time_us: 64641
+            namelookup_time_us: 1640
+            pretransfer_time_us: 129033
             redirect_time_us: 0
-            starttransfer_time_us: 252912
-            total_time_us: 252939
+            starttransfer_time_us: 225971
+            total_time_us: 226148
             effective_method: GET
             capath: ''
             cainfo: ''

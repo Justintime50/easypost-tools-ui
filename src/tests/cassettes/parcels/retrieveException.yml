@@ -21,17 +21,17 @@
             x-download-options: noopen
             x-permitted-cross-domain-policies: none
             referrer-policy: strict-origin-when-cross-origin
-            x-ep-request-uuid: 78f87177657233bde787c45b00838f4f
+            x-ep-request-uuid: a7e7f58066ec9b7ee789694100061c97
             cache-control: 'private, no-cache, no-store'
             pragma: no-cache
             expires: '0'
             content-type: 'application/json; charset=utf-8'
             content-length: '137'
-            x-runtime: '0.040144'
-            x-node: bigweb40nuq
-            x-version-label: easypost-202312071753-52fc8e3dc9-master
+            x-runtime: '0.026158'
+            x-node: bigweb41nuq
+            x-version-label: easypost-202409192048-2a928ba5fc-master
             x-backend: easypost
-            x-proxied: ['intlb2nuq b3de2c47ef', 'extlb1nuq 003ad9bca0']
+            x-proxied: ['intlb3nuq b6e1b5034c', 'extlb1nuq b6e1b5034c']
             strict-transport-security: 'max-age=31536000; includeSubDomains; preload'
         body: '{"error":{"code":"NOT_FOUND","message":"The requested resource could not be found.","errors":[{"field":"bad_id","message":"not found"}]}}'
         curl_info:
@@ -39,39 +39,39 @@
             content_type: 'application/json; charset=utf-8'
             http_code: 404
             header_size: 695
-            request_size: 290
+            request_size: 291
             filetime: -1
             ssl_verify_result: 0
             redirect_count: 0
-            total_time: 0.261637
-            namelookup_time: 0.001142
-            connect_time: 0.071583
-            pretransfer_time: 0.145985
+            total_time: 0.227685
+            namelookup_time: 0.001596
+            connect_time: 0.065645
+            pretransfer_time: 0.131491
             size_upload: 0.0
             size_download: 137.0
-            speed_download: 523.0
+            speed_download: 601.0
             speed_upload: 0.0
             download_content_length: 137.0
             upload_content_length: 0.0
-            starttransfer_time: 0.261595
+            starttransfer_time: 0.227665
             redirect_time: 0.0
             redirect_url: ''
             primary_ip: 169.62.110.131
             certinfo: {  }
             primary_port: 443
-            local_ip: 10.130.6.49
-            local_port: 52241
+            local_ip: 10.130.6.58
+            local_port: 55226
             http_version: 2
             protocol: 2
             ssl_verifyresult: 0
-            scheme: HTTPS
-            appconnect_time_us: 145958
-            connect_time_us: 71583
-            namelookup_time_us: 1142
-            pretransfer_time_us: 145985
+            scheme: https
+            appconnect_time_us: 131456
+            connect_time_us: 65645
+            namelookup_time_us: 1596
+            pretransfer_time_us: 131491
             redirect_time_us: 0
-            starttransfer_time_us: 261595
-            total_time_us: 261637
+            starttransfer_time_us: 227665
+            total_time_us: 227685
             effective_method: GET
             capath: ''
             cainfo: ''
