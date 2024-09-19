@@ -1,0 +1,80 @@
+
+-
+    request:
+        method: POST
+        url: 'https://api.easypost.com/v2/trackers'
+        headers:
+            Host: api.easypost.com
+            Expect: ''
+            Accept-Encoding: ''
+            Accept: application/json
+            Authorization: ''
+            Content-Type: application/json
+            User-Agent: ''
+        body: '{"tracker":{"tracking_code":"EZ1000000001","carrier":"USPS"}}'
+    response:
+        status:
+            code: 422
+            message: 'Unprocessable Entity'
+        headers:
+            x-frame-options: SAMEORIGIN
+            x-xss-protection: '1; mode=block'
+            x-content-type-options: nosniff
+            x-download-options: noopen
+            x-permitted-cross-domain-policies: none
+            referrer-policy: strict-origin-when-cross-origin
+            x-ep-request-uuid: a7e7f58166ec9647e788fac60001ee4e
+            cache-control: 'private, no-cache, no-store'
+            pragma: no-cache
+            expires: '0'
+            content-type: 'application/json; charset=utf-8'
+            content-length: '201'
+            x-runtime: '0.230631'
+            x-node: bigweb42nuq
+            x-version-label: easypost-202409192048-2a928ba5fc-master
+            x-backend: easypost
+            x-proxied: ['intlb3nuq b6e1b5034c', 'extlb1nuq b6e1b5034c']
+            strict-transport-security: 'max-age=31536000; includeSubDomains; preload'
+        body: '{"error":{"code":"TRACKER.CREATE.ERROR","message":"The tracking number does not belong to the carrier you specified. Please confirm that both the carrier and tracking number are correct.","errors":[]}}'
+        curl_info:
+            url: 'https://api.easypost.com/v2/trackers'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 422
+            header_size: 706
+            request_size: 367
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.4332
+            namelookup_time: 0.001369
+            connect_time: 0.066149
+            pretransfer_time: 0.132258
+            size_upload: 61.0
+            size_download: 201.0
+            speed_download: 463.0
+            speed_upload: 140.0
+            download_content_length: 201.0
+            upload_content_length: 61.0
+            starttransfer_time: 0.433183
+            redirect_time: 0.0
+            redirect_url: ''
+            primary_ip: 169.62.110.131
+            certinfo: {  }
+            primary_port: 443
+            local_ip: 10.130.6.58
+            local_port: 54934
+            http_version: 2
+            protocol: 2
+            ssl_verifyresult: 0
+            scheme: https
+            appconnect_time_us: 132214
+            connect_time_us: 66149
+            namelookup_time_us: 1369
+            pretransfer_time_us: 132258
+            redirect_time_us: 0
+            starttransfer_time_us: 433183
+            total_time_us: 433200
+            effective_method: POST
+            capath: ''
+            cainfo: ''
+    index: 0

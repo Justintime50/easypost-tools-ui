@@ -36,7 +36,7 @@ class TrackerController extends Controller
             return back()->withError($exception->getMessage());
         }
 
-        return view("/trackers/$tracker->id");
+        return redirect("trackers/$tracker->id");
     }
 
     /**

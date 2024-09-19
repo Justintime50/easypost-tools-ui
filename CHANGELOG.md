@@ -3,6 +3,7 @@
 ## Next Release
 
 - Fixes a bug when displaying an insurance and it doesn't have an address
+- Fixes a bug redirecting after tracker create
 
 ## v0.13.0 (2024-08-27)
 
