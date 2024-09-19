@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f829789019f03550a44f3a1cd35d8479",
+    "content-hash": "353a760f4316c17108c4080a9dde8ea8",
     "packages": [
         {
             "name": "anhskohbo/no-captcha",
@@ -6520,30 +6520,31 @@
         },
         {
             "name": "justintime50/vcr-accessories",
-            "version": "v0.2.1",
+            "version": "v0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Justintime50/vcr-accessories-php.git",
-                "reference": "4158a23341eb2d87bd59d7be1080697e88401d1c"
+                "reference": "62199b2868103adfa4ae9ccf0007b67928cca1b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Justintime50/vcr-accessories-php/zipball/4158a23341eb2d87bd59d7be1080697e88401d1c",
-                "reference": "4158a23341eb2d87bd59d7be1080697e88401d1c",
+                "url": "https://api.github.com/repos/Justintime50/vcr-accessories-php/zipball/62199b2868103adfa4ae9ccf0007b67928cca1b2",
+                "reference": "62199b2868103adfa4ae9ccf0007b67928cca1b2",
                 "shasum": ""
             },
             "require": {
                 "allejo/php-vcr-sanitizer": "^1.1",
                 "php": "^8.0",
-                "php-vcr/php-vcr": "^1.5"
+                "php-vcr/php-vcr": "^1.7"
             },
             "require-dev": {
                 "guzzlehttp/guzzle": "^7.5",
-                "justintime50/styles": "^0.5.0",
-                "php-coveralls/php-coveralls": "^2.5",
+                "justintime50/styles": "^0.6.0",
+                "php-coveralls/php-coveralls": "^2.7",
+                "phpstan/phpstan": "^1.12",
                 "phpunit/phpunit": "^9.0",
                 "rregeer/phpunit-coverage-check": "^0.3.1",
-                "squizlabs/php_codesniffer": "^3.7"
+                "squizlabs/php_codesniffer": "^3.10"
             },
             "type": "library",
             "autoload": {
@@ -6564,7 +6565,7 @@
             "description": "Various accessories for your PHP VCR",
             "support": {
                 "issues": "https://github.com/Justintime50/vcr-accessories-php/issues",
-                "source": "https://github.com/Justintime50/vcr-accessories-php/tree/v0.2.1"
+                "source": "https://github.com/Justintime50/vcr-accessories-php/tree/v0.3.0"
             },
             "funding": [
                 {
@@ -6572,7 +6573,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-09-02T03:09:19+00:00"
+            "time": "2024-09-19T20:31:07+00:00"
         },
         {
             "name": "larastan/larastan",

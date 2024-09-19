@@ -1,0 +1,78 @@
+
+-
+    request:
+        method: GET
+        url: 'https://api.easypost.com/v2/carrier_accounts'
+        headers:
+            Host: api.easypost.com
+            Accept-Encoding: ''
+            Accept: application/json
+            Authorization: ''
+            Content-Type: application/json
+            User-Agent: ''
+    response:
+        status:
+            code: 200
+            message: OK
+        headers:
+            x-frame-options: SAMEORIGIN
+            x-xss-protection: '1; mode=block'
+            x-content-type-options: nosniff
+            x-download-options: noopen
+            x-permitted-cross-domain-policies: none
+            referrer-policy: strict-origin-when-cross-origin
+            x-ep-request-uuid: 5261a49766ec8b26e788dcfd0020e279
+            cache-control: 'private, no-cache, no-store'
+            pragma: no-cache
+            expires: '0'
+            content-type: 'application/json; charset=utf-8'
+            content-length: '36848'
+            x-runtime: '0.419102'
+            x-node: bigweb33nuq
+            x-version-label: easypost-202409191932-187327e6d2-master
+            x-backend: easypost
+            x-proxied: ['intlb4nuq b6e1b5034c', 'extlb2nuq b6e1b5034c']
+            strict-transport-security: 'max-age=31536000; includeSubDomains; preload'
+        body: '[{"id":"ca_4fcd9a658b494a979793bb899a40c5b5","object":"CarrierAccount","type":"UspsAccount","clone":false,"created_at":"2020-02-05T20:26:50Z","updated_at":"2023-02-23T00:30:34Z","description":"USPS Account","reference":null,"billing_type":"easypost","readable":"USPS","logo":null,"fields":[],"credentials":[],"test_credentials":[]},{"id":"ca_754d3e2bce354edfb2e4a3fcc21bb02c","object":"CarrierAccount","type":"UpsAccount","clone":false,"created_at":"2020-02-05T20:51:28Z","updated_at":"2020-02-05T20:51:28Z","description":"UPS Account","reference":null,"billing_type":"carrier","readable":"UPS","logo":null,"fields":[],"credentials":[],"test_credentials":[]},{"id":"ca_3bd616120603457fbed9deb1e425bbdc","object":"CarrierAccount","type":"FedexAccount","clone":false,"created_at":"2020-02-06T17:15:09Z","updated_at":"2020-04-15T17:11:28Z","description":"FedEx Account","reference":null,"billing_type":"carrier","readable":"FedEx","logo":null,"fields":[],"credentials":[],"test_credentials":[]},{"id":"ca_bc906eccfedc4e46952feacf2d69d3dc","object":"CarrierAccount","type":"DhlEcommerceAccount","clone":false,"created_at":"2020-02-14T22:32:21Z","updated_at":"2020-03-30T17:28:49Z","description":"DHL eCommerce Account","reference":null,"billing_type":"carrier","readable":"DHL eCommerce (Legacy)","logo":null,"fields":[],"credentials":[],"test_credentials":[]},{"id":"ca_2b428229ad214147a2ec13c4faf18934","object":"CarrierAccount","type":"DhlExpressAccount","clone":false,"created_at":"2020-02-14T22:37:59Z","updated_at":"2020-02-18T16:36:39Z","description":"DHL Express Account","reference":null,"billing_type":"carrier","readable":"DHL Express","logo":null,"fields":[],"credentials":[],"test_credentials":[]},{"id":"ca_d8c3565dd56346d9a5e90bd56ba7c2fa","object":"CarrierAccount","type":"DpdAccount","clone":false,"created_at":"2020-02-18T17:08:55Z","updated_at":"2020-02-18T17:08:55Z","description":"DPD Account","reference":null,"billing_type":"carrier","readable":"DPD","logo":null,"fields":[],"credentials":[],"test_credentials":[]},{"id":"ca_d1506f41a6d5427590f16a4d2850bcc9","object":"CarrierAccount","type":"GsoAccount","clone":false,"created_at":"2020-02-25T20:11:04Z","updated_at":"2020-02-25T20:11:04Z","description":"GSO Account","reference":null,"billing_type":"carrier","readable":"GSO","logo":null,"fields":[],"credentials":[],"test_credentials":[]},{"id":"ca_3b84ac568d7444759b77d1f2f2c05d7a","object":"CarrierAccount","type":"AustraliaPostAccount","clone":false,"created_at":"2020-02-28T17:53:20Z","updated_at":"2020-02-28T17:53:20Z","description":"Australia Post Account","reference":null,"billing_type":"carrier","readable":"Australia Post","logo":null,"fields":[],"credentials":[],"test_credentials":[]},{"id":"ca_91b615ca71e44e61a437f7a6906703fa","object":"CarrierAccount","type":"LsoAccount","clone":false,"created_at":"2020-03-09T16:08:48Z","updated_at":"2020-03-09T16:12:46Z","description":"LSO Account","reference":null,"billing_type":"carrier","readable":"LSO","logo":null,"fields":[],"credentials":[],"test_credentials":[]},{"id":"ca_7ed5727e59784783868cf156cc6dd3b9","object":"CarrierAccount","type":"ApcAccount","clone":false,"created_at":"2020-03-12T20:32:50Z","updated_at":"2020-03-12T20:32:50Z","description":"APC Account","reference":null,"billing_type":"carrier","readable":"APC","logo":null,"fields":[],"credentials":[],"test_credentials":[]},{"id":"ca_942b62c9d6ea45578a344b365d7aa062","object":"CarrierAccount","type":"UpsMailInnovationsAccount","clone":false,"created_at":"2020-03-23T20:55:23Z","updated_at":"2024-08-26T15:00:51Z","description":"UPS Mail Innovations Account","reference":null,"billing_type":"carrier","readable":"UPS Mail Innovations","logo":null,"fields":[],"credentials":[],"test_credentials":[]},{"id":"ca_e788e1dce8764babba36e71272ca8fae","object":"CarrierAccount","type":"PurolatorAccount","clone":false,"created_at":"2020-03-30T21:18:34Z","updated_at":"2020-03-30T21:18:34Z","description":"Purolator Account","reference":null,"billing_type":"carrier","readable":"Purolator","logo":null,"fields":[],"credentials":[],"test_credentials":[]},{"id":"ca_a32ed104ca784c25b25f19d7c28191c3","object":"CarrierAccount","type":"ParcelForceAccount","clone":false,"created_at":"2020-04-01T17:26:20Z","updated_at":"2020-04-01T20:06:13Z","description":"Parcel Force Account","reference":null,"billing_type":"carrier","readable":"Parcel Force","logo":null,"fields":[],"credentials":[],"test_credentials":[]},{"id":"ca_6c70860c1edd46c69394beee4e02765f","object":"CarrierAccount","type":"CouriersPleaseAccount","clone":false,"created_at":"2020-04-02T21:35:05Z","updated_at":"2020-04-02T21:35:05Z","description":"CouriersPlease Account","reference":null,"billing_type":"carrier","readable":"CouriersPlease","logo":null,"fields":[],"credentials":[],"test_credentials":[]},{"id":"ca_38916f588b9b4afe835cedd5389eb18d","object":"CarrierAccount","type":"OntracAccount","clone":false,"created_at":"2020-04-08T16:10:17Z","updated_at":"2020-04-08T16:10:17Z","description":"OnTrac Account","reference":null,"billing_type":"carrier","readable":"OnTrac","logo":null,"fields":[],"credentials":[],"test_credentials":[]},{"id":"ca_32c1bc2cb75e45f19cff9fd047204f6e","object":"CarrierAccount","type":"CanparAccount","clone":false,"created_at":"2020-05-05T16:43:42Z","updated_at":"2020-05-05T16:43:42Z","description":"Canpar Account","reference":null,"billing_type":"carrier","readable":"Canpar","logo":null,"fields":[],"credentials":[],"test_credentials":[]},{"id":"ca_c220b8552b7d476db2f694cfad4e82a6","object":"CarrierAccount","type":"FedexMailviewAccount","clone":false,"created_at":"2020-05-15T16:21:31Z","updated_at":"2020-05-15T16:21:31Z","description":"FedEx MailView Account","reference":null,"billing_type":"carrier","readable":"FedEx MailView","logo":null,"fields":[],"credentials":[],"test_credentials":[]},{"id":"ca_c4d49f6f47c94dfcba93f761f79ad2d8","object":"CarrierAccount","type":"CanadaPostAccount","clone":false,"created_at":"2020-05-27T20:43:23Z","updated_at":"2022-06-01T21:08:25Z","description":"Canada Post Account","reference":null,"billing_type":"carrier","readable":"Canada Post","logo":null,"fields":[],"credentials":[],"test_credentials":[]},{"id":"ca_63fb7c3dd56c410085454c5a79bc545f","object":"CarrierAccount","type":"LoomisExpressAccount","clone":false,"created_at":"2020-05-29T17:54:52Z","updated_at":"2020-05-29T17:54:52Z","description":"Loomis Express Account","reference":null,"billing_type":"carrier","readable":"Loomis Express","logo":null,"fields":[],"credentials":[],"test_credentials":[]},{"id":"ca_f80ce1217c0b4f9b82d566b88dc1a6bd","object":"CarrierAccount","type":"RoyalMailAccount","clone":false,"created_at":"2020-06-02T21:12:19Z","updated_at":"2020-06-02T21:35:51Z","description":"Royal Mail Account","reference":"VALUE","billing_type":"carrier","readable":"Royal Mail","logo":null,"fields":[],"credentials":[],"test_credentials":[]},{"id":"ca_6e70924a6c6248c2b73bc7c8949e8849","object":"CarrierAccount","type":"LasershipV2Account","clone":false,"created_at":"2020-08-17T16:56:16Z","updated_at":"2020-08-17T17:28:49Z","description":"LaserShipV2 Account","reference":null,"billing_type":"carrier","readable":"LaserShipV2","logo":null,"fields":[],"credentials":[],"test_credentials":[]},{"id":"ca_6d2f96c3dfce4c75bd13ee030410ae4d","object":"CarrierAccount","type":"LasershipAccount","clone":false,"created_at":"2020-08-20T20:34:10Z","updated_at":"2020-08-20T21:10:09Z","description":"LaserShipV1 Account","reference":null,"billing_type":"carrier","readable":"LaserShip","logo":null,"fields":[],"credentials":[],"test_credentials":[]},{"id":"ca_2c5768cc85c5420cba30b3b1dd545fbb","object":"CarrierAccount","type":"OmniParcelAccount","clone":false,"created_at":"2020-09-01T22:02:57Z","updated_at":"2020-09-01T22:02:57Z","description":"OmniParcel Account","reference":null,"billing_type":"carrier","readable":"OmniParcel","logo":null,"fields":[],"credentials":[],"test_credentials":[]},{"id":"ca_a381c1bace794c158d59a58b0a94a2e2","object":"CarrierAccount","type":"AxlehireV3Account","clone":false,"created_at":"2020-10-15T20:40:44Z","updated_at":"2020-10-15T20:40:44Z","description":"AxlehireV3 Account","reference":null,"billing_type":"carrier","readable":"AxlehireV3","logo":null,"fields":[],"credentials":[],"test_credentials":[]},{"id":"ca_e683eaf9405643a8823ef18b4e5f3742","object":"CarrierAccount","type":"VehoAccount","clone":false,"created_at":"2020-11-16T20:57:38Z","updated_at":"2020-11-16T20:57:38Z","description":"Veho Account","reference":null,"billing_type":"carrier","readable":"Veho","logo":null,"fields":[],"credentials":[],"test_credentials":[]},{"id":"ca_7d73446c9ded4b8fa67dee03f9f379b6","object":"CarrierAccount","type":"FedexSmartpostAccount","clone":false,"created_at":"2020-12-21T22:37:11Z","updated_at":"2020-12-21T22:39:07Z","description":"FedexSmartpostAccount","reference":null,"billing_type":"carrier","readable":"FedEx SmartPost","logo":null,"fields":[],"credentials":[],"test_credentials":[]},{"id":"ca_77415c3fbd754d65bb9298e9a69d7084","object":"CarrierAccount","type":"DhlEcsAccount","clone":false,"created_at":"2020-12-22T22:08:12Z","updated_at":"2023-02-22T23:44:45Z","description":"DHL eCommerce Solutions Account","reference":null,"billing_type":"carrier","readable":"DHL eCommerce","logo":null,"fields":[],"credentials":[],"test_credentials":[]},{"id":"ca_fd242ecb9ce74e6ea771f25b800055b1","object":"CarrierAccount","type":"DpdUkAccount","clone":false,"created_at":"2021-01-22T21:05:51Z","updated_at":"2021-01-22T21:05:51Z","description":"DPD UK Account","reference":null,"billing_type":"carrier","readable":"DPD UK","logo":null,"fields":[],"credentials":[],"test_credentials":[]},{"id":"ca_f18d04c61d2546a68d7cd171960cb0b8","object":"CarrierAccount","type":"CourierExpressAccount","clone":false,"created_at":"2021-04-15T17:44:25Z","updated_at":"2021-04-15T17:44:25Z","description":"Courier Express Account","reference":null,"billing_type":"carrier","readable":"Courier Express","logo":null,"fields":[],"credentials":[],"test_credentials":[]},{"id":"ca_a4524802c56348d1a274f879bbaf8f78","object":"CarrierAccount","type":"ColumbusLastMileAccount","clone":false,"created_at":"2021-06-15T23:12:49Z","updated_at":"2021-06-15T23:18:20Z","description":"CDL Last Mile Solutions Account","reference":null,"billing_type":"carrier","readable":"CDL Last Mile Solutions","logo":null,"fields":[],"credentials":[],"test_credentials":[]},{"id":"ca_38a0fca99c294d4d9d789b3a4b660a4b","object":"CarrierAccount","type":"EstafetaAccount","clone":false,"created_at":"2021-06-16T21:23:20Z","updated_at":"2021-06-16T21:23:20Z","description":"Estafeta Account","reference":null,"billing_type":"carrier","readable":"Estafeta","logo":null,"fields":[],"credentials":[],"test_credentials":[]},{"id":"ca_10677005f7e444c299088666025e3cdc","object":"CarrierAccount","type":"UpsAccount","clone":false,"created_at":"2021-11-09T23:22:13Z","updated_at":"2021-11-09T23:22:13Z","description":"UPS DAP Account","reference":null,"billing_type":"carrier","readable":"UPS","logo":null,"fields":[],"credentials":[],"test_credentials":[]},{"id":"ca_0b612c9b7014401b9989db19953a24f9","object":"CarrierAccount","type":"DhlEcsAccount","clone":false,"created_at":"2022-07-07T21:23:22Z","updated_at":"2023-02-22T23:44:46Z","description":"CA Location DHL eCommerce Solutions Account","reference":null,"billing_type":"carrier","readable":"DHL eCommerce","logo":null,"fields":[],"credentials":[],"test_credentials":[]},{"id":"ca_db930d5251ee4d2d8560a477b3bb1796","object":"CarrierAccount","type":"UpsAccount","clone":false,"created_at":"2024-07-08T20:37:28Z","updated_at":"2024-08-26T19:17:24Z","description":"CUSTOMERS ACCOUNT DESCRIPTION (OPTIONAL)","reference":"UNIQUE ACCOUNT REFERENCE (OPTIONAL)","billing_type":"carrier","readable":"UPS","logo":null,"fields":[],"credentials":[],"test_credentials":[]}]'
+        curl_info:
+            url: 'https://api.easypost.com/v2/carrier_accounts'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 200
+            header_size: 690
+            request_size: 293
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.677133
+            namelookup_time: 0.003424
+            connect_time: 0.065214
+            pretransfer_time: 0.129053
+            size_upload: 0.0
+            size_download: 36848.0
+            speed_download: 54417.0
+            speed_upload: 0.0
+            download_content_length: 36848.0
+            upload_content_length: 0.0
+            starttransfer_time: 0.613753
+            redirect_time: 0.0
+            redirect_url: ''
+            primary_ip: 169.62.110.130
+            certinfo: {  }
+            primary_port: 443
+            local_ip: 10.130.6.58
+            local_port: 54232
+            http_version: 2
+            protocol: 2
+            ssl_verifyresult: 0
+            scheme: https
+            appconnect_time_us: 129025
+            connect_time_us: 65214
+            namelookup_time_us: 3424
+            pretransfer_time_us: 129053
+            redirect_time_us: 0
+            starttransfer_time_us: 613753
+            total_time_us: 677133
+            effective_method: GET
+            capath: ''
+            cainfo: ''
+    index: 0
