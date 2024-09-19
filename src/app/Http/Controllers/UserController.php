@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
 class UserController extends Controller
@@ -22,11 +21,11 @@ class UserController extends Controller
             'api_key' => 'required|string',
         ]);
 
-        $user = User::find(Auth::user()->id);
+        $user = User::find(auth()->user()->id);
         $user->api_key = Crypt::encryptString($request->input('api_key'));
         $user->save();
 
-        session()->flash('message', 'API Key updated');
+        session()->flash('message', 'API key updated!');
         return redirect('/');
     }
 }
