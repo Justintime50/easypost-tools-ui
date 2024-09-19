@@ -21,7 +21,7 @@ class AddressController extends Controller
         $request->validate([
             'name'     => 'nullable|string',
             'company'  => 'nullable|string',
-            'street1'  => 'required|string',
+            'street1'  => 'nullable|string',
             'street2'  => 'nullable|string',
             'city'     => 'nullable|string',
             'state'    => 'nullable|string',

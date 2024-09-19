@@ -30,21 +30,6 @@ class ParcelControllerTest extends TestCase
     }
 
     /**
-     * Tests that we show the parcels page correctly.
-     *
-     * @return void
-     */
-    public function testRetrieveParcels()
-    {
-        $request = Request::create('/parcels', 'GET');
-        $response = self::$controller->retrieveParcels($request);
-
-        $viewData = $response->getData();
-
-        $this->assertEmpty($viewData);
-    }
-
-    /**
      * Tests that we can create a Parcel correctly.
      *
      * @return void
@@ -116,17 +101,17 @@ class ParcelControllerTest extends TestCase
         CassetteSetup::setupCassette('parcels/retrieve.yml', self::$expireCassetteDays);
 
         // TODO: Make this dynamic, is that possible with our setup?
-        $parcelId = 'prcl_a2c01c778a39467da5b148c6d344d90c';
+        $id = 'prcl_a2c01c778a39467da5b148c6d344d90c';
 
-        $request = Request::create("/parcels/$parcelId", 'GET');
+        $request = Request::create("/parcels/$id", 'GET');
         $request->setLaravelSession(session()->driver());
         $request->session()->put(['apiKey' => self::$testApiKey]);
-        $response = self::$controller->retrieveParcel($request, $parcelId);
+        $response = self::$controller->retrieveParcel($request, $id);
 
         $viewData = $response->getData();
 
         $this->assertNull($response->exception);
-        $this->assertEquals($parcelId, $viewData['json']['id']);
+        $this->assertEquals($id, $viewData['json']['id']);
     }
 
     /**
@@ -138,14 +123,29 @@ class ParcelControllerTest extends TestCase
     {
         CassetteSetup::setupCassette('parcels/retrieveException.yml', self::$expireCassetteDays);
 
-        $parcelId = 'bad_id';
+        $id = 'bad_id';
 
-        $request = Request::create("/parcels/$parcelId", 'GET');
+        $request = Request::create("/parcels/$id", 'GET');
         $request->setLaravelSession(session()->driver());
         $request->session()->put(['apiKey' => self::$testApiKey]);
-        $response = self::$controller->retrieveParcel($request, $parcelId);
+        $response = self::$controller->retrieveParcel($request, $id);
 
         $this->assertEquals('The requested resource could not be found.', $response->getSession()->get('error'));
         $this->assertEquals(302, $response->getStatusCode());
+    }
+
+    /**
+     * Tests that we show the parcels page correctly.
+     *
+     * @return void
+     */
+    public function testRetrieveParcels()
+    {
+        $request = Request::create('/parcels', 'GET');
+        $response = self::$controller->retrieveParcels($request);
+
+        $viewData = $response->getData();
+
+        $this->assertEmpty($viewData);
     }
 }
