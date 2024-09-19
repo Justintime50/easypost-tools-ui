@@ -18,6 +18,7 @@ class ParcelControllerTest extends TestCase
     public static function setUpBeforeClass(): void
     {
         CassetteSetup::setupVcrTests();
+        self::$controller = new ParcelController();
     }
 
     /**
@@ -35,10 +36,8 @@ class ParcelControllerTest extends TestCase
      */
     public function testRetrieveParcels()
     {
-        $controller = new ParcelController();
-
         $request = Request::create('/parcels', 'GET');
-        $response = $controller->retrieveParcels($request);
+        $response = self::$controller->retrieveParcels($request);
 
         $viewData = $response->getData();
 
@@ -53,7 +52,6 @@ class ParcelControllerTest extends TestCase
     public function testCreateParcel()
     {
         CassetteSetup::setupCassette('parcels/create.yml', self::$expireCassetteDays);
-        $controller = new ParcelController();
 
         $request = Request::create('/parcels', 'POST', [
             'length' => 10.0,
@@ -63,7 +61,7 @@ class ParcelControllerTest extends TestCase
         ]);
         $request->setLaravelSession(session()->driver());
         $request->session()->put(['apiKey' => self::$testApiKey]);
-        $response = $controller->createParcel($request);
+        $response = self::$controller->createParcel($request);
 
         $this->assertNull($response->exception);
         $this->assertEquals(302, $response->getStatusCode());
@@ -77,7 +75,6 @@ class ParcelControllerTest extends TestCase
     public function testCreateParcelPredefinedPackage()
     {
         CassetteSetup::setupCassette('parcels/createPredefinedPackage.yml', self::$expireCassetteDays);
-        $controller = new ParcelController();
 
         $request = Request::create('/parcels', 'POST', [
             'predefined_package' => 'Parcel',
@@ -85,7 +82,7 @@ class ParcelControllerTest extends TestCase
         ]);
         $request->setLaravelSession(session()->driver());
         $request->session()->put(['apiKey' => self::$testApiKey]);
-        $response = $controller->createParcel($request);
+        $response = self::$controller->createParcel($request);
 
         $this->assertNull($response->exception);
         $this->assertEquals(302, $response->getStatusCode());
@@ -99,12 +96,11 @@ class ParcelControllerTest extends TestCase
     public function testCreateParcelException()
     {
         CassetteSetup::setupCassette('parcels/createException.yml', self::$expireCassetteDays);
-        $controller = new ParcelController();
 
         $request = Request::create('/parcels', 'POST', ['weight' => 0]);
         $request->setLaravelSession(session()->driver());
         $request->session()->put(['apiKey' => self::$testApiKey]);
-        $response = $controller->createParcel($request);
+        $response = self::$controller->createParcel($request);
 
         $this->assertEquals('Wrong parameter type.', $response->getSession()->get('error'));
         $this->assertEquals(302, $response->getStatusCode());
@@ -118,7 +114,6 @@ class ParcelControllerTest extends TestCase
     public function testRetrieveParcel()
     {
         CassetteSetup::setupCassette('parcels/retrieve.yml', self::$expireCassetteDays);
-        $controller = new ParcelController();
 
         // TODO: Make this dynamic, is that possible with our setup?
         $parcelId = 'prcl_a2c01c778a39467da5b148c6d344d90c';
@@ -126,7 +121,7 @@ class ParcelControllerTest extends TestCase
         $request = Request::create("/parcels/$parcelId", 'GET');
         $request->setLaravelSession(session()->driver());
         $request->session()->put(['apiKey' => self::$testApiKey]);
-        $response = $controller->retrieveParcel($request, $parcelId);
+        $response = self::$controller->retrieveParcel($request, $parcelId);
 
         $viewData = $response->getData();
 
@@ -142,14 +137,13 @@ class ParcelControllerTest extends TestCase
     public function testRetrieveParcelException()
     {
         CassetteSetup::setupCassette('parcels/retrieveException.yml', self::$expireCassetteDays);
-        $controller = new ParcelController();
 
         $parcelId = 'bad_id';
 
         $request = Request::create("/parcels/$parcelId", 'GET');
         $request->setLaravelSession(session()->driver());
         $request->session()->put(['apiKey' => self::$testApiKey]);
-        $response = $controller->retrieveParcel($request, $parcelId);
+        $response = self::$controller->retrieveParcel($request, $parcelId);
 
         $this->assertEquals('The requested resource could not be found.', $response->getSession()->get('error'));
         $this->assertEquals(302, $response->getStatusCode());

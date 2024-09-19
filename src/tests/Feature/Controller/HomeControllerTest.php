@@ -9,16 +9,22 @@ use Tests\TestCase;
 class HomeControllerTest extends TestCase
 {
     /**
+     * Setup the testing environment for this file.
+     */
+    public static function setUpBeforeClass(): void
+    {
+        self::$controller = new HomeController();
+    }
+
+    /**
      * Tests that we show the index page correctly.
      *
      * @return void
      */
     public function testIndex()
     {
-        $controller = new HomeController();
-
         $request = Request::create('/', 'GET');
-        $response = $controller->index($request);
+        $response = self::$controller->index($request);
 
         $viewData = $response->getData();
 
@@ -32,10 +38,8 @@ class HomeControllerTest extends TestCase
      */
     public function testAccount()
     {
-        $controller = new HomeController();
-
         $request = Request::create('/account', 'GET');
-        $response = $controller->account($request);
+        $response = self::$controller->account($request);
 
         $viewData = $response->getData();
 
