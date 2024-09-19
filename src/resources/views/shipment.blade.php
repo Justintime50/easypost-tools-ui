@@ -123,10 +123,9 @@
                             <td>{{ $rate->carrier }}</td>
                             <td>{{ $rate->service }}</td>
                             <td>
-                                <?php if ($rate->currency == 'USD') {
-                                    echo "$";
-                                }
-                                ?>{{ $rate->rate }}
+                                @if ($rate->currency == 'USD')
+                                    $
+                                @endif{{ $rate->rate }}
                             </td>
                             <td>{{ $rate->currency }}</td>
                             <td>{{ $rate->est_delivery_days }}</td>

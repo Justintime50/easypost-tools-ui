@@ -17,8 +17,9 @@
                     @foreach ($json->refunds as $refund)
                         <tr>
                             <td>
-                                <a href="/refunds/{{ $refund->id }}"><button
-                                        class="btn btn-primary btn-sm btn-table"><?php echo substr($refund->id, 0, 10); ?>...</button></a>
+                                <a href="/refunds/{{ $refund->id }}" class="btn btn-primary btn-sm btn-table">
+                                    {{ substr($refund->id, 0, 10) }}...
+                                </a>
                             </td>
                             <td>{{ $refund->created_at }}</td>
                             <td>{{ $refund->tracking_code }}</td>

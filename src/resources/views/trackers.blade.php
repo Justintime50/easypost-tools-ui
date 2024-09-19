@@ -15,8 +15,9 @@
                     @foreach ($json->trackers as $tracker)
                         <tr>
                             <td>
-                                <a href="/trackers/{{ $tracker->id }}"><button
-                                        class="btn btn-primary btn-sm btn-table"><?php echo substr($tracker->id, 0, 10); ?>...</button></a>
+                                <a href="/trackers/{{ $tracker->id }}" class="btn btn-primary btn-sm btn-table">
+                                    {{ substr($tracker->id, 0, 10) }}...
+                                </a>
                             </td>
                             <td>{{ $tracker->created_at }}</td>
                             <td>{{ $tracker->tracking_code }}</td>

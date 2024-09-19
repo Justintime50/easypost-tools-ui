@@ -14,22 +14,23 @@
                         <th>Created At</th>
                         <th>Amount</th>
                         <th>Provider</th>
-                        <th>Street1</th>
-                        <th>City</th>
-                        <th>State</th>
+                        <th>To Street1</th>
+                        <th>To City</th>
+                        <th>To State</th>
                     </thead>
                     @foreach ($json->insurances as $insurance)
                         <tr>
                             <td>
-                                <a href="/insurances/{{ $insurance->id }}"><button
-                                        class="btn btn-primary btn-sm btn-table"><?php echo substr($insurance->id, 0, 10); ?>...</button></a>
+                                <a href="/insurances/{{ $insurance->id }}" class="btn btn-primary btn-sm btn-table">
+                                    {{ substr($insurance->id, 0, 10) }}...
+                                </a>
                             </td>
                             <td>{{ $insurance->created_at }}</td>
                             <td>{{ $insurance->amount }}</td>
                             <td>{{ $insurance->provider }}</td>
-                            <td>{{ $insurance->to_address->street1 }}</td>
-                            <td>{{ $insurance->to_address->city }}</td>
-                            <td>{{ $insurance->to_address->state }}</td>
+                            <td>{{ isset($insurance->to_address) ? $insurance->to_address->street1 : null }}</td>
+                            <td>{{ isset($insurance->to_address) ? $insurance->to_address->city : null }}</td>
+                            <td>{{ isset($insurance->to_address) ? $insurance->to_address->state : null }}</td>
                         </tr>
                     @endforeach
                 </table>
