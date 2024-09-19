@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Fixes a bug when displaying an insurance and it doesn't have an address
+
 ## v0.13.0 (2024-08-27)
 
 - Fixes routing for creating/buying a label, generating QR codes, creating a tracker, and updating your API key

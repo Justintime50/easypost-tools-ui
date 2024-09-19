@@ -26,10 +26,8 @@
             <directory suffix=".php">./app</directory>
         </include>
         <exclude>
-            <file>./app/Providers/BroadcastServiceProvider.php</file>
-            <directory>./app/Console</directory>
+            <directory>./app/Providers</directory>
             <directory>./app/Models</directory>
-            <directory>./app/Exceptions</directory>
         </exclude>
     </source>
 </phpunit>
