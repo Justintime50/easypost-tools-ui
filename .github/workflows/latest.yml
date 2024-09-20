@@ -1,0 +1,18 @@
+name: latest
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  latest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
+      - name: Sign into Docker
+        run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+      - name: Build latest Docker image and push to Docker Hub
+        run: docker buildx build --push -t justintime50/easypost-tools-ui --platform linux/amd64,linux/arm/v7,linux/arm64 .
