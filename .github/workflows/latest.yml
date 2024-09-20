@@ -15,4 +15,4 @@ jobs:
       - name: Sign into Docker
         run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build latest Docker image and push to Docker Hub
-        run: docker buildx build --push -t justintime50/easypost-tools-ui --platform linux/amd64,linux/arm64 .
+        run: docker buildx build --push -t justintime50/easypost-tools-ui --build-arg PROD=true --platform linux/amd64,linux/arm64 .
