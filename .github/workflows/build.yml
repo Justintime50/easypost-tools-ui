@@ -66,12 +66,19 @@ jobs:
         with:
           php-version: '8.3'
           coverage: xdebug
+      - run: docker network create traefik
+      - name: Install Dependencies
+        run: |
+          cp .env-example .env
+          cd src
+          cp .env-example .env
+          just setup
       - name: Generate coverage report
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cd src
-          EASYPOST_TEST_API_KEY=123 EASYPOST_PROD_API_KEY=123 just install coverage
+          EASYPOST_TEST_API_KEY=123 EASYPOST_PROD_API_KEY=123 just coverage
           ./bin/php-coveralls --coverage_clover=build/logs/clover.xml -v
   deploy:
     if: github.ref == 'refs/heads/main'
