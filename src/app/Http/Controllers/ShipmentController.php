@@ -218,7 +218,7 @@ class ShipmentController extends Controller
      * @param string $id
      * @return RedirectResponse
      */
-    public function createRefund(Request $request, string $id): RedirectResponse
+    public function refundShipment(Request $request, string $id): RedirectResponse
     {
         $client = new EasyPostClient($request->session()->get('apiKey'));
 
@@ -366,7 +366,7 @@ class ShipmentController extends Controller
                     'to_address'        => $toAddress,
                     'from_address'      => $fromAddress,
                     'parcel'            => $parcel,
-                    'service'           => 'First',
+                    'service'           => 'GroundAdvantage',
                     'carrier_accounts'  => [$usps->id],
                 ]
             );

@@ -2,9 +2,11 @@
 
 ## Next Release
 
+- Fixes a bug that wouldn't let you buy a stamp because the USPS service level changed from `First` to `GroundAdvantage`
 - Fixes a bug when displaying an insurance and it doesn't have an address
 - Fixes a bug redirecting after tracker create
 - Fixes a bug related to required params on insurance create calls
+- Adds tests for all controllers
 
 ## v0.13.0 (2024-08-27)
 

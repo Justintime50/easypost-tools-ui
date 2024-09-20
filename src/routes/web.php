@@ -49,7 +49,7 @@ Route::middleware([Authenticate::class, ApiKey::class])->group(function () {
     Route::get('/shipments/{id}', [App\Http\Controllers\ShipmentController::class, 'retrieveShipment']);
     Route::get('/shipments', [App\Http\Controllers\ShipmentController::class, 'retrieveShipments']);
     Route::post('/shipments/{id}/buy', [App\Http\Controllers\ShipmentController::class, 'buyShipment']);
-    Route::post('/shipments/{id}/refund', [App\Http\Controllers\ShipmentController::class, 'createRefund']);
+    Route::post('/shipments/{id}/refund', [App\Http\Controllers\ShipmentController::class, 'refundShipment']);
     Route::post('/shipments/stamp', [App\Http\Controllers\ShipmentController::class, 'buyStamp']);
     Route::post('/shipments/{id}/qr-codes', [App\Http\Controllers\ShipmentController::class, 'generateQrCodes']);
 

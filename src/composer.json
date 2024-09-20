@@ -59,7 +59,7 @@
     "scripts": {
         "clean": "rm -rf bin clover.html node_modules vendor *.cache .*.cache bootstrap/cache/*.php",
         "clean-db": "docker exec -t easypost-tools-ui-easypost-tools-ui-1 php artisan db:wipe",
-        "coverage": "XDEBUG_MODE=coverage ./bin/phpunit --coverage-html clover.html --coverage-clover build/logs/clover.xml && bin/coverage-check build/logs/clover.xml 15 --only-percentage",
+        "coverage": "XDEBUG_MODE=coverage ./bin/phpunit --coverage-html clover.html --coverage-clover build/logs/clover.xml && bin/coverage-check build/logs/clover.xml 75 --only-percentage",
         "fix": "./bin/phpcbf --standard=./node_modules/justintime50-styles/src/php/phpcs.xml .",
         "lint": "./bin/phpcs --standard=./node_modules/justintime50-styles/src/php/phpcs.xml .",
         "migrate-fresh": "docker exec -t easypost-tools-ui-easypost-tools-ui-1 php artisan migrate:fresh",

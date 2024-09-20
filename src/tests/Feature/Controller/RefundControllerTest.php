@@ -30,6 +30,29 @@ class RefundControllerTest extends TestCase
     }
 
     /**
+     * Tests that we retrieve a refund correctly.
+     *
+     * @return void
+     */
+    public function testRetrieveRefund()
+    {
+        CassetteSetup::setupCassette('refunds/retrieveRefund.yml', self::$expireCassetteDays);
+
+        // TODO: Make this dynamic, is that possible with our setup?
+        $id = 'rfnd_d1b8d893ee2a4de3ba37573d5902020b';
+
+        $request = Request::create("/refunds/$id", 'GET');
+        $request->setLaravelSession(session()->driver());
+        $request->session()->put(['apiKey' => self::$testApiKey]);
+        $response = self::$controller->retrieveRefund($request, $id);
+
+        $viewData = $response->getData();
+
+        $this->assertNull($response->exception);
+        $this->assertEquals($id, $viewData['json']['id']);
+    }
+
+    /**
      * Tests that we show the refunds page correctly.
      *
      * @return void
