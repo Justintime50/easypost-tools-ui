@@ -15,22 +15,25 @@ Create shipping labels, track, insure, and refund packages all from a simple UI.
 
 ## What Can it Do?
 
-The EasyPost Tools UI is a proof of concept on how to build a complete shipping solution using the EasyPost API.
+The EasyPost Tools UI is a **proof of concept** on how to build a complete shipping solution using the EasyPost API.
 
-- Create shipments and printable parcel labels & envelope stamps with upwards of 100 carriers
-- Retrieve addresses, carriers, insurance, parcels, shipments, and trackers from EasyPost
-- Track a package
-- Insure a package
-- Refund a shipment
+- Create & retrieve shipments
+  - Buy and print labels
+  - Buy and print envelope stamps
+  - Refund shipments
+  - Generate QR codes
+- Create and retrieve trackers
+- Create and retrieve insurance
+- Create and retrieve addresses
+- Create and retrieve parcels
+- Search for EasyPost objects by ID
 - Support multiple users with unique logins and EasyPost API keys
-
-As this project is a proof of concept, it may be missing some EasyPost features. If you'd like to support its continued development, feel free to sponsor or star the project!
 
 **See the accompanying [EasyPost Tools](https://github.com/Justintime50/easypost-tools) repo for additional tooling not available via the UI.**
 
 ## How it Works
 
-The EasyPost API allows you to create shipping labels with some of the biggest parcel carriers in the space. Supply a `from_address`, `to_address`, `parcel`, and preferred shipping rate/method. Print the label, slap it on your package, and drop it off at your carrier's location. That's it!
+The EasyPost API allows you to create shipping labels with some of the biggest parcel carriers in the world. Supply a `from_address`, `to_address`, `parcel`, and preferred shipping rate/method. Print the label, slap it on your package, and drop it off at your carrier's location. That's it!
 
 ## Install
 
@@ -44,9 +47,9 @@ just setup
 
 ## Usage
 
-Navigate to `easyposttools.localhost` locally or <https://easyposttools.com> in production.
+Navigate to `easyposttools.localhost`.
 
-Once the project is setup, simply interact with the various links in the app to interact with the API. Create records, retrieve them, and purchase shipping labels all without needing to do the hard work of mapping an API.
+Once the project is setup, simply interact with the various links in the app to interact with the API. Create records, retrieve them, and purchase shipping labels all without needing to do the hard work of integrating with an API.
 
 **EasyPost API:** You'll need a test or production API key from [EasyPost's website](https://easypost.com). Create an account and grab the API key you'd like to use. If using your production API key, make sure to setup billing info on your EasyPost account.
 
@@ -61,8 +64,6 @@ just prod
 ```
 
 ## Development
-
-**NOTE:** To use dev dependencies, you'll need to install project dependencies outside of the Docker container on your machine.
 
 ```bash
 # Get a comprehensive list of development tools
