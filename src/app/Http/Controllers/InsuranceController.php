@@ -22,18 +22,14 @@ class InsuranceController extends Controller
             $request->validate([
                 'to_name'       => 'nullable|string',
                 'to_company'    => 'nullable|string',
-                'to_street1'    => 'required|string',
+                'to_street1'    => 'nullable|string',
                 'to_street2'    => 'nullable|string',
                 'to_city'       => 'nullable|string',
                 'to_state'      => 'nullable|string',
-                'to_zip'        => 'required|string',
+                'to_zip'        => 'nullable|string',
                 'to_country'    => 'nullable|string',
                 'to_phone'      => 'nullable|string',
                 'to_email'      => 'nullable|string',
-            ]);
-        } else {
-            $request->validate([
-                'to_address'    => 'required|string',
             ]);
         }
 
@@ -41,27 +37,23 @@ class InsuranceController extends Controller
             $request->validate([
                 'from_name'       => 'nullable|string',
                 'from_company'    => 'nullable|string',
-                'from_street1'    => 'required|string',
+                'from_street1'    => 'nullable|string',
                 'from_street2'    => 'nullable|string',
                 'from_city'       => 'nullable|string',
                 'from_state'      => 'nullable|string',
-                'from_zip'        => 'required|string',
+                'from_zip'        => 'nullable|string',
                 'from_country'    => 'nullable|string',
                 'from_phone'      => 'nullable|string',
                 'from_email'      => 'nullable|string',
             ]);
-        } else {
-            $request->validate([
-                'from_address'  => 'required|string',
-            ]);
         }
 
         $request->validate([
-            'to_address'        => 'required|string',
-            'from_address'      => 'required|string',
+            'to_address'        => 'nullable|string',
+            'from_address'      => 'nullable|string',
             'tracking_code'     => 'required|string',
-            'carrier'           => 'nullable|string',
-            'amount'            => 'required|string|max:5000',
+            'carrier'           => 'required|string',
+            'amount'            => 'required|string',
         ]);
 
         $client = new EasyPostClient($request->session()->get('apiKey'));

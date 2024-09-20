@@ -26,8 +26,9 @@
             <directory suffix=".php">./app</directory>
         </include>
         <exclude>
-            <directory>./app/Providers</directory>
+            <directory>./app/Http/Controllers/Auth</directory>
             <directory>./app/Models</directory>
+            <directory>./app/Providers</directory>
         </exclude>
     </source>
 </phpunit>

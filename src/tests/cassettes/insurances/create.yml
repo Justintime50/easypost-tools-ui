@@ -1,0 +1,81 @@
+
+-
+    request:
+        method: POST
+        url: 'https://api.easypost.com/v2/insurances'
+        headers:
+            Host: api.easypost.com
+            Expect: ''
+            Accept-Encoding: ''
+            Accept: application/json
+            Authorization: ''
+            Content-Type: application/json
+            User-Agent: ''
+        body: '{"insurance":{"to_address":[],"from_address":[],"tracking_code":"EZ1000000001","carrier":"USPS","amount":"100"}}'
+    response:
+        status:
+            code: 201
+            message: Created
+        headers:
+            x-frame-options: SAMEORIGIN
+            x-xss-protection: '1; mode=block'
+            x-content-type-options: nosniff
+            x-download-options: noopen
+            x-permitted-cross-domain-policies: none
+            referrer-policy: strict-origin-when-cross-origin
+            x-ep-request-uuid: b35273fd66ed9f2ce2b7d1ae00019974
+            cache-control: 'private, no-cache, no-store'
+            pragma: no-cache
+            expires: '0'
+            location: /api/v2/insurances/ins_98105270610242968d266e30a82b40c0
+            content-type: 'application/json; charset=utf-8'
+            content-length: '2087'
+            x-runtime: '0.239148'
+            x-node: bigweb40nuq
+            x-version-label: easypost-202409192322-2e93820dcd-master
+            x-backend: easypost
+            x-proxied: ['intlb4nuq b6e1b5034c', 'extlb1nuq b6e1b5034c']
+            strict-transport-security: 'max-age=31536000; includeSubDomains; preload'
+        body: '{"id":"ins_98105270610242968d266e30a82b40c0","object":"Insurance","mode":"test","reference":null,"status":"pending","amount":"100.00000","provider":"easypost","provider_id":null,"to_address":null,"from_address":null,"shipment_id":null,"tracker":{"id":"trk_40172d87925c4dd69e39f682ad615d1f","object":"Tracker","mode":"test","tracking_code":"EZ1000000001","status":"pre_transit","status_detail":"status_update","created_at":"2024-08-22T16:00:30Z","updated_at":"2024-08-22T16:00:30Z","signed_by":null,"weight":null,"est_delivery_date":"2024-08-22T16:00:30Z","shipment_id":null,"carrier":"USPS","tracking_details":[{"object":"TrackingDetail","message":"Pre-Shipment Info Sent to USPS","description":"","status":"pre_transit","status_detail":"status_update","datetime":"2024-07-22T16:00:30Z","source":"USPS","carrier_code":"","tracking_location":{"object":"TrackingLocation","city":null,"state":null,"country":null,"zip":null}},{"object":"TrackingDetail","message":"Shipping Label Created","description":"","status":"pre_transit","status_detail":"status_update","datetime":"2024-07-23T04:37:30Z","source":"USPS","carrier_code":"","tracking_location":{"object":"TrackingLocation","city":"HOUSTON","state":"TX","country":null,"zip":"77063"}}],"carrier_detail":{"object":"CarrierDetail","service":"First-Class Package Service","container_type":null,"est_delivery_date_local":null,"est_delivery_time_local":null,"origin_location":"HOUSTON TX, 77001","origin_tracking_location":{"object":"TrackingLocation","city":"HOUSTON","state":"TX","country":null,"zip":"77063"},"destination_location":"CHARLESTON SC, 29401","destination_tracking_location":null,"guaranteed_delivery_date":null,"alternate_identifier":null,"initial_delivery_attempt":null},"finalized":true,"is_return":false,"public_url":"https:\/\/track.easypost.com\/djE6dHJrXzQwMTcyZDg3OTI1YzRkZDY5ZTM5ZjY4MmFkNjE1ZDFm","fees":[]},"tracking_code":"EZ1000000001","fee":{"object":"Fee","type":"InsuranceFee","amount":"0.50000","charged":true,"refunded":false},"messages":[],"created_at":"2024-09-20T16:13:32Z","updated_at":"2024-09-20T16:13:32Z"}'
+        curl_info:
+            url: 'https://api.easypost.com/v2/insurances'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 201
+            header_size: 761
+            request_size: 421
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.426893
+            namelookup_time: 0.07385
+            connect_time: 0.107836
+            pretransfer_time: 0.150126
+            size_upload: 112.0
+            size_download: 2087.0
+            speed_download: 4888.0
+            speed_upload: 262.0
+            download_content_length: 2087.0
+            upload_content_length: 112.0
+            starttransfer_time: 0.426822
+            redirect_time: 0.0
+            redirect_url: ''
+            primary_ip: 169.62.110.131
+            certinfo: {  }
+            primary_port: 443
+            local_ip: 192.168.1.75
+            local_port: 50243
+            http_version: 2
+            protocol: 2
+            ssl_verifyresult: 0
+            scheme: https
+            appconnect_time_us: 150043
+            connect_time_us: 107836
+            namelookup_time_us: 73850
+            pretransfer_time_us: 150126
+            redirect_time_us: 0
+            starttransfer_time_us: 426822
+            total_time_us: 426893
+            effective_method: POST
+            capath: ''
+            cainfo: ''
+    index: 0

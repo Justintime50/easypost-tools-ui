@@ -1,0 +1,78 @@
+
+-
+    request:
+        method: GET
+        url: 'https://api.easypost.com/v2/insurances/ins_b38accabc71b4cc7a294943f9c75faa3'
+        headers:
+            Host: api.easypost.com
+            Accept-Encoding: ''
+            Accept: application/json
+            Authorization: ''
+            Content-Type: application/json
+            User-Agent: ''
+    response:
+        status:
+            code: 200
+            message: OK
+        headers:
+            x-frame-options: SAMEORIGIN
+            x-xss-protection: '1; mode=block'
+            x-content-type-options: nosniff
+            x-download-options: noopen
+            x-permitted-cross-domain-policies: none
+            referrer-policy: strict-origin-when-cross-origin
+            x-ep-request-uuid: b35273f766ed9f52e2b7d1f10001be0c
+            cache-control: 'private, no-cache, no-store'
+            pragma: no-cache
+            expires: '0'
+            content-type: 'application/json; charset=utf-8'
+            content-length: '3455'
+            x-runtime: '0.131332'
+            x-node: bigweb39nuq
+            x-version-label: easypost-202409192322-2e93820dcd-master
+            x-backend: easypost
+            x-proxied: ['intlb3nuq b6e1b5034c', 'extlb1nuq b6e1b5034c']
+            strict-transport-security: 'max-age=31536000; includeSubDomains; preload'
+        body: '{"id":"ins_b38accabc71b4cc7a294943f9c75faa3","object":"Insurance","mode":"test","reference":"ref_2","status":"cancelled","amount":"200.00000","provider":"easypost","provider_id":null,"to_address":null,"from_address":null,"shipment_id":null,"tracker":{"id":"trk_a9b75e9fa3cc48a58abad090376053c7","object":"Tracker","mode":"test","tracking_code":"EZ2000000002","status":"in_transit","status_detail":"status_update","created_at":"2024-08-22T16:00:30Z","updated_at":"2024-08-22T16:00:30Z","signed_by":null,"weight":null,"est_delivery_date":"2024-08-22T16:00:30Z","shipment_id":null,"carrier":"USPS","tracking_details":[{"object":"TrackingDetail","message":"Pre-Shipment Info Sent to USPS","description":"","status":"pre_transit","status_detail":"status_update","datetime":"2024-07-22T16:00:30Z","source":"USPS","carrier_code":"","tracking_location":{"object":"TrackingLocation","city":null,"state":null,"country":null,"zip":null}},{"object":"TrackingDetail","message":"Shipping Label Created","description":"","status":"pre_transit","status_detail":"status_update","datetime":"2024-07-23T04:37:30Z","source":"USPS","carrier_code":"","tracking_location":{"object":"TrackingLocation","city":"HOUSTON","state":"TX","country":null,"zip":"77063"}},{"object":"TrackingDetail","message":"Arrived at USPS Origin Facility","description":"","status":"in_transit","status_detail":"arrived_at_facility","datetime":"2024-07-23T14:42:30Z","source":"USPS","carrier_code":"","tracking_location":{"object":"TrackingLocation","city":"NORTH HOUSTON","state":"TX","country":null,"zip":"77315"}},{"object":"TrackingDetail","message":"Arrived at USPS Facility","description":"","status":"in_transit","status_detail":"arrived_at_facility","datetime":"2024-07-24T16:18:30Z","source":"USPS","carrier_code":"","tracking_location":{"object":"TrackingLocation","city":"COLUMBIA","state":"SC","country":null,"zip":"29201"}},{"object":"TrackingDetail","message":"Arrived at Post Office","description":"","status":"in_transit","status_detail":"arrived_at_facility","datetime":"2024-07-24T19:09:30Z","source":"USPS","carrier_code":"","tracking_location":{"object":"TrackingLocation","city":"CHARLESTON","state":"SC","country":null,"zip":"29407"}},{"object":"TrackingDetail","message":"Sorting Complete","description":"","status":"in_transit","status_detail":"status_update","datetime":"2024-07-25T00:49:30Z","source":"USPS","carrier_code":"","tracking_location":{"object":"TrackingLocation","city":"CHARLESTON","state":"SC","country":null,"zip":"29407"}}],"carrier_detail":{"object":"CarrierDetail","service":"First-Class Package Service","container_type":null,"est_delivery_date_local":null,"est_delivery_time_local":null,"origin_location":"HOUSTON TX, 77001","origin_tracking_location":{"object":"TrackingLocation","city":"NORTH HOUSTON","state":"TX","country":null,"zip":"77315"},"destination_location":"CHARLESTON SC, 29401","destination_tracking_location":null,"guaranteed_delivery_date":null,"alternate_identifier":null,"initial_delivery_attempt":null},"finalized":true,"is_return":false,"public_url":"https:\/\/track.easypost.com\/djE6dHJrX2E5Yjc1ZTlmYTNjYzQ4YTU4YWJhZDA5MDM3NjA1M2M3","fees":[]},"tracking_code":"EZ2000000002","fee":{"object":"Fee","type":"InsuranceFee","amount":"1.00000","charged":true,"refunded":false},"messages":["The tracker entered the mailstream before insurance was purchased."],"created_at":"2024-08-22T16:00:30Z","updated_at":"2024-08-22T16:02:24Z"}'
+        curl_info:
+            url: 'https://api.easypost.com/v2/insurances/ins_b38accabc71b4cc7a294943f9c75faa3'
+            content_type: 'application/json; charset=utf-8'
+            http_code: 200
+            header_size: 689
+            request_size: 324
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.242738
+            namelookup_time: 0.001915
+            connect_time: 0.035689
+            pretransfer_time: 0.073906
+            size_upload: 0.0
+            size_download: 3455.0
+            speed_download: 14233.0
+            speed_upload: 0.0
+            download_content_length: 3455.0
+            upload_content_length: 0.0
+            starttransfer_time: 0.242706
+            redirect_time: 0.0
+            redirect_url: ''
+            primary_ip: 169.62.110.131
+            certinfo: {  }
+            primary_port: 443
+            local_ip: 192.168.1.75
+            local_port: 50264
+            http_version: 2
+            protocol: 2
+            ssl_verifyresult: 0
+            scheme: https
+            appconnect_time_us: 73863
+            connect_time_us: 35689
+            namelookup_time_us: 1915
+            pretransfer_time_us: 73906
+            redirect_time_us: 0
+            starttransfer_time_us: 242706
+            total_time_us: 242738
+            effective_method: GET
+            capath: ''
+            cainfo: ''
+    index: 0

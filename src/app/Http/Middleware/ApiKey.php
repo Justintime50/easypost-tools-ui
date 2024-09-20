@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Encryption\DecryptException;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
 class ApiKey
@@ -19,7 +18,7 @@ class ApiKey
     public function handle($request, Closure $next)
     {
         try {
-            $apiKey = Crypt::decryptString(Auth::user()->api_key);
+            $apiKey = Crypt::decryptString(auth()->user()->api_key);
         } catch (DecryptException $e) {
             session()->flash('error', 'API key could not be decrypted. Please update your API key and try again.');
             return back();
