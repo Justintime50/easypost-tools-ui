@@ -8,9 +8,6 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        php_version: ['8.1', '8.2', '8.3']
     steps:
       - uses: actions/checkout@v4
       - uses: docker/setup-qemu-action@v3
