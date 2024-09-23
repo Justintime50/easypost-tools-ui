@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next Release
+## v1.0.0 (2024-09-23)
 
 - Fixes a bug that wouldn't let you buy a stamp because the USPS service level changed from `First` to `GroundAdvantage`
 - Fixes a bug when displaying an insurance and it doesn't have an address
