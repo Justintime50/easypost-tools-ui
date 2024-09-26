@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v1.0.1 (2024-09-26)
+
+- Removes unused `axios` dependency
+
 ## v1.0.0 (2024-09-23)
 
 - Fixes a bug that wouldn't let you buy a stamp because the USPS service level changed from `First` to `GroundAdvantage`
