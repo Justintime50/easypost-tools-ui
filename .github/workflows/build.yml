@@ -80,15 +80,3 @@ jobs:
           cd src
           EASYPOST_TEST_API_KEY=123 EASYPOST_PROD_API_KEY=123 just coverage
           ./bin/php-coveralls --coverage_clover=build/logs/clover.xml -v
-  deploy:
-    if: github.ref == 'refs/heads/main'
-    needs: ['docker', 'lint', 'test']
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to Harvey
-        uses: distributhor/workflow-webhook@v2
-        env:
-          webhook_type: 'json-extended'
-          webhook_url: ${{ secrets.WEBHOOK_URL }}
-          webhook_secret: ${{ secrets.WEBHOOK_SECRET }}
-          data: '{ "deployment_type": "deploy", "prod_compose": true, "healthcheck": ["easypost-tools-ui-easypost-tools-ui-1", "easypost-tools-ui-easypost-tools-ui-2", "easypost-tools-ui-easypost-tools-ui-db-1"] }'
