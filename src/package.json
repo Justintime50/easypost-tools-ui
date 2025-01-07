@@ -1,6 +1,9 @@
 {
     "private": true,
     "type": "module",
+    "engines": {
+        "node": ">=22"
+    },
     "scripts": {
         "dev": "vite",
         "build": "vite build",
@@ -9,15 +12,15 @@
     },
     "dependencies": {
         "bootstrap": "^5.3",
-        "bootstrap-icons": "^1.11.3",
-        "laravel-vite-plugin": "^1.0",
-        "sass": "^1.79",
-        "vite": "^5.4"
+        "bootstrap-icons": "^1.11",
+        "laravel-vite-plugin": "^1.1",
+        "sass": "^1.82",
+        "vite": "^6.0"
     },
     "devDependencies": {
         "justintime50-styles": "0.6.0",
         "postcss-scss": "^4.0",
-        "stylelint": "^16.9",
+        "stylelint": "^16.12",
         "stylelint-config-standard": "^36.0"
     }
 }
