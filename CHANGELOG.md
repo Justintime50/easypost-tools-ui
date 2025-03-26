@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Next Release
+
+- Upgrades Laravel to v12
+- Bumps dependencies
+
 ## v1.0.1 (2024-09-26)
 
 - Removes unused `axios` dependency
