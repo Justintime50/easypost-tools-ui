@@ -1,8 +1,9 @@
 # CHANGELOG
 
-## Next Release
+## v1.1.0 (2025-07-21)
 
 - Upgrades Laravel to v12
+- Bumps Docker image, now uses supervisord to manage processes (php, nginx, your own)
 - Bumps dependencies
 
 ## v1.0.1 (2024-09-26)

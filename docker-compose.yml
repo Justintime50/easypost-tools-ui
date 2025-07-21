@@ -1,30 +1,39 @@
 services:
   easypost-tools-ui:
     build: .
-    # image: justintime50/easypost-tools-ui
     restart: always
-    env_file:
-      - src/.env
     networks:
       - easypost-tools-ui
       - traefik
+    env_file:
+      - src/.env
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.docker.network=traefik'
+      - 'traefik.http.routers.easypost-tools-ui.rule=Host(`easyposttools.localhost`)'
+      - 'traefik.http.services.easypost-tools-ui.loadbalancer.server.port=80'
+    depends_on:
+      easypost-tools-ui-db:
+        condition: service_started
+    volumes:
+      - ./src:/var/www/html
+
   easypost-tools-ui-db:
-    image: 'mariadb:11.4.3'
+    image: 'mariadb:11.4.7'
     restart: always
     volumes:
-      - database-data:/var/lib/mysql
+      - easypost-tools-ui-data:/var/lib/mysql
     env_file:
       - .env
     networks:
       - easypost-tools-ui
 
 volumes:
-  database-data:
+  easypost-tools-ui-data:
     driver: local
 
 networks:
   traefik:
-    name: traefik
     external: true
   easypost-tools-ui:
     name: easypost-tools-ui
