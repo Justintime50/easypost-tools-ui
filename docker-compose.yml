@@ -23,8 +23,12 @@ services:
     restart: always
     volumes:
       - easypost-tools-ui-data:/var/lib/mysql
-    env_file:
-      - .env
+    environment:
+      MARIADB_DATABASE: easyposttools
+      MARIADB_ROOT_PASSWORD: password
+      MARIADB_USER: easyposttools
+      MARIADB_PASSWORD: password
+      MARIADB_AUTO_UPGRADE: 1
     networks:
       - easypost-tools-ui
 
