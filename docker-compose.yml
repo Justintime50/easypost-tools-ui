@@ -24,9 +24,9 @@ services:
     volumes:
       - easypost-tools-ui-data:/var/lib/mysql
     environment:
-      MARIADB_DATABASE: easyposttools
+      MARIADB_DATABASE: easypost_tools
       MARIADB_ROOT_PASSWORD: password
-      MARIADB_USER: easyposttools
+      MARIADB_USER: easypost_tools
       MARIADB_PASSWORD: password
       MARIADB_AUTO_UPGRADE: 1
     networks:
