@@ -6,8 +6,8 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: extractions/setup-just@v2
+      - uses: actions/checkout@v5
+      - uses: extractions/setup-just@v3
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
@@ -20,14 +20,14 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: extractions/setup-just@v2
+      - uses: actions/checkout@v5
+      - uses: extractions/setup-just@v3
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: '22'
+          node-version: '24'
       - name: Lint project
         run: |
           cd src
@@ -38,8 +38,8 @@ jobs:
       matrix:
         phpversion: ['8.2', '8.3']
     steps:
-      - uses: actions/checkout@v4
-      - uses: extractions/setup-just@v2
+      - uses: actions/checkout@v5
+      - uses: extractions/setup-just@v3
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.phpversion }}
@@ -58,8 +58,8 @@ jobs:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: extractions/setup-just@v2
+      - uses: actions/checkout@v5
+      - uses: extractions/setup-just@v3
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
@@ -71,9 +71,9 @@ jobs:
           cp .env-example .env
           just setup
       - name: Generate coverage report
-        env:
-          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cd src
           EASYPOST_TEST_API_KEY=123 EASYPOST_PROD_API_KEY=123 just coverage
-          ./bin/php-coveralls --coverage_clover=build/logs/clover.xml -v
+      - uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
