@@ -8,7 +8,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.2",
+        "php": "^8.4",
         "anhskohbo/no-captcha": "^3.6",
         "easypost/easypost-php": "^8.0",
         "laravel/framework": "^12.0",
@@ -18,7 +18,7 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
-        "justintime50/vcr-accessories": "^0.3.0",
+        "justintime50/vcr-accessories": "^0.4.0",
         "larastan/larastan": "^3.2",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.1",

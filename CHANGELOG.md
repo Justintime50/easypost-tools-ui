@@ -3,6 +3,7 @@
 ## Next Release
 
 - Add support for PHP 8.4/8.5
+- Drops support for PHP 8.2/8.3
 - Fix database deprecation warning
 - Bumps dependencies
 

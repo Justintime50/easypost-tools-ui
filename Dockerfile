@@ -1,4 +1,4 @@
-FROM justintime50/nginx-php:8.3-34
+FROM justintime50/nginx-php:8.5-36
 
 ARG PROD
 ENV PROD=$PROD
