@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Next Release
+
+- Add support for PHP 8.4/8.5
+- Fix database deprecation warning
+- Bumps dependencies
+
 ## v1.1.0 (2025-07-21)
 
 - Upgrades Laravel to v12

@@ -10,7 +10,7 @@
     "require": {
         "php": "^8.2",
         "anhskohbo/no-captcha": "^3.6",
-        "easypost/easypost-php": "^7.0",
+        "easypost/easypost-php": "^8.0",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.9",
         "laravel/ui": "^4.5",
@@ -22,10 +22,11 @@
         "larastan/larastan": "^3.2",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.1",
+        "php-vcr/php-vcr": "^1.8.2",
         "phpunit/phpunit": "^11.0",
         "rregeer/phpunit-coverage-check": "^0.3.1",
         "spatie/laravel-ignition": "^2.7",
-        "squizlabs/php_codesniffer": "^3.10"
+        "squizlabs/php_codesniffer": "^4.0"
     },
     "config": {
         "optimize-autoloader": true,
