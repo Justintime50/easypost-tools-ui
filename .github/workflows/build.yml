@@ -1,79 +1,18 @@
 name: build
 
-on: [push, pull_request]
+on:
+  push:
+    tags:
+      - '*'
+  workflow_dispatch: ~
 
 jobs:
-  docker:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: extractions/setup-just@v3
-      - uses: shivammathur/setup-php@v2
+      - uses: justintime50/composite-actions/publish-public-image@v1
         with:
-          php-version: '8.5'
-      - run: docker network create traefik
-      - name: Run setup Docker container
-        run: |
-          cd src
-          cp .env-example .env
-          just setup
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-      - uses: extractions/setup-just@v3
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.5'
-      - uses: actions/setup-node@v6
-        with:
-          node-version: '24'
-      - name: Lint project
-        run: |
-          cd src
-          just install lint
-  test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        phpversion: ['8.4', '8.5']
-    steps:
-      - uses: actions/checkout@v6
-      - uses: extractions/setup-just@v3
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.phpversion }}
-          coverage: xdebug
-      - run: docker network create traefik
-      - name: Install Dependencies
-        run: |
-          cd src
-          cp .env-example .env
-          just setup
-      - name: Run tests
-        run: |
-          cd src
-          EASYPOST_TEST_API_KEY=123 EASYPOST_PROD_API_KEY=123 just coverage
-  coverage:
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-      - uses: extractions/setup-just@v3
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.5'
-          coverage: xdebug
-      - run: docker network create traefik
-      - name: Install Dependencies
-        run: |
-          cd src
-          cp .env-example .env
-          just setup
-      - name: Generate coverage report
-        run: |
-          cd src
-          EASYPOST_TEST_API_KEY=123 EASYPOST_PROD_API_KEY=123 just coverage
-      - uses: codecov/codecov-action@v5
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          image_name: justintime50/easypost-tools-ui
+          image_tag: ${GITHUB_REF##*/v}
