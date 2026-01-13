@@ -33,7 +33,6 @@ jobs:
       - uses: justintime50/composite-actions/bootstrap-php@v1
         with:
           php-version: ${{ matrix.phpversion }}
-      - run: docker network create traefik
       - name: Install Dependencies
         run: |
           cd src
