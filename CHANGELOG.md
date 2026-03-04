@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next Release
+## v1.2.0 (2026-03-04)
 
 - Add support for PHP 8.4/8.5
 - Drops support for PHP 8.2/8.3
