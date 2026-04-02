@@ -4,23 +4,17 @@
     "engines": {
         "node": ">=22"
     },
-    "scripts": {
-        "dev": "vite",
-        "build": "vite build",
-        "lint": "npx stylelint resources/sass/*.scss --config node_modules/justintime50-styles/src/css/.stylelintrc.json --custom-syntax postcss-scss",
-        "fix": "npx stylelint resources/sass/*.scss --config node_modules/justintime50-styles/src/css/.stylelintrc.json --custom-syntax postcss-scss --fix"
-    },
     "dependencies": {
         "bootstrap": "^5.3",
         "bootstrap-icons": "^1.11",
-        "laravel-vite-plugin": "^1.1",
-        "sass": "^1.82",
-        "vite": "^6.2"
+        "laravel-vite-plugin": "^3.0",
+        "sass": "^1.98",
+        "vite": "^8.0"
     },
     "devDependencies": {
-        "justintime50-styles": "0.6.0",
+        "eslint": "^9.0",
         "postcss-scss": "^4.0",
-        "stylelint": "^16.12",
-        "stylelint-config-standard": "^36.0"
+        "stylelint": "^17.4",
+        "stylelint-config-standard": "^40.0"
     }
 }

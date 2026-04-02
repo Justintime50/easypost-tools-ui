@@ -1,10 +1,8 @@
 // External
-@import "https://fonts.googleapis.com/css?family=Poppins";
-@import "bootstrap/scss/bootstrap";
-@import "bootstrap-icons/font/bootstrap-icons.css";
+@use "bootstrap/scss/bootstrap" as *;
 
 // Internal
-@import "elements";
-@import "overrides";
-@import "custom";
-@import "media_queries";
+@use "elements" as *;
+@use "overrides" as *;
+@use "custom" as *;
+@use "media_queries" as *;

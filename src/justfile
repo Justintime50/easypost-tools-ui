@@ -1,18 +1,24 @@
-# Clean the project
-clean:
-    composer clean
-
-# Clean the database
-clean-db:
-    composer clean-db
-
-# Run a coverage report
-coverage:
-    composer coverage
+PHP_BIN := "bin"
+STYLES_DIR := "vendor/justintime50/styles/src"
+PROJECT_NAME := "easypost-tools-ui"
+DOCKER_CONTAINER_NAME := `docker ps --filter "name=easypost-tools-ui" --format "{{.ID}}" | head -n 1`
+DOCKER_DB_CONTAINER_NAME := `docker ps --filter "name=easypost-tools-ui-db" --format "{{.ID}}" | head -n 1`
 
 # Compile for production
 build:
-    npm run build
+    npx vite build
+
+# Clean the project
+clean:
+    rm -rf ./{{PHP_BIN}} clover.html node_modules vendor *.cache .*.cache bootstrap/cache/*.php
+
+# Clean the database
+clean-db:
+    docker exec -t {{DOCKER_CONTAINER_NAME}} php artisan db:wipe
+
+# Run a coverage report
+coverage:
+    XDEBUG_MODE=coverage ./{{PHP_BIN}}/phpunit --coverage-html clover.html --coverage-clover build/logs/clover.xml && bin/coverage-check build/logs/clover.xml 75 --only-percentage
 
 # Install dependencies
 install:
@@ -20,65 +26,73 @@ install:
     npm install
 
 # Lint entire project
-lint: lint-php lint-css phpstan
+lint: lint-php lint-css lint-js phpstan
 
 # Lint the PHP files
 lint-php:
-    composer lint
+    ./{{PHP_BIN}}/phpcs --standard={{STYLES_DIR}}/php/phpcs.xml .
 
 # Lint the SASS files
 lint-css:
-    npm run lint
+    npx stylelint resources/sass/*.scss --config {{STYLES_DIR}}/css/.stylelintrc.json --custom-syntax postcss-scss
+
+# Lint the JS files
+lint-js:
+    npx eslint -c {{STYLES_DIR}}/javascript/eslint.config.js resources/js/*.js
 
 # Fix all linting issues
-lint-fix: lint-php-fix lint-css-fix
+lint-fix: lint-php-fix lint-css-fix lint-js-fix
 
 # Fix PHP linting
 lint-php-fix:
-    composer fix
+    ./{{PHP_BIN}}/phpcbf --standard={{STYLES_DIR}}/php/phpcs.xml .
 
 # Fix SASS linting
 lint-css-fix:
-    npm run fix
+    npx stylelint resources/sass/*.scss --config {{STYLES_DIR}}/css/.stylelintrc.json --custom-syntax postcss-scss --fix
+
+# Fix JS linting
+lint-js-fix:
+    npx eslint -c {{STYLES_DIR}}/javascript/eslint.config.js resources/js/*.js --fix
 
 # Migrates the database
 migrate:
-    composer migrate
+    docker exec -t {{DOCKER_CONTAINER_NAME}} php artisan migrate --no-interaction --force
 
 # Migrates the database and cleans in one go
 migrate-fresh:
-    composer migrate-fresh
+    docker exec -t {{DOCKER_CONTAINER_NAME}} php artisan migrate:fresh --no-interaction --force
 
 # Migrates and seeds the database
 migrate-seed:
-    composer migrate-seed
+    docker exec -t {{DOCKER_CONTAINER_NAME}} php artisan migrate:fresh --seed --no-interaction --force
 
 # Run static analysis on the project
 phpstan:
-    composer phpstan
-
-# Deploy the project for production
-prod:
-    docker compose -f ../docker-compose.yml -f ../docker-compose-prod.yml up -d --build
-
-# Rollback a database migration
-rollback:
-    composer rollback
+    ./{{PHP_BIN}}/phpstan analyse --memory-limit=4G
 
 # Compile SASS and Javascript during development (hot-reloads)
 run:
     docker compose up -d
-    npm run dev
+    npx vite
 
 # Seeds the database
 seed:
-    composer seed
+    docker exec -t {{DOCKER_CONTAINER_NAME}} php artisan db:seed --no-interaction --force
 
 # Sets up and spins up the project for the first time
 setup:
     #!/usr/bin/env bash
-    bash <(curl -s https://gist.githubusercontent.com/Justintime50/2de9303a491c22627ee502aaa7b1f289/raw) easypost-tools-ui easypost-tools-ui mysql
+    bash <(curl -s https://gist.githubusercontent.com/Justintime50/2de9303a491c22627ee502aaa7b1f289/raw) {{PROJECT_NAME}} {{PROJECT_NAME}} mysql
+
+# Create a shell into the Docker container
+shell:
+    docker exec -it {{DOCKER_CONTAINER_NAME}} sh
+
+# Create a shell into the DB Docker container
+shell-db:
+    docker exec -it {{DOCKER_DB_CONTAINER_NAME}} bash
 
 # Tests the project
 test:
-    composer test
+    ./{{PHP_BIN}}/phpunit

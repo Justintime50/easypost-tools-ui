@@ -1,25 +1,25 @@
-@import "variables";
+@use "variables";
 
 .m-b-md {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .card {
-    margin: 20px 0;
+  margin: 20px 0;
 }
 
 .btn-primary {
-    background-color: $color-easypost-blue-primary;
-    border: initial;
-    color: $color-white;
+  background-color: variables.$color-easypost-blue-primary;
+  border: initial;
+  color: variables.$color-white;
 }
 
 .btn-primary:hover {
-    background-color: $color-easypost-blue-secondary;
-    border: initial;
-    color: $color-white;
+  background-color: variables.$color-easypost-blue-secondary;
+  border: initial;
+  color: variables.$color-white;
 }
 
 .navbar-toggler {
-    margin-top: 0 !important;
+  margin-top: 0 !important;
 }

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Upgrades to Laravel 13
+
 ## v1.2.0 (2026-03-04)
 
 - Add support for PHP 8.4/8.5
