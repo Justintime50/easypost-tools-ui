@@ -9,7 +9,7 @@ RUN if [ -n "$PROD" ]; then \
     # Setup prod env
     composer install -q --no-ansi --no-interaction --no-scripts --no-plugins --no-progress --prefer-dist --optimize-autoloader --no-dev \
     && npm install -s --omit=dev \
-    && npm run build; \
+    && npx vite build; \
     # Setup dev env
     else \
     composer install \
