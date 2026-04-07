@@ -12,7 +12,9 @@
         "vite": "^8.0"
     },
     "devDependencies": {
-        "eslint": "^9.0",
+        "@eslint/js": "^10.0.1",
+        "eslint": "^10.0",
+        "globals": "^17.4.0",
         "postcss-scss": "^4.0",
         "stylelint": "^17.4",
         "stylelint-config-standard": "^40.0"
